@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "83c3c8ed07e437d295171a0be3d52e0df443fcfcef400dea9f8da18df4915b35",
+  "snapshotSha256": "7ec88d9a124247ad297b3c60fffd5d24229a82d706baddef4930427a05f2694d",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -9,8 +9,13 @@
   "verification": "Historical evidence is retained with original dates; run targeted source-export checks separately. No hosted CI or manual review is implied.",
   "files": [
     {
+      "path": ".dockerignore",
+      "sha256": "289ce6c1c57a6f8928b0abdb23de94da02b94b9bf3e379c73e0b613e82c8fbf9",
+      "origin": "working-tree-copy"
+    },
+    {
       "path": ".github/workflows/replaylab.yml",
-      "sha256": "777ed06397fd476e41ddd97c745ed43888b04a7be806543c08e7a9f1999dd107",
+      "sha256": "77848809ed857a91bdf9c8d6100680e9776f4ee275a8ceb40c82590b70f7f0de",
       "origin": "working-tree-copy"
     },
     {
@@ -65,7 +70,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "84f20160e4ac7e337b9563da387327190b5b56a4c6ead96c8a55c7834effd5d8",
+      "sha256": "229828975ff4b47a773277668e6540e0e7826397557207e10580160dda54668c",
       "origin": "working-tree-copy"
     },
     {
@@ -2211,7 +2216,7 @@
     },
     {
       "path": "deploy/replaylab/Dockerfile",
-      "sha256": "065722f6950afdda8205272b3d8a00bea54cdb58a7e574d0af2075c2c5d0b402",
+      "sha256": "3883448e2f8364e0e0e00b57be6e5630dec7b1ebb6ed88d4ac33a8eb5add779f",
       "origin": "working-tree-copy"
     },
     {
@@ -2221,12 +2226,17 @@
     },
     {
       "path": "deploy/replaylab/Dockerfile.dockerignore",
-      "sha256": "99e614dfec3ceae4f57d1ff7d25ed8f052a62b2d525e87d7a44c1987004fff1e",
+      "sha256": "9e1d4be10674256d22e17cec898cf13fb565c7f13f63e2efeb799d8fedbcda29",
       "origin": "working-tree-copy"
     },
     {
       "path": "deploy/replaylab/compose.yml",
       "sha256": "2e9804349a79236461e4e82000838509246c50ca6803835ffcfd83615eb187b5",
+      "origin": "working-tree-copy"
+    },
+    {
+      "path": "deploy/supabase/schema.sql",
+      "sha256": "6e7f06237fdaeb141498c351aaa902c62a458d94fe496bcb518b2284ee914bc7",
       "origin": "working-tree-copy"
     },
     {
@@ -2256,7 +2266,7 @@
     },
     {
       "path": "docs/RELEASE.md",
-      "sha256": "c17d3a3c6e944adc043d06255f26f875c50d38e44e4d8f4cbb5277f3dca915bd",
+      "sha256": "70ff6a5edc61f3b07aa7cc1e2b2f16e01e55548d23dbc573062a3200bed11d41",
       "origin": "working-tree-copy"
     },
     {
@@ -2281,7 +2291,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "12a74cc82e676104e5742753e1b7038ba054041e38d03a0c8dbf272d509cd46f",
+      "sha256": "ba1635af60558c5a3d959f3dba0fca21954ec53c26616381ba76840cffb6960a",
       "origin": "working-tree-copy"
     },
     {
@@ -2626,7 +2636,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "ec465c37188ff365fa2873d1c320b9e5b863983ef40c4eb1091f866dea12e01f",
+      "sha256": "8b23709ce2cf26a14fe1b63bd90cc3938b0f9fca533ad242203b85913fe4c626",
       "origin": "working-tree-copy"
     },
     {
@@ -2641,7 +2651,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "733471668b81258cf0cec21338eeb3e47c761f0752679ac2c3a4d2921a333169",
+      "sha256": "56359ec94d61a669fdba191c8db1d0684a0022592f1cac9104fe2dfe699a7ece",
       "origin": "working-tree-copy"
     },
     {
@@ -2676,12 +2686,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "f6e461153bf69aaba1776cdea6fd73ff0f58cfef471f8e5ed0e4fa051d2ee595",
+      "sha256": "af40dee59844ecc64622a979d7f1dafb3c10b524d0eb33a2a0e0951cbe3dec86",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "7a3617aa1cb082259d4230c052bebc2a876ce5b667ec47a0d413ec8c74c8ba20",
+      "sha256": "55442da95d3b404710ea0995a7ab444391bde12c9dce4cc6d48e2cf2a3005dcd",
       "origin": "working-tree-copy"
     },
     {
@@ -2731,7 +2741,7 @@
     },
     {
       "path": "packages/replaylab/foundation/scripts/prepare-source.mjs",
-      "sha256": "339e2409b3f14b4482b9fcc4b630f0d1247aa28a2d97cff3ad3c29d9090362f4",
+      "sha256": "d5b0658ba159c27c35f7b2a02aad822d59eb60244fababdebaa2cbf2839314da",
       "origin": "working-tree-copy"
     },
     {
@@ -2746,7 +2756,7 @@
     },
     {
       "path": "packages/replaylab/foundation/scripts/verify-source.mjs",
-      "sha256": "544e87008d72a6092c2c2a2d94a32cda7b87ca055de70ed527cde0093c45f364",
+      "sha256": "376b7969837bdaa7575937e8d0c653d568eaab770cab3cd401ba64c8624c0988",
       "origin": "working-tree-copy"
     },
     {
@@ -2896,7 +2906,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/server-entry.ts",
-      "sha256": "962dd6f3f8bc39aa6edf7c6570d8025227d5cf8da9aa375a87d78822378ba5b6",
+      "sha256": "4ff71ace8765a4c1c3d8ccfec1dc2a0d1d8e0dcf41bc72ed7193999709a2441f",
       "origin": "working-tree-copy"
     },
     {
@@ -2910,13 +2920,18 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/supabase-room-storage.ts",
+      "sha256": "ecc6923ee8309bbd5c258e72cc64745ba266668132c5d49e3fe7925cece0d4b6",
+      "origin": "working-tree-copy"
+    },
+    {
       "path": "packages/replaylab/foundation/src/sync-protocol.ts",
       "sha256": "33e887754bf2eac90985d4a8fc5a8c526aeb479f515fc18d94203845dfed11ae",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/sync-server.ts",
-      "sha256": "fcf6e4aceab222eb10044ebde8c337332a552e5a263b738e7701120e9543e799",
+      "sha256": "6a3b177e64adbfaf45e6f65c0f8fde834985c7c8e965f8d627c1a6b266e243bc",
       "origin": "working-tree-copy"
     },
     {
@@ -3031,7 +3046,7 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/slice5a.server.pw.spec.ts",
-      "sha256": "4132647176e1cfbdf2a9c7816f4241a17c4080633d60067035141214d1cb5190",
+      "sha256": "0a69f9892c65a3ee656caa3982117e05d1fb3be72b413aa5639adf4e1e9eb6a6",
       "origin": "working-tree-copy"
     },
     {
@@ -3065,6 +3080,11 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/tests/supabase-room-storage.pw.spec.ts",
+      "sha256": "2de4f557f236ba85a3a871a9016d4d1c6eb5813216ba80cbe5682ced672b0d1f",
+      "origin": "working-tree-copy"
+    },
+    {
       "path": "packages/replaylab/foundation/tsconfig.json",
       "sha256": "8340d99a90c43a91ac22f1a4bccb9668bd043850feda287ab49567421514fc29",
       "origin": "working-tree-copy"
@@ -3077,6 +3097,11 @@
     {
       "path": "packages/replaylab/foundation/vite.server.config.ts",
       "sha256": "e48102c63168f2cc943a8f7bd788c6917d37680ae33d6439cbd2e6c3d8b66de9",
+      "origin": "working-tree-copy"
+    },
+    {
+      "path": "render.yaml",
+      "sha256": "83b9e55298ec85eee5feefc88c68e6cfdab9c894f1b24bafec2822bea34183e3",
       "origin": "working-tree-copy"
     },
     {

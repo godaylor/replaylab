@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T10:22:56.300Z",
+  "generatedAt": "2026-09-10T11:29:00.681Z",
   "verdict": "PASS",
   "scope": "@replaylab/foundation slice7 production runtime",
   "directDependencies": [
@@ -1676,6 +1676,7 @@
   "serverBundle": {
     "modules": [
       "packages/replaylab/foundation/src/room-cli.ts",
+      "packages/replaylab/foundation/src/supabase-room-storage.ts",
       "packages/replaylab/foundation/src/domain.ts",
       "packages/replaylab/foundation/src/sync-server.ts",
       "packages/replaylab/foundation/src/server-entry.ts",
@@ -1684,7 +1685,7 @@
     ],
     "imports": [
       "node:path",
-      "assets/room-storage-BSYKFcYn.js",
+      "assets/room-storage-CY6WeLG5.js",
       "node:crypto",
       "node:fs",
       "yjs",
@@ -1696,7 +1697,7 @@
     "failures": []
   },
   "sourceBoundaryScan": {
-    "filesScanned": 67,
+    "filesScanned": 69,
     "forbidden": [],
     "protocolMarkers": []
   },
@@ -1767,8 +1768,8 @@
     "finalRetainVersusUnpatchedReviewRequiredBeforeRelease": false
   },
   "sourceNotices": {
-    "generatedAt": "2026-09-09T10:22:56.299Z",
-    "repositoryCommit": "329839e467d936f90230fb02a8983f8eb4b62fc0",
+    "generatedAt": "2026-09-10T11:29:00.679Z",
+    "repositoryCommit": "13ccc33675a9bc86e887ac8484e9c2d73e8044a5",
     "items": [
       {
         "source": "blocksuite/framework/store/src/adapter/base.ts",
