@@ -9,7 +9,6 @@ services:
     dockerfilePath: ./deploy/replaylab/Dockerfile
     dockerContext: .
     healthCheckPath: /healthz
-    maxShutdownDelaySeconds: 10
     envVars:
       - key: PORT
         value: 32400

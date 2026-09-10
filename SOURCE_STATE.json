@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "7ec88d9a124247ad297b3c60fffd5d24229a82d706baddef4930427a05f2694d",
+  "snapshotSha256": "845d9bf9e2734bb2eb09067272099017dedc933b3f0fb6d2ecb9f5040efb70a2",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -3101,7 +3101,7 @@
     },
     {
       "path": "render.yaml",
-      "sha256": "83b9e55298ec85eee5feefc88c68e6cfdab9c894f1b24bafec2822bea34183e3",
+      "sha256": "8a1558fa6257dbc7343d17dd4408ea81fcf42dd2b725ed780dff2ec90040070a",
       "origin": "working-tree-copy"
     },
     {
