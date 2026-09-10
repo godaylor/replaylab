@@ -1,0 +1,15 @@
+# Emergency recovery journal v1
+
+Owner authorization: 2026-09-08. This is an additive recovery-format decision, not a canonical Yjs/schema/network migration.
+
+Before first use on an existing play, preserve the exact IndexedDB update as an immutable SHA-256 recovery artifact. Validate it before adoption. Existing collection databases, old recovery-v1 files and user preferences remain readable and are not deleted. An interruption after backup leaves the original database intact and adoption safely repeatable. Deployment does not access or migrate real browser profiles; this migration runs per play at local open.
+
+The synchronous emergency journal uses origin-local Web Storage, namespaced by database and play. Every writer has a new random session ID. Two alternating versioned/checksummed slots contain complete encoded Yjs recovery updates; each slot is independent of a torn earlier record. Document updates are captured synchronously, not in pagehide or a React effect. After confirmed IndexedDB persistence, only that writer's acknowledged slots may be removed. No pointer stream, playback or awareness is journaled. Canonical state remains the single Y.Doc and IndexedDB main source.
+
+Open scans every writer, validates version/checksum/identity and structural schema on isolated documents, then merges valid Yjs updates idempotently before exposing the editor. Deletions/conflict candidates are preserved by Yjs semantics. Recovered foreign-writer slots remain as evidence: Web Storage has no cross-tab atomic compare-and-delete operation. Only the originating writer removes its own ACKed document records. Explicit dismissal of a foreign draft writes an immutable observed-value tombstone retaining its exact raw content; it never deletes that writer's live slot. Unknown/corrupt records are retained byte-for-byte and open read-only recovery, never silently skipped as a successful editable load.
+
+Draft entries are separate from committed document updates. They are never replayed as commands or network updates. Each phase/writer remains independently inspectable until explicit apply/cancel; remote cue changes must not erase a local unapplied draft. No prior on-disk draft format exists in the baseline; existing canonical cues and old recovery exports remain unchanged.
+
+Checksum FNV-1a over serialized UTF-16 detects accidental corruption, not hostile tampering; ingress schema validation remains required. A record is capped at 2,000,000 characters. Quota/denied storage retains live work and previous records, reports failure and offers export, never claims durable save. Browser data clearing, complete storage/media failure and unavailable quota cannot be made lossless by application code. No automatic retention cleanup of another writer's drafts or damaged data is permitted.
+
+Required evidence: unchanged immediate-close test plus ten repetitions; renderer crash/reopen; legacy data backup and interrupted adoption; corrupt/latest and future-version preservation; multiple writers and pending drafts; quota failure; old portable export compatibility; full offline/convergence/undo and maximum-scene suites.
