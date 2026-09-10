@@ -18,7 +18,7 @@ for (const file of state.files) {
   }
   if (hash(readFileSync(cursor)) !== file.sha256) throw new Error(`Source differs from snapshot: ${file.path}`);
 }
-for (const required of ['LICENSE', 'LICENSE-MIT', 'README.md', 'PLAN.md', 'AGENTS.md', 'FINAL_AUDIT.md', 'docs/SOURCE_STATE.md', 'docs/LICENSE_BOUNDARIES.md', 'docs/REUSABLE_SCOPE.md', 'docs/TRANSFORMATION_SPEC.md', 'docs/ARCHITECTURE.md', 'docs/BASELINE_AUDIT.md', 'docs/PRODUCT_OPTIONS.md', 'docs/EMERGENCY_JOURNAL.md', 'docs/RELEASE.md']) {
+for (const required of ['LICENSE', 'LICENSE-MIT', 'README.md', 'PLAN.md', 'AGENTS.md', 'FINAL_AUDIT.md', '.dockerignore', 'render.yaml', 'deploy/supabase/schema.sql', 'docs/SOURCE_STATE.md', 'docs/LICENSE_BOUNDARIES.md', 'docs/REUSABLE_SCOPE.md', 'docs/TRANSFORMATION_SPEC.md', 'docs/ARCHITECTURE.md', 'docs/BASELINE_AUDIT.md', 'docs/PRODUCT_OPTIONS.md', 'docs/EMERGENCY_JOURNAL.md', 'docs/RELEASE.md']) {
   if (!seen.has(required)) throw new Error(`Missing required contract: ${required}`);
 }
 const workflows = readdirSync(join(root, '.github/workflows'));

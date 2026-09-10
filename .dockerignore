@@ -1,0 +1,11 @@
+.git
+!.yarn
+!.yarn/**
+node_modules
+tmp
+**/dist
+**/server-dist
+**/release-dist
+**/.replaylab-data
+**/.vitest-attachments
+**/*.tar.gz

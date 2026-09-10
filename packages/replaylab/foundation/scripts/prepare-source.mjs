@@ -54,9 +54,9 @@ for (const path of ['src', 'public', 'scripts', 'tests', 'evidence']) copy(`${pr
 for (const name of readdirSync(join(repo, product)).sort()) {
   if (/^(package\.json|tsconfig\.json|.*\.config\.ts|index\.html)$/.test(name)) copy(`${product}/${name}`);
 }
-for (const path of ['README.md', 'PLAN.md', 'AGENTS.md', 'FINAL_AUDIT.md', 'LICENSE', 'LICENSE-MIT', '.gitignore', '.github/workflows/replaylab.yml', '.yarn/releases/yarn-4.18.0.cjs',
+for (const path of ['README.md', 'PLAN.md', 'AGENTS.md', 'FINAL_AUDIT.md', 'LICENSE', 'LICENSE-MIT', '.gitignore', '.dockerignore', 'render.yaml', '.github/workflows/replaylab.yml', '.yarn/releases/yarn-4.18.0.cjs',
   ...['LICENSE_BOUNDARIES', 'REUSABLE_SCOPE', 'TRANSFORMATION_SPEC', 'ARCHITECTURE', 'BASELINE_AUDIT', 'PRODUCT_OPTIONS', 'EMERGENCY_JOURNAL', 'RELEASE', 'SOURCE_STATE'].map(name => `docs/${name}.md`),
-  'deploy/replaylab']) copy(path);
+  'deploy/replaylab', 'deploy/supabase']) copy(path);
 
 // Preserve existing runtime resolution choices, including the two runtime patches.
 const resolutions = Object.fromEntries(Object.entries(sourcePackage.resolutions).filter(([name, value]) => !value.startsWith('patch:') || !name.startsWith('@magic-works/')));

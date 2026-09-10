@@ -2,9 +2,9 @@ name: ReplayLab release checks
 on:
   workflow_dispatch:
   push:
-    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
+    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', '.dockerignore', 'render.yaml', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
   pull_request:
-    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
+    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', '.dockerignore', 'render.yaml', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
 permissions:
   contents: read
 concurrency:

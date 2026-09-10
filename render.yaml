@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: replaylab-godaylor
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    autoDeployTrigger: checksPass
+    dockerfilePath: ./deploy/replaylab/Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    maxShutdownDelaySeconds: 10
+    envVars:
+      - key: PORT
+        value: 32400
+      - key: HOST
+        value: 0.0.0.0
+      - key: REPLAYLAB_SUPABASE_URL
+        sync: false
+      - key: REPLAYLAB_SUPABASE_SECRET_KEY
+        sync: false
