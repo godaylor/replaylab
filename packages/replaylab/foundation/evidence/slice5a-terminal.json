@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "elapsedMs": 130.09999999403954,
+  "rateState": {
+    "status": "synced",
+    "role": "write"
+  },
+  "oversizeState": {
+    "status": "blocked",
+    "role": "write",
+    "errorCode": "oversize"
+  },
+  "oversizeAttempts": 1,
+  "oversizeAttemptsAfterRepeat": 1,
+  "schemaState": {
+    "status": "blocked",
+    "role": "write",
+    "errorCode": "schema"
+  },
+  "schemaAttempts": 2,
+  "schemaAttemptsAfterRepeat": 2,
+  "unauthorizedState": {
+    "status": "blocked",
+    "role": "write",
+    "errorCode": "unauthorized"
+  },
+  "indexedDbPreserved": true,
+  "exportPreserved": true
+}

@@ -1,0 +1,9 @@
+{
+  "reducedMotion": true,
+  "forcedColors": true,
+  "automatedAxeSeriousOrCriticalViolations": 0,
+  "pointerResolution": true,
+  "keyboardResolution": true,
+  "focusRestoration": true,
+  "ariaSnapshot": "- region \"Conflicts\":\n  - text: Concurrent intentions\n  - heading \"Conflicts\" [level=2]\n  - text: \"2\"\n  - list:\n    - listitem:\n      - group \"Phase 1 · Offense 1 pose\":\n        - text: Phase 1 · Offense 1 pose\n        - radio \"Candidate 1 x 430 · y 270 · author 1189058785\" [checked]\n        - strong: Candidate 1\n        - text: x 430 · y 270 · author 1189058785\n        - radio \"Candidate 2 x 250 · y 160 · author 1064665901\"\n        - strong: Candidate 2\n        - text: x 250 · y 160 · author 1064665901\n        - radio \"Average candidates x 340 · y 215\"\n        - strong: Average candidates\n        - text: x 340 · y 215\n      - button \"Show phase\"\n      - button \"Resolve\"\n    - listitem:\n      - group \"Phase 1 · Cut path\":\n        - text: Phase 1 · Cut path\n        - radio \"Candidate 1 2 points · (110, 125) → (520, 300) · author 1189058785\" [checked]\n        - strong: Candidate 1\n        - text: 2 points · (110, 125) → (520, 300) · author 1189058785\n        - radio \"Candidate 2 2 points · (110, 125) → (340, 220) · author 1064665901\"\n        - strong: Candidate 2\n        - text: 2 points · (110, 125) → (340, 220) · author 1064665901\n        - radio \"Average candidates 2 points · (110, 125) → (430, 260)\"\n        - strong: Average candidates\n        - text: 2 points · (110, 125) → (430, 260)\n      - button \"Show phase\"\n      - button \"Resolve\""
+}

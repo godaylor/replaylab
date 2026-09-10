@@ -1,0 +1,7 @@
+{
+  "verdict": "PASS",
+  "generatedAt": "2026-09-08T20:42:35.300Z",
+  "mechanism": "SIGKILL isolated browser renderer with stalled IndexedDB push",
+  "pose": 333,
+  "repeatedReopen": true
+}

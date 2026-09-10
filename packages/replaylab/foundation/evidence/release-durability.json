@@ -1,0 +1,425 @@
+{
+  "config": {
+    "configFile": "E:\\Projects\\PetProjects\\05-replaylab\\packages\\replaylab\\foundation\\playwright.config.ts",
+    "rootDir": "E:/Projects/PetProjects/05-replaylab/packages/replaylab/foundation/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/Projects/PetProjects/05-replaylab/packages/replaylab/foundation/test-results",
+        "repeatEach": 10,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "E:/Projects/PetProjects/05-replaylab/packages/replaylab/foundation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.pw.spec.ts",
+          "**/*.e2e.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/release-durability.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": {
+      "command": "node ../../../node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 32410 --strictPort",
+      "port": 32410,
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "slice6.e2e.spec.ts",
+      "file": "slice6.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 621,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:25.303Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-c5a480240940538f05cf",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 567,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:27.786Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-39abdda0765d944d0bb2",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 535,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:30.184Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-a90932eaddf437080dcd",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 604,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:32.612Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-0475abc7b04d720de37d",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 594,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:35.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-6c0e4e9ca2a0962765d6",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 660,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:37.566Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-71f898c6950bb94dcccc",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:40.108Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-b97e43874912e4d45539",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 587,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:42.595Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-e20d3435b3c9cd951afe",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 545,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:45.034Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-8fe425e475e0d55ea179",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "bounded pagehide flush keeps the last committed gesture after abrupt tab close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 686,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-08T20:42:47.459Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "911e374661a6f3593de2-7739183ab8ade31700b2",
+          "file": "slice6.e2e.spec.ts",
+          "line": 238,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-08T20:42:23.870Z",
+    "duration": 25279.499,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

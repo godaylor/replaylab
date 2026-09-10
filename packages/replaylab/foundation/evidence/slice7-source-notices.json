@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-09-09T10:22:56.299Z",
+  "repositoryCommit": "329839e467d936f90230fb02a8983f8eb4b62fc0",
+  "items": [
+    {
+      "source": "blocksuite/framework/store/src/adapter/base.ts",
+      "upstreamProject": "Rich Harris estree-walker",
+      "upstreamReference": "https://github.com/Rich-Harris/estree-walker",
+      "upstreamRevision": null,
+      "emitted": false,
+      "status": "excluded",
+      "notice": "MIT attribution marker preserved inline."
+    },
+    {
+      "source": "blocksuite/framework/global/src/gfx/math.ts",
+      "upstreamProject": "Excalidraw hitTestFreeDrawElement",
+      "upstreamReference": "https://github.com/excalidraw/excalidraw/commit/00c6940851b362da0d86f155269ef27a94d234c5",
+      "upstreamRevision": "00c6940851b362da0d86f155269ef27a94d234c5",
+      "upstreamBlob": "b94e8e7c30f9350c2efa064904c405dd7f99b9c3",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2020 Excalidraw",
+      "emitted": true,
+      "status": "verified",
+      "notice": "Exact upstream variant and MIT notice verified; upstream credit is preserved inline and the full license text is included in THIRD_PARTY_NOTICES.",
+      "localAdaptation": {
+        "blocksuiteCommit": "ebdcea25b5dd8cf1ec851ffbb13d6e5c4dbb872d",
+        "blocksuiteBlob": "04ca7f64b510defc5e43c844b929a14e00afe317",
+        "affineImportCommit": "30200ff86dc4fd5e1966b5aa4507db8e924f16a5",
+        "currentPathCommit": "66d9d576e0af347248eb14609399ffaee6aa5857",
+        "currentSourceSha256": "3b03868675ef20277e26212844ea6b9bc56661c9cecc9fd93cc363971610bc80",
+        "changes": [
+          "Renamed hitTestFreeDrawElement to isPointOnlines.",
+          "Replaced Excalidraw element and point types with BlockSuite Bound, points, rotate, and hitPoint parameters.",
+          "Replaced getElementAbsoluteCoords with Bound min/max coordinates and BlockSuite rotatePoint.",
+          "Preserved the 00c6940 freehand-point fix: endpoint precheck and the segment loop from zero through points.length.",
+          "Removed Excalidraw-specific comments and surrounding dispatch/bounds code; retained the inline upstream credit."
+        ]
+      }
+    },
+    {
+      "source": "blocksuite/framework/global/src/gfx/perfect-freehand",
+      "upstreamProject": "perfect-freehand",
+      "upstreamReference": "https://github.com/steveruizok/perfect-freehand",
+      "upstreamRevision": null,
+      "emitted": false,
+      "status": "excluded",
+      "notice": "Copyright (c) 2021 Stephen Ruiz Ltd; full MIT text preserved in the source tree."
+    }
+  ]
+}

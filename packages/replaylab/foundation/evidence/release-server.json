@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-09-08T20:41:14.360Z",
+  "verdict": "PASS",
+  "port": 32412,
+  "checks": [
+    "CSP/static boundary",
+    "two writers over production /sync",
+    "fsynced journal",
+    "abrupt process restart",
+    "new read-only client receives persisted pose",
+    "production-route offline reload"
+  ],
+  "publicTLS": "NOT RUN: hosting/domain not selected"
+}

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-09-09T10:24:36.517Z",
+  "mode": "packaged-node",
+  "port": 32400,
+  "verdict": "PASS",
+  "checks": [
+    "health/legal/static boundary",
+    "two independent writers; pose and cue",
+    "offline concurrent intentions; resolve; local undo",
+    "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
+  ],
+  "work": "E:\\Projects\\PetProjects\\05-replaylab\\tmp\\replaylab-source-ttEQdk\\tmp\\replaylab-runtime-smoke-vJOUUk"
+}

@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-09-03T18:00:53.206Z",
+  "verdict": "PASS",
+  "scope": "Slice 7 revalidation using the unchanged replaylab-render-v1 maximum-scene profile",
+  "sourceTest": "tests/slice3.performance.e2e.spec.ts",
+  "profile": {
+    "id": "replaylab-render-v1",
+    "browserVersion": "145.0.7632.6",
+    "viewport": { "width": 1440, "height": 900 },
+    "runner": {
+      "platform": "win32",
+      "release": "10.0.26200",
+      "logicalCpuCount": 16,
+      "cpuModel": "AMD Ryzen 7 7800X3D 8-Core Processor",
+      "totalMemoryBytes": 33409249280,
+      "execution": "local controlled gate; canonical dedicated CI replay remains required"
+    },
+    "warmupMs": 5000,
+    "traceAndSoakMs": 30000
+  },
+  "fixture": { "phases": 12, "actors": 10, "derivedBall": 1, "visibleActions": 30 },
+  "metrics": {
+    "framesPerSecond": 60.00313175700373,
+    "frameIntervalP95Ms": 16.700000000004366,
+    "gfxRenders": 1801,
+    "reactRendersDuringPlayback": 0,
+    "longTaskCount": 0,
+    "longestTaskMs": 0,
+    "heapBeforeBytes": 10000000,
+    "heapAfterBytes": 10000000,
+    "heapDeltaBytes": 0
+  },
+  "budgets": { "minimumFramesPerSecond": 55, "maximumHeapGrowthBytes": 67108864 }
+}

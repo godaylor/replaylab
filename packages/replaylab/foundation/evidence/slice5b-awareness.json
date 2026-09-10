@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "separateEphemeralChannel": true,
+  "lateTabCollection": true,
+  "disconnectRemoval": true,
+  "expiryMs": 1200,
+  "documentBytesAndHistoryUnchanged": true,
+  "presenterFollow": true,
+  "localExit": true,
+  "reducedMotionDiscretePhase": true,
+  "pointerThrottleHzMax": 20,
+  "presenterThrottleHzMax": 10,
+  "automatedAxeSeriousOrCriticalViolations": 0
+}

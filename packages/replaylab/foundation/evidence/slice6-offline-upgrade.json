@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-09-08T20:42:19.076Z",
+  "verdict": "PASS",
+  "browserVersion": "145.0.7632.6",
+  "fixedReplayLabPort": 32410,
+  "upgrade": {
+    "waitingWasHandled": true,
+    "cacheNames": [
+      "replaylab-shell-v3",
+      "replaylab-shell-v1"
+    ],
+    "staleAssetRetained": true
+  },
+  "coldOfflineChecks": [
+    "ten actors",
+    "pose edit",
+    "rich cue",
+    "phase add",
+    "reload persistence"
+  ]
+}

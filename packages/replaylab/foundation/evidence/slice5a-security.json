@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "duplicateIdempotent": true,
+  "reorderConverged": true,
+  "rejectedBeforeApply": {
+    "read": "forbidden",
+    "malformed": "malformed",
+    "schema": "schema",
+    "oversize": "oversize",
+    "unauthorized": "unauthorized",
+    "rate": "rate_limited"
+  },
+  "retryAfterMs": 79,
+  "documentContentInLogs": false
+}

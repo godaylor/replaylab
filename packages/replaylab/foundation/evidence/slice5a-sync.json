@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "independentBrowserContexts": 3,
+  "bidirectionalPoseAndCue": true,
+  "saveActionPresent": false,
+  "readCapability": {
+    "commandBlocked": true,
+    "readOnly": true,
+    "sentCommitCount": 0,
+    "tokenInSearch": false,
+    "tokenInFragment": true
+  },
+  "indexedDbMainSource": true,
+  "automatedAxeSeriousOrCriticalViolations": 0
+}

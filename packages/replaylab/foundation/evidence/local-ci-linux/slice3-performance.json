@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-09-08T20:44:04.435Z",
+  "verdict": "PASS",
+  "profile": {
+    "id": "replaylab-render-v1",
+    "browserVersion": "145.0.7632.6",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "runner": {
+      "platform": "linux",
+      "release": "6.18.33.2-microsoft-standard-WSL2",
+      "logicalCpuCount": 16,
+      "cpuModel": "AMD Ryzen 7 7800X3D 8-Core Processor",
+      "totalMemoryBytes": 16298696704,
+      "execution": "local controlled gate; canonical dedicated CI replay remains required"
+    },
+    "warmupMs": 5000,
+    "traceAndSoakMs": 30000
+  },
+  "fixture": {
+    "phases": 12,
+    "actors": 10,
+    "derivedBall": 1,
+    "visibleActions": 30
+  },
+  "metrics": {
+    "framesPerSecond": 60.003731492460744,
+    "frameIntervalP95Ms": 16.799999999995634,
+    "gfxRenders": 1801,
+    "reactRendersDuringPlayback": 0,
+    "longTaskCount": 0,
+    "longestTaskMs": 0,
+    "heapBeforeBytes": 10000000,
+    "heapAfterBytes": 10000000,
+    "heapDeltaBytes": 0
+  },
+  "budgets": {
+    "minimumFramesPerSecond": 55,
+    "maximumHeapGrowthBytes": 67108864
+  },
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36"
+}

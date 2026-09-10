@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-09-08T20:42:50.983Z",
+  "node": "v22.15.1",
+  "platform": "win32",
+  "ports": [
+    32410,
+    32411,
+    32412
+  ],
+  "verdict": "PASS",
+  "steps": [
+    {
+      "script": "typecheck",
+      "started": "2026-09-08T20:40:10.095Z",
+      "exitCode": 0
+    },
+    {
+      "script": "build",
+      "started": "2026-09-08T20:40:14.712Z",
+      "exitCode": 0
+    },
+    {
+      "script": "build:server",
+      "started": "2026-09-08T20:40:18.232Z",
+      "exitCode": 0
+    },
+    {
+      "script": "test:release",
+      "started": "2026-09-08T20:40:19.215Z",
+      "exitCode": 0
+    },
+    {
+      "script": "test:durability",
+      "started": "2026-09-08T20:42:22.101Z",
+      "exitCode": 0
+    },
+    {
+      "script": "audit",
+      "started": "2026-09-08T20:42:49.180Z",
+      "exitCode": 0
+    },
+    {
+      "script": "package:release",
+      "started": "2026-09-08T20:42:49.842Z",
+      "exitCode": 0
+    }
+  ]
+}

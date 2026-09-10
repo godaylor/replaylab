@@ -1,0 +1,1231 @@
+{
+  "generatedAt": "2026-08-27T21:20:34.906Z",
+  "verdict": "PASS",
+  "scope": "@replaylab/foundation-proof production runtime",
+  "directDependencies": [
+    "@blocksuite/global",
+    "@blocksuite/std",
+    "@blocksuite/store",
+    "@blocksuite/sync",
+    "rxjs",
+    "y-protocols",
+    "yjs"
+  ],
+  "dependencyClosure": [
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop",
+      "version": "1.4.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+        "@atlaskit/pragmatic-drag-and-drop-hitbox",
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+      "version": "3.0.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop-hitbox",
+      "version": "2.0.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@babel/runtime",
+      "version": "7.28.6",
+      "license": "MIT",
+      "manifest": "node_modules/@babel/runtime/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop",
+        "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+        "@atlaskit/pragmatic-drag-and-drop-hitbox"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@blocksuite/global",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/global/package.json",
+      "workspace": "blocksuite/framework/global",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ]
+    },
+    {
+      "name": "@blocksuite/std",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/std/package.json",
+      "workspace": "blocksuite/framework/std",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "requestedBy": [
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "direct"
+      ]
+    },
+    {
+      "name": "@blocksuite/store",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/store/package.json",
+      "workspace": "blocksuite/framework/store",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ]
+    },
+    {
+      "name": "@blocksuite/sync",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/sync/package.json",
+      "workspace": "blocksuite/framework/sync",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "requestedBy": [
+        "@blocksuite/store",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ]
+    },
+    {
+      "name": "@borewit/text-codec",
+      "version": "0.2.1",
+      "license": "MIT",
+      "manifest": "node_modules/@borewit/text-codec/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@lit-labs/ssr-dom-shim",
+      "version": "1.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit-labs/ssr-dom-shim/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@lit/reactive-element",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@lit/context",
+      "version": "1.1.5",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit/context/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@lit/reactive-element",
+      "version": "2.1.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit/reactive-element/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@lit/context",
+        "lit",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@preact/signals-core",
+      "version": "1.8.0",
+      "license": "MIT",
+      "manifest": "node_modules/@preact/signals-core/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@tokenizer/inflate",
+      "version": "0.4.1",
+      "license": "MIT",
+      "manifest": "node_modules/@tokenizer/inflate/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@tokenizer/token",
+      "version": "0.3.0",
+      "license": "MIT",
+      "manifest": "node_modules/@tokenizer/token/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "strtok3",
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@types/hast",
+      "version": "3.0.4",
+      "license": "MIT",
+      "manifest": "node_modules/@types/hast/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "hast-util-parse-selector",
+        "hastscript",
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@types/lodash",
+      "version": "4.17.21",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@types/lodash-es",
+        "@types/lodash.ismatch"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@types/lodash-es",
+      "version": "4.17.12",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash-es/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@types/lodash.ismatch",
+      "version": "4.4.9",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash.ismatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "@types/trusted-types",
+      "version": "2.0.7",
+      "license": "MIT",
+      "manifest": "node_modules/@types/trusted-types/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "dompurify",
+        "lit-html"
+      ],
+      "edges": [
+        "dependency",
+        "optional"
+      ]
+    },
+    {
+      "name": "@types/unist",
+      "version": "3.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/@types/unist/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@types/hast",
+        "hast-util-from-parse5",
+        "unified",
+        "unist-util-stringify-position",
+        "vfile",
+        "vfile-location",
+        "vfile-message"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "bail",
+      "version": "2.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/bail/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/balanced-match/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "brace-expansion"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "bind-event-listener",
+      "version": "3.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/bind-event-listener/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.8",
+      "license": "MIT",
+      "manifest": "node_modules/brace-expansion/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "minimatch"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "comma-separated-tokens",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/comma-separated-tokens/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "license": "MIT",
+      "manifest": "node_modules/debug/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@tokenizer/inflate"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "dequal",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/dequal/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "devlop"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "devlop",
+      "version": "1.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/devlop/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "dompurify",
+      "version": "3.4.13",
+      "license": "(MPL-2.0 OR Apache-2.0)",
+      "manifest": "node_modules/dompurify/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "entities",
+      "version": "6.0.0",
+      "license": "BSD-2-Clause",
+      "manifest": "node_modules/entities/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "parse5"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "extend",
+      "version": "3.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/extend/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "file-type",
+      "version": "21.3.4",
+      "license": "MIT",
+      "manifest": "node_modules/file-type/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "fractional-indexing",
+      "version": "3.2.0",
+      "license": "CC0-1.0",
+      "manifest": "node_modules/fractional-indexing/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "hast-util-from-html",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-from-html/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "hast-util-from-parse5",
+      "version": "8.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-from-parse5/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-html"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "hast-util-parse-selector",
+      "version": "4.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-parse-selector/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "hastscript",
+      "version": "9.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/hastscript/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "idb",
+      "version": "8.0.3",
+      "license": "ISC",
+      "manifest": "node_modules/idb/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "idb-keyval",
+      "version": "6.2.2",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/idb-keyval/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "ieee754",
+      "version": "1.2.1",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/ieee754/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "is-plain-obj",
+      "version": "4.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/is-plain-obj/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "isomorphic.js",
+      "version": "0.2.5",
+      "license": "MIT",
+      "manifest": "node_modules/isomorphic.js/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "lib0"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lib0",
+      "version": "0.2.114",
+      "license": "MIT",
+      "manifest": "node_modules/lib0/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "y-protocols",
+        "yjs"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lit",
+      "version": "3.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lit-element",
+      "version": "4.2.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit-element/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "lit"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lit-html",
+      "version": "3.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit-html/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "lit",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lodash-es",
+      "version": "4.18.1",
+      "license": "MIT",
+      "manifest": "node_modules/lodash-es/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lodash.ismatch",
+      "version": "4.4.0",
+      "license": "MIT",
+      "manifest": "node_modules/lodash.ismatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "lz-string",
+      "version": "1.5.0",
+      "license": "MIT",
+      "manifest": "node_modules/lz-string/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.5",
+      "license": "BlueOak-1.0.0",
+      "manifest": "node_modules/minimatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "license": "MIT",
+      "manifest": "node_modules/ms/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "debug"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "nanoid",
+      "version": "5.1.16",
+      "license": "MIT",
+      "manifest": "node_modules/nanoid/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "parse5",
+      "version": "7.3.0",
+      "license": "MIT",
+      "manifest": "node_modules/parse5/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-html"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "property-information",
+      "version": "7.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/property-information/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-parse5",
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "raf-schd",
+      "version": "4.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/raf-schd/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "rehype-parse",
+      "version": "9.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/rehype-parse/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "rxjs",
+      "version": "7.8.2",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/rxjs/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ]
+    },
+    {
+      "name": "space-separated-tokens",
+      "version": "2.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/space-separated-tokens/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "strtok3",
+      "version": "10.3.4",
+      "license": "MIT",
+      "manifest": "node_modules/strtok3/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "token-types",
+      "version": "6.1.2",
+      "license": "MIT",
+      "manifest": "node_modules/token-types/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@tokenizer/inflate",
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "trough",
+      "version": "2.2.0",
+      "license": "MIT",
+      "manifest": "node_modules/trough/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "tslib",
+      "version": "2.8.1",
+      "license": "0BSD",
+      "manifest": "node_modules/tslib/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "rxjs"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "uint8array-extras",
+      "version": "1.4.0",
+      "license": "MIT",
+      "manifest": "node_modules/uint8array-extras/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "unified",
+      "version": "11.0.5",
+      "license": "MIT",
+      "manifest": "node_modules/unified/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "unist-util-stringify-position",
+      "version": "4.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/unist-util-stringify-position/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "vfile-message"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "vfile",
+      "version": "6.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/vfile/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "unified",
+        "vfile-location"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "vfile-location",
+      "version": "5.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/vfile-location/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "vfile-message",
+      "version": "4.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/vfile-message/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-html",
+        "vfile"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "w3c-keyname",
+      "version": "2.2.8",
+      "license": "MIT",
+      "manifest": "node_modules/w3c-keyname/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "web-namespaces",
+      "version": "2.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/web-namespaces/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    },
+    {
+      "name": "y-protocols",
+      "version": "1.0.6",
+      "license": "MIT",
+      "manifest": "node_modules/y-protocols/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ]
+    },
+    {
+      "name": "yjs",
+      "version": "13.6.21",
+      "license": "MIT",
+      "manifest": "node_modules/yjs/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof",
+        "y-protocols"
+      ],
+      "edges": [
+        "dependency",
+        "direct",
+        "peer"
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "license": "MIT",
+      "manifest": "node_modules/zod/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ]
+    }
+  ],
+  "bundle": {
+    "chunks": [
+      {
+        "file": "assets/core-BbmJ1LMY.js",
+        "rawBytes": 62539,
+        "gzipBytes": 18685
+      },
+      {
+        "file": "assets/index-C-iKl578.js",
+        "rawBytes": 331319,
+        "gzipBytes": 98312
+      }
+    ],
+    "rawBytes": 393858,
+    "gzipBytes": 116997,
+    "budgetGzipBytes": 1500000,
+    "emittedPackages": [
+      "@blocksuite/global",
+      "@blocksuite/std",
+      "@blocksuite/store",
+      "@blocksuite/sync",
+      "@borewit/text-codec",
+      "@preact/signals-core",
+      "@tokenizer/inflate",
+      "balanced-match",
+      "brace-expansion",
+      "debug",
+      "file-type",
+      "idb",
+      "ieee754",
+      "lib0",
+      "lodash-es",
+      "lodash.ismatch",
+      "minimatch",
+      "ms",
+      "nanoid",
+      "rxjs",
+      "strtok3",
+      "token-types",
+      "tslib",
+      "uint8array-extras",
+      "y-protocols",
+      "yjs",
+      "zod"
+    ],
+    "workspaceModuleCounts": {
+      "@blocksuite/global": 19,
+      "@blocksuite/store": 44,
+      "@blocksuite/std": 13,
+      "@blocksuite/sync": 8
+    },
+    "forbiddenModules": [],
+    "unexpectedRepoModules": []
+  },
+  "sourceBoundaryScan": {
+    "filesScanned": 12,
+    "forbidden": [],
+    "protocolMarkers": []
+  },
+  "noticeInventory": [
+    {
+      "file": "LICENSE",
+      "sha256": "c107c8088fe42bce6def95d313cfe7b5984d3bb2c1608b67f855327da45f497b"
+    },
+    {
+      "file": "LICENSE-MIT",
+      "sha256": "1cdeca52d4f740361f103926144eb8b3f265975b2337d4e27b3313f72465897f"
+    },
+    {
+      "file": "blocksuite/framework/global/src/gfx/perfect-freehand/LICENSE",
+      "sha256": "6a5ac82b42ce0af6a1e5fe39b46f0b52f1368e81e437175e8d9ae21569c8688e"
+    }
+  ],
+  "inlineProvenance": [
+    {
+      "file": "blocksuite/framework/store/src/adapter/base.ts",
+      "marker": "Rich-Harris/estree-walker MIT License",
+      "decision": "PRESERVE_ATTRIBUTION",
+      "present": true
+    },
+    {
+      "file": "blocksuite/framework/global/src/gfx/math.ts",
+      "marker": "credit to Excalidraw hitTestFreeDrawElement",
+      "decision": "PRESERVE_ATTRIBUTION",
+      "present": true
+    },
+    {
+      "file": "blocksuite/framework/global/src/gfx/perfect-freehand/LICENSE",
+      "marker": "Copyright (c) 2021 Stephen Ruiz Ltd",
+      "decision": "PRESERVE_LICENSE",
+      "present": true
+    }
+  ],
+  "yjsPatch": {
+    "declaredRange": "13.6.21",
+    "installedVersion": "13.6.21",
+    "resolution": "patch:yjs@npm%3A13.6.21#~/.yarn/patches/yjs-npm-13.6.21-c9f1f3397c.patch",
+    "patchFile": ".yarn/patches/yjs-npm-13.6.21-c9f1f3397c.patch",
+    "patchSha256": "c4af12a69d9d4763d77b35ff13864ac6b2debe4bd015b91a95be786956064e3f",
+    "patchUsesUint53": true,
+    "installedUsesUint53": true,
+    "decision": "PIN_EXISTING_PATCH_AND_VALIDATE_WITH_SCHEMA_HISTORY_INDEXEDDB_TESTS",
+    "upstreamNoticeRequiredBeforeRelease": true
+  },
+  "explicitBoundaryDecisions": {
+    "blocksuiteFrameworkKernel": "GO: global/store/std/sync only through ReplayLab facades/adapters",
+    "blocksuiteAffineCandidates": "DENIED: zero direct, transitive, or emitted modules",
+    "affineApplicationShell": "DENIED: zero use",
+    "backendNativeEnterpriseProtocol": "DENIED: zero use",
+    "storeWithoutTransact": "AVOID: fallible drafts validate before Store.transact",
+    "gfxCompatibility": "NARROW_ISOLATION: public local-element APIs; compatibility test pins the host-independent base hit test used without an AFFiNE shell",
+    "dompurify": "ACCEPT_APACHE_2_OPTION: package is dual-licensed and installed LICENSE is Apache-2.0",
+    "fractionalIndexing": "ACCEPT_CC0_1_0: permissive public-domain dedication; preserve license inventory"
+  },
+  "failures": []
+}

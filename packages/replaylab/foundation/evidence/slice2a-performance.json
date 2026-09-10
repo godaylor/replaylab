@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-09-09T10:21:55.627Z",
+  "verdict": "PASS",
+  "profile": {
+    "id": "replaylab-render-v1",
+    "target": "Playwright 1.58.2 pinned Chromium; dedicated 4-vCPU/8-GB CI runner",
+    "browserVersion": "145.0.7632.6",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "devicePixelRatio": 1,
+    "workerCount": 1,
+    "warmupMs": 5000,
+    "traceMs": 30000,
+    "runner": {
+      "platform": "win32",
+      "release": "10.0.26200",
+      "logicalCpuCount": 16,
+      "cpuModel": "AMD Ryzen 7 7800X3D 8-Core Processor           ",
+      "totalMemoryBytes": 33409249280,
+      "execution": "local controlled gate; canonical dedicated CI replay remains required"
+    }
+  },
+  "fixture": {
+    "phases": 12,
+    "actors": 10,
+    "derivedBall": 1,
+    "actionsPerTransition": 30,
+    "note": "Slice 2A maximum path projection fixture for one visible transition."
+  },
+  "metrics": {
+    "frames": 1801,
+    "elapsedMs": 30014.90000001192,
+    "framesPerSecond": 60.00353157929178,
+    "frameIntervalP95Ms": 16.799999999999272,
+    "inputSamples": 1801,
+    "inputToPaintP95Ms": 17.599999994039536,
+    "localOpenMs": 28.30000001192093,
+    "longTaskCount": 0,
+    "longestTaskMs": 0,
+    "gfxRenders": 1802,
+    "reactRendersDuringPointerMoves": 0
+  },
+  "budgets": {
+    "minimumFramesPerSecond": 55,
+    "maximumInputToPaintP95Ms": 50,
+    "maximumLocalOpenMs": 1500,
+    "maximumReactRendersDuringPointerMoves": 0
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36"
+}

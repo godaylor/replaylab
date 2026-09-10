@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS",
+  "fixture": {
+    "phases": 12,
+    "actors": 10,
+    "actions": 30
+  },
+  "metrics": {
+    "framesPerSecond": 60.44302746516564,
+    "frameIntervalP95Ms": 16.799999999999727,
+    "reactRendersDuringPresence": 0,
+    "presencePublishes": 45
+  },
+  "budgets": {
+    "minimumFramesPerSecond": 55,
+    "pointerThrottleHzMax": 20
+  }
+}

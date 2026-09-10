@@ -1,0 +1,1694 @@
+{
+  "generatedAt": "2026-09-09T10:22:56.300Z",
+  "scope": "@replaylab/foundation slice7 production runtime",
+  "acceptedLicenses": [
+    "(MPL-2.0 OR Apache-2.0)",
+    "0BSD",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BlueOak-1.0.0",
+    "CC0-1.0",
+    "ISC",
+    "MIT"
+  ],
+  "dependencies": [
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop",
+      "version": "1.4.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@atlaskit/pragmatic-drag-and-drop/LICENSE.md",
+          "sha256": "c430b34eed4803d6fc5961a2727e5028717e0ef16b606651ab13794aa5712a5f"
+        }
+      ],
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+        "@atlaskit/pragmatic-drag-and-drop-hitbox",
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+      "version": "3.0.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/LICENSE.md",
+          "sha256": "29b4010b831e036f22945aaabbfbcb9ec0542088bd9cdbffbc29c5a58e603aa5"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@atlaskit/pragmatic-drag-and-drop-hitbox",
+      "version": "2.0.0",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/LICENSE.md",
+          "sha256": "c430b34eed4803d6fc5961a2727e5028717e0ef16b606651ab13794aa5712a5f"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@babel/runtime",
+      "version": "7.28.6",
+      "license": "MIT",
+      "manifest": "node_modules/@babel/runtime/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@babel/runtime/LICENSE",
+          "sha256": "117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76"
+        }
+      ],
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop",
+        "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+        "@atlaskit/pragmatic-drag-and-drop-hitbox"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@blocksuite/global",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/global/package.json",
+      "workspace": "blocksuite/framework/global",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "noticeFiles": [],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@blocksuite/std",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/std/package.json",
+      "workspace": "blocksuite/framework/std",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "noticeFiles": [],
+      "requestedBy": [
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@blocksuite/store",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/store/package.json",
+      "workspace": "blocksuite/framework/store",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "noticeFiles": [],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@blocksuite/sync",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "blocksuite/framework/sync/package.json",
+      "workspace": "blocksuite/framework/sync",
+      "boundaryDecision": "APPROVED_DIRECT_KERNEL",
+      "noticeFiles": [],
+      "requestedBy": [
+        "@blocksuite/store",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@borewit/text-codec",
+      "version": "0.2.1",
+      "license": "MIT",
+      "manifest": "node_modules/@borewit/text-codec/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@borewit/text-codec/LICENSE.txt",
+          "sha256": "5b3af80f317313a8b8c227b0c8bffae67728cfec1786137b0553e625f2affec9"
+        }
+      ],
+      "requestedBy": [
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@lit-labs/ssr-dom-shim",
+      "version": "1.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit-labs/ssr-dom-shim/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [],
+      "requestedBy": [
+        "@lit/reactive-element",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@lit/context",
+      "version": "1.1.5",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit/context/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@lit/context/LICENSE",
+          "sha256": "2503b5766520d283dd6cc9c9852bdfc59ffe16b0538d554db4e5b9b725269604"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@lit/reactive-element",
+      "version": "2.1.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/@lit/reactive-element/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@lit/reactive-element/LICENSE",
+          "sha256": "45d31799d0db956cc3eb5469346abbd9b7025babc5ff29fab10d7095da992ef1"
+        }
+      ],
+      "requestedBy": [
+        "@lit/context",
+        "lit",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@preact/signals-core",
+      "version": "1.8.0",
+      "license": "MIT",
+      "manifest": "node_modules/@preact/signals-core/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@preact/signals-core/LICENSE",
+          "sha256": "a11fc89e4c6b118854c7a667734a0b2e6bf2af5e45c6686de31adbccc8f3ae8d"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@tokenizer/inflate",
+      "version": "0.4.1",
+      "license": "MIT",
+      "manifest": "node_modules/@tokenizer/inflate/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@tokenizer/inflate/LICENSE",
+          "sha256": "5bb0e8b566dee0e946cafd9bbed359eb0494580df86457876b4f41bba5c77b25"
+        }
+      ],
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "@tokenizer/token",
+      "version": "0.3.0",
+      "license": "MIT",
+      "manifest": "node_modules/@tokenizer/token/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [],
+      "requestedBy": [
+        "strtok3",
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/hast",
+      "version": "3.0.4",
+      "license": "MIT",
+      "manifest": "node_modules/@types/hast/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/hast/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "hast-util-parse-selector",
+        "hastscript",
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/lodash",
+      "version": "4.17.21",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/lodash/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "@types/lodash-es",
+        "@types/lodash.ismatch"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/lodash-es",
+      "version": "4.17.12",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash-es/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/lodash-es/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/lodash.ismatch",
+      "version": "4.4.9",
+      "license": "MIT",
+      "manifest": "node_modules/@types/lodash.ismatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/lodash.ismatch/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/trusted-types",
+      "version": "2.0.7",
+      "license": "MIT",
+      "manifest": "node_modules/@types/trusted-types/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/trusted-types/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "dompurify",
+        "lit-html"
+      ],
+      "edges": [
+        "dependency",
+        "optional"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "@types/unist",
+      "version": "3.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/@types/unist/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/@types/unist/LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "requestedBy": [
+        "@types/hast",
+        "hast-util-from-parse5",
+        "unified",
+        "unist-util-stringify-position",
+        "vfile",
+        "vfile-location",
+        "vfile-message"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "bail",
+      "version": "2.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/bail/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/bail/license",
+          "sha256": "63cb98b3f6abfb3c3592c16f88253c1bdc834087bf52671e8ce5609e4eb693cf"
+        }
+      ],
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/balanced-match/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/balanced-match/LICENSE.md",
+          "sha256": "d408f38ffa3355c5faec517153295338892eb0f1ea43f57874bb23c6075979b5"
+        }
+      ],
+      "requestedBy": [
+        "brace-expansion"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "bind-event-listener",
+      "version": "3.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/bind-event-listener/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/bind-event-listener/LICENSE",
+          "sha256": "490dd02ac5260e46dbb271415ab79572be0e337b0db44d907562279dcfd0e54e"
+        }
+      ],
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.8",
+      "license": "MIT",
+      "manifest": "node_modules/brace-expansion/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/brace-expansion/LICENSE",
+          "sha256": "9c63a23124d68cd30cd316a94a1a0bca34f032786df6df69fc4b5f136bac8d2e"
+        }
+      ],
+      "requestedBy": [
+        "minimatch"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "comma-separated-tokens",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/comma-separated-tokens/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/comma-separated-tokens/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "license": "MIT",
+      "manifest": "node_modules/debug/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/debug/LICENSE",
+          "sha256": "3a61c6c96caf5c1d9b623fb9b04c822b783dfcb78aa7e49c76a3f643e6ed7f95"
+        }
+      ],
+      "requestedBy": [
+        "@tokenizer/inflate"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "dequal",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/dequal/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/dequal/license",
+          "sha256": "306fa513e39b23a6e8747520de761809d206b99800ef41907b530226574c59ae"
+        }
+      ],
+      "requestedBy": [
+        "devlop"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "devlop",
+      "version": "1.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/devlop/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/devlop/license",
+          "sha256": "6f296a5eccc1dc96714bb94ebaa9cac25b0a1467d74cc5263ac4d0646ab01f62"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "dompurify",
+      "version": "3.4.13",
+      "license": "(MPL-2.0 OR Apache-2.0)",
+      "manifest": "node_modules/dompurify/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/dompurify/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "entities",
+      "version": "6.0.0",
+      "license": "BSD-2-Clause",
+      "manifest": "node_modules/entities/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/entities/LICENSE",
+          "sha256": "cb992345949ccd6e8394b2cd6c465f7b897c864f845937dbf64e8997f389e164"
+        }
+      ],
+      "requestedBy": [
+        "parse5"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "extend",
+      "version": "3.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/extend/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/extend/LICENSE",
+          "sha256": "97af7428f93afbab9bf79cd09254da1357161794f4255eb1b4599f04dd2d2e7c"
+        }
+      ],
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "file-type",
+      "version": "21.3.4",
+      "license": "MIT",
+      "manifest": "node_modules/file-type/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/file-type/license",
+          "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "fractional-indexing",
+      "version": "3.2.0",
+      "license": "CC0-1.0",
+      "manifest": "node_modules/fractional-indexing/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/fractional-indexing/LICENSE",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "hast-util-from-html",
+      "version": "2.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-from-html/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/hast-util-from-html/license",
+          "sha256": "e620971c29d750df627f71f4e629618ef8fcbbea134ab95b344fc0c1a757cad1"
+        }
+      ],
+      "requestedBy": [
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "hast-util-from-parse5",
+      "version": "8.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-from-parse5/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/hast-util-from-parse5/license",
+          "sha256": "dd1081884a92952802f4803110a6bb543acea9a814c786d58605b4c1219b5ebb"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-html"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "hast-util-parse-selector",
+      "version": "4.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/hast-util-parse-selector/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/hast-util-parse-selector/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "hastscript",
+      "version": "9.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/hastscript/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/hastscript/license",
+          "sha256": "dd1081884a92952802f4803110a6bb543acea9a814c786d58605b4c1219b5ebb"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "idb",
+      "version": "8.0.3",
+      "license": "ISC",
+      "manifest": "node_modules/idb/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/idb/LICENSE",
+          "sha256": "873a2f333fda393ec3464f4579209b019d98e97c3bf498b10e85f630162fd708"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "idb-keyval",
+      "version": "6.2.2",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/idb-keyval/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/idb-keyval/LICENCE",
+          "sha256": "20c27d6339619eeb3113cb865d4e98a3f559e52964fc75caea9cb5fa72674565"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "ieee754",
+      "version": "1.2.1",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/ieee754/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/ieee754/LICENSE",
+          "sha256": "18d45466ba3253deae04667e267a91ea8de8548f18c1125264d1c9db28194cc1"
+        }
+      ],
+      "requestedBy": [
+        "token-types"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "is-plain-obj",
+      "version": "4.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/is-plain-obj/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/is-plain-obj/license",
+          "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+        }
+      ],
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "isomorphic.js",
+      "version": "0.2.5",
+      "license": "MIT",
+      "manifest": "node_modules/isomorphic.js/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/isomorphic.js/LICENSE",
+          "sha256": "dd6488c9c1a4ce2dc978ecee067e5b6a725b52e6057a450b24f1a23bc373b057"
+        }
+      ],
+      "requestedBy": [
+        "lib0"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "lib0",
+      "version": "0.2.114",
+      "license": "MIT",
+      "manifest": "node_modules/lib0/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lib0/LICENSE",
+          "sha256": "5446db1e43fe52faf3faab7e9959fe3762ac11bdc61c0945934c498affd52d73"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "y-protocols",
+        "yjs"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "lit",
+      "version": "3.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lit/LICENSE",
+          "sha256": "45d31799d0db956cc3eb5469346abbd9b7025babc5ff29fab10d7095da992ef1"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "lit-element",
+      "version": "4.2.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit-element/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lit-element/LICENSE",
+          "sha256": "45d31799d0db956cc3eb5469346abbd9b7025babc5ff29fab10d7095da992ef1"
+        }
+      ],
+      "requestedBy": [
+        "lit"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "lit-html",
+      "version": "3.3.0",
+      "license": "BSD-3-Clause",
+      "manifest": "node_modules/lit-html/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lit-html/LICENSE",
+          "sha256": "2b66f9390afde29edfe4314daff93f01fb182e1178053e228120178987e5db75"
+        }
+      ],
+      "requestedBy": [
+        "lit",
+        "lit-element"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "lodash-es",
+      "version": "4.18.1",
+      "license": "MIT",
+      "manifest": "node_modules/lodash-es/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lodash-es/LICENSE",
+          "sha256": "f71e8ed126b46346494aad5486874cd8f0aafe95092ed67d2e3cb6110f939abc"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/sync"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "lodash.ismatch",
+      "version": "4.4.0",
+      "license": "MIT",
+      "manifest": "node_modules/lodash.ismatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lodash.ismatch/LICENSE",
+          "sha256": "ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "lz-string",
+      "version": "1.5.0",
+      "license": "MIT",
+      "manifest": "node_modules/lz-string/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/lz-string/LICENSE",
+          "sha256": "433fc9dfe659dbfb1e91eed8351f13651e97bfa3ac6d03394c3d63f61d4bbc80"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.5",
+      "license": "BlueOak-1.0.0",
+      "manifest": "node_modules/minimatch/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/minimatch/LICENSE.md",
+          "sha256": "2c7c5d22ed5a8ee968c64757710979afcd77438c48b4a265b94e615babd8a901"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "license": "MIT",
+      "manifest": "node_modules/ms/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/ms/license.md",
+          "sha256": "1662fae9b5314d11cf51284e2dcd1f006a354f7343f08712a730fcff9a359801"
+        }
+      ],
+      "requestedBy": [
+        "debug"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "nanoid",
+      "version": "5.1.16",
+      "license": "MIT",
+      "manifest": "node_modules/nanoid/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/nanoid/LICENSE",
+          "sha256": "4383cb2c3608397ce7a4159502614ed66890f8999c2a9c056dd3b1024d6721f0"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "parse5",
+      "version": "7.3.0",
+      "license": "MIT",
+      "manifest": "node_modules/parse5/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/parse5/LICENSE",
+          "sha256": "8c535800331e1e4439835555b3f9edc7fe9dee2fab0d8bbbd5a982e8b8343d4d"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-html"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "property-information",
+      "version": "7.1.0",
+      "license": "MIT",
+      "manifest": "node_modules/property-information/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/property-information/license",
+          "sha256": "5d0698266086f217bb11ea0499d33453e401fe479fb9126ad04e625e63d3557b"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-parse5",
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "raf-schd",
+      "version": "4.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/raf-schd/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/raf-schd/LICENSE",
+          "sha256": "38ff7cd93bdf484156099500e01fa2d2b463477e189dc516250af4c9652e744f"
+        }
+      ],
+      "requestedBy": [
+        "@atlaskit/pragmatic-drag-and-drop"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "react",
+      "version": "19.2.1",
+      "license": "MIT",
+      "manifest": "node_modules/react/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/react/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ],
+      "requestedBy": [
+        "@replaylab/foundation-proof",
+        "react-dom"
+      ],
+      "edges": [
+        "direct",
+        "peer"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.1",
+      "license": "MIT",
+      "manifest": "node_modules/react-dom/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/react-dom/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ],
+      "requestedBy": [
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "rehype-parse",
+      "version": "9.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/rehype-parse/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/rehype-parse/license",
+          "sha256": "e18cf5173e928f808f0cd208097fee8fbec9d28fc0255213938e4c559e29ff58"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "rxjs",
+      "version": "7.8.2",
+      "license": "Apache-2.0",
+      "manifest": "node_modules/rxjs/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/rxjs/LICENSE.txt",
+          "sha256": "81c407ac717813b0e3795402960e04003c7bba8ba59b621624707028531c9ade"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/global",
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "license": "MIT",
+      "manifest": "node_modules/scheduler/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/scheduler/LICENSE",
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        }
+      ],
+      "requestedBy": [
+        "react-dom"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "space-separated-tokens",
+      "version": "2.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/space-separated-tokens/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/space-separated-tokens/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "hastscript"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "strtok3",
+      "version": "10.3.4",
+      "license": "MIT",
+      "manifest": "node_modules/strtok3/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/strtok3/LICENSE.txt",
+          "sha256": "96fb10cad5c8db2c9bf1d4063b38fc6688536459e8a21a30bff2893e974af99d"
+        }
+      ],
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "token-types",
+      "version": "6.1.2",
+      "license": "MIT",
+      "manifest": "node_modules/token-types/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/token-types/LICENSE.txt",
+          "sha256": "eb0bff8faaba4581e0f09c962e0f795f1f8810191c9d616f3f66f36be4b3a5dc"
+        }
+      ],
+      "requestedBy": [
+        "@tokenizer/inflate",
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "trough",
+      "version": "2.2.0",
+      "license": "MIT",
+      "manifest": "node_modules/trough/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/trough/license",
+          "sha256": "6c03fd41cfd7c92d8aa8a2fa521b94b2683f059123281dcf921ddea9216b6254"
+        }
+      ],
+      "requestedBy": [
+        "unified"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "tslib",
+      "version": "2.8.1",
+      "license": "0BSD",
+      "manifest": "node_modules/tslib/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/tslib/LICENSE.txt",
+          "sha256": "210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751"
+        }
+      ],
+      "requestedBy": [
+        "rxjs"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "uint8array-extras",
+      "version": "1.4.0",
+      "license": "MIT",
+      "manifest": "node_modules/uint8array-extras/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/uint8array-extras/license",
+          "sha256": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3"
+        }
+      ],
+      "requestedBy": [
+        "file-type"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "unified",
+      "version": "11.0.5",
+      "license": "MIT",
+      "manifest": "node_modules/unified/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/unified/license",
+          "sha256": "05811400116ed61f1a7693b78fe8ca6598c155a12f3978e609db4df648a4cb3d"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "rehype-parse"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "unist-util-stringify-position",
+      "version": "4.0.0",
+      "license": "MIT",
+      "manifest": "node_modules/unist-util-stringify-position/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/unist-util-stringify-position/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "vfile-message"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "vfile",
+      "version": "6.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/vfile/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/vfile/license",
+          "sha256": "05811400116ed61f1a7693b78fe8ca6598c155a12f3978e609db4df648a4cb3d"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-html",
+        "hast-util-from-parse5",
+        "unified",
+        "vfile-location"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "vfile-location",
+      "version": "5.0.3",
+      "license": "MIT",
+      "manifest": "node_modules/vfile-location/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/vfile-location/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "vfile-message",
+      "version": "4.0.2",
+      "license": "MIT",
+      "manifest": "node_modules/vfile-message/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/vfile-message/license",
+          "sha256": "d8fc337aaf98fc7a0f5498edc18b47a9df8cdfcc1a0f013519105905722c7a4c"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-html",
+        "vfile"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "w3c-keyname",
+      "version": "2.2.8",
+      "license": "MIT",
+      "manifest": "node_modules/w3c-keyname/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/w3c-keyname/LICENSE",
+          "sha256": "869c30f368eb08735e779027b9f4bc9fea2f39624351856aebe42741f0bc0884"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "web-namespaces",
+      "version": "2.0.1",
+      "license": "MIT",
+      "manifest": "node_modules/web-namespaces/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/web-namespaces/license",
+          "sha256": "ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d"
+        }
+      ],
+      "requestedBy": [
+        "hast-util-from-parse5"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "ws",
+      "version": "8.21.3",
+      "license": "MIT",
+      "manifest": "node_modules/ws/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/ws/LICENSE",
+          "sha256": "2b29dcfe0d6471f7e8c92c5fb38c9f93edee10330937055440192f1832b1ecef"
+        }
+      ],
+      "requestedBy": [
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "direct"
+      ],
+      "emittedInBrowserBundle": false
+    },
+    {
+      "name": "y-protocols",
+      "version": "1.0.6",
+      "license": "MIT",
+      "manifest": "node_modules/y-protocols/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/y-protocols/LICENSE",
+          "sha256": "5446db1e43fe52faf3faab7e9959fe3762ac11bdc61c0945934c498affd52d73"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof"
+      ],
+      "edges": [
+        "dependency",
+        "direct"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "yjs",
+      "version": "13.6.21",
+      "license": "MIT",
+      "manifest": "node_modules/yjs/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/yjs/LICENSE",
+          "sha256": "341baa53605ed85d6f95782322854cca56c655ebc7fd4712649b8e7afc6020ff"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store",
+        "@blocksuite/sync",
+        "@replaylab/foundation-proof",
+        "y-protocols"
+      ],
+      "edges": [
+        "dependency",
+        "direct",
+        "peer"
+      ],
+      "emittedInBrowserBundle": true
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "license": "MIT",
+      "manifest": "node_modules/zod/package.json",
+      "workspace": null,
+      "boundaryDecision": "ACCEPTED_THIRD_PARTY_RUNTIME",
+      "noticeFiles": [
+        {
+          "file": "node_modules/zod/LICENSE",
+          "sha256": "3f1189b28e3866e0d979968d466b78f813f76827cfdca1fbb124cc0a5c8841f8"
+        }
+      ],
+      "requestedBy": [
+        "@blocksuite/std",
+        "@blocksuite/store"
+      ],
+      "edges": [
+        "dependency"
+      ],
+      "emittedInBrowserBundle": true
+    }
+  ],
+  "rejectedLicenses": []
+}

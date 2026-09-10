@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "replicas": 3,
+  "commands": 500,
+  "logicalPartitionMs": 300000,
+  "originalUpdateCount": 500,
+  "generatedUpdates": 572,
+  "duplicatedAndReordered": true,
+  "convergedAfterPartition": true,
+  "convergedAfterUndo": true,
+  "localGestureReverted": true,
+  "collaboratorPreserved": true
+}

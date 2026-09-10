@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-09-03T02:34:00.000Z",
+  "verdict": "PASS",
+  "fixedReplayLabPorts": {
+    "preview": 42176,
+    "syncRegression": 42175
+  },
+  "focusedBrowserEvidence": {
+    "slice6Tests": {
+      "passed": 6,
+      "failed": 0,
+      "assertions": [
+        "interrupted clone-first migration leaves original IndexedDB bytes unchanged",
+        "pre-migration checksum artifact survives interruption",
+        "migrated copy reopens and validates before registry switch",
+        "corrupt main record opens last-valid snapshot read-only",
+        "quota denial returns a portable recovery artifact",
+        "tampered portable recovery checksum is rejected",
+        "recovery import creates and validates a separate database",
+        "future schema is read-only and keyboard-exportable",
+        "recovery alert has zero serious or critical axe violations",
+        "abrupt tab close retains the last committed pose"
+      ]
+    },
+    "changedPathRegressions": {
+      "passed": 5,
+      "failed": 0,
+      "checks": [
+        "service worker v2 production shell cache",
+        "two-tab IndexedDB convergence",
+        "production authoring reload persistence",
+        "two online clients pose/cue synchronization and read capability",
+        "future-schema recovery accessibility and keyboard export"
+      ]
+    }
+  },
+  "privacy": {
+    "diagnosticsFormat": "replaylab-diagnostics-v1",
+    "documentContentKeys": 0,
+    "portableUpdateIncludedOnlyInExplicitRecoveryFile": true
+  },
+  "build": {
+    "transformedModules": 842,
+    "javascriptRawBytes": 688411,
+    "javascriptGzipBytes": 206489,
+    "budgetGzipBytes": 1500000
+  },
+  "environmentLimitations": [
+    "The configured GSD hook path was absent; one invocation was attempted, then work continued using repository-local verification."
+  ]
+}

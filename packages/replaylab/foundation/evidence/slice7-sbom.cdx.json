@@ -1,0 +1,2462 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-09T10:22:56.300Z",
+    "component": {
+      "type": "application",
+      "name": "ReplayLab",
+      "version": "0.1.0",
+      "bom-ref": "ReplayLab"
+    },
+    "properties": [
+      {
+        "name": "replaylab:production-bundle-gzip-bytes",
+        "value": "218555"
+      },
+      {
+        "name": "replaylab:repository-commit",
+        "value": "329839e467d936f90230fb02a8983f8eb4b62fc0"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "@atlaskit/pragmatic-drag-and-drop",
+      "version": "1.4.0",
+      "bom-ref": "@atlaskit/pragmatic-drag-and-drop@1.4.0:node_modules/@atlaskit/pragmatic-drag-and-drop/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@atlaskit/pragmatic-drag-and-drop/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@atlaskit/pragmatic-drag-and-drop-auto-scroll",
+      "version": "3.0.0",
+      "bom-ref": "@atlaskit/pragmatic-drag-and-drop-auto-scroll@3.0.0:node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@atlaskit/pragmatic-drag-and-drop-hitbox",
+      "version": "2.0.0",
+      "bom-ref": "@atlaskit/pragmatic-drag-and-drop-hitbox@2.0.0:node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@babel/runtime",
+      "version": "7.28.6",
+      "bom-ref": "@babel/runtime@7.28.6:node_modules/@babel/runtime/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@babel/runtime/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@blocksuite/global",
+      "version": "0.27.0",
+      "bom-ref": "@blocksuite/global@0.27.0:blocksuite/framework/global/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "APPROVED_DIRECT_KERNEL"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "blocksuite/framework/global/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@blocksuite/std",
+      "version": "0.27.0",
+      "bom-ref": "@blocksuite/std@0.27.0:blocksuite/framework/std/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "APPROVED_DIRECT_KERNEL"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "blocksuite/framework/std/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@blocksuite/store",
+      "version": "0.27.0",
+      "bom-ref": "@blocksuite/store@0.27.0:blocksuite/framework/store/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "APPROVED_DIRECT_KERNEL"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "blocksuite/framework/store/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@blocksuite/sync",
+      "version": "0.27.0",
+      "bom-ref": "@blocksuite/sync@0.27.0:blocksuite/framework/sync/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "APPROVED_DIRECT_KERNEL"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "blocksuite/framework/sync/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@borewit/text-codec",
+      "version": "0.2.1",
+      "bom-ref": "@borewit/text-codec@0.2.1:node_modules/@borewit/text-codec/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@borewit/text-codec/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@lit-labs/ssr-dom-shim",
+      "version": "1.3.0",
+      "bom-ref": "@lit-labs/ssr-dom-shim@1.3.0:node_modules/@lit-labs/ssr-dom-shim/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@lit-labs/ssr-dom-shim/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@lit/context",
+      "version": "1.1.5",
+      "bom-ref": "@lit/context@1.1.5:node_modules/@lit/context/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@lit/context/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@lit/reactive-element",
+      "version": "2.1.0",
+      "bom-ref": "@lit/reactive-element@2.1.0:node_modules/@lit/reactive-element/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@lit/reactive-element/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@preact/signals-core",
+      "version": "1.8.0",
+      "bom-ref": "@preact/signals-core@1.8.0:node_modules/@preact/signals-core/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@preact/signals-core/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@tokenizer/inflate",
+      "version": "0.4.1",
+      "bom-ref": "@tokenizer/inflate@0.4.1:node_modules/@tokenizer/inflate/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@tokenizer/inflate/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@tokenizer/token",
+      "version": "0.3.0",
+      "bom-ref": "@tokenizer/token@0.3.0:node_modules/@tokenizer/token/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@tokenizer/token/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/hast",
+      "version": "3.0.4",
+      "bom-ref": "@types/hast@3.0.4:node_modules/@types/hast/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/hast/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/lodash",
+      "version": "4.17.21",
+      "bom-ref": "@types/lodash@4.17.21:node_modules/@types/lodash/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/lodash/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/lodash-es",
+      "version": "4.17.12",
+      "bom-ref": "@types/lodash-es@4.17.12:node_modules/@types/lodash-es/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/lodash-es/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/lodash.ismatch",
+      "version": "4.4.9",
+      "bom-ref": "@types/lodash.ismatch@4.4.9:node_modules/@types/lodash.ismatch/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/lodash.ismatch/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/trusted-types",
+      "version": "2.0.7",
+      "bom-ref": "@types/trusted-types@2.0.7:node_modules/@types/trusted-types/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/trusted-types/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "@types/unist",
+      "version": "3.0.3",
+      "bom-ref": "@types/unist@3.0.3:node_modules/@types/unist/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/@types/unist/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "bail",
+      "version": "2.0.2",
+      "bom-ref": "bail@2.0.2:node_modules/bail/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/bail/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "balanced-match",
+      "version": "4.0.3",
+      "bom-ref": "balanced-match@4.0.3:node_modules/balanced-match/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/balanced-match/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "bind-event-listener",
+      "version": "3.0.0",
+      "bom-ref": "bind-event-listener@3.0.0:node_modules/bind-event-listener/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/bind-event-listener/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "brace-expansion",
+      "version": "5.0.8",
+      "bom-ref": "brace-expansion@5.0.8:node_modules/brace-expansion/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/brace-expansion/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "comma-separated-tokens",
+      "version": "2.0.3",
+      "bom-ref": "comma-separated-tokens@2.0.3:node_modules/comma-separated-tokens/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/comma-separated-tokens/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.3",
+      "bom-ref": "debug@4.4.3:node_modules/debug/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/debug/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dequal",
+      "version": "2.0.3",
+      "bom-ref": "dequal@2.0.3:node_modules/dequal/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/dequal/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "devlop",
+      "version": "1.1.0",
+      "bom-ref": "devlop@1.1.0:node_modules/devlop/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/devlop/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dompurify",
+      "version": "3.4.13",
+      "bom-ref": "dompurify@3.4.13:node_modules/dompurify/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "(MPL-2.0 OR Apache-2.0)"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/dompurify/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "entities",
+      "version": "6.0.0",
+      "bom-ref": "entities@6.0.0:node_modules/entities/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/entities/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "extend",
+      "version": "3.0.2",
+      "bom-ref": "extend@3.0.2:node_modules/extend/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/extend/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "file-type",
+      "version": "21.3.4",
+      "bom-ref": "file-type@21.3.4:node_modules/file-type/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/file-type/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "fractional-indexing",
+      "version": "3.2.0",
+      "bom-ref": "fractional-indexing@3.2.0:node_modules/fractional-indexing/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "CC0-1.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/fractional-indexing/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "hast-util-from-html",
+      "version": "2.0.3",
+      "bom-ref": "hast-util-from-html@2.0.3:node_modules/hast-util-from-html/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/hast-util-from-html/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "hast-util-from-parse5",
+      "version": "8.0.3",
+      "bom-ref": "hast-util-from-parse5@8.0.3:node_modules/hast-util-from-parse5/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/hast-util-from-parse5/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "hast-util-parse-selector",
+      "version": "4.0.0",
+      "bom-ref": "hast-util-parse-selector@4.0.0:node_modules/hast-util-parse-selector/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/hast-util-parse-selector/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "hastscript",
+      "version": "9.0.1",
+      "bom-ref": "hastscript@9.0.1:node_modules/hastscript/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/hastscript/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "idb",
+      "version": "8.0.3",
+      "bom-ref": "idb@8.0.3:node_modules/idb/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/idb/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "idb-keyval",
+      "version": "6.2.2",
+      "bom-ref": "idb-keyval@6.2.2:node_modules/idb-keyval/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/idb-keyval/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "bom-ref": "ieee754@1.2.1:node_modules/ieee754/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/ieee754/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "is-plain-obj",
+      "version": "4.1.0",
+      "bom-ref": "is-plain-obj@4.1.0:node_modules/is-plain-obj/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/is-plain-obj/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "isomorphic.js",
+      "version": "0.2.5",
+      "bom-ref": "isomorphic.js@0.2.5:node_modules/isomorphic.js/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/isomorphic.js/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lib0",
+      "version": "0.2.114",
+      "bom-ref": "lib0@0.2.114:node_modules/lib0/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lib0/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lit",
+      "version": "3.3.0",
+      "bom-ref": "lit@3.3.0:node_modules/lit/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lit/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lit-element",
+      "version": "4.2.0",
+      "bom-ref": "lit-element@4.2.0:node_modules/lit-element/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lit-element/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lit-html",
+      "version": "3.3.0",
+      "bom-ref": "lit-html@3.3.0:node_modules/lit-html/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lit-html/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lodash-es",
+      "version": "4.18.1",
+      "bom-ref": "lodash-es@4.18.1:node_modules/lodash-es/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lodash-es/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lodash.ismatch",
+      "version": "4.4.0",
+      "bom-ref": "lodash.ismatch@4.4.0:node_modules/lodash.ismatch/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lodash.ismatch/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lz-string",
+      "version": "1.5.0",
+      "bom-ref": "lz-string@1.5.0:node_modules/lz-string/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/lz-string/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "minimatch",
+      "version": "10.2.5",
+      "bom-ref": "minimatch@10.2.5:node_modules/minimatch/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "BlueOak-1.0.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/minimatch/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "bom-ref": "ms@2.1.3:node_modules/ms/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/ms/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "nanoid",
+      "version": "5.1.16",
+      "bom-ref": "nanoid@5.1.16:node_modules/nanoid/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/nanoid/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "parse5",
+      "version": "7.3.0",
+      "bom-ref": "parse5@7.3.0:node_modules/parse5/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/parse5/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "property-information",
+      "version": "7.1.0",
+      "bom-ref": "property-information@7.1.0:node_modules/property-information/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/property-information/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "raf-schd",
+      "version": "4.0.3",
+      "bom-ref": "raf-schd@4.0.3:node_modules/raf-schd/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/raf-schd/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.2.1",
+      "bom-ref": "react@19.2.1:node_modules/react/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/react/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.2.1",
+      "bom-ref": "react-dom@19.2.1:node_modules/react-dom/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/react-dom/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "rehype-parse",
+      "version": "9.0.1",
+      "bom-ref": "rehype-parse@9.0.1:node_modules/rehype-parse/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/rehype-parse/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "rxjs",
+      "version": "7.8.2",
+      "bom-ref": "rxjs@7.8.2:node_modules/rxjs/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/rxjs/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.27.0",
+      "bom-ref": "scheduler@0.27.0:node_modules/scheduler/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/scheduler/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "space-separated-tokens",
+      "version": "2.0.2",
+      "bom-ref": "space-separated-tokens@2.0.2:node_modules/space-separated-tokens/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/space-separated-tokens/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "strtok3",
+      "version": "10.3.4",
+      "bom-ref": "strtok3@10.3.4:node_modules/strtok3/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/strtok3/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "token-types",
+      "version": "6.1.2",
+      "bom-ref": "token-types@6.1.2:node_modules/token-types/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/token-types/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "trough",
+      "version": "2.2.0",
+      "bom-ref": "trough@2.2.0:node_modules/trough/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/trough/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "tslib",
+      "version": "2.8.1",
+      "bom-ref": "tslib@2.8.1:node_modules/tslib/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "0BSD"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/tslib/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "uint8array-extras",
+      "version": "1.4.0",
+      "bom-ref": "uint8array-extras@1.4.0:node_modules/uint8array-extras/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/uint8array-extras/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unified",
+      "version": "11.0.5",
+      "bom-ref": "unified@11.0.5:node_modules/unified/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/unified/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unist-util-stringify-position",
+      "version": "4.0.0",
+      "bom-ref": "unist-util-stringify-position@4.0.0:node_modules/unist-util-stringify-position/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/unist-util-stringify-position/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "vfile",
+      "version": "6.0.3",
+      "bom-ref": "vfile@6.0.3:node_modules/vfile/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/vfile/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "vfile-location",
+      "version": "5.0.3",
+      "bom-ref": "vfile-location@5.0.3:node_modules/vfile-location/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/vfile-location/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "vfile-message",
+      "version": "4.0.2",
+      "bom-ref": "vfile-message@4.0.2:node_modules/vfile-message/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/vfile-message/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "w3c-keyname",
+      "version": "2.2.8",
+      "bom-ref": "w3c-keyname@2.2.8:node_modules/w3c-keyname/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/w3c-keyname/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "web-namespaces",
+      "version": "2.0.1",
+      "bom-ref": "web-namespaces@2.0.1:node_modules/web-namespaces/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/web-namespaces/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ws",
+      "version": "8.21.3",
+      "bom-ref": "ws@8.21.3:node_modules/ws/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "false"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/ws/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "y-protocols",
+      "version": "1.0.6",
+      "bom-ref": "y-protocols@1.0.6:node_modules/y-protocols/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/y-protocols/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "yjs",
+      "version": "13.6.21",
+      "bom-ref": "yjs@13.6.21:node_modules/yjs/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/yjs/package.json"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "zod",
+      "version": "3.25.76",
+      "bom-ref": "zod@3.25.76:node_modules/zod/package.json",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:boundary-decision",
+          "value": "ACCEPTED_THIRD_PARTY_RUNTIME"
+        },
+        {
+          "name": "replaylab:emitted-in-browser-bundle",
+          "value": "true"
+        },
+        {
+          "name": "replaylab:manifest",
+          "value": "node_modules/zod/package.json"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "ReplayLab",
+      "dependsOn": [
+        "@blocksuite/global@0.27.0:blocksuite/framework/global/package.json",
+        "@blocksuite/std@0.27.0:blocksuite/framework/std/package.json",
+        "@blocksuite/store@0.27.0:blocksuite/framework/store/package.json",
+        "@blocksuite/sync@0.27.0:blocksuite/framework/sync/package.json",
+        "fractional-indexing@3.2.0:node_modules/fractional-indexing/package.json",
+        "react@19.2.1:node_modules/react/package.json",
+        "react-dom@19.2.1:node_modules/react-dom/package.json",
+        "rxjs@7.8.2:node_modules/rxjs/package.json",
+        "ws@8.21.3:node_modules/ws/package.json",
+        "y-protocols@1.0.6:node_modules/y-protocols/package.json",
+        "yjs@13.6.21:node_modules/yjs/package.json"
+      ]
+    },
+    {
+      "ref": "@atlaskit/pragmatic-drag-and-drop@1.4.0:node_modules/@atlaskit/pragmatic-drag-and-drop/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@atlaskit/pragmatic-drag-and-drop-auto-scroll@3.0.0:node_modules/@atlaskit/pragmatic-drag-and-drop-auto-scroll/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@atlaskit/pragmatic-drag-and-drop-hitbox@2.0.0:node_modules/@atlaskit/pragmatic-drag-and-drop-hitbox/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@babel/runtime@7.28.6:node_modules/@babel/runtime/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@blocksuite/global@0.27.0:blocksuite/framework/global/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@blocksuite/std@0.27.0:blocksuite/framework/std/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@blocksuite/store@0.27.0:blocksuite/framework/store/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@blocksuite/sync@0.27.0:blocksuite/framework/sync/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@borewit/text-codec@0.2.1:node_modules/@borewit/text-codec/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@lit-labs/ssr-dom-shim@1.3.0:node_modules/@lit-labs/ssr-dom-shim/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@lit/context@1.1.5:node_modules/@lit/context/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@lit/reactive-element@2.1.0:node_modules/@lit/reactive-element/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@preact/signals-core@1.8.0:node_modules/@preact/signals-core/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@tokenizer/inflate@0.4.1:node_modules/@tokenizer/inflate/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@tokenizer/token@0.3.0:node_modules/@tokenizer/token/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/hast@3.0.4:node_modules/@types/hast/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/lodash@4.17.21:node_modules/@types/lodash/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/lodash-es@4.17.12:node_modules/@types/lodash-es/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/lodash.ismatch@4.4.9:node_modules/@types/lodash.ismatch/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/trusted-types@2.0.7:node_modules/@types/trusted-types/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "@types/unist@3.0.3:node_modules/@types/unist/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "bail@2.0.2:node_modules/bail/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "balanced-match@4.0.3:node_modules/balanced-match/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "bind-event-listener@3.0.0:node_modules/bind-event-listener/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "brace-expansion@5.0.8:node_modules/brace-expansion/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "comma-separated-tokens@2.0.3:node_modules/comma-separated-tokens/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "debug@4.4.3:node_modules/debug/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "dequal@2.0.3:node_modules/dequal/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "devlop@1.1.0:node_modules/devlop/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "dompurify@3.4.13:node_modules/dompurify/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "entities@6.0.0:node_modules/entities/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "extend@3.0.2:node_modules/extend/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "file-type@21.3.4:node_modules/file-type/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "fractional-indexing@3.2.0:node_modules/fractional-indexing/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "hast-util-from-html@2.0.3:node_modules/hast-util-from-html/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "hast-util-from-parse5@8.0.3:node_modules/hast-util-from-parse5/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "hast-util-parse-selector@4.0.0:node_modules/hast-util-parse-selector/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "hastscript@9.0.1:node_modules/hastscript/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "idb@8.0.3:node_modules/idb/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "idb-keyval@6.2.2:node_modules/idb-keyval/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "ieee754@1.2.1:node_modules/ieee754/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "is-plain-obj@4.1.0:node_modules/is-plain-obj/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "isomorphic.js@0.2.5:node_modules/isomorphic.js/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lib0@0.2.114:node_modules/lib0/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lit@3.3.0:node_modules/lit/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lit-element@4.2.0:node_modules/lit-element/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lit-html@3.3.0:node_modules/lit-html/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lodash-es@4.18.1:node_modules/lodash-es/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lodash.ismatch@4.4.0:node_modules/lodash.ismatch/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "lz-string@1.5.0:node_modules/lz-string/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "minimatch@10.2.5:node_modules/minimatch/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "ms@2.1.3:node_modules/ms/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "nanoid@5.1.16:node_modules/nanoid/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "parse5@7.3.0:node_modules/parse5/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "property-information@7.1.0:node_modules/property-information/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "raf-schd@4.0.3:node_modules/raf-schd/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "react@19.2.1:node_modules/react/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "react-dom@19.2.1:node_modules/react-dom/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "rehype-parse@9.0.1:node_modules/rehype-parse/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "rxjs@7.8.2:node_modules/rxjs/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "scheduler@0.27.0:node_modules/scheduler/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "space-separated-tokens@2.0.2:node_modules/space-separated-tokens/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "strtok3@10.3.4:node_modules/strtok3/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "token-types@6.1.2:node_modules/token-types/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "trough@2.2.0:node_modules/trough/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "tslib@2.8.1:node_modules/tslib/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "uint8array-extras@1.4.0:node_modules/uint8array-extras/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "unified@11.0.5:node_modules/unified/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "unist-util-stringify-position@4.0.0:node_modules/unist-util-stringify-position/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "vfile@6.0.3:node_modules/vfile/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "vfile-location@5.0.3:node_modules/vfile-location/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "vfile-message@4.0.2:node_modules/vfile-message/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "w3c-keyname@2.2.8:node_modules/w3c-keyname/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "web-namespaces@2.0.1:node_modules/web-namespaces/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "ws@8.21.3:node_modules/ws/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "y-protocols@1.0.6:node_modules/y-protocols/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "yjs@13.6.21:node_modules/yjs/package.json",
+      "dependsOn": []
+    },
+    {
+      "ref": "zod@3.25.76:node_modules/zod/package.json",
+      "dependsOn": []
+    }
+  ]
+}

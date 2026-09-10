@@ -1,0 +1,11 @@
+{
+  "reducedMotion": true,
+  "forcedColors": true,
+  "automatedAxeSeriousOrCriticalViolations": 0,
+  "presentationKeyboard": [
+    "Space play/pause",
+    "[ previous",
+    "] next",
+    "Escape exit"
+  ]
+}

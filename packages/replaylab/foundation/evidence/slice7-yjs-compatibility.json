@@ -1,0 +1,8 @@
+{
+  "verdict": "PASS",
+  "runtime": "official unpatched yjs@13.6.21",
+  "legacyUint53ClientId": 4294974597,
+  "legacyUpdateInteroperability": true,
+  "stateVectorRoundTrip": true,
+  "scopedUndoPreservesConcurrentLegacyRemoteUpdate": true
+}

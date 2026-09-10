@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-08T20:40:36.344Z",
+  "verdict": "PASS",
+  "browserVersion": "145.0.7632.6",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "flow": [
+    "online visit and edit",
+    "close persistent browser context",
+    "relaunch same profile offline",
+    "load cached shell and IndexedDB play",
+    "offline edit and local undo",
+    "offline edit and reload without loss"
+  ]
+}
