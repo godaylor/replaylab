@@ -1,0 +1,72 @@
+.presence-layer {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 84 / 46;
+  pointer-events: none;
+}
+
+.presence-panel {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.38rem clamp(1rem, 2vw, 2rem);
+  border-bottom: 1px solid rgba(230, 217, 182, 0.13);
+  background: #091722;
+  color: var(--line);
+  font-size: 0.72rem;
+}
+
+.presence-heading {
+  flex: 0 0 auto;
+  color: var(--amber);
+  font: 700 0.66rem ui-monospace, "Cascadia Code", monospace;
+  text-transform: uppercase;
+}
+
+.presence-panel ul {
+  display: flex;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.presence-panel li {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.presence-panel li i {
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 1px solid CanvasText;
+  border-radius: 50%;
+}
+
+.presence-panel button {
+  min-height: 1.9rem;
+  border: 1px solid rgba(230, 217, 182, 0.3);
+  background: var(--graphite-soft);
+  color: var(--paper);
+}
+
+.stop-follow {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 46rem) {
+  .presence-panel { align-items: flex-start; overflow-x: auto; }
+}
+
+@media (forced-colors: active) {
+  .presence-layer { forced-color-adjust: none; }
+  .presence-panel li i { forced-color-adjust: none; }
+}

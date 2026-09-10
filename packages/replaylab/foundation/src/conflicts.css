@@ -1,0 +1,83 @@
+.conflict-panel {
+  max-width: calc(98rem - 2 * clamp(1rem, 2vw, 1.8rem));
+  margin: 0 auto clamp(1rem, 2vw, 1.8rem);
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--danger) 48%, transparent);
+  background: var(--graphite);
+}
+
+.conflict-empty {
+  margin: 0;
+  color: var(--line);
+}
+
+.conflict-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conflict-list > li {
+  padding: 0.75rem;
+  border: 1px solid rgba(230, 217, 182, 0.18);
+  background: rgba(7, 19, 31, 0.55);
+}
+
+.conflict-list fieldset {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.conflict-list legend {
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.conflict-list label {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 0.4rem;
+  border: 1px solid rgba(230, 217, 182, 0.13);
+  cursor: pointer;
+}
+
+.conflict-list label:has(input:checked) {
+  border-color: var(--amber);
+}
+
+.conflict-list label span {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.conflict-list small {
+  color: var(--line);
+}
+
+.conflict-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.phase-conflict-marker {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+@media (forced-colors: active) {
+  .conflict-panel,
+  .conflict-list > li,
+  .conflict-list label,
+  .conflict-list label:has(input:checked) {
+    border-color: CanvasText;
+  }
+}

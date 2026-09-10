@@ -1,0 +1,52 @@
+{
+  "name": "@replaylab/foundation-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "audit": "node ./scripts/audit.mjs --slice slice7",
+    "build": "node ../../../node_modules/vite/bin/vite.js build",
+    "dev": "node ../../../node_modules/vite/bin/vite.js --host 127.0.0.1 --port 32400 --strictPort",
+    "build:server": "node ../../../node_modules/vite/bin/vite.js build --config vite.server.config.ts",
+    "start": "node server-dist/server-entry.js",
+    "room:create": "node server-dist/room-cli.js",
+    "test:release": "node ../../../node_modules/@playwright/test/cli.js test",
+    "test:durability": "node ../../../node_modules/@playwright/test/cli.js test tests/slice6.e2e.spec.ts -g pagehide --repeat-each=10",
+    "verify:release": "node ./scripts/verify-release.mjs",
+    "package:release": "node ./scripts/package-release.mjs",
+    "test": "node ../../../node_modules/@playwright/test/cli.js test tests/domain.pw.spec.ts tests/foundation.logic.pw.spec.ts tests/slice2a.pw.spec.ts tests/slice2b.pw.spec.ts",
+    "test:e2e": "node ../../../node_modules/@playwright/test/cli.js test tests/foundation.e2e.spec.ts tests/authoring.e2e.spec.ts tests/slice2a.e2e.spec.ts tests/slice2b.e2e.spec.ts",
+    "test:perf": "node ../../../node_modules/@playwright/test/cli.js test tests/performance.e2e.spec.ts",
+    "test:offline": "node ../../../node_modules/@playwright/test/cli.js test tests/offline.e2e.spec.ts",
+    "test:slice7": "node ../../../node_modules/@playwright/test/cli.js test tests/slice7.e2e.spec.ts",
+    "typecheck": "node ../../../node_modules/@typescript/old/bin/tsc --noEmit",
+    "verify:slice1a": "node ../../../.yarn/releases/yarn-4.18.0.cjs typecheck && node ../../../.yarn/releases/yarn-4.18.0.cjs test && node ../../../.yarn/releases/yarn-4.18.0.cjs build && node ../../../.yarn/releases/yarn-4.18.0.cjs test:e2e && node ../../../.yarn/releases/yarn-4.18.0.cjs test:perf && node ../../../.yarn/releases/yarn-4.18.0.cjs audit",
+    "verify:slice2a": "node ../../../.yarn/releases/yarn-4.18.0.cjs typecheck && node ../../../.yarn/releases/yarn-4.18.0.cjs build && node ../../../.yarn/releases/yarn-4.18.0.cjs test && node ../../../.yarn/releases/yarn-4.18.0.cjs test:e2e && node ../../../.yarn/releases/yarn-4.18.0.cjs test:perf && node ../../../.yarn/releases/yarn-4.18.0.cjs audit",
+    "verify:slice2b": "node ../../../.yarn/releases/yarn-4.18.0.cjs typecheck && node ../../../.yarn/releases/yarn-4.18.0.cjs build && node ../../../.yarn/releases/yarn-4.18.0.cjs test && node ../../../.yarn/releases/yarn-4.18.0.cjs test:e2e && node ../../../.yarn/releases/yarn-4.18.0.cjs test:perf && node ../../../.yarn/releases/yarn-4.18.0.cjs audit",
+    "verify": "node ../../../.yarn/releases/yarn-4.18.0.cjs verify:slice2b && node ../../../.yarn/releases/yarn-4.18.0.cjs test:offline"
+  },
+  "dependencies": {
+    "@blocksuite/global": "workspace:*",
+    "@blocksuite/std": "workspace:*",
+    "@blocksuite/store": "workspace:*",
+    "@blocksuite/sync": "workspace:*",
+    "fractional-indexing": "^3.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "rxjs": "^7.8.2",
+    "ws": "^8.21.3",
+    "y-protocols": "^1.0.6",
+    "yjs": "13.6.21"
+  },
+  "devDependencies": {
+    "@playwright/test": "=1.58.2",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "axe-core": "=4.13.0",
+    "playwright": "1.58.2",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "vite": "^7.3.5"
+  }
+}
