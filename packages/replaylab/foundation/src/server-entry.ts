@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRooms } from './room-storage';
+import { SupabaseRoomStorage } from './supabase-room-storage';
 import { ReplaySyncWebSocketServer } from './sync-server';
 
 const port = Number(process.env.PORT ?? 32400);
@@ -10,8 +11,14 @@ if (!Number.isInteger(port) || port < 32400 || port > 32499) throw new Error('PO
 const host = process.env.HOST ?? '127.0.0.1';
 const dist = resolve(dirname(fileURLToPath(import.meta.url)), '../dist');
 if (!existsSync(resolve(dist, 'index.html'))) throw new Error('Build the ReplayLab client first');
-const publicOrigin = process.env.REPLAYLAB_PUBLIC_ORIGIN || undefined;
+const publicOrigin = process.env.REPLAYLAB_PUBLIC_ORIGIN || (process.env.RENDER_EXTERNAL_HOSTNAME ? `https://${process.env.RENDER_EXTERNAL_HOSTNAME}` : undefined);
 if (publicOrigin && new URL(publicOrigin).protocol !== 'https:') throw new Error('Public origin must use HTTPS');
+const supabase = {
+  url: process.env.REPLAYLAB_SUPABASE_URL,
+  secretKey: process.env.REPLAYLAB_SUPABASE_SECRET_KEY,
+};
+const externalStorage = Boolean(supabase.url && supabase.secretKey);
+if (!externalStorage && (supabase.url || supabase.secretKey)) throw new Error('External storage configuration is incomplete');
 const types: Record<string, string> = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
 const http = createServer((request, response) => {
   response.setHeader('X-Content-Type-Options', 'nosniff');
@@ -24,7 +31,7 @@ const http = createServer((request, response) => {
   let pathname: string;
   try { pathname = decodeURIComponent(new URL(request.url ?? '/', 'http://local').pathname); }
   catch { response.writeHead(400); response.end(); return; }
-  if (pathname === '/healthz') { response.setHeader('Content-Type', types['.json']!); response.end(request.method === 'HEAD' ? undefined : '{"status":"ok","product":"ReplayLab"}'); return; }
+  if (pathname === '/healthz') { response.setHeader('Content-Type', types['.json']!); response.end(request.method === 'HEAD' ? undefined : JSON.stringify({ status: 'ok', product: 'ReplayLab', storage: externalStorage ? 'supabase-postgres' : 'filesystem' })); return; }
   const appRoute = pathname === '/' || /^\/app\/play\/[^/]+\/edit\/?$/.test(pathname);
   const permitted = appRoute || pathname === '/index.html' || pathname === '/sw.js' || /^\/assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(pathname) || /^\/legal\/[a-zA-Z0-9_.-]+$/.test(pathname);
   const target = resolve(dist, appRoute ? 'index.html' : '.' + pathname);
@@ -36,7 +43,14 @@ const http = createServer((request, response) => {
   createReadStream(target).on('error', () => response.destroy()).pipe(response);
 });
 const sync = new ReplaySyncWebSocketServer({ server: http, publicOrigin });
-try { loadRooms(sync, resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data')); }
+try {
+  if (externalStorage) {
+    const storage = new SupabaseRoomStorage({ url: supabase.url!, secretKey: supabase.secretKey! });
+    await storage.loadRooms(sync);
+  } else {
+    loadRooms(sync, resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data'));
+  }
+}
 catch (error) { await sync.close(); throw error; }
 http.requestTimeout = 15_000;
 http.headersTimeout = 10_000;

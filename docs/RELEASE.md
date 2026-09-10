@@ -20,6 +20,10 @@ Copy the complete `release-dist` to a directory on the chosen server. No package
 
 Set `REPLAYLAB_DATA_DIR` to an absolute persistent directory outside the replaceable release artifact. Default `.replaylab-data` is relative to the launch directory. Preserve that directory across releases. Use one server process per data directory, no clustering or multiple writers. Stop the previous instance before starting a replacement. Browser local data remains authoritative and is never deleted by server deployment.
 
+For the free hosted portfolio variant, apply `deploy/supabase/schema.sql`, insert room IDs with SHA-256 read/write capability hashes, and set `REPLAYLAB_SUPABASE_URL` plus `REPLAYLAB_SUPABASE_SECRET_KEY`. The server then loads and atomically replaces private Yjs network-shadow snapshots through the Supabase Data API before acknowledging a commit; it does not initialize or write `REPLAYLAB_DATA_DIR`. RLS is enabled, browser roles have no table grants, and only the server-side secret role can select or update rows. Never place raw capability tokens or the Supabase secret in Git, browser code, logs, screenshots, or public documentation.
+
+`render.yaml` selects only Render's `free` compute plan and keeps both database values as `sync: false`. The service derives its exact HTTPS origin from Render at runtime, so `/sync` validates the corresponding browser origin and upgrades to WSS on the same host. Supabase Free may pause after low activity; its stored data remains external to Render and can be resumed from the Supabase dashboard.
+
 ## Private collaboration rooms
 
 Before launch, from the same runtime directory with the same `REPLAYLAB_DATA_DIR`:

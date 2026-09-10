@@ -33,7 +33,7 @@ export type RoomOptions = {
   writeToken?: string;
   presenceTtlMs?: number;
   capabilityHashes?: Record<CapabilityRole, string>;
-  persist?: (update: Uint8Array, snapshot: Uint8Array) => void;
+  persist?: (update: Uint8Array, snapshot: Uint8Array) => void | Promise<void>;
 };
 
 function token(prefix: string) {
@@ -169,21 +169,31 @@ export class ReplaySyncRoom {
     isolated.destroy();
     // Durability must succeed before canonical apply, ACK, or fanout.
     // A failed write leaves the trusted room and client history unchanged.
+    const finish = () => {
+      Y.applyUpdate(this.doc, input.update, 'replaylab-room-accepted');
+      this.acceptedCommitIds.add(input.commitId);
+      if (this.acceptedCommitIds.size > 4096) this.acceptedCommitIds.delete(this.acceptedCommitIds.values().next().value!);
+      return { duplicate: false };
+    };
     if (this.persist) {
       const candidate = new Y.Doc({ guid: this.id });
+      let stored: void | Promise<void>;
       try {
         Y.applyUpdate(candidate, this.encode());
         Y.applyUpdate(candidate, input.update);
-        this.persist(input.update, Y.encodeStateAsUpdate(candidate));
+        stored = this.persist(input.update, Y.encodeStateAsUpdate(candidate));
       } catch (error) {
         if (error instanceof ReplaySyncError) throw error;
         throw new ReplaySyncError('network', 'Room storage unavailable; local copy is preserved', false, 5000);
       } finally { candidate.destroy(); }
+      if (stored instanceof Promise) {
+        return stored.then(finish, error => {
+          if (error instanceof ReplaySyncError) throw error;
+          throw new ReplaySyncError('network', 'Room storage unavailable; local copy is preserved', false, 5000);
+        });
+      }
     }
-    Y.applyUpdate(this.doc, input.update, 'replaylab-room-accepted');
-    this.acceptedCommitIds.add(input.commitId);
-    if (this.acceptedCommitIds.size > 4096) this.acceptedCommitIds.delete(this.acceptedCommitIds.values().next().value!);
-    return { duplicate: false };
+    return finish();
   }
 
   encode() {
@@ -254,6 +264,7 @@ export class ReplaySyncWebSocketServer {
   readonly logs: ReplaySyncLog[] = [];
   private readonly sessions = new Map<WebSocket, Session>();
   private readonly expiryTimer: ReturnType<typeof setInterval>;
+  private messageQueue = Promise.resolve();
 
   constructor(options: { port?: number; host?: string; server?: Server; publicOrigin?: string } = {}) {
     this.server = new WebSocketServer({
@@ -273,7 +284,7 @@ export class ReplaySyncWebSocketServer {
       socket.on('message', (data: unknown) => {
         if (Date.now() - windowStart > 1000) { windowStart = Date.now(); messages = 0; }
         if (++messages > 100) { socket.close(4003, 'Message rate exceeded'); return; }
-        this.handle(socket, String(data));
+        this.messageQueue = this.messageQueue.then(() => this.handle(socket, String(data)));
       });
       socket.on('close', () => clearTimeout(deadline));
       socket.on('close', () => this.dropSession(socket));
@@ -309,7 +320,7 @@ export class ReplaySyncWebSocketServer {
     });
   }
 
-  private handle(socket: WebSocket, raw: string) {
+  private async handle(socket: WebSocket, raw: string) {
     let envelope: Partial<ReplayClientEnvelope> | undefined;
     try {
       envelope = parseEnvelope(raw) as Partial<ReplayClientEnvelope>;
@@ -341,7 +352,7 @@ export class ReplaySyncWebSocketServer {
         return;
       }
       if (envelope.kind === 'commit') {
-        this.handleCommit(socket, session, envelope);
+        await this.handleCommit(socket, session, envelope);
         return;
       }
       throw new ReplaySyncError('malformed', 'Unknown client envelope', true);
@@ -357,7 +368,7 @@ export class ReplaySyncWebSocketServer {
     const room = this.rooms.get(envelope.roomId);
     const role = room?.authenticate(envelope.capability) ?? null;
     if (!room || !role) throw new ReplaySyncError('unauthorized', 'Capability is invalid', true);
-    if ([...this.sessions.values()].filter(session => session.room === room).length >= 12) throw new ReplaySyncError('rate_limited', 'Room connection limit reached', false, 5000);
+    if ([...this.sessions.values()].filter(session => session.room === room).length >= 48) throw new ReplaySyncError('rate_limited', 'Room connection limit reached', false, 5000);
     const session = { id: crypto.randomUUID(), room, role, channel: 'document' } satisfies Session;
     this.sessions.set(socket, session);
     this.logs.push({ event: 'session', roomId: room.id, role });
@@ -381,7 +392,7 @@ export class ReplaySyncWebSocketServer {
     }));
   }
 
-  private handleCommit(socket: WebSocket, session: Session, envelope: Partial<Extract<ReplayClientEnvelope, { kind: 'commit' }>>) {
+  private async handleCommit(socket: WebSocket, session: Session, envelope: Partial<Extract<ReplayClientEnvelope, { kind: 'commit' }>>) {
     if (
       typeof envelope.requestId !== 'string' ||
       typeof envelope.docId !== 'string' ||
@@ -396,7 +407,7 @@ export class ReplaySyncWebSocketServer {
     }
     let update: Uint8Array;
     try { update = base64ToBytes(envelope.update); } catch { throw new ReplaySyncError('malformed', 'Update encoding is invalid', true); }
-    const result = session.room.accept({
+    const result = await session.room.accept({
       sessionId: session.id,
       role: session.role,
       commitId: envelope.commitId,
@@ -429,7 +440,7 @@ export class ReplaySyncWebSocketServer {
     const room = this.rooms.get(envelope.roomId);
     const role = room?.authenticate(envelope.capability) ?? null;
     if (!room || !role) throw new ReplaySyncError('unauthorized', 'Capability is invalid', true);
-    if ([...this.sessions.values()].filter(session => session.room === room).length >= 12) throw new ReplaySyncError('rate_limited', 'Room connection limit reached', false, 5000);
+    if ([...this.sessions.values()].filter(session => session.room === room).length >= 48) throw new ReplaySyncError('rate_limited', 'Room connection limit reached', false, 5000);
     this.sessions.set(socket, { id: crypto.randomUUID(), room, role, channel: 'awareness', clientId: envelope.clientId });
     this.send(socket, makeEnvelope<ReplayServerEnvelope>({ kind: 'presence.ready', requestId: envelope.requestId, role }));
   }

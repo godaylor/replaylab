@@ -8,6 +8,8 @@ Local-first multiplayer editor for animated basketball plays. RU is the default;
 
 Desktop supports full authoring. Tablet supports playback, player movement and cue editing. Mobile supports playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
 
+The free portfolio deployment runs the HTTPS/WebSocket process on Render and stores private room snapshots in Supabase Postgres. No user document is written to Render's ephemeral filesystem. The checked-in `render.yaml` fixes the service to the free compute plan and prompts for the server-only database credentials instead of committing them.
+
 An additive, versioned emergency journal retains committed gestures and unapplied title/cue drafts across abrupt renderer closure. Existing local plays are backed up before adoption; corrupt or unknown records are preserved for read-only recovery/export. See [recovery contract](docs/EMERGENCY_JOURNAL.md). Browser data clearing or complete storage failure still requires an independent export/backup.
 
 ## Local setup

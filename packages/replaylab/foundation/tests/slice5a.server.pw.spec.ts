@@ -87,6 +87,14 @@ test('room converges under duplicate/reordered delivery and rejects every invali
     rate: 'rate_limited',
   });
 
+  let releasePersist!: () => void;
+  const external = new ReplaySyncRoom('external', { persist: () => new Promise<void>(resolve => { releasePersist = resolve; }) });
+  const pending = external.accept({ sessionId: 'external', role: 'write', commitId: 'durable', update: bytes(fixtures.base) });
+  expect(external.doc.getMap('replay').size).toBe(0);
+  releasePersist();
+  await pending;
+  expect(external.doc.getMap('replay').size).toBeGreaterThan(0);
+
   mkdirSync(evidenceRoot, { recursive: true });
   writeFileSync(resolve(evidenceRoot, 'slice5a-security.json'), JSON.stringify({
     verdict: 'PASS',
