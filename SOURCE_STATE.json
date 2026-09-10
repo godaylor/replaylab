@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "7cb45596d10f7d2a48cd1fbd0f4f00707bbc44ee655cbb5c5fa5e165e7cf17db",
+  "snapshotSha256": "83c3c8ed07e437d295171a0be3d52e0df443fcfcef400dea9f8da18df4915b35",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -35,7 +35,7 @@
     },
     {
       "path": ".yarnrc.yml",
-      "sha256": "63a35be41e1b57efc90847ede216cbf207c221f593da21fa9207e48b9829070a",
+      "sha256": "9de7329976f5198e7ce5440444f1fe833e3db297afdec21fd616f5f743267c69",
       "origin": "export-configuration"
     },
     {
@@ -2697,7 +2697,7 @@
     {
       "path": "packages/replaylab/foundation/package.json",
       "sha256": "b39136332e2548988597f3225384acf22e1e9a0ac7fc887fbeaefe15239e1b66",
-      "origin": "export-configuration"
+      "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/playwright.config.ts",
@@ -2731,7 +2731,7 @@
     },
     {
       "path": "packages/replaylab/foundation/scripts/prepare-source.mjs",
-      "sha256": "1c1ed13a9901adc18c87a5a9944c60d5db5cc7b9809e1f472c0bf72bb888835c",
+      "sha256": "339e2409b3f14b4482b9fcc4b630f0d1247aa28a2d97cff3ad3c29d9090362f4",
       "origin": "working-tree-copy"
     },
     {
@@ -3091,8 +3091,8 @@
     },
     {
       "path": "yarn.lock",
-      "sha256": "6fb797921ac6961680e2d67a208cb2e8b145fbf3c57ccc7d0c1875a4e74ab995",
-      "origin": "export-configuration"
+      "sha256": "0740478e4f7f56de439ce0999618c8b4f95fd68e33ea378d2d4727543262238e",
+      "origin": "working-tree-copy"
     }
   ]
 }

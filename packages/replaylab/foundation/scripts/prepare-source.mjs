@@ -68,7 +68,7 @@ write('package.json', {
   packageManager: 'yarn@4.18.0', engines: sourcePackage.engines,
   workspaces: [...kernel, product], devDependencies: parent.devDependencies, resolutions,
 });
-write('.yarnrc.yml', 'enableGlobalCache: true\nenableScripts: false\nnmMode: hardlinks-local\nnodeLinker: node-modules\nnpmRegistryServer: "https://registry.npmjs.org"\nyarnPath: .yarn/releases/yarn-4.18.0.cjs\n');
+write('.yarnrc.yml', 'enableGlobalCache: true\nenableScripts: false\ncompressionLevel: 0\nnmMode: hardlinks-local\nnodeLinker: node-modules\nnpmRegistryServer: "https://registry.npmjs.org"\nyarnPath: .yarn/releases/yarn-4.18.0.cjs\n');
 const ts = await import(pathToFileURL(join(repo, 'node_modules/@typescript/old/lib/typescript.js')).href);
 const config = ts.default.parseConfigFileTextToJson('tsconfig.json', readFileSync(join(repo, 'tsconfig.json'), 'utf8')).config;
 delete config.references;
