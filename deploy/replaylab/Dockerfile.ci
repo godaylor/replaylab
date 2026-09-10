@@ -1,0 +1,9 @@
+FROM node:22.15.1-bookworm-slim AS node
+FROM mcr.microsoft.com/playwright:v1.58.2-noble
+COPY --from=node /usr/local/ /usr/local/
+WORKDIR /workspace
+COPY . /workspace/
+ENV YARN_ENABLE_GLOBAL_CACHE=false
+RUN node .yarn/releases/yarn-4.18.0.cjs workspaces focus @replaylab/foundation-proof
+WORKDIR /workspace/packages/replaylab/foundation
+CMD ["node", "../../../.yarn/releases/yarn-4.18.0.cjs", "verify:release"]

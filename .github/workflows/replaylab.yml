@@ -1,0 +1,56 @@
+name: ReplayLab release checks
+on:
+  workflow_dispatch:
+  push:
+    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
+  pull_request:
+    paths: ['packages/replaylab/**', 'blocksuite/framework/**', 'package.json', 'yarn.lock', '.yarn/**', '.yarnrc.yml', 'tsconfig*.json', 'blocksuite/tsconfig.json', '.gitignore', 'SOURCE_STATE.json', 'FINAL_AUDIT.md', 'deploy/replaylab/**', '.github/workflows/replaylab.yml', 'README.md', 'PLAN.md', 'AGENTS.md', 'docs/**', 'LICENSE*']
+permissions:
+  contents: read
+concurrency:
+  group: replaylab-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    env:
+      REPLAYLAB_IMAGE: replaylab:ci-${{ github.run_id }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.15.1'
+      - name: Install only the ReplayLab workspace closure
+        run: |
+          if [ -f SOURCE_STATE.json ]; then
+            node packages/replaylab/foundation/scripts/verify-source.mjs
+            node .yarn/releases/yarn-4.18.0.cjs install --immutable --mode=skip-build
+          else
+            node .yarn/releases/yarn-4.18.0.cjs workspaces focus @replaylab/foundation-proof
+          fi
+      - name: Install the pinned test browser
+        run: node node_modules/@playwright/test/cli.js install --with-deps chromium
+      - name: Verify and package
+        working-directory: packages/replaylab/foundation
+        run: node ../../../.yarn/releases/yarn-4.18.0.cjs verify:release
+      - name: Validate container configuration
+        run: docker compose -f deploy/replaylab/compose.yml config --quiet
+      - name: Smoke isolated release package
+        run: node packages/replaylab/foundation/scripts/release-smoke.mjs
+      - name: Build the product image only
+        run: docker build -f deploy/replaylab/Dockerfile -t "$REPLAYLAB_IMAGE" .
+      - name: Smoke non-root container and restore a synthetic backup
+        run: node packages/replaylab/foundation/scripts/release-smoke.mjs --docker
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: replaylab-evidence
+          path: |
+            packages/replaylab/foundation/evidence/
+            packages/replaylab/foundation/test-results/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: replaylab-release
+          include-hidden-files: true
+          path: packages/replaylab/foundation/release-dist/

@@ -1,0 +1,24 @@
+name: replaylab-portfolio
+services:
+  replaylab:
+    build:
+      context: ../..
+      dockerfile: deploy/replaylab/Dockerfile
+    ports:
+      - '127.0.0.1:32400:32400'
+    environment:
+      REPLAYLAB_PUBLIC_ORIGIN: ${REPLAYLAB_PUBLIC_ORIGIN:-}
+    volumes:
+      - replaylab-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 512m
+    restart: unless-stopped
+volumes:
+  replaylab-data:
