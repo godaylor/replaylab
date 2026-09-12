@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T11:29:00.681Z",
+  "generatedAt": "2026-09-10T23:22:38.159Z",
   "verdict": "PASS",
   "scope": "@replaylab/foundation slice7 production runtime",
   "directDependencies": [
@@ -1618,18 +1618,18 @@
   "bundle": {
     "chunks": [
       {
-        "file": "assets/core-4hiuIFKb.js",
+        "file": "assets/core-B-nhDNF3.js",
         "rawBytes": 62539,
-        "gzipBytes": 18685
+        "gzipBytes": 18683
       },
       {
-        "file": "assets/index-LlZ9zI78.js",
-        "rawBytes": 663789,
-        "gzipBytes": 199870
+        "file": "assets/index-BkC_6ews.js",
+        "rawBytes": 673747,
+        "gzipBytes": 203093
       }
     ],
-    "rawBytes": 726328,
-    "gzipBytes": 218555,
+    "rawBytes": 736286,
+    "gzipBytes": 221776,
     "budgetGzipBytes": 1500000,
     "emittedPackages": [
       "@blocksuite/global",
@@ -1676,16 +1676,17 @@
   "serverBundle": {
     "modules": [
       "packages/replaylab/foundation/src/room-cli.ts",
-      "packages/replaylab/foundation/src/supabase-room-storage.ts",
       "packages/replaylab/foundation/src/domain.ts",
       "packages/replaylab/foundation/src/sync-server.ts",
+      "packages/replaylab/foundation/src/room-api.ts",
+      "packages/replaylab/foundation/src/supabase-room-storage.ts",
       "packages/replaylab/foundation/src/server-entry.ts",
       "packages/replaylab/foundation/src/sync-protocol.ts",
       "packages/replaylab/foundation/src/room-storage.ts"
     ],
     "imports": [
       "node:path",
-      "assets/room-storage-CY6WeLG5.js",
+      "assets/room-storage-DTs1ULB9.js",
       "node:crypto",
       "node:fs",
       "yjs",
@@ -1697,7 +1698,7 @@
     "failures": []
   },
   "sourceBoundaryScan": {
-    "filesScanned": 69,
+    "filesScanned": 74,
     "forbidden": [],
     "protocolMarkers": []
   },
@@ -1768,8 +1769,8 @@
     "finalRetainVersusUnpatchedReviewRequiredBeforeRelease": false
   },
   "sourceNotices": {
-    "generatedAt": "2026-09-10T11:29:00.679Z",
-    "repositoryCommit": "13ccc33675a9bc86e887ac8484e9c2d73e8044a5",
+    "generatedAt": "2026-09-10T23:22:38.156Z",
+    "repositoryCommit": "b9e0e404af8bf8e4d0ea32f404e4e61d283a0488",
     "items": [
       {
         "source": "blocksuite/framework/store/src/adapter/base.ts",
@@ -1836,8 +1837,6 @@
     "allowedUse": "ReplayLab name and current mark authorized by the owner for a noncommercial public portfolio release.",
     "blockers": [
       "Independent trademark availability check is not complete.",
-      "Public domain selection and availability check are not complete.",
-      "Public-domain deployment is not authorized in Slice 7.",
       "Manual screen-reader review is not recorded.",
       "Human review of the silent 30-second capture and complete 60-second demo is not recorded."
     ]

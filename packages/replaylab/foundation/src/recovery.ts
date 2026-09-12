@@ -315,7 +315,7 @@ export function diagnosticsPayload(input: {
 export function diagnosticsContainsDocumentContent(value: unknown) {
   const serialized = JSON.stringify(value);
   return ['title', 'cue', 'poses', 'actions', 'updateBase64'].some(marker =>
-    serialized.includes(`\"${marker}\"`)
+    serialized.includes(`"${marker}"`)
   );
 }
 

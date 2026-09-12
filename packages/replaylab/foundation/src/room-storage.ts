@@ -26,6 +26,7 @@ export function loadRooms(server: ReplaySyncWebSocketServer, root: string) {
   for (const name of configs) {
     const config = JSON.parse(readFileSync(join(root, name), 'utf8'));
     if (config.version !== 1 || !validRoomId(config.id) || name !== `${config.id}.room.json` || !['read', 'write'].every(role => /^[0-9a-f]{64}$/.test(config.capabilityHashes?.[role]))) throw new Error(`Invalid room configuration: ${name}`);
+    if (server.rooms.has(config.id)) continue;
     let count = 0;
     const journal = join(root, `${config.id}.updates.jsonl`);
     const room = server.createRoom(config.id, {

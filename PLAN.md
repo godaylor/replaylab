@@ -1,5 +1,25 @@
 # ReplayLab transformation plan
 
+## Active product completion checkpoint — 2026-09-11
+
+The owner requested standalone product completion and authorized publication to
+the existing godaylor/replaylab + Render + Supabase installation. No replacement
+hosting, upstream publication or unrelated PetProjects process changes.
+
+- Implemented create/reopen/recent plays and browser-created private rooms with
+  distinct edit/view links; the original local document remains intact.
+- 77/77 full tests plus 10/10 immediate-close repetitions PASS on Node 22.15.1,
+  Chromium 145; typecheck, client/server builds, lint, provenance and packaging PASS.
+- Maximum playback fixture: 60.00 FPS, frame p95 16.7 ms, zero measured long tasks
+  and React playback renders. Runtime remains 78 instances / 31 emitted packages,
+  221,776 gzip JS bytes, zero forbidden modules.
+- Existing Render service and healthy Supabase project were found and retained.
+  Production validation and final handoff are recorded in PRODUCT_COMPLETION.md
+  and PORTFOLIO_HANDOFF.md after publishing the verified source.
+- Independent trademark and human assistive-technology/device reviews remain open.
+
+All checkpoints below are dated historical context, not the active authorization.
+
 Status: **Local technical verification GREEN after emergency journal recovery (2026-09-08); public release pending external/manual gates. The failed preflight below is historical, not an active durability regression.**  
 Baseline: AFFiNE `canary`, commit `329839e467d936f90230fb02a8983f8eb4b62fc0`, version `0.27.0`  
 Expected delivery window after explicit implementation approval: **9–12 focused weeks**

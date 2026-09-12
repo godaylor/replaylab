@@ -6,8 +6,8 @@
     "actions": 30
   },
   "metrics": {
-    "framesPerSecond": 60.44302746516564,
-    "frameIntervalP95Ms": 16.799999999999727,
+    "framesPerSecond": 59.983429991715,
+    "frameIntervalP95Ms": 16.800000000000068,
     "reactRendersDuringPresence": 0,
     "presencePublishes": 45
   },

@@ -10,6 +10,6 @@ create table if not exists public.replaylab_rooms (
 
 alter table public.replaylab_rooms enable row level security;
 revoke all on table public.replaylab_rooms from public, anon, authenticated, service_role;
-grant select, update on table public.replaylab_rooms to service_role;
+grant select, insert, update on table public.replaylab_rooms to service_role;
 
 comment on table public.replaylab_rooms is 'Private ReplayLab capability hashes and durable Yjs network-shadow snapshots.';

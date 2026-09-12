@@ -1,0 +1,4 @@
+{
+  "categories": { "correctness": "error" },
+  "ignorePatterns": ["blocksuite/**", "**/dist/**", "**/server-dist/**", "**/release-dist/**", "node_modules/**", "tmp/**"]
+}

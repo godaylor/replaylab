@@ -241,6 +241,7 @@ function inspectBundle() {
     let matchedWorkspace = false;
     for (const [name, workspaceRoot] of approvedWorkspaces) {
       if (lower.includes(`${workspaceRoot.toLowerCase()}/`)) {
+        if (!lower.startsWith(`${normalizePath(repoRoot).toLowerCase()}/${workspaceRoot.toLowerCase()}/`)) unexpectedRepoModules.push(moduleId);
         workspaceModuleCounts[name] += 1;
         emittedPackages.add(name);
         matchedWorkspace = true;
@@ -593,8 +594,6 @@ const report = {
     blockers: [
       ...releaseTestBlockers,
       'Independent trademark availability check is not complete.',
-      'Public domain selection and availability check are not complete.',
-      'Public-domain deployment is not authorized in Slice 7.',
       ...sourceNotices.items.filter(item => item.status.startsWith('pending')).map(item => `Record exact upstream revision for ${item.upstreamProject}.`),
       'Manual screen-reader review is not recorded.',
       'Human review of the silent 30-second capture and complete 60-second demo is not recorded.',

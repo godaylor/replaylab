@@ -4,6 +4,7 @@ import { EmptyRoute, ReplayLabApp, type AppStorageMode } from './app';
 import { ReplayAwarenessSource } from './awareness';
 import { DEFAULT_DB_NAME, ReplayLabEditorFacade } from './facade';
 import { EmergencyJournal } from './emergency-journal';
+import { rememberPlay } from './recent-plays';
 import { ReplayNetworkDocSource } from './network-source';
 import { parseCapabilityFragment } from './sync-protocol';
 import { ReplayOpenError } from './recovery';
@@ -53,9 +54,9 @@ if (!routeMatch) {
       networkSource,
       readOnly: networkConfig?.access === 'read',
       seedContent: {
-        title: translate(initialLocale, 'seededTitle'),
-        cueOne: translate(initialLocale, 'seededCueOne'),
-        cueTwo: translate(initialLocale, 'seededCueTwo'),
+        title: query.has('new') ? (initialLocale === 'ru' ? 'Новая комбинация' : 'Untitled play') : translate(initialLocale, 'seededTitle'),
+        cueOne: query.has('new') ? '' : translate(initialLocale, 'seededCueOne'),
+        cueTwo: query.has('new') ? '' : translate(initialLocale, 'seededCueTwo'),
       },
     });
     storageMode = {
@@ -95,6 +96,10 @@ if (!routeMatch) {
     }
   }
   performance.mark('replaylab-open-ready');
+  if (storageMode.kind === 'indexeddb') {
+    rememberPlay(playId, facade.snapshot.title);
+    facade.onUpdated(() => rememberPlay(playId, facade.snapshot.title));
+  }
   // Even read-only recovery can export original damaged journal bytes.
   facade.emergencyJournal ??= new EmergencyJournal(dbName ?? DEFAULT_DB_NAME, playId);
   performance.measure(

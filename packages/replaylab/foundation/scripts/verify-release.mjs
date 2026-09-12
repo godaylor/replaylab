@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-for (const port of [32410, 32411, 32412]) {
+for (const port of [32410, 32411, 32412, 32414]) {
   await new Promise((resolve, reject) => {
     const probe = createServer();
     probe.once('error', reject);

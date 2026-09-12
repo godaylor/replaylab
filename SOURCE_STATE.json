@@ -1,12 +1,12 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "845d9bf9e2734bb2eb09067272099017dedc933b3f0fb6d2ecb9f5040efb70a2",
+  "snapshotSha256": "34af9d22bfc4652615837006a8b0e4746de4d0789577f16ff5e1476313596166",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
   },
-  "history": "Uncommitted working-tree export. No ReplayLab commit history or individual authorship is asserted.",
-  "verification": "Historical evidence is retained with original dates; run targeted source-export checks separately. No hosted CI or manual review is implied.",
+  "history": "Standalone godaylor/replaylab source. Original upstream kernel commit/blob provenance is retained per file; owner changes are recorded in Git.",
+  "verification": "Snapshot hashes cover exact source bytes. Runtime checks and their dates are recorded in evidence and PLAN.md.",
   "files": [
     {
       "path": ".dockerignore",
@@ -14,14 +14,24 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": ".gitattributes",
+      "sha256": "11d33e3b9dbda2bf6e21667903e5b940f37589e346ef8b39e31e51109ff37829",
+      "origin": "original-replaylab"
+    },
+    {
       "path": ".github/workflows/replaylab.yml",
-      "sha256": "77848809ed857a91bdf9c8d6100680e9776f4ee275a8ceb40c82590b70f7f0de",
+      "sha256": "8fb27b9b3da85596d36fe04ca9a32a47cc00214249d6cca7b04693df070631f6",
       "origin": "working-tree-copy"
     },
     {
       "path": ".gitignore",
-      "sha256": "e177a2b86d07ef02b0829182118b2be44a93b46bb4a1304685073c5bf766ea66",
+      "sha256": "acf8c7df1f94f4db626170ad49614bb7a03c2ec313788f5b37f53e1a3952f057",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": ".oxlintrc.json",
+      "sha256": "7f7afa655fb7b731dc266ca7afb3395964a828eccaf86495731f74a72dc3dce6",
+      "origin": "original-replaylab"
     },
     {
       "path": ".yarn/patches/@atlaskit-pragmatic-drag-and-drop-npm-1.4.0-75c45f52d3.patch",
@@ -45,7 +55,7 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "d2c6ed3cce7a24bb4af312befac7bf92eb15d9a5d02e0f51002f3afd22935629",
+      "sha256": "78460ecbb2acf97dd0758297e184180acd00056dffc301b45f72fd3cef0a955f",
       "origin": "working-tree-copy"
     },
     {
@@ -65,12 +75,17 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "3b1c29f4e62ad106315c759a8fc9aa49b0a0cf3cb06d32cbe9287b7c5b3d0e43",
+      "sha256": "d9f271ba58803bd2c35957e29326f0e39b068b0ee9900cce80a130dca2d5b4f1",
       "origin": "working-tree-copy"
     },
     {
+      "path": "PORTFOLIO_HANDOFF.md",
+      "sha256": "cd3ddccde27fc55c2fd31b4bb0d753ec6a98dbb2931c323c4a9fd4655510cb01",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "README.md",
-      "sha256": "229828975ff4b47a773277668e6540e0e7826397557207e10580160dda54668c",
+      "sha256": "b3886271b5a79e6d115a80d037724b950192630e6ce912b318fa702fc71c61d2",
       "origin": "working-tree-copy"
     },
     {
@@ -1730,6 +1745,12 @@
       "upstreamBlob": "f5e7c433e4a263282b5a282e03be634db9738c5b"
     },
     {
+      "path": "blocksuite/framework/store/src/model/store-container.ts",
+      "sha256": "5c9d708d8ab326461bbc05b52791d62b486e5fa960081550d6979957efd85630",
+      "origin": "upstream-kernel",
+      "upstreamBlob": "974fc7140c20168190f67ad284af6938abcbf209"
+    },
+    {
       "path": "blocksuite/framework/store/src/model/store/crud.ts",
       "sha256": "f95f7b87933bad2bc32391313696290e34a7b73d6f655263ea52d89ac4e14b58",
       "origin": "upstream-kernel",
@@ -1764,12 +1785,6 @@
       "sha256": "11b522889ac0c08efe0bde22dd56f00a8578873914744a9e6cbd39a63b253e3e",
       "origin": "upstream-kernel",
       "upstreamBlob": "35220b9114379fcf9d4dcc398b39a1800874f491"
-    },
-    {
-      "path": "blocksuite/framework/store/src/model/store-container.ts",
-      "sha256": "5c9d708d8ab326461bbc05b52791d62b486e5fa960081550d6979957efd85630",
-      "origin": "upstream-kernel",
-      "upstreamBlob": "974fc7140c20168190f67ad284af6938abcbf209"
     },
     {
       "path": "blocksuite/framework/store/src/reactive/base-reactive-data.ts",
@@ -2236,7 +2251,7 @@
     },
     {
       "path": "deploy/supabase/schema.sql",
-      "sha256": "6e7f06237fdaeb141498c351aaa902c62a458d94fe496bcb518b2284ee914bc7",
+      "sha256": "2e2a7d288dd1c4521015737a3cd694b905b86c2f813900f77f0204fe5656c727",
       "origin": "working-tree-copy"
     },
     {
@@ -2260,13 +2275,18 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "docs/PRODUCT_COMPLETION.md",
+      "sha256": "dcabfff192e802ca466335f8a045a6f08a7e3be88e8863187aa3b5121f255422",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "docs/PRODUCT_OPTIONS.md",
       "sha256": "af3226da766d25259e10605f881b1a619a30066f767e2b2a855b2331f67c79b5",
       "origin": "working-tree-copy"
     },
     {
       "path": "docs/RELEASE.md",
-      "sha256": "70ff6a5edc61f3b07aa7cc1e2b2f16e01e55548d23dbc573062a3200bed11d41",
+      "sha256": "aca827ea2b8c2736b87bba16090865d5e93afb700a276cd84985a17ad21633a8",
       "origin": "working-tree-copy"
     },
     {
@@ -2286,12 +2306,12 @@
     },
     {
       "path": "package.json",
-      "sha256": "d28e1aadfaaacd9ff27e2e80034239d689dc9f7e5e30255b04e988c53cc06fec",
+      "sha256": "60284420348d6efe9b01e7d92fbbb590a784bc3804f5870bc8584034164f4819",
       "origin": "export-configuration"
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "ba1635af60558c5a3d959f3dba0fca21954ec53c26616381ba76840cffb6960a",
+      "sha256": "b2c9934ae950edeb823246fe65b9c7d3ef2ebd132d299aa621ea555228ef12da",
       "origin": "working-tree-copy"
     },
     {
@@ -2346,7 +2366,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/emergency-crash.json",
-      "sha256": "e80d37ceb7162d5b9dfa4f9dae613b176985cd535ccdfc11a75902e89e8eee45",
+      "sha256": "bdda6923d8f7774fced8d0d5b6c00a4dd7dd428720323744f69f48fadab16314",
       "origin": "working-tree-copy"
     },
     {
@@ -2368,6 +2388,16 @@
       "path": "packages/replaylab/foundation/evidence/final-audit-visual-tests.json",
       "sha256": "548dce338b2889cdd655d4952f5ac64d211a9ac9ad7b13935ad4579fc6bfd8fd",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/home-desktop.png",
+      "sha256": "db90c2dffcc3a992699c797cb10d991d7d54179b8fad22bad9c4b587e8839744",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/home-mobile.png",
+      "sha256": "44047cd4063360daf467d611d27bdeeede8ec2cc282225f995276c93e75a463d",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/local-ci-context.json",
@@ -2416,12 +2446,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-durability.json",
-      "sha256": "a52d5f68feb63b4bfdc0eed0c7f57deb89a9c98f45a65e7836123ac89ff40c9b",
+      "sha256": "90152e5a1b94e3451415889a496fda811f847e2e258e66fe87a952839ce8cf33",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-server.json",
-      "sha256": "53052b0b32fae2d4cf19f9b3f01b9fb6e0183a1e108130eb9033c59238396a60",
+      "sha256": "25a9d924017abfd75feee873d66fa02ef8e4159751194fa7d8f97bc73cc0378b",
       "origin": "working-tree-copy"
     },
     {
@@ -2431,17 +2461,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-smoke-node.json",
-      "sha256": "2923868d6c4d7667ca19364df8c934eaf72e7e26f25913276b140a55bd69a64b",
+      "sha256": "e76a9b74dfaa796b87980ca4f8338b7057bfe641b8b15116d098c030b6aceb8c",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-tests.json",
-      "sha256": "3a40886d3807b399585600d1b638d91843d8a000bafea601ca7d8f9afc7107bb",
+      "sha256": "005a0f06d3f19c7505fead88c01c7b260fbd27ae4c0672ee27f41f0a1fb236d1",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-verification.json",
-      "sha256": "673535dd9308931db2265c8c6c3c4e6d6440b0596adead83b6dccb5b697b6aae",
+      "sha256": "6722ecc1e4dcc70abad46af6daf7a6fd4f7d457fac1b9c9f9c451e7a5c4c6419",
       "origin": "working-tree-copy"
     },
     {
@@ -2466,7 +2496,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-accessibility.json",
-      "sha256": "eb3e5db111093ad1ad0eeea837a3453716e754fa8fc9a2437712fb6527534b84",
+      "sha256": "88c7977e94987747ed1c7a11bee85c00e4a9c95df1a2893caf4c165aa9ceb127",
       "origin": "working-tree-copy"
     },
     {
@@ -2476,17 +2506,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-ui.png",
-      "sha256": "23efd4d9deee19917bb015897df184430bc27564a642c19c087d66a3fe65f22f",
+      "sha256": "9ec65085a3332bfe6174aeb5eb91a6bdc580cb0f75eb856f28214da195195347",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1b-offline.json",
-      "sha256": "3e8fb090d4b4b6d1be57d4f2c068b3f0d889e3269796a07f2d7ab77ff7bc3da5",
+      "sha256": "8a2443fd4af7eefadf1083c770c9bdefd5f4a0b5019e8a2322f35452fb15ed07",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-accessibility.json",
-      "sha256": "462bade6371b59fb28bf5768a6ab74bf001a88f7461a1fab21db2cd6b4ab2b63",
+      "sha256": "e7d627d2a347dc73bd1e99f85ce82520a7ea303a01b98099d073331619a60b43",
       "origin": "working-tree-copy"
     },
     {
@@ -2501,7 +2531,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-performance.json",
-      "sha256": "304429c27e5e67a9c0a15d43ebc9544078b5afe6f81522b8aef992fb9725dc18",
+      "sha256": "a61901dc66b98258ca2aa47369b8807f0bfb8708413efbbd1c9fa255672a4ba3",
       "origin": "working-tree-copy"
     },
     {
@@ -2531,17 +2561,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-high-contrast.png",
-      "sha256": "1dfb27824c2e3572709fa29ce922b24ee1e7cfb7d8d81b28e5922ccbc5cdc707",
+      "sha256": "adf4a772f1a6525adfa3736e567343c54296d0801696106cf046ca50d4af2bff",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-performance.json",
-      "sha256": "e9e5a5c6520c571ee7708e8ea192538f0938f53ff24ce3440b9dfdebe146675d",
+      "sha256": "74d99cd6d1b370fa5633436ceab3cfe4c6fd6ee52931ef5aa98aaa3b295245d2",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-accessibility.json",
-      "sha256": "1da62efbf8c0dae8c5e55a45dc32870ee617e07e5499164320b321c04a6e5c56",
+      "sha256": "dbde1f17c7e0c66c14f9dcf301d5aa45e36d13b3fba4e0360ec82251865d4a5b",
       "origin": "working-tree-copy"
     },
     {
@@ -2556,7 +2586,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-high-contrast.png",
-      "sha256": "14bf40ce4caf170815483864bdd5fe2753a349bc5863c22dece3cd602d68ca0b",
+      "sha256": "9cad5775fdb9ca6831d9a5dc95e2241fcd41c9da21f461cddee18f844d32ddfa",
       "origin": "working-tree-copy"
     },
     {
@@ -2581,7 +2611,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5a-terminal.json",
-      "sha256": "e28f8c75c92eab2464fb6d3f1c357fb9fe2f39b15f2f793485fb024c735e2000",
+      "sha256": "3e42f8621fef9ebeabb3caf69e877d6e166cce38b33c5266600e3eba0edc21e1",
       "origin": "working-tree-copy"
     },
     {
@@ -2601,12 +2631,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-partition.json",
-      "sha256": "5db152fb17b1659d8addc07406e1417047b517df2a7116676af1c5e038d559cb",
+      "sha256": "b2ceafb8f8b3651f240e05352c66941856ac565be6437f52ebe600cddec1db03",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-performance.json",
-      "sha256": "37f93c3e97d2a740cd0f620220851e47e762463db169950a3e974b8f910aee36",
+      "sha256": "92789e8d7a77b7d515fc2fb1f31fa7c1134f193bbd7074332adc3994c0c8f7a5",
       "origin": "working-tree-copy"
     },
     {
@@ -2626,7 +2656,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice6-offline-upgrade.json",
-      "sha256": "780e49b431362a99769b46bb15ab0186f6381eb3b29ddc0c9dd66db388113535",
+      "sha256": "a0880ba0c6444b0b677f5f1b9dd642c574f922995bd6a0c19fe96ae3465bda4a",
       "origin": "working-tree-copy"
     },
     {
@@ -2636,32 +2666,32 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "8b23709ce2cf26a14fe1b63bd90cc3938b0f9fca533ad242203b85913fe4c626",
+      "sha256": "4a1f536dc0a562def68b5cd9df917cc01294f5568dc298502e54f9cd58eaa84f",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.md",
-      "sha256": "c6e9e3155e4b6f0a0f330b19441541f281cb969ad27e0473a1802f620b304a79",
+      "sha256": "c0d48126b0c6febe8e5a6b0e9c1ecebef580d70918bd549107f5f5aa39da2083",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-en.png",
-      "sha256": "c572e3c89bc9f83ae1605231fa382cf09307186e06a54a398586f1c615890f66",
+      "sha256": "0f5ac9f1f9e1e877af388e700f67d3044012fa71bb038c5d48976d1036fd09bc",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "56359ec94d61a669fdba191c8db1d0684a0022592f1cac9104fe2dfe699a7ece",
+      "sha256": "9d506c2a1d036512b50dcb72779be7e8c4f524f515e800d695c0228d68162d86",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-en.png",
-      "sha256": "f879734b01985b97729cac47f9f823013e69cc7e6b8ee2f63df0f20566858a8c",
+      "sha256": "c121fc88ea37c94ef13683894318001ddc673fd4ecef3af4a8749f865223c21f",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-ru.png",
-      "sha256": "766b01163f46c2427ac118b9e4567bf2b0455dd549dbf05be684656c2e45c299",
+      "sha256": "9cefffe1415418962f24d8d939bcd163005315d2c2c8269977ee01399f1ad062",
       "origin": "working-tree-copy"
     },
     {
@@ -2676,22 +2706,22 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-release-review.md",
-      "sha256": "42cd13fe417443b7eff8143174cd4afa3beef6a3b2f5cf7f50125956b42275da",
+      "sha256": "ee0acb57720c48d6d0aa212e3437b74ff8b5066da79091969c57cc17a670c0e8",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-ru.png",
-      "sha256": "af62c2b731586f95f6a490968d0900dfd113c2c8063928cba21bbedc15d29be3",
+      "sha256": "ffda5dde9516e4291a516bef9c8d4d083a692e221ad50ef64ba48924d04b992f",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "af40dee59844ecc64622a979d7f1dafb3c10b524d0eb33a2a0e0951cbe3dec86",
+      "sha256": "8a7158866485b170de8c4fe19a3012167ff58ae5b8308b9c9678d88516193aba",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "55442da95d3b404710ea0995a7ab444391bde12c9dce4cc6d48e2cf2a3005dcd",
+      "sha256": "5d455456357b1993c515910a73282858ccc7dd8e0ddf5df518ec4c44b091ac9f",
       "origin": "working-tree-copy"
     },
     {
@@ -2706,7 +2736,7 @@
     },
     {
       "path": "packages/replaylab/foundation/package.json",
-      "sha256": "b39136332e2548988597f3225384acf22e1e9a0ac7fc887fbeaefe15239e1b66",
+      "sha256": "12fe37377ad2c2f52fb651a9427dd467155ecb1b8ac4fb6ba97123da9e88055c",
       "origin": "working-tree-copy"
     },
     {
@@ -2726,7 +2756,7 @@
     },
     {
       "path": "packages/replaylab/foundation/scripts/audit.mjs",
-      "sha256": "88499e826217d7a5b5c768f85c63a30ac6110312b3b22320b3b1e39bd8c18f2a",
+      "sha256": "3c35e8be768f5d12c1e11eaa0809646f2e9107340a93a299bc02cde15b92a708",
       "origin": "working-tree-copy"
     },
     {
@@ -2745,13 +2775,18 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/scripts/refresh-source-state.mjs",
+      "sha256": "cb9a6e10297318927142593b19ccf54faaebcf1faebe51c8d862fe9e75cd5ebc",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/scripts/release-smoke.mjs",
       "sha256": "b14edf3f66e7fe2b36088f12503579fd391d895594b3b75852425de1ec157bec",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/scripts/verify-release.mjs",
-      "sha256": "d58ef08a801b6a9c7ce2d82c39d07c44803f57ca265322bbefffae9c12151b2d",
+      "sha256": "31f04211550bdfb6ad7166ade40a79a3b995a4478b70f7cfaf0385c39aa5653e",
       "origin": "working-tree-copy"
     },
     {
@@ -2766,7 +2801,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/app.tsx",
-      "sha256": "48a56f6bfa78d600dc5f235d3fea101a3fbf8c322960cc7055e3c8932731ce87",
+      "sha256": "73f0772af82aeeaee2a19e662b34e74763bd401807e5b43583c67a9ebf81040c",
       "origin": "working-tree-copy"
     },
     {
@@ -2820,6 +2855,11 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/home.tsx",
+      "sha256": "42ea69bf3b16b5e9744b62326a57fe0b9b8728a3254d8cd03fa750f64cbaa4dd",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/i18n.tsx",
       "sha256": "6c3967b325979d56d135cd12f2ff02fb327f5718769fd7482dbf4490296efe55",
       "origin": "working-tree-copy"
@@ -2836,7 +2876,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/main.tsx",
-      "sha256": "b301ea20bcf440589b18a4aad2b73026338e39a8a64c22c6e75ea2401932cc21",
+      "sha256": "16f2776df7380b52a5f7047fe45da11a0bf8ce4ebb48f558c86ff163201e61ce",
       "origin": "working-tree-copy"
     },
     {
@@ -2880,8 +2920,13 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/recent-plays.ts",
+      "sha256": "812c03bee6e2c6523fedc686415f0b72c3aa0cdaa90514e1584775a3f6880197",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/recovery.ts",
-      "sha256": "002c315a962b7a90ff3d2d18aeb8ab583991fb3d99df00976a7bc4c0de63ccee",
+      "sha256": "531e3abd291905ce004788aac72c250b68a1d25338ad2404e977434dd35a0d8a",
       "origin": "working-tree-copy"
     },
     {
@@ -2890,13 +2935,18 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/room-api.ts",
+      "sha256": "5873a811b45d1e8215d7101753a479877e6bc89fecefe66d2358c3a84c16b704",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/room-cli.ts",
       "sha256": "f1bb4ef1b7aba47e8a05c13b6ac496b23079c7a9b134fd3fe9ea92e1512c8939",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/room-storage.ts",
-      "sha256": "8f92092085659f34e996f0d1a2a09c94f6ef3f64a16a351261e6799c7ef310c0",
+      "sha256": "b6ca5052ce86f6b5e7aaef5891376f6355bcadaab5d246838475527a4ebee802",
       "origin": "working-tree-copy"
     },
     {
@@ -2906,8 +2956,13 @@
     },
     {
       "path": "packages/replaylab/foundation/src/server-entry.ts",
-      "sha256": "4ff71ace8765a4c1c3d8ccfec1dc2a0d1d8e0dcf41bc72ed7193999709a2441f",
+      "sha256": "710368545995146bbfc4a69133ce4d54fc9df7e6ebeb29fc29d5a1cca7a87366",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/share-play.tsx",
+      "sha256": "83fe626a9df3350d1f2128dd422ea041a7f98dc9d8fcbe843202f96fb43a08a7",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/src/style-modules.d.ts",
@@ -2916,12 +2971,12 @@
     },
     {
       "path": "packages/replaylab/foundation/src/styles.css",
-      "sha256": "34d15855f38e731c94e110a7b6f2b0dfcda672a5d5d259d0caf65d1c9afef6d8",
+      "sha256": "efc921b09e1868ae664e9757d85ba5650519986bb2f30f9dfa38f11fae0fb5dd",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/supabase-room-storage.ts",
-      "sha256": "ecc6923ee8309bbd5c258e72cc64745ba266668132c5d49e3fe7925cece0d4b6",
+      "sha256": "b2010d7b20e1f8cb33a49d33435b14d02406d8c0a28fad3101482d265216333e",
       "origin": "working-tree-copy"
     },
     {
@@ -2983,6 +3038,11 @@
       "path": "packages/replaylab/foundation/tests/performance.e2e.spec.ts",
       "sha256": "165bcac8b5a5754f65aadb5e870d7985367726fc760cde0af0e0598d89c846c4",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/tests/product-flow.e2e.spec.ts",
+      "sha256": "4e20b4e8364970678c6d7500854b78014491aeb27eef3e87e41cae8d016d3968",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/tests/release-server.e2e.spec.ts",
@@ -3116,7 +3176,7 @@
     },
     {
       "path": "yarn.lock",
-      "sha256": "0740478e4f7f56de439ce0999618c8b4f95fd68e33ea378d2d4727543262238e",
+      "sha256": "7beadce7d85529a3a0e797cdc1dbb09d71d542c9bb4d3a25773b747baf8f6ac3",
       "origin": "working-tree-copy"
     }
   ]

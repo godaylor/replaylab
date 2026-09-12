@@ -34,6 +34,8 @@ jobs:
       - name: Verify and package
         working-directory: packages/replaylab/foundation
         run: node ../../../.yarn/releases/yarn-4.18.0.cjs verify:release
+      - name: Lint product source
+        run: node .yarn/releases/yarn-4.18.0.cjs workspace @replaylab/foundation-proof lint
       - name: Validate container configuration
         run: docker compose -f deploy/replaylab/compose.yml config --quiet
       - name: Smoke isolated release package

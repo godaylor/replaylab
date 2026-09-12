@@ -2,7 +2,8 @@ import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadRooms } from './room-storage';
+import { loadRooms, provisionRoom } from './room-storage';
+import { roomApi } from './room-api';
 import { SupabaseRoomStorage } from './supabase-room-storage';
 import { ReplaySyncWebSocketServer } from './sync-server';
 
@@ -27,6 +28,7 @@ const http = createServer((request, response) => {
   response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'");
   response.setHeader('Cache-Control', 'no-store');
+  if (request.url === '/api/rooms') { void handleRoom(request, response); return; }
   if (!['GET', 'HEAD'].includes(request.method ?? '')) { response.writeHead(405); response.end(); return; }
   let pathname: string;
   try { pathname = decodeURIComponent(new URL(request.url ?? '/', 'http://local').pathname); }
@@ -43,10 +45,18 @@ const http = createServer((request, response) => {
   createReadStream(target).on('error', () => response.destroy()).pipe(response);
 });
 const sync = new ReplaySyncWebSocketServer({ server: http, publicOrigin });
+const dataRoot = resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data');
+const hostedStorage = externalStorage ? new SupabaseRoomStorage({ url: supabase.url!, secretKey: supabase.secretKey! }) : undefined;
+const handleRoom = roomApi({ server: sync, publicOrigin, provision: async (id, snapshot) => {
+  if (hostedStorage) return hostedStorage.createRoom(sync, id, snapshot);
+  const tokens = provisionRoom(dataRoot, id);
+  loadRooms(sync, dataRoot);
+  await sync.rooms.get(id)!.accept({ sessionId: 'create', role: 'write', commitId: 'initial', update: snapshot });
+  return tokens;
+} });
 try {
-  if (externalStorage) {
-    const storage = new SupabaseRoomStorage({ url: supabase.url!, secretKey: supabase.secretKey! });
-    await storage.loadRooms(sync);
+  if (hostedStorage) {
+    await hostedStorage.loadRooms(sync);
   } else {
     loadRooms(sync, resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data'));
   }

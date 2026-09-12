@@ -32,7 +32,22 @@ Before launch, from the same runtime directory with the same `REPLAYLAB_DATA_DIR
 node server-dist/room-cli.js portfolio
 ```
 
-This prints two private links for http://127.0.0.1:32400. Open the write link in two independent browser contexts to collaborate; use the read link to review. The command never overwrites an existing room. Only SHA-256 capability hashes are saved. Save the links privately: hashes cannot recreate them. Room discovery and public room-creation endpoints intentionally do not exist. Restart after provisioning to load new rooms.
+This prints two private links for http://127.0.0.1:32400. Open the write link in two independent browser contexts to collaborate; use the read link to review. The command never overwrites an existing room. Only SHA-256 capability hashes are saved. Save the links privately: hashes cannot recreate them. Restart after CLI provisioning to load new rooms.
+
+The browser **Invite** dialog now creates a private room from a validated snapshot
+through same-origin `POST /api/rooms`, without a restart. It preserves the original
+local play, returns separate read/write links once and never logs their tokens.
+The API limits decoded updates to 256 KiB, rate to six attempts/minute globally,
+concurrent provisioning to two and total rooms to 32. There is no discovery API.
+Storage or capacity failures leave the local original editable and exportable.
+For an existing hosted database, apply the additive grant:
+
+```sql
+grant insert on table public.replaylab_rooms to service_role;
+```
+
+No browser role needs this grant. RLS and revoked anon/authenticated grants remain
+in force. Use one Render instance; do not scale this in-memory fanout across nodes.
 
 After choosing a domain, provision links with `node server-dist/room-cli.js <new-room-id> https://your-host`. This only formats links locally; it does not publish anything. Set `REPLAYLAB_PUBLIC_ORIGIN` to the exact HTTPS origin for WebSocket origin validation. Non-local HTTP origins are rejected. Protect write links like passwords; do not share them in public demos/screenshots. Do not log fragments or request bodies. Capabilities do not provide end-to-end encryption.
 

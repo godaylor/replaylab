@@ -1,5 +1,22 @@
 # Slice 7 release review
 
+## Current product completion — 2026-09-11
+
+The owner explicitly authorized public completion using the existing
+godaylor/replaylab repository and Render + Supabase deployment. The previously
+open repository/domain/publication-authorization items are resolved. Public URL:
+https://replaylab-godaylor.onrender.com . No replacement host is being created.
+
+New product flow: separate play creation, recent local plays, private browser room
+creation and edit/view invitations. Current Windows verification: 77/77 tests,
+10/10 abrupt-close repetitions, typecheck, client/server builds and guarded
+packaging PASS. Oxlint correctness check PASS. Boundary audit: 78 dependency
+instances, 31 emitted packages, 221,776 gzip JS bytes, zero forbidden modules.
+Public verification of this revision is recorded separately after deployment.
+
+Still open: independent name/mark clearance and human screen-reader/device/IME
+review. No human review is inferred from automated tests or model screenshot inspection.
+
 ## Current technical decision — 2026-09-08, after journal authorization
 
 Root rename: PASS. Windows and isolated Linux technical release verification: GREEN (each 74/74 full tests, 10/10 unchanged immediate-close repetitions). Additive emergency journal v1 and nine adversarial recovery/draft tests are implemented; canonical data format and previous portable exports remain compatible. Node and non-root Docker artifact smoke pass two writers, offline conflict/resolve/local undo and separate-copy backup/restore. Current machine reports supersede the historical figures below. Linux evidence is under `local-ci-linux/`; it is not a hosted Actions run or a dedicated canonical host.

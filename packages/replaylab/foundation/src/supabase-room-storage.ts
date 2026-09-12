@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import type { ReplaySyncWebSocketServer } from './sync-server';
 import { validRoomId } from './room-storage';
 
@@ -56,7 +56,7 @@ export class SupabaseRoomStorage {
     });
     if (!response.ok) throw new Error(`Supabase room read failed (${response.status})`);
     const value: unknown = await response.json();
-    if (!Array.isArray(value) || value.length < 1 || value.length > 32) throw new Error('Supabase must contain 1-32 hosted rooms');
+    if (!Array.isArray(value) || value.length > 32) throw new Error('Supabase must contain at most 32 hosted rooms');
     const ids = new Set<string>();
     return value.map((entry, index) => {
       const record = entry as SupabaseRoomRecord;
@@ -76,6 +76,23 @@ export class SupabaseRoomStorage {
         snapshot,
       };
     });
+  }
+
+  async createRoom(server: ReplaySyncWebSocketServer, id: string, snapshot: Uint8Array) {
+    if (!validRoomId(id) || server.rooms.size >= 32 || snapshot.byteLength > SNAPSHOT_LIMIT) throw new Error('Room creation limit');
+    const readToken = randomBytes(32).toString('base64url');
+    const writeToken = randomBytes(32).toString('base64url');
+    const hash = (value: string | Uint8Array) => createHash('sha256').update(value).digest('hex');
+    const capabilityHashes = { read: hash(readToken), write: hash(writeToken) };
+    const response = await this.fetchImpl(this.origin, {
+      method: 'POST', headers: { ...this.headers(), 'content-type': 'application/json', prefer: 'return=minimal' },
+      body: JSON.stringify({ id, read_capability_hash: capabilityHashes.read, write_capability_hash: capabilityHashes.write, snapshot_base64: Buffer.from(snapshot).toString('base64'), snapshot_sha256: hash(snapshot) }),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!response.ok) throw new Error(`Supabase room creation failed (${response.status})`);
+    const room = server.createRoom(id, { capabilityHashes, persist: (_update, bytes) => this.writeSnapshot(id, bytes) });
+    room.restore(snapshot);
+    return { readToken, writeToken };
   }
 
   async writeSnapshot(roomId: string, snapshot: Uint8Array) {

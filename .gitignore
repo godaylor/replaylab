@@ -103,6 +103,7 @@ storageState.json
 !/PLAN.md
 !/AGENTS.md
 !/FINAL_AUDIT.md
+!/PORTFOLIO_HANDOFF.md
 /.playwright-browsers/
 **/.vitest-attachments/
 /blocksuite/framework/std/src/__tests__/gfx/__screenshots__/

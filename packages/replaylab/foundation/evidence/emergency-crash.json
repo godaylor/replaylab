@@ -1,6 +1,6 @@
 {
   "verdict": "PASS",
-  "generatedAt": "2026-09-08T20:40:26.809Z",
+  "generatedAt": "2026-09-10T23:02:59.079Z",
   "mechanism": "CDP Page.crash with stalled IndexedDB push",
   "pose": 333,
   "repeatedReopen": true

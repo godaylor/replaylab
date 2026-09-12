@@ -4,6 +4,14 @@ This file applies to the entire repository. More specific `AGENTS.md` files may 
 
 ## 1. Current phase
 
+Current owner authorization (2026-09-11) supersedes the historical publication
+restriction below: complete the standalone ReplayLab product, commit/publish to
+godaylor/replaylab and update the existing Render + Supabase deployment. Preserve
+all local and hosted user data. Do not create a replacement hosting service.
+Other PetProjects run concurrently: never stop their processes, containers,
+networks or volumes; use only available ports within 32400–32499. Architecture
+decisions for browser room creation are in docs/PRODUCT_COMPLETION.md.
+
 The owner authorized local completion of Slice 7 and portfolio release preparation on 2026-09-08. Follow the current checkpoint in `PLAN.md`: restore dependencies with repository Yarn, verify existing behavior, prepare ReplayLab README/CI/deploy configuration and preserve user data. Site port is 32400; all other local listeners, including tests, must remain within 32400–32499. No public deploy, commit, push or remote mutation is authorized. Unavailable manual reviews must remain explicitly open.
 
 The following was the historical pre-implementation restriction, superseded only within that authorized scope:

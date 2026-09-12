@@ -21,6 +21,8 @@ import type {
 import type { RichCueDocument } from './cue';
 import type { ReplayAwarenessSource } from './awareness';
 import { ActionDialog } from './action-dialog';
+import { PlayHome } from './home';
+import { SharePlay } from './share-play';
 import { RichCueEditor } from './rich-cue-editor';
 import {
   ReplayLabGfxAdapter,
@@ -1008,6 +1010,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           />
         </label>
         <div className="command-actions">
+          {storageMode.kind === 'indexeddb' && <SharePlay facade={facade} />}
           <nav className="history-controls" aria-label={t('history')}>
             <button type="button" className="icon-button" disabled={readOnly || responsiveMode === 'mobile' || !facade.canUndo} onClick={undo}>
               {t('undo')} <kbd>⌘Z</kbd>
@@ -1420,14 +1423,5 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
 }
 
 export function EmptyRoute() {
-  const { t } = useI18n();
-  return (
-    <main className="empty-route">
-      <span className="brand-mark" aria-hidden="true">RL</span>
-      <p className="eyebrow">{t('emptyEyebrow')}</p>
-      <h1>{t('emptyTitle')}</h1>
-      <p>{t('emptyBody')}</p>
-      <a className="button button-accent" href="/app/play/demo-play/edit?demo=1">{t('openSeededPlay')}</a>
-    </main>
-  );
+  return <PlayHome />;
 }

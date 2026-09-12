@@ -1,7 +1,7 @@
 {
   "verdict": "PASS",
   "recoveryProfileGateMs": 3000,
-  "convergenceMs": 31,
+  "convergenceMs": 32,
   "samePoseConflictCandidates": 2,
   "explicitImmediateOnlineRestart": true,
   "fixedPorts": {
@@ -11,6 +11,6 @@
   "collaboratorPreserved": true,
   "localGestureReverted": true,
   "recoveryCount": 1,
-  "recoveryDurationMs": 11.200000002980232,
+  "recoveryDurationMs": 10.800000000745058,
   "indexedDbMain": true
 }
