@@ -200,6 +200,7 @@ export class ReplayLabEditorFacade {
     let migrationResult: MigrationResult = { migrated: false, from: 'v1', to: 'v1' };
     let migrationDurationMs = 0;
     let preMigrationArtifact: RecoveryArtifact | null = null;
+    let networkBootstrapFailed = false;
     try {
       try {
         persisted = await source.pull(playId, Y.encodeStateVector(rootDoc));
@@ -290,7 +291,7 @@ export class ReplayLabEditorFacade {
           const remote = await options.networkSource.pull(playId, Y.encodeStateVector(rootDoc));
           if (remote?.data.length) Y.applyUpdate(rootDoc, remote.data, 'replaylab:network-bootstrap');
         } catch {
-          // Network is a shadow: an unavailable bootstrap never replaces the local source.
+          networkBootstrapFailed = true;
         }
       }
       const journal = new EmergencyJournal(baseDatabase, playId);
@@ -323,6 +324,12 @@ export class ReplayLabEditorFacade {
       if (journalIssue) {
         const artifact = await createRecoveryArtifact({ playId, update: Y.encodeStateAsUpdate(rootDoc), reason: 'corrupt', schemaVersion: REPLAY_SCHEMA_VERSION, sourceDatabase: activeDatabase });
         throw new ReplayOpenError('corrupt', 'Emergency journal damaged or newer than this client; original records retained', serializeRecoveryArtifact(artifact));
+      }
+      // A first-time room join has no authoritative local play to seed. Creating
+      // one here would merge unrelated page/title blocks into the existing room.
+      // Cached documents and recovered journal documents remain usable offline.
+      if (networkBootstrapFailed && !rootDoc.getMap('replay').has('schemaVersion')) {
+        throw new Error('The room could not be loaded. Reconnect and reload; no local room copy was created.');
       }
       options.networkSource?.configureImmediateRecovery?.({
         docId: playId,

@@ -24,6 +24,9 @@ Licensing, canonical data and manual-review boundaries remain unchanged.
   remain denied with RLS enabled. Existing rows are neither rewritten nor deleted.
 - Use one server instance, as required by the existing in-memory room fanout and
   serialized snapshot persistence. The browser remains local-first authority.
+- A first-time room join with failed network bootstrap must not seed or upload a
+  replacement document. It opens read-only until the user can reload successfully.
+  Existing IndexedDB or recovered journal documents remain available offline.
 
 ## UX references
 

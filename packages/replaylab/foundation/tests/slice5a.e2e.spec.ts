@@ -7,6 +7,7 @@ import { expect, test, type BrowserContext } from '@playwright/test';
 
 import { capabilityFragment } from '../src/sync-protocol';
 import { ReplaySyncWebSocketServer } from '../src/sync-server';
+import * as Y from 'yjs';
 
 const require = createRequire(import.meta.url);
 const axePath = require.resolve('axe-core/axe.min.js');
@@ -114,6 +115,40 @@ test('two independent browser clients synchronize pose and cue both ways; read c
     await contextB.close();
     await readContext.close();
   }
+});
+
+test('failed first room bootstrap never seeds or uploads a replacement and reload preserves the remote title', async ({ page }) => {
+  await page.goto(`/app/play/bootstrap-fixture/edit?db=bootstrap-fixture-${Date.now()}`);
+  await page.locator('[data-app-ready="true"]').waitFor();
+  const update = await page.evaluate(() => {
+    const facade = window.replayLabApp!.facade;
+    facade.renamePlay('Existing room title');
+    return Array.from(facade.encode());
+  });
+  const room = syncServer.createRoom(`bootstrap-room-${Date.now()}`);
+  await room.accept({ sessionId: 'fixture', role: 'write', commitId: 'fixture', update: Uint8Array.from(update) });
+  const before = Y.encodeStateAsUpdate(room.doc);
+  const result = await page.evaluate(async ({ endpoint, roomId, capability }) => {
+    const { ReplayLabEditorFacade: Facade, ReplayNetworkDocSource: Source } = window.replayLabApp!;
+    const config = { endpoint, roomId, capability, access: 'write' as const };
+    const dbName = `failed-first-join-${crypto.randomUUID()}`;
+    const failing = new Source(config);
+    failing.pull = async () => { throw new Error('Temporary handshake failure'); };
+    let rejected = false;
+    try {
+      const unexpected = await Facade.open({ dbName, playId: roomId, networkSource: failing });
+      unexpected.close();
+    } catch { rejected = true; }
+    failing.close();
+    const source = new Source(config);
+    const reopened = await Facade.open({ dbName, playId: roomId, networkSource: source });
+    const title = reopened.snapshot.title;
+    await reopened.flush();
+    source.close(); reopened.close();
+    return { rejected, title, failedJoinCommits: failing.sentCommitCount };
+  }, { endpoint: syncServer.endpoint, roomId: room.id, capability: room.writeToken });
+  expect(result).toEqual({ rejected: true, title: 'Existing room title', failedJoinCommits: 0 });
+  expect(Y.encodeStateAsUpdate(room.doc)).toEqual(before);
 });
 
 test('rate limit waits for Retry-After; terminal auth/schema/oversize stop only the shadow without repeat push', async ({ page }) => {
