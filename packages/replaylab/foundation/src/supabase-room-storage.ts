@@ -23,7 +23,8 @@ export class SupabaseRoomStorage {
 
   constructor(
     input: { url: string; secretKey: string },
-    private readonly fetchImpl: Fetch = globalThis.fetch
+    private readonly fetchImpl: Fetch = globalThis.fetch,
+    private readonly wait: (milliseconds: number) => Promise<void> = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds))
   ) {
     const url = new URL(input.url);
     if (url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
@@ -50,11 +51,7 @@ export class SupabaseRoomStorage {
   }
 
   async readRooms() {
-    const response = await this.fetchImpl(`${this.origin}?select=id%2Cread_capability_hash%2Cwrite_capability_hash%2Csnapshot_base64%2Csnapshot_sha256&order=id&limit=33`, {
-      headers: this.headers(),
-      signal: AbortSignal.timeout(10_000),
-    });
-    if (!response.ok) throw new Error(`Supabase room read failed (${response.status})`);
+    const response = await this.readResponse();
     const value: unknown = await response.json();
     if (!Array.isArray(value) || value.length > 32) throw new Error('Supabase must contain at most 32 hosted rooms');
     const ids = new Set<string>();
@@ -76,6 +73,33 @@ export class SupabaseRoomStorage {
         snapshot,
       };
     });
+  }
+
+  private async readResponse(): Promise<Response> {
+    for (let attempt = 0; attempt < 5; attempt++) {
+      let response: Response;
+      try {
+        response = await this.fetchImpl(`${this.origin}?select=id%2Cread_capability_hash%2Cwrite_capability_hash%2Csnapshot_base64%2Csnapshot_sha256&order=id&limit=33`, {
+          headers: this.headers(), signal: AbortSignal.timeout(10_000),
+        });
+      } catch (error) {
+        const transient = error instanceof Error && ['TypeError', 'TimeoutError', 'AbortError'].includes(error.name);
+        if (!transient || attempt === 4) throw new Error('Supabase room read unavailable');
+        await this.wait(1000 * 2 ** attempt);
+        continue;
+      }
+      if (response.ok) return response;
+      const error = new Error(`Supabase room read failed (${response.status})`);
+      if (![408, 429, 500, 502, 503, 504].includes(response.status) || attempt === 4) throw error;
+      const retryAfter = response.headers.get('retry-after');
+      const requested = retryAfter === null ? 0 : /^\d+$/.test(retryAfter)
+        ? Number(retryAfter) * 1000 : Math.max(0, Date.parse(retryAfter) - Date.now());
+      // A longer server delay exceeds the startup retry budget; fail without retrying early.
+      if (requested > 30_000) throw error;
+      await response.body?.cancel();
+      await this.wait(Math.max(1000 * 2 ** attempt, Number.isFinite(requested) ? requested : 0));
+    }
+    throw new Error('Supabase room read unavailable');
   }
 
   async createRoom(server: ReplaySyncWebSocketServer, id: string, snapshot: Uint8Array) {

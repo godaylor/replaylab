@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "4f448c0eb7d454f637e8e8e64056a1f5b9ec8ab2fd5cf32ef1358bfd0062de4d",
+  "snapshotSha256": "257799bfa9e82b0d17f7e7ef02fb0a8483412bbd4fca36842a7c55553a60bb47",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -2286,7 +2286,7 @@
     },
     {
       "path": "docs/RELEASE.md",
-      "sha256": "aca827ea2b8c2736b87bba16090865d5e93afb700a276cd84985a17ad21633a8",
+      "sha256": "00b2661e0fcbe23fa583c5e6a636350e25e54df2322d207b72bd04e6e4b3aebd",
       "origin": "working-tree-copy"
     },
     {
@@ -2976,7 +2976,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/supabase-room-storage.ts",
-      "sha256": "b2010d7b20e1f8cb33a49d33435b14d02406d8c0a28fad3101482d265216333e",
+      "sha256": "50891f13541fa1f9a3f10ca7e11bf017f40b38b3c3af8a93e180fe89cc1c4c99",
       "origin": "working-tree-copy"
     },
     {
@@ -3141,7 +3141,7 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/supabase-room-storage.pw.spec.ts",
-      "sha256": "2de4f557f236ba85a3a871a9016d4d1c6eb5813216ba80cbe5682ced672b0d1f",
+      "sha256": "14ca3394e5632f0e8bbdc06402cafdf7b493b3191ee3eff78ab1f5172c3c003f",
       "origin": "working-tree-copy"
     },
     {

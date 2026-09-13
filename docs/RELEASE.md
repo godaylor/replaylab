@@ -90,3 +90,9 @@ Record reviewer, date, OS/browser/assistive-technology versions and result for e
 - Silent 30 seconds: play, pause, move, pass, collaborator cue. Full 60 seconds: take one writer offline, edit the same pose on both sides, reconnect, inspect both candidates, resolve, nudge and undo only the nudge, play again. Record and have a human confirm the value is understandable. Use temporary synthetic rooms, hide capability links.
 - Independently clear name/mark and choose/check a domain; document demo asset provenance. This is an engineering inventory, not a legal clearance opinion.
 - Select hosting/domain; review CI on the hosted runner, image build and host backup/restore/TLS/WebSocket/offline smoke; then explicitly authorize publication. No commit, push, remote change or deploy is implied by local readiness.
+# Hosted startup resilience
+
+Startup reads retry transient Supabase network/408/429/5xx failures at most five
+times, with 1/2/4/8-second backoff and bounded Retry-After handling. Authentication,
+invalid records and checksum failures stop startup. No empty-room fallback or
+automatic database write is used when the existing data cannot be loaded.

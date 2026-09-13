@@ -6,6 +6,35 @@ import { SupabaseRoomStorage } from '../src/supabase-room-storage';
 
 const hash = (character: string) => character.repeat(64);
 
+test('startup retries transient Supabase reads with bounded backoff and respects Retry-After', async () => {
+  const delays: number[] = [];
+  let calls = 0;
+  const storage = new SupabaseRoomStorage({ url: 'https://example.supabase.co', secretKey: 'sb_secret_test-only' }, async () => {
+    calls++;
+    if (calls === 1) return new Response(null, { status: 504 });
+    if (calls === 2) return new Response(null, { status: 429, headers: { 'Retry-After': '3' } });
+    return Response.json([]);
+  }, async ms => { delays.push(ms); });
+  expect(await storage.readRooms()).toEqual([]);
+  expect(calls).toBe(3);
+  expect(delays).toEqual([1000, 3000]);
+});
+
+test('startup fails closed on authorization or corrupt records and bounds network retries', async () => {
+  for (const response of [new Response(null, { status: 401 }), Response.json([{ id: 'broken' }]), new Response(null, { status: 429, headers: { 'Retry-After': '60' } })]) {
+    let calls = 0;
+    const storage = new SupabaseRoomStorage({ url: 'https://example.supabase.co', secretKey: 'sb_secret_test-only' }, async () => { calls++; return response; }, async () => { throw new Error('Unexpected retry'); });
+    await expect(storage.readRooms()).rejects.toThrow();
+    expect(calls).toBe(1);
+  }
+  const delays: number[] = [];
+  let calls = 0;
+  const unavailable = new SupabaseRoomStorage({ url: 'https://example.supabase.co', secretKey: 'sb_secret_test-only' }, async () => { calls++; throw new TypeError('fetch failed'); }, async ms => { delays.push(ms); });
+  await expect(unavailable.readRooms()).rejects.toThrow('Supabase room read unavailable');
+  expect(calls).toBe(5);
+  expect(delays).toEqual([1000, 2000, 4000, 8000]);
+});
+
 test('Supabase adapter verifies and atomically replaces private snapshots without exposing its secret', async () => {
   const requests: Array<{ url: string; init?: RequestInit }> = [];
   const existing = Uint8Array.from([1, 2, 3]);
