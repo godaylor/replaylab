@@ -1,6 +1,6 @@
 # ReplayLab transformation plan
 
-## Active product completion checkpoint — 2026-09-11
+## Active product completion checkpoint — 2026-09-13
 
 The owner requested standalone product completion and authorized publication to
 the existing godaylor/replaylab + Render + Supabase installation. No replacement
@@ -8,14 +8,15 @@ hosting, upstream publication or unrelated PetProjects process changes.
 
 - Implemented create/reopen/recent plays and browser-created private rooms with
   distinct edit/view links; the original local document remains intact.
-- 77/77 full tests plus 10/10 immediate-close repetitions PASS on Node 22.15.1,
-  Chromium 145; typecheck, client/server builds, lint, provenance and packaging PASS.
+- 80/80 full tests plus 10/10 immediate-close repetitions PASS in GitHub CI on
+  Node 22.15.1; typecheck, builds, lint, provenance, Node/Docker restoration PASS.
 - Maximum playback fixture: 60.00 FPS, frame p95 16.7 ms, zero measured long tasks
   and React playback renders. Runtime remains 78 instances / 31 emitted packages,
-  221,776 gzip JS bytes, zero forbidden modules.
+  221,806 gzip JS bytes after bootstrap protection, zero forbidden modules.
 - Existing Render service and healthy Supabase project were found and retained.
-  Production validation and final handoff are recorded in PRODUCT_COMPLETION.md
-  and PORTFOLIO_HANDOFF.md after publishing the verified source.
+  Published runtime fe37fb0 passed public create/reopen, collaboration, view-role
+  and fresh-database restoration after server restart. See
+  docs/PRODUCTION_VERIFICATION.md and PORTFOLIO_HANDOFF.md.
 - Independent trademark and human assistive-technology/device reviews remain open.
 
 All checkpoints below are dated historical context, not the active authorization.

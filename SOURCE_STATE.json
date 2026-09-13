@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "6ec8c80d702df70c5390f44347355b27d4737c6524e75f412d71fcc2f7d2023e",
+  "snapshotSha256": "698bb398cabce29298eefa94ebc35204acc790f101dc134d492a7fc6c79be50d",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -75,12 +75,12 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "d9f271ba58803bd2c35957e29326f0e39b068b0ee9900cce80a130dca2d5b4f1",
+      "sha256": "0a7f710707be583fda2c1772778e877002c2f9d7199847147b59bced3a19ea89",
       "origin": "working-tree-copy"
     },
     {
       "path": "PORTFOLIO_HANDOFF.md",
-      "sha256": "cd3ddccde27fc55c2fd31b4bb0d753ec6a98dbb2931c323c4a9fd4655510cb01",
+      "sha256": "104b4eedf44b7c6c78b470ed3142a581be8d9577eb5b543b2870d0a9ccee7106",
       "origin": "original-replaylab"
     },
     {
@@ -2273,6 +2273,11 @@
       "path": "docs/LICENSE_BOUNDARIES.md",
       "sha256": "bb6a8ee4a3886e8b88d8cbc265434f2ece69942948648304901da459ee48bb36",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "docs/PRODUCTION_VERIFICATION.md",
+      "sha256": "c40da9966642cc3c578d41821a0ed563c780cc2cfb0b867786b7fc08cd5d7390",
+      "origin": "original-replaylab"
     },
     {
       "path": "docs/PRODUCT_COMPLETION.md",

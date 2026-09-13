@@ -68,7 +68,26 @@ independent name clearance remain open.
 
 2026-09-11 local: typecheck, lint, client/server builds, 77/77 tests,
 10/10 abrupt-close repetitions, provenance and packaged Node smoke PASS.
-The public URL currently serves the previous deployed revision; this product
-completion revision is awaiting publication and production verification.
-Do not describe the new browser room flow as production-verified until this
-section is updated with the actual deployed result.
+2026-09-13 production: commit fe37fb0 is live on the existing Render Free service.
+CI passed 80 tests, 10 abrupt-close repetitions, lint, builds, provenance, Node
+and Docker backup/restore smoke checks. Public create/reopen, bidirectional
+room editing and read-only invitations passed in browser clients with separate
+local databases. After a confirmed server restart, a fresh database restored
+the correct title and both collaborators' player edits from Supabase.
+Only service_role received INSERT; RLS and anon/authenticated privileges stayed
+unchanged. See [production verification](docs/PRODUCTION_VERIFICATION.md).
+
+## Portfolio readiness (equal weights)
+
+| Category | Score | Verified delivery | Remaining |
+| --- | ---: | --- | --- |
+| Concept and purpose | 100% | Focused independent basketball editor | No product-scope blocker |
+| UX/UI | 92% | RU/EN, create/reopen/invite, mobile reflow | Human assistive-technology/device review |
+| Core functionality | 95% | Authoring/playback tests and public room workflow | Broader field use |
+| Testing, security and quality | 92% | 80 tests, recovery gates, CI and ingress controls | Manual screen-reader/IME review |
+| Backend/database | 95% | Private rooms and persistence across service restart | Single-instance and 32-room limits |
+| Public deployment | 95% | Existing Render Free + Supabase operational | Free-tier cold-start delay |
+| GitHub/docs/licensing | 92% | Owner repository, notices, SBOM and handoff | Independent name clearance |
+| Personal Portfolio readiness | 94% | Live workflow, screenshots and contribution account | Final editorial integration in Portfolio 09 |
+
+Arithmetic mean: 94.375% (94.4% rounded). Open human/legal reviews are not claimed complete.
