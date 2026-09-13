@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-10T23:22:38.156Z",
-  "repositoryCommit": "b9e0e404af8bf8e4d0ea32f404e4e61d283a0488",
+  "generatedAt": "2026-09-13T16:21:20.974Z",
+  "repositoryCommit": "ac2549b09048b93d3ef9f69020c0d28fd0b49535",
   "items": [
     {
       "source": "blocksuite/framework/store/src/adapter/base.ts",

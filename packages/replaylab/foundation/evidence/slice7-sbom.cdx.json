@@ -3,7 +3,7 @@
   "specVersion": "1.5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-09-10T23:22:38.159Z",
+    "timestamp": "2026-09-13T16:21:20.977Z",
     "component": {
       "type": "application",
       "name": "ReplayLab",
@@ -17,7 +17,7 @@
       },
       {
         "name": "replaylab:repository-commit",
-        "value": "b9e0e404af8bf8e4d0ea32f404e4e61d283a0488"
+        "value": "ac2549b09048b93d3ef9f69020c0d28fd0b49535"
       }
     ]
   },

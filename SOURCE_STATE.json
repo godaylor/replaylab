@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "34af9d22bfc4652615837006a8b0e4746de4d0789577f16ff5e1476313596166",
+  "snapshotSha256": "4f448c0eb7d454f637e8e8e64056a1f5b9ec8ab2fd5cf32ef1358bfd0062de4d",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -2311,7 +2311,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "b2c9934ae950edeb823246fe65b9c7d3ef2ebd132d299aa621ea555228ef12da",
+      "sha256": "fb639afaaa14d6aa919472d5e9d264e036ffc6dfc0d0537beb8a1852f59346ed",
       "origin": "working-tree-copy"
     },
     {
@@ -2666,7 +2666,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "4a1f536dc0a562def68b5cd9df917cc01294f5568dc298502e54f9cd58eaa84f",
+      "sha256": "c3c99e791e60e0bba7d756292647ff2153020b3fcaa7cb427d64e7d1adf85abf",
       "origin": "working-tree-copy"
     },
     {
@@ -2681,17 +2681,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "9d506c2a1d036512b50dcb72779be7e8c4f524f515e800d695c0228d68162d86",
+      "sha256": "f7d7ada1df1465b878e7d46bc3d0e77ba2d0b4bbb881808c98c5787ff05c6b86",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-en.png",
-      "sha256": "c121fc88ea37c94ef13683894318001ddc673fd4ecef3af4a8749f865223c21f",
+      "sha256": "611d6bf1c2d11a2b76fa8a260559b259d596c7ed21c1919f732c287080fa218c",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-ru.png",
-      "sha256": "9cefffe1415418962f24d8d939bcd163005315d2c2c8269977ee01399f1ad062",
+      "sha256": "b168ff163407fae6ecc2c015268c38efa2ccfa7b26cd69a8f9c1bb4d91e97344",
       "origin": "working-tree-copy"
     },
     {
@@ -2716,12 +2716,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "8a7158866485b170de8c4fe19a3012167ff58ae5b8308b9c9678d88516193aba",
+      "sha256": "57cb9a4fdeeeff09a40294d236f0a92fd59ff78be1b7ac5104235bdde4477d5f",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "5d455456357b1993c515910a73282858ccc7dd8e0ddf5df518ec4c44b091ac9f",
+      "sha256": "08b5d7bcdcf4a80b52184e34ae2ec3dcad472b8f22856e9dc7a3142e9912b8ac",
       "origin": "working-tree-copy"
     },
     {
@@ -2971,7 +2971,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/styles.css",
-      "sha256": "efc921b09e1868ae664e9757d85ba5650519986bb2f30f9dfa38f11fae0fb5dd",
+      "sha256": "cfe25cde908e4e46c1142e673a2f50c4cad00a1dcba38ff739b9a7375e984fbb",
       "origin": "working-tree-copy"
     },
     {

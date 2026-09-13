@@ -983,7 +983,7 @@ kbd {
 
 @media (max-width: 47.9375rem) {
   .command-bar {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .brand small {
@@ -992,6 +992,8 @@ kbd {
 
   .command-actions {
     gap: 0.35rem;
+    min-width: 0;
+    flex-wrap: wrap;
   }
 
   .history-controls {
