@@ -112,7 +112,7 @@ test('persistent-storage denial is explicit and leaves IndexedDB authoring avail
   await actor.focus();
   await actor.press('ArrowRight');
   await expect(actor).toContainText('x 115 · y 125');
-  await expect(page.locator('#persistence-status')).toContainText('Saved locally');
+  await expect(page.locator('#persistence-status')).toContainText('Saved in this browser');
 });
 
 test('service-worker registration failure never blocks an online local load', async ({
@@ -135,7 +135,7 @@ test('service-worker registration failure never blocks an online local load', as
     'online load still works'
   );
   await expect(page.locator('[data-actor-id]')).toHaveCount(10);
-  await expect(page.locator('#persistence-status')).toContainText('Saved locally');
+  await expect(page.locator('#persistence-status')).toContainText('Saved in this browser');
 });
 
 test('cold browser restart stays editable offline and preserves reload plus local undo', async (

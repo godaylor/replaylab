@@ -12,6 +12,7 @@ export default defineConfig({
   workers: 1,
   reporter: [['list'], ['json', { outputFile: process.env.REPLAYLAB_TEST_REPORT ?? 'evidence/release-tests.json' }]],
   use: {
+    browserName: process.env.REPLAYLAB_BROWSER === 'firefox' ? 'firefox' : process.env.REPLAYLAB_BROWSER === 'webkit' ? 'webkit' : 'chromium',
     baseURL: `http://127.0.0.1:${previewPort}`,
     headless: true,
     viewport: { width: 1440, height: 900 },

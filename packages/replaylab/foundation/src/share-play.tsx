@@ -14,7 +14,7 @@ export function SharePlay({ facade }: { facade: ReplayLabEditorFacade }) {
   const trigger = useRef<HTMLButtonElement>(null);
   const connection = parseCapabilityFragment(location.hash);
   useEffect(() => { if (open) dialog.current?.showModal(); }, [open]);
-  const close = () => { setOpen(false); trigger.current?.focus(); };
+  const close = () => { setOpen(false); requestAnimationFrame(() => trigger.current?.focus()); };
   const create = async () => {
     setPending(true); setMessage('');
     try {

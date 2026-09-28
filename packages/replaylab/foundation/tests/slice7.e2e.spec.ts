@@ -69,7 +69,7 @@ test('desktop, tablet, and mobile expose only their documented authoring capabil
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('[data-responsive-mode="mobile"]')).toBeVisible();
-  await expect(page.locator('.onboarding-strip')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Cue block 1 text' })).toHaveAttribute('readonly', '');
   await expect(page.getByRole('button', { name: 'Play tactic' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Lineup' })).toBeVisible();
@@ -94,21 +94,26 @@ test('desktop, tablet, and mobile expose only their documented authoring capabil
   expect(violations).toEqual([]);
 
   await page.setViewportSize({ width: 1440, height: 900 });
-  await expect(page.locator('.onboarding-strip')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Как пользоваться', exact: true })).toBeVisible();
 });
 
-test('portfolio route shows the deterministic runbook and first successful edit dismisses onboarding', async ({ page }) => {
-  await page.addInitScript(() => localStorage.removeItem('replaylab:onboarding-complete'));
+test('portfolio route retains its runbook and the repeatable guide does not auto-start or change real work', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await openApp(page, appUrl('demo', true));
 
   await expect(page.locator('.demo-runbook')).toContainText('ReplayLab in 60 seconds');
-  await expect(page.locator('.onboarding-strip')).toContainText('Move one player to make this play yours.');
+  await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Step-by-step guide' })).toHaveCount(0);
   const actor = page.locator('[data-actor-id="offense-1"]');
   await actor.focus();
   await actor.press('ArrowRight');
-  await expect(page.locator('.onboarding-strip')).toHaveCount(0);
-  await expect(page.locator('#persistence-status')).toContainText(/Saved locally|Saving locally/);
+  await expect(actor).toContainText('x 115');
+  await expect(page.locator('#persistence-status')).toContainText(/Saved in this browser|Saving locally/);
+  const original = page.url();
+  await page.getByRole('button', { name: 'How to use', exact: true }).click();
+  await expect(page.getByRole('region', { name: 'Step-by-step guide' })).toBeVisible();
+  await page.goto(original);
+  await expect(actor).toContainText('x 115');
 });
 
 test('unapplied rich cue survives unrelated document/status renders and commits before reload', async ({ page }) => {

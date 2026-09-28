@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "698bb398cabce29298eefa94ebc35204acc790f101dc134d492a7fc6c79be50d",
+  "snapshotSha256": "5d48d279aee60d141498d545f27b4e29d2d9a63fc5ccd9019e9b2e797f7bb51e",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -75,17 +75,17 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "0a7f710707be583fda2c1772778e877002c2f9d7199847147b59bced3a19ea89",
+      "sha256": "7db055ddb24b7b222861427d138edf725b6851895a1d182acbfc47255437a2bf",
       "origin": "working-tree-copy"
     },
     {
       "path": "PORTFOLIO_HANDOFF.md",
-      "sha256": "104b4eedf44b7c6c78b470ed3142a581be8d9577eb5b543b2870d0a9ccee7106",
+      "sha256": "7c79b07cac8f84305e38f76a073f765c36ed944b29f374d30e5f099403ea4f67",
       "origin": "original-replaylab"
     },
     {
       "path": "README.md",
-      "sha256": "b3886271b5a79e6d115a80d037724b950192630e6ce912b318fa702fc71c61d2",
+      "sha256": "18be4f728d51c5e4c82d47798e5781be21006041e317b904df86f0d496ff6181",
       "origin": "working-tree-copy"
     },
     {
@@ -2276,12 +2276,12 @@
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "c40da9966642cc3c578d41821a0ed563c780cc2cfb0b867786b7fc08cd5d7390",
+      "sha256": "6edec6f6738b54ed2964da08d2159a55d0b0424cfb5464e9a7fcb04a0a851225",
       "origin": "original-replaylab"
     },
     {
       "path": "docs/PRODUCT_COMPLETION.md",
-      "sha256": "27468bfd891e4f3e852c17212e5d4081b724f7ac42fde492140092935d3d8c58",
+      "sha256": "5f732d927e237f4fafe13a7d15e154f35775d4d116e7a769437a32ecf90c1f10",
       "origin": "original-replaylab"
     },
     {
@@ -2316,7 +2316,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "f133fca59b1038b41eb5a660abee9ae7c6b5d2ede4c240dff56dcf63b066e2dc",
+      "sha256": "e788e75c9ae87f258c49dea6c2347696c3a04d81fe02c1ec37c2ba862295799d",
       "origin": "working-tree-copy"
     },
     {
@@ -2371,7 +2371,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/emergency-crash.json",
-      "sha256": "bdda6923d8f7774fced8d0d5b6c00a4dd7dd428720323744f69f48fadab16314",
+      "sha256": "7fd0f5f43d4efd40a2f9dd6eee7cf2ab47be67d89889f425aacbcbff5bf625a5",
       "origin": "working-tree-copy"
     },
     {
@@ -2396,12 +2396,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/home-desktop.png",
-      "sha256": "db90c2dffcc3a992699c797cb10d991d7d54179b8fad22bad9c4b587e8839744",
+      "sha256": "dd71836c6e37f49c90213ae86a6379b2466c3d2f91669dd833e37fc6377cc933",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/home-mobile.png",
-      "sha256": "44047cd4063360daf467d611d27bdeeede8ec2cc282225f995276c93e75a463d",
+      "sha256": "c6588db9d7c5d404ffcb2c7d29c625d189e509a2669323d37bc45ef83cc8824e",
       "origin": "original-replaylab"
     },
     {
@@ -2451,12 +2451,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-durability.json",
-      "sha256": "90152e5a1b94e3451415889a496fda811f847e2e258e66fe87a952839ce8cf33",
+      "sha256": "e8ca18f68ac716d6d7ec868175c681849d0966c0b607be692a2ff74cd8be5eed",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-server.json",
-      "sha256": "25a9d924017abfd75feee873d66fa02ef8e4159751194fa7d8f97bc73cc0378b",
+      "sha256": "07b0bfbfdb2344f1ac57455a008382255ab3bc0799297a75717a1f85fe04ee01",
       "origin": "working-tree-copy"
     },
     {
@@ -2471,12 +2471,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-tests.json",
-      "sha256": "005a0f06d3f19c7505fead88c01c7b260fbd27ae4c0672ee27f41f0a1fb236d1",
+      "sha256": "e9e55c9ae589783da2c172610d11f05e7e3a0b40050513a7ac7f2264deb19799",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-verification.json",
-      "sha256": "6722ecc1e4dcc70abad46af6daf7a6fd4f7d457fac1b9c9f9c451e7a5c4c6419",
+      "sha256": "939a90b88431a93ceaee31062c7423e0d8b43e133f63e05aa888d4349f571a31",
       "origin": "working-tree-copy"
     },
     {
@@ -2501,7 +2501,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-accessibility.json",
-      "sha256": "88c7977e94987747ed1c7a11bee85c00e4a9c95df1a2893caf4c165aa9ceb127",
+      "sha256": "9943a7e8db70beb5b0ed5e0e3232ce998ab754cb322fab3d3b28a39adc474d71",
       "origin": "working-tree-copy"
     },
     {
@@ -2511,17 +2511,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-ui.png",
-      "sha256": "9ec65085a3332bfe6174aeb5eb91a6bdc580cb0f75eb856f28214da195195347",
+      "sha256": "d4257e57d6fb0566ba573991e39ad275baf81e9757ef1e3729142371819ff8b0",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1b-offline.json",
-      "sha256": "8a2443fd4af7eefadf1083c770c9bdefd5f4a0b5019e8a2322f35452fb15ed07",
+      "sha256": "33def22d887231023b5bf982181f01e04dcda6010db0694fcf1fdf0dc679c477",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-accessibility.json",
-      "sha256": "e7d627d2a347dc73bd1e99f85ce82520a7ea303a01b98099d073331619a60b43",
+      "sha256": "db68f027ebe9e6227c48279c80540115b2c2b1da26aa2249bb2c042b83d96187",
       "origin": "working-tree-copy"
     },
     {
@@ -2536,7 +2536,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-performance.json",
-      "sha256": "a61901dc66b98258ca2aa47369b8807f0bfb8708413efbbd1c9fa255672a4ba3",
+      "sha256": "c2cf7b1cd332ea13dde20b0ad266b4d974ebf343769b6c607bee3fa19ef6bbf0",
       "origin": "working-tree-copy"
     },
     {
@@ -2566,17 +2566,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-high-contrast.png",
-      "sha256": "adf4a772f1a6525adfa3736e567343c54296d0801696106cf046ca50d4af2bff",
+      "sha256": "4f2edf22a78636a94f3df36ab60efdef25d3010484dda2f171535ad5d9bb67b3",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-performance.json",
-      "sha256": "74d99cd6d1b370fa5633436ceab3cfe4c6fd6ee52931ef5aa98aaa3b295245d2",
+      "sha256": "c10c737aa6fb3a3daaf3a5dba8d14771c949c273d5ea463706d989bf00cb621d",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-accessibility.json",
-      "sha256": "dbde1f17c7e0c66c14f9dcf301d5aa45e36d13b3fba4e0360ec82251865d4a5b",
+      "sha256": "e308ece374c8febfba8e7e865e9ae5930813cebfb72bc16d78007d53ca4f4c36",
       "origin": "working-tree-copy"
     },
     {
@@ -2591,7 +2591,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-high-contrast.png",
-      "sha256": "9cad5775fdb9ca6831d9a5dc95e2241fcd41c9da21f461cddee18f844d32ddfa",
+      "sha256": "6e80979b86d3476b08370dd7643f797c4f1d1b46dc3ef5ec4c025602ed493cb4",
       "origin": "working-tree-copy"
     },
     {
@@ -2616,7 +2616,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5a-terminal.json",
-      "sha256": "78e173baace5661b7dc286f325dc6f7a21e2ced9bf7c55dcba46bd806763113e",
+      "sha256": "1f04d5d08e854dad2256cab7ca2983ddb0b2a116f9546e4f961c3d1a64abc1cc",
       "origin": "working-tree-copy"
     },
     {
@@ -2636,12 +2636,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-partition.json",
-      "sha256": "b2ceafb8f8b3651f240e05352c66941856ac565be6437f52ebe600cddec1db03",
+      "sha256": "4ca1ec7ca2e2a9f6d75abea9aac59585d5b2c3864bb374dda2bafb89c9416250",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-performance.json",
-      "sha256": "92789e8d7a77b7d515fc2fb1f31fa7c1134f193bbd7074332adc3994c0c8f7a5",
+      "sha256": "2f4fd060707a6419085d3934e31c8e07181858d90ecf841bd97a4292d48fd468",
       "origin": "working-tree-copy"
     },
     {
@@ -2661,7 +2661,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice6-offline-upgrade.json",
-      "sha256": "a0880ba0c6444b0b677f5f1b9dd642c574f922995bd6a0c19fe96ae3465bda4a",
+      "sha256": "dd82a926603b8fca335ba045d1ae99baa7c47bffdf237dc1e3f290424cf72d3a",
       "origin": "working-tree-copy"
     },
     {
@@ -2671,32 +2671,32 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "8bd4a6a6c7abbc30b1bb22a28de918ae65ee4c3bd5a6d54e6538e55fd4e76231",
+      "sha256": "892e7cce6913e093f5f80b234062d6f9ea591d6a134ee81065fda038c1c50966",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.md",
-      "sha256": "47b7669680c559f2c3edb88cdcfbb9c37ace401e07fe8b2b912d8f782affecaf",
+      "sha256": "b77fe95579edf143f575fc9a2d9ed3bcf17c83bee379b53d37774ec4b0750fbb",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-en.png",
-      "sha256": "0f5ac9f1f9e1e877af388e700f67d3044012fa71bb038c5d48976d1036fd09bc",
+      "sha256": "1416b367cd5082fc3d3aebd139ef74bc9b6c308643a302220b181512caf7e35a",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "0027bef071e24b1af97ce19a67d3d49f181ae0d96ce33ebeffbf5a57b1cb6c7d",
+      "sha256": "f776b7c4658b78c0555fd064b679cf5c1d689fb069026b245070d3cf9309a4e9",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-en.png",
-      "sha256": "611d6bf1c2d11a2b76fa8a260559b259d596c7ed21c1919f732c287080fa218c",
+      "sha256": "5d608b26ee98be14e5e8d1b59e29d0a35bfe222389414a0b9ba4db23fc0f8353",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-ru.png",
-      "sha256": "b168ff163407fae6ecc2c015268c38efa2ccfa7b26cd69a8f9c1bb4d91e97344",
+      "sha256": "ed4e26f83f408b6701561dedd29ee3a5c01b015dd9c51d62da3fa8a03f38d875",
       "origin": "working-tree-copy"
     },
     {
@@ -2716,23 +2716,43 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-ru.png",
-      "sha256": "ffda5dde9516e4291a516bef9c8d4d083a692e221ad50ef64ba48924d04b992f",
+      "sha256": "0b15d5fe720689db20f49de90b8bea70cee388ff6de380cb2cf5846d4ae45c75",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "9c2d49e9f56b585f09e467201d59c768a9b4dfe27d052a37d92a506e7422969f",
+      "sha256": "33056b0d31f2c5860204ac564125ef25e15c8e1bade187633c0d0ddd3aa163b9",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "909f89f11be3175a701304f708ccbfef209e26e31eae6fd6472bfd060a62bf18",
+      "sha256": "fc34e36c278cac2eb9d6018b9f2b5647b9fa07b198f6facf12201237ca7c55cc",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-yjs-compatibility.json",
       "sha256": "d9cab34f89e9e1eb8cf598e680d5a602bc9f712fe68a43b680c2d7fc7b09cd4c",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/v3-firefox.json",
+      "sha256": "bee518fded572868e29056a8566503894cc47732d1f2a530b40239b6bbb50257",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/v3-guide-desktop.png",
+      "sha256": "53aef0be1f0cff947f262ef48ccbc74625589d1abb6efdb772b618be9699b5a0",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/v3-mobile-review.png",
+      "sha256": "d33a15c904d8e824ced4dfb5a3030264e097d218a791b5c838b4695476f0ec26",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/v3-webkit.json",
+      "sha256": "b76973c6092e7f199d7e09119f41fba58058ebb6e7f8139df0c32b17b53cd18b",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/index.html",
@@ -2746,7 +2766,7 @@
     },
     {
       "path": "packages/replaylab/foundation/playwright.config.ts",
-      "sha256": "55c7e6ce1fad96d2783f28eada2929dbb2ce5f6884e51cd04bfff7a5ba03bdb1",
+      "sha256": "f6a615ba8fbccb9bca72a85449cc0a5cbadb3c1389c8db3fd80bd35badcdce3c",
       "origin": "working-tree-copy"
     },
     {
@@ -2806,7 +2826,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/app.tsx",
-      "sha256": "73f0772af82aeeaee2a19e662b34e74763bd401807e5b43583c67a9ebf81040c",
+      "sha256": "b271ba5e1a01255f50c2545a1def4dd4a52d38824e797949ece07e45e1588ef9",
       "origin": "working-tree-copy"
     },
     {
@@ -2841,7 +2861,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/domain.ts",
-      "sha256": "f6a8649acb6c1aa8efd87f164c45c5e97c8c6ac618c846b298700b45cd3f2f9b",
+      "sha256": "ea578e14e156d2489ac43153fdb7c984e79a19c2ee639ba683a45da849981bbe",
       "origin": "working-tree-copy"
     },
     {
@@ -2851,7 +2871,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/facade.ts",
-      "sha256": "51f1647a38b6ee78d5fa8bfa22e99dc2a50a6e883047b344d40e0d5bc358b730",
+      "sha256": "33e234b424de456ccaca43e35ce60a7453bec7e84b09ff225def62250a8b20e5",
       "origin": "working-tree-copy"
     },
     {
@@ -2861,12 +2881,12 @@
     },
     {
       "path": "packages/replaylab/foundation/src/home.tsx",
-      "sha256": "42ea69bf3b16b5e9744b62326a57fe0b9b8728a3254d8cd03fa750f64cbaa4dd",
+      "sha256": "01b2d7365759eeeae5ce6b2e25e97bda9325d4a8eef6b994dd6b31cf242fa934",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/src/i18n.tsx",
-      "sha256": "6c3967b325979d56d135cd12f2ff02fb327f5718769fd7482dbf4490296efe55",
+      "sha256": "989476ae576f29058a27c7c3fa696ee6ee2317496ca273005aff6739803843a8",
       "origin": "working-tree-copy"
     },
     {
@@ -2881,7 +2901,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/main.tsx",
-      "sha256": "16f2776df7380b52a5f7047fe45da11a0bf8ce4ebb48f558c86ff163201e61ce",
+      "sha256": "4f579053ecacceedcbc980e6e24ae38fedff396dfa785f235a7ecb4b75050813",
       "origin": "working-tree-copy"
     },
     {
@@ -2915,6 +2935,11 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/practice-guide.tsx",
+      "sha256": "1a8eef25be147a7c63caf30fd8b6f6f8cb88aa4cb33c1e6b4ab602c7f14d2b58",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/presence.css",
       "sha256": "4a9219cdd943ab4a3c712a2daf5f4ce3e03411c2853f615163d06b16d632852b",
       "origin": "working-tree-copy"
@@ -2926,7 +2951,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/recent-plays.ts",
-      "sha256": "812c03bee6e2c6523fedc686415f0b72c3aa0cdaa90514e1584775a3f6880197",
+      "sha256": "ec1ddb8df913187cf965d66738a159e42d153832c0bd78463bc6214a489b5277",
       "origin": "original-replaylab"
     },
     {
@@ -2966,7 +2991,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/share-play.tsx",
-      "sha256": "83fe626a9df3350d1f2128dd422ea041a7f98dc9d8fcbe843202f96fb43a08a7",
+      "sha256": "59795af988cb8ebbaa98f8eb23926171b49f96f7c355d32d1b0d830c24c979bc",
       "origin": "original-replaylab"
     },
     {
@@ -2976,7 +3001,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/styles.css",
-      "sha256": "cfe25cde908e4e46c1142e673a2f50c4cad00a1dcba38ff739b9a7375e984fbb",
+      "sha256": "3af22de2a3dea50596d504d97e6198f21d5da0ab05a866c915401cfa7ca51420",
       "origin": "working-tree-copy"
     },
     {
@@ -3021,12 +3046,12 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/emergency-journal.e2e.spec.ts",
-      "sha256": "9faaa97d0444d3ebac2053993d11ad54aa7b3a8ce4e3471e1b8fc911cf362416",
+      "sha256": "a68e333f2bdd9924ec89c0e84b2e8a79debf0a341e70847a67999eefdee63b6b",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/tests/foundation.e2e.spec.ts",
-      "sha256": "1551fcc64fe95cb54af33790603a2ae182e868dd5165fade3b5136c767dddcb9",
+      "sha256": "9d01778969df13cc19e57e86cb5e4c30d053bc9f81dd05ff4cd7d4a99caba596",
       "origin": "working-tree-copy"
     },
     {
@@ -3036,13 +3061,18 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/offline.e2e.spec.ts",
-      "sha256": "6e1aaea2c670cbeaa7fb4f0358c0f5d519d35fe54b212a844fabfbb8ca5ffce6",
+      "sha256": "e865e9e3e16794da1db87e8c09792971a5cad291a3580be52618c6e3c71d37db",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/tests/performance.e2e.spec.ts",
       "sha256": "165bcac8b5a5754f65aadb5e870d7985367726fc760cde0af0e0598d89c846c4",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/tests/practice.e2e.spec.ts",
+      "sha256": "816a9e76ab9b6c9e77f5c9c4da23cf0c8da58c2b19f4ad94849ee64dffd26ef3",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/tests/product-flow.e2e.spec.ts",
@@ -3136,7 +3166,7 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/slice7.e2e.spec.ts",
-      "sha256": "6cfe11f6268d1b7c81a7996f126e381e12dc7cf2dcead6df8235fb010dbfb507",
+      "sha256": "91d152e3da2e88fec10fadb0ff1926057bca487899b45347afd4925f197c4050",
       "origin": "working-tree-copy"
     },
     {

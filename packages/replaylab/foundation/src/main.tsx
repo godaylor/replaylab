@@ -54,7 +54,8 @@ if (!routeMatch) {
       networkSource,
       readOnly: networkConfig?.access === 'read',
       seedContent: {
-        title: query.has('new') ? (initialLocale === 'ru' ? 'Новая комбинация' : 'Untitled play') : translate(initialLocale, 'seededTitle'),
+        practice: query.get('lesson') === '1',
+        title: query.has('new') ? (initialLocale === 'ru' ? 'Новая комбинация' : 'Untitled play') : query.get('lesson') === '1' ? (initialLocale === 'ru' ? 'Учебная комбинация' : 'Practice play') : translate(initialLocale, 'seededTitle'),
         cueOne: query.has('new') ? '' : translate(initialLocale, 'seededCueOne'),
         cueTwo: query.has('new') ? '' : translate(initialLocale, 'seededCueTwo'),
       },

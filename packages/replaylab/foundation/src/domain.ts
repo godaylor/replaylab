@@ -602,7 +602,8 @@ export function createFrame(
 
 export function seedReplayRoot(
   replay: Y.Map<unknown>,
-  cueBlockIds: [string, string]
+  cueBlockIds: [string, string],
+  practice = false
 ) {
   const ranks = generateNKeysBetween(null, null, MIN_PHASES);
   const frames = new Y.Map<Y.Map<unknown>>();
@@ -633,7 +634,16 @@ export function seedReplayRoot(
   replay.set('schemaVersion', REPLAY_SCHEMA_VERSION);
   replay.set('actors', seedActors());
   replay.set('frames', frames);
-  replay.set('actions', new Y.Map<Y.Map<unknown>>());
+  const actions = new Y.Map<Y.Map<unknown>>();
+  if (practice) {
+    actions.set('practice-pass', createActionRecord({
+      id: 'practice-pass', fromFrameId: 'phase-1', toFrameId: 'phase-2',
+      actorId: 'offense-1', type: 'pass', targetActorId: 'offense-2',
+      path: { points: [{ x: 110, y: 125 }, { x: 265, y: 150 }] },
+    }, { actorId: 'seed', commandId: 'practice-pass' }));
+    frames.get('phase-2')!.set('possession', createRegister('practice-possession', 'offense-2', 'seed', 'practice-possession'));
+  }
+  replay.set('actions', actions);
 }
 
 function readLegacyPose(register: Y.Map<unknown>) {
@@ -797,4 +807,3 @@ export function rankForReorder(
   const after = remaining[targetIndex];
   return generateKeyBetween(before?.rank ?? null, after?.rank ?? null);
 }
-

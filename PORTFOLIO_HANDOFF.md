@@ -1,5 +1,19 @@
 # ReplayLab
 
+## Текущее состояние — 28.09.2026
+
+Адрес: https://replaylab-godaylor.onrender.com/ . При сегодняшней проверке
+приложение не загрузилось: экран Render `Service waking up / Application loading`
+сохранялся существенно дольше обычного холодного старта. Серверные логи недоступны
+до входа владельца в Render; причина не установлена. Ни сбой Supabase, ни сбой
+инфраструктуры Render пока не подтверждены. Тариф и данные не менялись.
+Результаты от 13 сентября ниже — исторические, не подтверждение доступности сегодня.
+
+V3: отдельная сохраняемая учебная комбинация, повторяемое пошаговое знакомство,
+легенда игроков/мяча/линий, удаление действия с Undo, пояснения переноса и прав
+ссылок, исправление планшетной шапки. Подробности и текущие проверки:
+[production verification](docs/PRODUCTION_VERIFICATION.md).
+
 **Animated basketball plays, built and edited together.**
 
 ReplayLab helps a coach turn a half-court formation into a phase-by-phase animated
@@ -77,17 +91,7 @@ the correct title and both collaborators' player edits from Supabase.
 Only service_role received INSERT; RLS and anon/authenticated privileges stayed
 unchanged. See [production verification](docs/PRODUCTION_VERIFICATION.md).
 
-## Portfolio readiness (equal weights)
+## Remaining reviews
 
-| Category | Score | Verified delivery | Remaining |
-| --- | ---: | --- | --- |
-| Concept and purpose | 100% | Focused independent basketball editor | No product-scope blocker |
-| UX/UI | 92% | RU/EN, create/reopen/invite, mobile reflow | Human assistive-technology/device review |
-| Core functionality | 95% | Authoring/playback tests and public room workflow | Broader field use |
-| Testing, security and quality | 92% | 80 tests, recovery gates, CI and ingress controls | Manual screen-reader/IME review |
-| Backend/database | 95% | Private rooms and persistence across service restart | Single-instance and 32-room limits |
-| Public deployment | 95% | Existing Render Free + Supabase operational | Free-tier cold-start delay |
-| GitHub/docs/licensing | 92% | Owner repository, notices, SBOM and handoff | Independent name clearance |
-| Personal Portfolio readiness | 94% | Live workflow, screenshots and contribution account | Final editorial integration in Portfolio 09 |
-
-Arithmetic mean: 94.375% (94.4% rounded). Open human/legal reviews are not claimed complete.
+Current public availability and V3 deployment need confirmation after Render login.
+Human screen-reader/device/IME review and independent name clearance remain open.

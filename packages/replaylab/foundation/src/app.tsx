@@ -23,6 +23,7 @@ import type { ReplayAwarenessSource } from './awareness';
 import { ActionDialog } from './action-dialog';
 import { PlayHome } from './home';
 import { SharePlay } from './share-play';
+import { CourtLegend, PracticeGuide } from './practice-guide';
 import { RichCueEditor } from './rich-cue-editor';
 import {
   ReplayLabGfxAdapter,
@@ -282,7 +283,7 @@ function CourtStage(props: {
       if (props.readOnly || props.selectedId === 'ball') return;
       const phase = snapshotRef.current.phases[phaseIndexRef.current];
       if (!phase || !snapshotRef.current.phases[phaseIndexRef.current + 1]) return;
-      event.currentTarget.focus();
+      event.currentTarget.focus({ preventScroll: true });
       event.currentTarget.setPointerCapture(event.pointerId);
       actionRef.current = {
         actorId: props.selectedId,
@@ -300,7 +301,7 @@ function CourtStage(props: {
     const entityId = gfxRef.current?.hitTest(pose.x, pose.y);
     if (!entityId) return;
     props.onSelect(entityId);
-    event.currentTarget.focus();
+    event.currentTarget.focus({ preventScroll: true });
     if (props.readOnly) return;
     const phase = snapshotRef.current.phases[phaseIndexRef.current];
     if (entityId === 'ball' && phase?.possession.value !== 'loose') return;
@@ -650,13 +651,6 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const [phaseIndex, setPhaseIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<ProjectionEntityId>('offense-1');
   const [announcement, setAnnouncement] = useState(() => t('localPlayReady'));
-  const [showOnboarding, setShowOnboarding] = useState(() => {
-    try {
-      return window.localStorage.getItem('replaylab:onboarding-complete') !== 'true';
-    } catch {
-      return true;
-    }
-  });
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<'select' | TacticalActionType>('select');
   const [actionDialogOpen, setActionDialogOpen] = useState(false);
@@ -685,15 +679,6 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const playback = playbackRef.current;
   reactRenderCount.current += 1;
 
-  const completeOnboarding = useCallback(() => {
-    if (!showOnboarding) return;
-    setShowOnboarding(false);
-    try {
-      window.localStorage.setItem('replaylab:onboarding-complete', 'true');
-    } catch {
-      // The guide still closes for this session.
-    }
-  }, [showOnboarding]);
 
   useEffect(() => playback.setSnapshot(snapshot), [playback, revision]);
   useEffect(() => () => playback.destroy(), [playback]);
@@ -785,7 +770,6 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         playback.goToPhase(phaseIndex);
         const result = command();
         setAnnouncement(message);
-        completeOnboarding();
         void flushLocal();
         return result;
       } catch (error) {
@@ -794,7 +778,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         return undefined;
       }
     },
-    [completeOnboarding, flushLocal, phaseIndex, playback, readOnly, t]
+    [flushLocal, phaseIndex, playback, readOnly, t]
   );
 
   const nudge = useCallback(
@@ -1070,6 +1054,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           {t('exportJson')}
         </button>
         <button
+          id="export-recovery"
           className="status-action"
           type="button"
           onClick={() => void (storageMode.kind === 'recovery'
@@ -1116,13 +1101,8 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         {responsiveMode === 'mobile' ? <span>{t('mobileReviewBody')}</span> : responsiveMode === 'tablet' ? <span>{t('tabletModeBody')}</span> : null}
       </section>
 
-      {showOnboarding && canMoveActors ? (
-        <aside className="onboarding-strip" aria-labelledby="onboarding-heading">
-          <span className="eyebrow">{t('onboardingEyebrow')}</span>
-          <strong id="onboarding-heading">{t('onboardingTitle')}</strong>
-          <span>{t('onboardingBody')}</span>
-        </aside>
-      ) : null}
+      <PracticeGuide mode={responsiveMode} />
+      <details className="transfer-help"><summary>{locale === 'ru' ? 'Сохранение и перенос на другое устройство' : 'Saving and moving to another device'}</summary><p>{locale === 'ru' ? 'Изменения сохраняются автоматически в этом браузере. Очистка данных браузера удалит локальные копии. «Файл восстановления» → «Открыть восстановление…» переносит полную копию в отдельную комбинацию, без совместной синхронизации. «Экспорт JSON» — читаемые данные, их нельзя открыть этим импортом. Для совместной работы используйте «Пригласить»: комната — отдельная копия с доступом по секретной ссылке, без аккаунта. Ссылки просмотра и редактирования дают разные права; сохраните их приватно.' : 'Edits save automatically in this browser. Clearing browser data removes local copies. Recovery file → Open recovery… moves a complete copy into a separate play, without live collaboration. Export JSON is readable data, not accepted by this importer. Invite creates a separate room copy with private-link access and no account. View and edit links grant different rights; keep them privately.'}</p></details>
 
       {demoMode ? (
         <aside className="demo-runbook" aria-labelledby="demo-heading">
@@ -1164,6 +1144,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             </div>
             <span className="phase-chip">{t('phaseChip', { number: String(phaseIndex + 1).padStart(2, '0') })}</span>
           </div>
+          <CourtLegend />
           {canAuthorStructure ? <div className="action-tools" role="toolbar" aria-label={t('courtTools')}>
             <button type="button" aria-pressed={activeTool === 'select'} onClick={() => setActiveTool('select')}>{t('select')} <kbd>V</kbd></button>
             {(['cut', 'pass', 'dribble', 'screen'] as const).map(type => (
@@ -1192,6 +1173,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               {t('keyboardAction')}
             </button>
           </div> : null}
+          {canAuthorStructure && <p className="drawing-help">{locale === 'ru' ? 'Выбор — перемещение игрока. Для движения выберите инструмент, проведите линию и отпустите указатель. Для передачи закончите у партнёра. Escape отменяет рисование; «Выбор» возвращает перемещение. «Удалить действие» находится в списке действий; «Отменить» вернёт удалённое. Игроков удалить нельзя.' : 'Select moves a player. Choose a movement tool, draw, then release to finish. End a pass near a teammate. Escape cancels drawing; Select returns to positioning. Use Delete action in the action list; Undo restores it. Players cannot be deleted.'}</p>}
           <CourtStage
             facade={facade}
             snapshot={snapshot}
@@ -1211,6 +1193,13 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             coordinator={coordinatorRef.current}
             playback={playback}
             awarenessSource={awarenessSource}
+          />
+          <PlaybackControls
+            controller={playback}
+            snapshot={snapshot}
+            getCue={index => facade.getCue(index)}
+            onPhaseSelected={setPhaseIndex}
+            onPresentationChange={setPresenting}
           />
         </section>
 
@@ -1262,6 +1251,11 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
                     {action.path.candidates.length > 1 ? <span className="conflict-badge">{t('pathConflict')}</span> : null}
                     {action.adjacency === 'needs-repair' ? <span className="repair-badge">{t('adjacencyRepair')}</span> : null}
                   </button>
+                  {canAuthorStructure && <button type="button" aria-label={locale === 'ru' ? `Удалить действие ${actionLabel(locale, action.type)} ${actorLabel(locale, action.actorId)}` : `Delete action ${actionLabel(locale, action.type)} ${actorLabel(locale, action.actorId)}`} onClick={() => {
+                    runCommand(locale === 'ru' ? 'Действие удалено. Его можно вернуть кнопкой «Отменить».' : 'Action deleted. Undo restores it.', () => facade.archiveAction(action.id));
+                    setSelectedActionId(null);
+                    document.querySelector<HTMLElement>(`[data-actor-id="${action.actorId}"]`)?.focus();
+                  }}>{locale === 'ru' ? 'Удалить действие' : 'Delete action'}</button>}
                 </li>
               ))}
             </ol>
@@ -1357,14 +1351,6 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           setAnnouncement(t('conflictPhaseSelected', { number: index + 1 }));
         }}
         onAnnounce={setAnnouncement}
-      />
-
-      <PlaybackControls
-        controller={playback}
-        snapshot={snapshot}
-        getCue={index => facade.getCue(index)}
-        onPhaseSelected={setPhaseIndex}
-        onPresentationChange={setPresenting}
       />
 
       <PhaseTimeline

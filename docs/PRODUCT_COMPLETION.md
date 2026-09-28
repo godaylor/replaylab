@@ -48,3 +48,21 @@ The open root is a historical AFFiNE checkout. Its original files and user data
 are retained; the standalone working copy is standalone inside the same
 project. Automatic approval rejected wholesale root replacement, so it is not
 being retried indirectly. Only the five allowlisted workspaces are published.
+# V3 beginner workflow — 2026-09-28
+
+Owner-authorized scope: understandable basketball entry, tools, guided practice,
+portable copies and collaboration verification. Existing standalone repository,
+Render target and Supabase data are retained; no tariff/privilege/schema changes.
+
+- The former disappearing onboarding strip is replaced with one repeatable,
+  non-modal guide. Its controls never run document commands. Starting from a
+  personal play creates a UUID-named practice copy; reopening a practice keeps it.
+- New practice seeds include a synthetic pass and phase-two possession. Seeding
+  runs only for an empty document through the existing seed transaction; existing
+  records, room joins and recovery data are not reseeded. Canonical schema is unchanged.
+- `archiveAction` uses the existing archived field, prevalidates the record, and
+  commits through the local typed-command/history path. The record and concurrent
+  path data remain present. Undo restores the action; no hard deletion is added.
+- Reflow fixes the existing tablet header minimum widths. The guide uses normal
+  page flow, supports keyboard/focus return and missing-target fallback, and offers
+  a shorter mobile review path. No full mobile editing is claimed.

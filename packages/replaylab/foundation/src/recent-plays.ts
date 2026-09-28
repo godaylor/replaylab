@@ -19,6 +19,7 @@ export function rememberPlay(id: string, title: string) {
   // Capability secrets stay in the user's private link, never in the catalog.
   if (location.hash || new URLSearchParams(location.search).has('db')) return;
   try {
-    localStorage.setItem(prefix + id, JSON.stringify({ id, title, href: `/app/play/${encodeURIComponent(id)}/edit`, opened: Date.now() }));
+    const lesson = new URLSearchParams(location.search).get('lesson') === '1';
+    localStorage.setItem(prefix + id, JSON.stringify({ id, title, href: `/app/play/${encodeURIComponent(id)}/edit${lesson ? '?lesson=1' : ''}`, opened: Date.now() }));
   } catch { /* The index is optional; the document's save status is independent. */ }
 }

@@ -1,5 +1,30 @@
 # ReplayLab transformation plan
 
+## V3 usability and availability checkpoint — 2026-09-28
+
+Owner authorized this update in existing `godaylor/replaylab` / `main` and the
+existing Render service, without tariff changes or data resets. Only standalone
+was edited. Existing ReplayLab ports were free; no other project's processes,
+tabs, Docker resources, credentials or data were changed.
+
+Implemented separate persistent practice examples, an eight-step repeatable
+guide (three review steps on mobile), court legend, drawing/transfer/link-rights
+explanations and undoable action archival. Fixed pointer-focus scrolling, invite
+focus restoration, tablet header reflow and playback placement under the court.
+
+Local release verification: 83/83 Chromium tests, 10/10 abrupt-close repetitions,
+typecheck, lint, client/server builds, provenance audit and release packaging PASS.
+V3 scenario/reflow also passes Firefox (2 tests; touch unsupported by that engine's
+Playwright emulation) and WebKit (3 tests including touch). Full engine suites,
+real devices, browser-UI zoom and human assistive-technology reviews are not claimed.
+Manual RU guide completion/restart/focus and screenshots were inspected.
+
+Public site remains inaccessible at Render's loading screen. Startup/deploy logs
+require the owner's Render login; the 503 cause and new live deployment cannot
+yet be confirmed. See docs/PRODUCTION_VERIFICATION.md for precise evidence.
+
+The September 13 checkpoint below is historical, not current availability evidence.
+
 ## Active product completion checkpoint — 2026-09-13
 
 The owner requested standalone product completion and authorized publication to

@@ -184,7 +184,7 @@ export class ReplayLabEditorFacade {
     };
     readOnly?: boolean;
     migrationFault?: 'after-target-write' | 'after-journal-backup';
-    seedContent?: { title: string; cueOne: string; cueTwo: string };
+    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean };
   } = {}) {
     const openedAt = performance.now();
     const playId = options.playId ?? DEFAULT_PLAY_ID;
@@ -413,7 +413,7 @@ export class ReplayLabEditorFacade {
 
   static createMemory(
     playId = DEFAULT_PLAY_ID,
-    seedContent?: { title: string; cueOne: string; cueTwo: string }
+    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean }
   ) {
     return ReplayLabEditorFacade.create(
       new Y.Doc({ guid: playId }),
@@ -455,7 +455,7 @@ export class ReplayLabEditorFacade {
     openedAt: number,
     persistence?: Persistence,
     seedIfEmpty = true,
-    seedContent = {
+    seedContent: { title: string; cueOne: string; cueTwo: string; practice?: boolean } = {
       title: 'Horns entry',
       cueOne: 'Start in horns.',
       cueTwo: 'Finish at the rim.',
@@ -480,7 +480,7 @@ export class ReplayLabEditorFacade {
       cueOneText?.insert(seedContent.cueOne, 0);
       cueTwoText?.insert(seedContent.cueTwo, 0);
       rootDoc.transact(
-        () => seedReplayRoot(replayRoot, [cue1, cue2]),
+        () => seedReplayRoot(replayRoot, [cue1, cue2], seedContent.practice),
         'replaylab:seed'
       );
       if (!store.getBlock(surfaceId)?.model) {
@@ -761,6 +761,17 @@ export class ReplayLabEditorFacade {
       }
     );
     return actionId;
+  }
+
+  archiveAction(actionId: string) {
+    const snapshot = this.snapshot.actions.find(action => action.id === actionId);
+    const actions = this.replayRoot.get('actions');
+    const action = actions instanceof Y.Map ? actions.get(actionId) : undefined;
+    if (!snapshot || !(action instanceof Y.Map)) throw new Error('Missing action');
+    if (snapshot.archived) return;
+    this.commit(() => action.set('archived', true), {
+      phaseId: snapshot.fromFrameId, entityId: actionId, focusTarget: 'action',
+    });
   }
 
   replaceActionPath(input: { actionId: string; path: ActionPath }) {

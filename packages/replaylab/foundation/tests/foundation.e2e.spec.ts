@@ -27,7 +27,7 @@ test('production route authors a formation and reloads without losing title, pha
 
   await page.getByRole('button', { name: /Add phase/ }).click();
   await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '3');
-  await expect(page.locator('#persistence-status')).toContainText('Saved locally');
+  await expect(page.locator('#persistence-status')).toContainText('Saved in this browser');
 
   await page.reload();
   await page.locator('[data-app-ready="true"]').waitFor();

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T23:03:43.967Z",
+  "generatedAt": "2026-09-28T02:50:18.528Z",
   "verdict": "PASS",
   "profile": {
     "id": "replaylab-render-v1",
@@ -31,12 +31,12 @@
   },
   "metrics": {
     "frames": 1801,
-    "elapsedMs": 30014.6,
-    "framesPerSecond": 60.00413132275626,
-    "frameIntervalP95Ms": 16.799999999999272,
+    "elapsedMs": 30014.4,
+    "framesPerSecond": 60.00453115837731,
+    "frameIntervalP95Ms": 16.799999999995634,
     "inputSamples": 1801,
-    "inputToPaintP95Ms": 17.59999999962747,
-    "localOpenMs": 29.90000000037253,
+    "inputToPaintP95Ms": 17.599999997764826,
+    "localOpenMs": 31.5,
     "longTaskCount": 0,
     "longestTaskMs": 0,
     "gfxRenders": 1802,

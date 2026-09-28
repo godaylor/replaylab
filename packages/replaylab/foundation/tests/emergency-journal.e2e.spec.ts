@@ -165,7 +165,7 @@ test('quota failure retains live document and draft, never reports locally saved
     Storage.prototype.setItem = function(key, value) { if (key.startsWith('replaylab:emergency:')) throw new DOMException('quota test', 'QuotaExceededError'); original.call(this, key, value); };
   });
   await page.locator('[data-actor-id="offense-1"]').press('ArrowRight');
-  await expect(page.locator('#persistence-status')).not.toContainText('Saved locally');
+  await expect(page.locator('#persistence-status')).not.toContainText('Saved in this browser');
   await expect(page.locator('[data-actor-id="offense-1"]')).toContainText('x 115');
   await page.getByRole('textbox', { name: 'Cue block 1 text', exact: true }).fill('Keep this draft');
   await expect(page.getByRole('alert')).toContainText('Draft recovery storage failed');
