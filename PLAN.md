@@ -23,8 +23,13 @@ broader kernel dependency, account system or data reset was introduced.
   installed Chrome 155 local fresh-profile check and actual motion recording.
 - [x] Node and non-root/read-only Docker smoke, each four runtime/collaboration/
   backup-restore checks. Package manifest and archive rechecked.
-- [ ] Explicit remote mutation approval, hosted CI/deploy/public smoke; underlying
-  Supabase availability after owner MFA. No rejected push was retried.
+- [x] Owner explicitly authorized commit, push and existing Render update.
+  Application commit `b735f4b`, hosted CI run `39062581983` PASS; Render deploy
+  `dep-db9srabrjlhs7381urfg` succeeded. All three existing hosted rooms restored.
+  Public installed-Chrome smoke PASS: RU/EN authoring, closed-tab offline launch,
+  two independent writers, partition/reconnect/local undo and read-only access.
+- [ ] Underlying cause of the historical intermittent Supabase outage; dashboard
+  review after owner MFA. Current hosted readiness is confirmed independently.
 - [ ] Verified Russian route/VPN pair, manual screen reader, physical devices,
   real IME/browser zoom, human demo review and independent new-name clearance.
 

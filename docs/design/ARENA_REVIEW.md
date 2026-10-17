@@ -1,5 +1,9 @@
 # Пятый темп · real screens and references
 
+Published 2026-10-17 on the [existing Render service](https://replaylab-godaylor.onrender.com/).
+[Actual public editor](public-arena-editor.png) · [Actual public home](public-arena-home.png)
+· [Deployment receipt](public-arena-render.jpg). [CI/public checks and limits](../PRODUCTION_VERIFICATION.md).
+
 The previous daylight interface was rejected by the owner. This revision changes
 the basketball example, the action-to-playback workflow and the visual system.
 All screenshots below are actual browser output; the concept boards are clearly

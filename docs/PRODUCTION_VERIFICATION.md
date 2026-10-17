@@ -2,12 +2,43 @@
 
 ## Current: Arena / Пятый темп · 2026-10-17
 
-**Implemented and technically verified locally. Not published.** The Arena
-revision is an uncommitted working tree based on local parent `1db56b1`; that
-commit alone does not contain this revision. A read-only GitHub API check still
-returned public `main` at `5c85f7387304240e4b5651436f59e26458ba7385`.
-No new push, deployment, hosted room/database write, tariff or permission change
-was performed. Hosted CI/public smoke for this revision therefore remain open.
+**Published and verified on the existing service, 2026-10-17.** The owner
+explicitly authorized commit, push and Render update: “Разрешаю commit, push и
+Render”. Application commit `b735f4beefabd1295835d7821120a90205c4f05e` includes the
+Arena revision and the independent-startup fix from parent `1db56b1`.
+
+- [Hosted CI 39062581983](https://github.com/godaylor/replaylab/actions/runs/39062581983)
+  completed **success** at 19:33:16 UTC: exact-byte source check, immutable
+  installation, Chromium release/durability, audit/package, lint, Node smoke,
+  Docker build and non-root container/restore smoke.
+- Existing Render service `srv-dah9cq1t0dsc73f4ou50`, Frankfurt **Free**, deployed
+  `b735f4b` via [deploy dep-db9srabrjlhs7381urfg](https://dashboard.render.com/web/srv-dah9cq1t0dsc73f4ou50/deploys/dep-db9srabrjlhs7381urfg).
+  Status **Deploy succeeded**, duration 50.9s, live at 19:34:52 UTC. No automatic
+  deploy appeared after CI; the approved manual **Deploy latest commit** was used.
+  No tariff, environment, permissions, schema or storage configuration changed.
+- Render logs: `ReplayLab listening on 0.0.0.0:32400; local editor ready`, followed
+  by `collaboration.ready` with **3 existing rooms**, before public verification.
+- [Public application](https://replaylab-godaylor.onrender.com/) and public
+  `/healthz` + `/readyz` return **200**, `collaboration: ready`,
+  `storage: supabase-postgres`.
+- Fresh installed **Chrome 155.0.8059.80** contexts on this Windows host: RU/EN
+  example → keyboard move → draw → append → full playback → reload → recent
+  reopen PASS; language/theme retained. Close tab → disconnect → open new tab
+  PASS, including existing IndexedDB data and self-hosted font.
+- **One new synthetic private room only**: two independent writers,
+  bidirectional updates, offline local edits plus concurrent remote edits,
+  reconnect/convergence and local undo preserving remote edits PASS. Fresh third
+  context restores both writers' edits. Separate view link stays read-only.
+  All pre-existing rooms/local records retained; no reset or deletion. Test
+  capabilities were kept only in memory and are not included in evidence.
+- No captured JavaScript errors or failed HTTP asset responses. Machine report:
+  `packages/replaylab/foundation/evidence/public-arena-smoke.json`.
+
+[Public editor screenshot](design/public-arena-editor.png) ·
+[Public home screenshot](design/public-arena-home.png) ·
+[Render deployment receipt](design/public-arena-render.jpg).
+These publication checks apply to application commit `b735f4b`; follow-up
+documentation/evidence commits do not change application source.
 
 Working result: `http://127.0.0.1:32400/`, served by the **verified runtime
 package**, not the development server. The explicit isolated review document is
@@ -89,12 +120,14 @@ or alternate bypass followed. The authenticated Render observations and earlier
 host DNS/HTTP timeouts are recorded below; they do not establish DNS/connectivity
 inside the current Render container.
 
-**Public publication is still blocked by approval.** The prior `git push` attempt
-was automatically rejected because the enclosing repository's `AGENTS.md` says
-“No public deploy, commit, push or remote mutation is authorized.” That rejected
-action was not retried through another interface. Explicit authorization to
-commit/push this reviewed revision to `godaylor/replaylab:main` and update the
-existing Render service is required. No replacement service is proposed.
+The earlier push was automatically rejected under the enclosing repository's
+remote-mutation restriction. The owner subsequently explicitly authorized
+commit, push to existing `godaylor/replaylab:main` and existing Render update;
+the approved actions and exact results are recorded above. No replacement
+service, tariff change, database reset or credential/permission change occurred.
+Current Supabase readiness and real room writes/reads pass. The historical
+intermittent failure's underlying cause is still unproven; current success does
+not retroactively establish that cause or replace the pending dashboard review.
 
 **Not tested:** a verified Russian residential/mobile route; a controlled VPN
 on/off pair; the owner's existing Chrome profile/extensions; physical iOS/Android

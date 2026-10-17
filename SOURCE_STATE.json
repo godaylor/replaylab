@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "faabb4f6225e6cf741a897d44d02b9fa0483065936ff4736ad1c6d79e500c4f6",
+  "snapshotSha256": "e0a94a2e89c352528c02357c559a68d8b2248daf01610395c59b47954ddd97a2",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -60,7 +60,7 @@
     },
     {
       "path": "FINAL_AUDIT.md",
-      "sha256": "7c9c1e56c7ab69dce8f64bb1c4406b467995797dc8d6380142146fb4ae7f380e",
+      "sha256": "c7d293f63dd1b797e952058b74411d1b14e771f699b46fe9ff9d9257ba57fcae",
       "origin": "working-tree-copy"
     },
     {
@@ -75,17 +75,17 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "071b590b299fcf889b11a5c435bde991ccb1dc5b339bf56e8e7bdd7d9849e453",
+      "sha256": "e634d01567a77bd2214fd2cb3ab5c89cf453117b9972f6e53c53e1131995acc8",
       "origin": "working-tree-copy"
     },
     {
       "path": "PORTFOLIO_HANDOFF.md",
-      "sha256": "9d1c9e9758d058760b4c847a4f3dfbe50ea4c53f61ccc952b067c4f789bf2d13",
+      "sha256": "d0d12a7694f1a412e565a13178a2456479ac89b9acf62b539574bc49f1ff86f2",
       "origin": "original-replaylab"
     },
     {
       "path": "README.md",
-      "sha256": "10ed45012301a6523b9456d150726a9d53700d7ea0cb5f30055e2c14120a1866",
+      "sha256": "c6cd9cff78c00a535fff6f198669d2967e98746223e9e5687529cb33907da23a",
       "origin": "working-tree-copy"
     },
     {
@@ -2281,7 +2281,7 @@
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "7d00d7be0f68899d21062898fac0bf992cf12e64e6aea6e6e7f555442c4be63a",
+      "sha256": "7202ae677870dfa877455e84e92e0ad5c3d355f820fb4e829c66977fe922a70a",
       "origin": "original-replaylab"
     },
     {
@@ -2326,7 +2326,7 @@
     },
     {
       "path": "docs/design/ARENA_REVIEW.md",
-      "sha256": "9d5697e22bb99c869c3636e9646a063c6935e4ce30cf2573b38d42b463c859b9",
+      "sha256": "c278ed101c0b5806953199e7b261d03459030e87b28ad0817c8fb8ec2a826984",
       "origin": "original-replaylab"
     },
     {
@@ -2625,6 +2625,21 @@
       "origin": "original-replaylab"
     },
     {
+      "path": "docs/design/public-arena-editor.png",
+      "sha256": "d7a7f7e82b26cf3bca004804bac28fec4e3fbc364b94086d0f8ea16e514ad5fc",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/public-arena-home.png",
+      "sha256": "3141bda132875476817dedcdaa970c2b98b020a33b14b30292727b7c849f5a45",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/public-arena-render.jpg",
+      "sha256": "47aa17ce41498adef8c2ad7209a59b569a40889eb5cbff82e86ce99bbeba08e6",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "package.json",
       "sha256": "60284420348d6efe9b01e7d92fbbb590a784bc3804f5870bc8584034164f4819",
       "origin": "export-configuration"
@@ -2818,6 +2833,11 @@
       "path": "packages/replaylab/foundation/evidence/local-ci-linux/slice7-audit.json",
       "sha256": "0bd34beb7211f76cb5cf45d6bbf008c21b158c9eac54547a6079134d0d96b211",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/public-arena-smoke.json",
+      "sha256": "c509c80454a5a697c2d6047c414f5df7cb9c24047ec1f8c41842cbc300a1d127",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-durability.json",

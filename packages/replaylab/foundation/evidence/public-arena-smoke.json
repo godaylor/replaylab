@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-17T19:34:57.739Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "networkScope": "This Windows host; fresh installed Chrome contexts. No verified Russian residential/mobile route or controlled VPN pair.",
+  "verdict": "PASS",
+  "checks": [
+    "ru: example → keyboard move → draw → append → complete playback → reload → recent reopen; theme/locale retained; closed-tab offline launch and local data/font",
+    "en: example → keyboard move → draw → append → complete playback → reload → recent reopen; theme/locale retained; closed-tab offline launch and local data/font",
+    "One synthetic private room: two independent writers, bidirectional edits, offline local + concurrent remote edits, reconnect convergence and local undo preserving remote intent",
+    "Fresh context restores hosted edits; separate view capability stays read-only; no existing room changed, no reset/deletion/schema/tariff changes; capabilities kept only in memory"
+  ],
+  "httpFailures": [],
+  "errors": [],
+  "browser": "155.0.8059.80",
+  "/healthz": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "product": "ReplayLab",
+      "collaboration": "ready",
+      "storage": "supabase-postgres"
+    }
+  },
+  "/readyz": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "product": "ReplayLab",
+      "collaboration": "ready",
+      "storage": "supabase-postgres"
+    }
+  }
+}

@@ -7,8 +7,9 @@ working product name; independent name/mark clearance remains open.
 
 **[Existing Render deployment](https://replaylab-godaylor.onrender.com)** · [Architecture](docs/ARCHITECTURE.md) · [Deployment](docs/RELEASE.md) · [Portfolio handoff](PORTFOLIO_HANDOFF.md)
 
-The Arena revision is currently prepared locally. Its publication and the
-public service's remaining availability limits are recorded in
+The Arena revision is published on the existing Render service. Hosted CI and
+public browser verification passed on 2026-10-17. Actual checks and remaining
+availability limits are recorded in
 [current verification](docs/PRODUCTION_VERIFICATION.md).
 
 Баскетбольный замысел в движении: разберите готовый пик-н-ролл, измените расстановку, нарисуйте действие и покажите команде. Два тренера могут редактировать одну комбинацию, продолжать работу офлайн и после подключения явно разрешать конфликты.
