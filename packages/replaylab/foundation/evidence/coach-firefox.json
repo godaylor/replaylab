@@ -65,13 +65,13 @@
   },
   "suites": [
     {
-      "title": "coach-journey.e2e.spec.ts",
-      "file": "coach-journey.e2e.spec.ts",
+      "title": "arena-authoring.pw.spec.ts",
+      "file": "arena-authoring.pw.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "coach journey ru: example, move, draw, phase, play, reopen and localized room failure",
+          "title": "resolved matching paths use deterministic distance interpolation and keep the ball with its holder without mutating the snapshot",
           "ok": true,
           "tags": [],
           "tests": [
@@ -86,17 +86,499 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2774,
+                  "duration": 19,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:44.672Z",
+                  "startTime": "2026-10-17T21:01:46.813Z",
                   "annotations": [],
                   "attachments": []
                 }
               ],
               "status": "expected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-e4556e00b2a2a5e8033f",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "stale, archived, competing and unresolved paths defer to canonical poses; zero-length segments stay finite",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:46.847Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-74dee962546f79591916",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "interactive endpoints undo with the action, preserve concurrent remote poses/possession, and reject invalid drafts before writing",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 541,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:46.864Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-5c2a0b169fffaf191a67",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 40,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "arena.e2e.spec.ts",
+      "file": "arena.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "new example tells a four-step pick and roll, playback is derived, pause selects the visible step, reopen preserves edits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 783,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:49.359Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-6fcf611bed0e31975a9d",
+          "file": "arena.e2e.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "light/dark and RU/EN persist, motion can pause, reduced motion stays still and desktop transport fits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 566,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:52.417Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-a0aa3369868daab5bf02",
+          "file": "arena.e2e.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "a touch phone remains review only with visible playback and no horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Playwright Firefox does not emulate a mobile touch context",
+                  "location": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts",
+                    "line": 73,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:55.157Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Playwright Firefox does not emulate a mobile touch context",
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts",
+                        "line": 73,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-c2d48119c2137936096c",
+          "file": "arena.e2e.spec.ts",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "opening a legacy local document with the new example flag never replaces its poses, actions or cues",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 444,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:55.651Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-70d0642bbf3907bbb41a",
+          "file": "arena.e2e.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "the home scene passes accessibility checks in both themes and uses visible labels as accessible names",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 469,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:57.519Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-067dfa23b26fc72fa169",
+          "file": "arena.e2e.spec.ts",
+          "line": 105,
+          "column": 1
+        },
+        {
+          "title": "action dialog ru: validation stays open, Tab is contained, a pass updates possession and one undo restores it",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 593,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:01:59.909Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-42ca1f5594dc2c43294c",
+          "file": "arena.e2e.spec.ts",
+          "line": 120,
+          "column": 36
+        },
+        {
+          "title": "action dialog en: validation stays open, Tab is contained, a pass updates possession and one undo restores it",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 614,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:02.718Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-c7951a1a340c8281f422",
+          "file": "arena.e2e.spec.ts",
+          "line": 120,
+          "column": 36
+        },
+        {
+          "title": "recovery import failure is visible in RU/EN, preserves the original bytes and permits the same file to be retried",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 500,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:05.417Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-40da090ce0d568982e7b",
+          "file": "arena.e2e.spec.ts",
+          "line": 152,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "coach-journey.e2e.spec.ts",
+      "file": "coach-journey.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "coach journey ru: example, move, draw, phase, play, reopen and localized room failure",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 478,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:08.005Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
             }
           ],
           "id": "fec2aa2f1026abc7a067-ef285c9edaef82248fdb",
@@ -106,7 +588,7 @@
         },
         {
           "title": "coach journey en: example, move, draw, phase, play, reopen and localized room failure",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -117,20 +599,28 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 9,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2037,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 456,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:47.912Z",
+                  "startTime": "2026-10-17T21:02:10.493Z",
                   "annotations": [],
                   "attachments": []
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "fec2aa2f1026abc7a067-eda838f6a2fedf112986",
@@ -140,7 +630,7 @@
         },
         {
           "title": "coach layout fits the initial desktop view; RU/EN reflow and browser shortcuts remain available",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -151,29 +641,263 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 10,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1138,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 476,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:49.958Z",
+                  "startTime": "2026-10-17T21:02:13.061Z",
                   "annotations": [],
                   "attachments": []
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "fec2aa2f1026abc7a067-0fcd5c10a3841748b932",
           "file": "coach-journey.e2e.spec.ts",
-          "line": 51,
+          "line": 58,
           "column": 1
         },
         {
           "title": "first room visit without a server shows a localized retry screen and never a fabricated play",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 466,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:15.497Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-94ab6384a618e4a504d9",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 83,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "coach-workbench.e2e.spec.ts",
+      "file": "coach-workbench.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a compact fine-pointer desktop keeps full authoring and visible undo at 700, 900 and 1024 pixels",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 537,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:17.889Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-8c90da9f6bfdb92cbced",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "drawing starts from the touched player rather than the old selection and one undo restores action and destination",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 574,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:20.444Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-c4daa8589cf472b7b3a9",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "watch-to-edit ru: 3D playback is derived and editing restores the plan view",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 573,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:23.449Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-423ec3f9dd6519630497",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 66,
+          "column": 36
+        },
+        {
+          "title": "watch-to-edit en: 3D playback is derived and editing restores the plan view",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 546,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:26.440Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-6c48448410f6b921da9c",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 66,
+          "column": 36
+        }
+      ]
+    },
+    {
+      "title": "court-scene-3d.pw.spec.ts",
+      "file": "court-scene-3d.pw.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "3D camera keeps canonical bounds and full-height actors inside desktop and narrow views",
           "ok": true,
           "tags": [],
           "tests": [
@@ -185,15 +909,15 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 16,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3049,
+                  "duration": 98,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:51.105Z",
+                  "startTime": "2026-10-17T21:02:29.191Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -201,9 +925,77 @@
               "status": "expected"
             }
           ],
-          "id": "fec2aa2f1026abc7a067-94ab6384a618e4a504d9",
-          "file": "coach-journey.e2e.spec.ts",
-          "line": 76,
+          "id": "1bf5e8e6462ef2ed1365-2db7577d073826a5de24",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "3D watch selection uses displayed player/ball geometry without changing canonical poses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:29.304Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1bf5e8e6462ef2ed1365-9854b1c9ea71eea07abc",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "ball flight height is deterministic and reduced motion disables cosmetic dribbling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:29.351Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1bf5e8e6462ef2ed1365-631960f433fa35171fe9",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 45,
           "column": 1
         }
       ]
@@ -216,7 +1008,7 @@
       "specs": [
         {
           "title": "isolated practice: move, draw, play, undo, archive, export, reopen and guide focus",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -227,20 +1019,28 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 16,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3233,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 508,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:54.178Z",
+                  "startTime": "2026-10-17T21:02:29.392Z",
                   "annotations": [],
                   "attachments": []
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "84952e87915267949206-a2756e1966bad7a3cceb",
@@ -249,37 +1049,99 @@
           "column": 1
         },
         {
-          "title": "RU and EN home, editor and guide reflow; mobile review, missing target, reduced motion",
-          "ok": true,
+          "title": "RU and EN home, editor and guide reflow across compact and wide desktop viewports",
+          "ok": false,
           "tags": [],
           "tests": [
             {
-              "timeout": 120000,
+              "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 17,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3799,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 484,
+                  "error": {
+                    "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')",
+                    "stack": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                  },
+                  "errors": [
+                    {
+                      "message": "TypeError: browser.newContext: Error setting storage state:\nCannot read properties of undefined (reading '_page')"
+                    }
+                  ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:57.420Z",
+                  "startTime": "2026-10-17T21:02:32.112Z",
                   "annotations": [],
                   "attachments": []
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
-          "id": "84952e87915267949206-2ced6831f9098ada1d66",
+          "id": "84952e87915267949206-3c98db6f88f4cd1a45a6",
           "file": "practice.e2e.spec.ts",
-          "line": 65,
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "touch mobile guide supports review and reduced motion; tablet guide handles unavailable drawing controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Playwright Firefox does not emulate a mobile touch context",
+                  "location": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
+                    "line": 93,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 18,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:02:34.584Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Playwright Firefox does not emulate a mobile touch context",
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
+                        "line": 93,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "84952e87915267949206-3f52206e7b724f3cabac",
+          "file": "practice.e2e.spec.ts",
+          "line": 92,
           "column": 1
         },
         {
@@ -295,7 +1157,7 @@
                   "description": "Playwright Firefox does not emulate a touch context",
                   "location": {
                     "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
-                    "line": 100,
+                    "line": 117,
                     "column": 8
                   }
                 }
@@ -305,7 +1167,7 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 0,
+                  "workerIndex": 18,
                   "parallelIndex": 0,
                   "status": "skipped",
                   "duration": 1,
@@ -313,14 +1175,14 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:10:01.229Z",
+                  "startTime": "2026-10-17T21:02:35.052Z",
                   "annotations": [
                     {
                       "type": "skip",
                       "description": "Playwright Firefox does not emulate a touch context",
                       "location": {
                         "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
-                        "line": 100,
+                        "line": 117,
                         "column": 8
                       }
                     }
@@ -333,7 +1195,7 @@
           ],
           "id": "84952e87915267949206-a2b4e16e5a9a3a431148",
           "file": "practice.e2e.spec.ts",
-          "line": 99,
+          "line": 116,
           "column": 1
         }
       ]
@@ -341,11 +1203,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-17T00:09:43.367Z",
-    "duration": 18435.395,
-    "expected": 6,
-    "skipped": 1,
-    "unexpected": 0,
+    "startTime": "2026-10-17T21:01:45.074Z",
+    "duration": 96448.571,
+    "expected": 5,
+    "skipped": 3,
+    "unexpected": 18,
     "flaky": 0
   }
 }

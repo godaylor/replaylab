@@ -25,7 +25,7 @@ test('production route authors a formation and reloads without losing title, pha
   await title.press('Enter');
   await expect(title).toHaveValue('Horns into Spain');
 
-  await page.getByRole('button', { name: /Add phase/ }).click();
+  await page.getByRole('button', { name: /Add step/ }).click();
   await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '3');
   await expect(page.locator('#persistence-status')).toContainText('Saved in this browser');
 

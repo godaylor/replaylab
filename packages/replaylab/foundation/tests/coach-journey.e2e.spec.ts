@@ -4,8 +4,9 @@ import { capabilityFragment } from '../src/sync-protocol';
 for (const locale of ['ru', 'en'] as const) test(`coach journey ${locale}: example, move, draw, phase, play, reopen and localized room failure`, async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: locale.toUpperCase(), exact: true }).click();
-  await page.getByRole('button', { name: locale === 'ru' ? 'Разобрать пик-н-ролл' : 'Explore the pick & roll', exact: true }).click();
+  await page.getByRole('button', { name: locale === 'ru' ? 'Смотреть пример' : 'Watch example', exact: true }).click();
   await page.locator('[data-app-ready]').waitFor();
+  await page.getByRole('button', { name: locale === 'ru' ? 'Редактировать' : 'Edit play', exact: true }).click();
   const actor = page.locator('[data-actor-id="offense-1"]');
   const title = locale === 'ru' ? 'Пик-н-ролл · свободный проход' : 'Pick & roll · create the opening';
   await expect(page.getByRole('textbox', { name: locale === 'ru' ? 'Название комбинации' : 'Play name' })).toHaveValue(title);
@@ -19,12 +20,12 @@ for (const locale of ['ru', 'en'] as const) test(`coach journey ${locale}: examp
   await page.mouse.move(box.x + box.width * 400 / 840, box.y + box.height * 200 / 460, { steps: 4 });
   await page.mouse.up();
   await expect(page.locator('[data-action-id]')).toHaveCount(2);
-  await expect(page.locator('.drawing-help')).toContainText(locale === 'ru' ? 'Действие готово' : 'Action ready');
-  await page.getByRole('button', { name: locale === 'ru' ? 'Добавить фазу F' : 'Add phase F', exact: true }).click();
+  await expect(page.locator('.drawing-help')).toHaveText(locale === 'ru' ? 'Движение готово. Нажмите «Старт», чтобы проверить.' : 'Movement ready. Press Play to check it.');
+  await page.getByRole('button', { name: locale === 'ru' ? 'Добавить шаг F' : 'Add step F', exact: true }).click();
   await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '5');
   expect(await page.evaluate(() => window.replayLabApp!.facade.snapshot.actions.every(action => action.adjacency === 'valid'))).toBe(true);
   await expect(page.getByRole('button', { name: locale === 'ru' ? 'Рывок C' : 'Cut C', exact: true })).toBeEnabled();
-  await expect(page.locator('.drawing-help')).toContainText(locale === 'ru' ? 'Новый шаг' : 'New step');
+  await expect(page.locator('.drawing-help')).toHaveText(locale === 'ru' ? 'Шаг 4 → 5: нарисуйте движение к новому шагу.' : 'Step 4 → 5: draw a movement to the new step.');
   await page.getByRole('button', { name: locale === 'ru' ? 'Воспроизвести комбинацию' : 'Play tactic', exact: true }).click();
   expect(await page.evaluate(() => window.replayLabApp!.playbackController!.currentFrame.phaseIndex)).toBe(0);
   await page.getByRole('button', { name: locale === 'ru' ? 'Приостановить воспроизведение' : 'Pause playback', exact: true }).click();

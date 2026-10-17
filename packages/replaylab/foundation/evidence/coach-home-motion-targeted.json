@@ -1,0 +1,149 @@
+{
+  "config": {
+    "configFile": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\playwright.config.ts",
+    "rootDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.pw.spec.ts",
+          "**/*.e2e.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/coach-home-motion-targeted.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": {
+      "command": "node ../../../node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 32410 --strictPort",
+      "port": 32410,
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "arena.e2e.spec.ts",
+      "file": "arena.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "light/dark and RU/EN persist, motion can pause, reduced motion stays still and desktop transport fits",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2006,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m712\u001b[39m\nReceived:    \u001b[31m766.3125\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m712\u001b[39m\nReceived:    \u001b[31m766.3125\u001b[39m\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts:69:34",
+                    "location": {
+                      "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts",
+                      "column": 34,
+                      "line": 69
+                    },
+                    "snippet": "  67 |   await page.locator('[data-app-ready]').waitFor();\n  68 |   const play = await page.getByRole('button', { name: 'Воспроизвести комбинацию', exact: true }).boundingBox();\n> 69 |   expect(play!.y + play!.height).toBeLessThanOrEqual(712);\n     |                                  ^\n  70 | });\n  71 |\n  72 | test('a touch phone remains review only with visible playback and no horizontal overflow', async ({ browser, browserName, baseURL }) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts",
+                        "column": 34,
+                        "line": 69
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m712\u001b[39m\nReceived:    \u001b[31m766.3125\u001b[39m\n\n  67 |   await page.locator('[data-app-ready]').waitFor();\n  68 |   const play = await page.getByRole('button', { name: 'Воспроизвести комбинацию', exact: true }).boundingBox();\n> 69 |   expect(play!.y + play!.height).toBeLessThanOrEqual(712);\n     |                                  ^\n  70 | });\n  71 |\n  72 | test('a touch phone remains review only with visible playback and no horizontal overflow', async ({ browser, browserName, baseURL }) => {\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts:69:34"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:38:26.493Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\test-results\\arena.e2e-light-dark-and-R-67c18--and-desktop-transport-fits\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\arena.e2e.spec.ts",
+                    "column": 34,
+                    "line": 69
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-a0aa3369868daab5bf02",
+          "file": "arena.e2e.spec.ts",
+          "line": 44,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-17T20:38:24.342Z",
+    "duration": 28738.317000000003,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

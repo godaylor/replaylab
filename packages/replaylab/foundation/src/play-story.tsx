@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ReplaySnapshot } from './domain';
 import type { ReplayPlaybackController } from './playback';
-import { PICK_ROLL_IDS, pickRollCopy } from './pick-roll';
+import { PICK_ROLL_IDS, pickRollCopy, exampleStepName } from './pick-roll';
 import { useI18n } from './i18n';
 
 export function PlayStory({ snapshot, controller, phaseIndex, cue }: {
@@ -16,16 +16,35 @@ export function PlayStory({ snapshot, controller, phaseIndex, cue }: {
   useEffect(() => controller.onFrame(frame => setIndex(previous => previous === frame.phaseIndex ? previous : frame.phaseIndex)), [controller]);
   const phase = snapshot.phases[index] ?? snapshot.phases[0]!;
   const exampleIndex = PICK_ROLL_IDS.indexOf(phase.id as typeof PICK_ROLL_IDS[number]);
-  const copy = pickRollCopy(locale);
   const ru = locale === 'ru';
   const savedCue = cue(index);
   const originalCue = exampleIndex >= 0 && [pickRollCopy('ru').cues[exampleIndex], pickRollCopy('en').cues[exampleIndex]].includes(savedCue);
+  const actions = snapshot.actions.filter(action => !action.archived && action.fromFrameId === phase.id);
+  const exampleMovement = exampleIndex >= 0 && actions.every(action => action.id.startsWith('example-') && action.adjacency !== 'needs-repair');
+  const final = index === snapshot.phases.length - 1;
+  const detail = exampleMovement ? (ru ? [
+    '5 занимает место рядом с защитником 1. Он освобождает путь для игрока с мячом.',
+    '1 ведёт мяч мимо заслона. 5 разворачивается и движется к кольцу.',
+    '1 отдаёт мяч 5. Остальные игроки остаются широко и удерживают защиту.',
+    '5 с мячом у кольца. Конец примера — измените его под свою команду.',
+  ] : [
+    '5 moves beside 1’s defender to clear a path for the ball handler.',
+    '1 dribbles past the screen. 5 turns and moves toward the rim.',
+    '1 passes to 5. The other players stay wide and occupy their defenders.',
+    '5 has the ball near the rim. The example ends here — adapt it to your team.',
+  ])[exampleIndex] : actions.map(action => {
+    const player = action.actorId.replace('offense-', '').replace('defense-', ru ? 'защита ' : 'defense ');
+    const target = action.targetActorId?.replace('offense-', '').replace('defense-', ru ? 'защита ' : 'defense ');
+    const movement = ru ? { cut: 'движется без мяча', dribble: 'ведёт мяч', pass: `передаёт ${target ?? ''}`, screen: `ставит заслон ${target ?? ''}` } : { cut: 'moves without the ball', dribble: 'dribbles', pass: `passes to ${target ?? ''}`, screen: `screens ${target ?? ''}` };
+    return `${player} ${movement[action.type]}`;
+  }).join(' · ');
   return <section className="play-story" aria-labelledby="story-heading">
-    <div className="story-kicker"><span>{ru ? 'ЗАМЫСЕЛ НА ПЛОЩАДКЕ' : 'THE IDEA ON COURT'}</span><span>{String(index + 1).padStart(2, '0')} / {String(snapshot.phases.length).padStart(2, '0')}</span></div>
     <span className="story-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-    <h2 id="story-heading" key={phase.id}>{exampleIndex >= 0 ? copy.headings[exampleIndex] : (ru ? 'Ваш следующий ход' : 'Your next move')}</h2>
-    <p className="story-cue">{originalCue ? copy.cues[exampleIndex] : savedCue || (ru ? 'Переместите игроков и нарисуйте действие к следующему шагу. Запустите комбинацию, чтобы проверить движение.' : 'Move your players and draw an action to the next step. Play the combination to check the movement.')}</p>
-    {exampleIndex >= 0 && <><p className="story-template-note">{ru ? 'Замысел примера · адаптируйте под свою команду' : 'Example play · adapt it to your team'}</p><ul className="story-roles">{copy.roles.map((role, i) => <li key={role}><span>{i === 0 ? '1' : i === 1 ? '5' : '↔'}</span>{role.substring(role.indexOf('·') + 1).trim()}</li>)}</ul></>}
-    <div className="story-how"><span aria-hidden="true">↳</span><p>{ru ? 'Каждый шаг — отдельная расстановка. Оранжевые круги — атака, зелёные квадраты — защита. Линия задаёт действие к следующему шагу.' : 'Each step is a formation. Orange circles attack; green squares defend. A line defines an action to the next step.'}</p></div>
+    <div className="story-main">
+      <div className="story-kicker">{final ? (ru ? 'РЕЗУЛЬТАТ' : 'THE FINISH') : (ru ? `ДВИЖЕНИЕ ${index + 1} → ${index + 2}` : `MOVEMENT ${index + 1} → ${index + 2}`)}</div>
+      <h2 id="story-heading" key={phase.id}>{exampleMovement ? exampleStepName(phase.id, locale) : final ? (ru ? 'Финальная позиция' : 'Final position') : (ru ? 'Следующее движение' : 'Next movement')}</h2>
+      <p className="story-cue">{!originalCue && savedCue ? savedCue : detail || (ru ? 'Выберите игрока и нарисуйте его движение к следующему шагу.' : 'Choose a player and draw their movement to the next step.')}</p>
+    </div>
+    {exampleIndex >= 0 && <p className="story-goal"><span>{ru ? 'ЦЕЛЬ ПРИМЕРА' : 'EXAMPLE GOAL'}</span>{ru ? 'Вывести №5 с мячом к кольцу' : 'Get 5 the ball near the rim'}</p>}
   </section>;
 }

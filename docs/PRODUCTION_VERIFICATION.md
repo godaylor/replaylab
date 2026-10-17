@@ -1,6 +1,83 @@
 # Verification and deployment
 
-## Current: Arena / Пятый темп · 2026-10-17
+## Current candidate: Coach workbench / 3D · 2026-10-17
+
+The coach-facing revision replaces the previous Arena workflow. Home opens a
+concrete pick-and-roll in **Watch · 3D**; **Edit play** switches to the accurate
+overhead board. Home and playback share original procedural court/player geometry.
+Movement captions identify the player and next action. Compact mouse/trackpad
+windows retain authoring, and drawing begins with the player under the pointer.
+No dependency, canonical schema, protocol, stored cue or existing record changed.
+
+[Actual screens, generated reference and before/after](design/COACH_WORKBENCH_REVIEW.md)
+· [Product decisions and practical exercise](COACH_WORKBENCH.md).
+This is a simulated coach task, not a field study with a coach.
+
+Local release and packaged runtime checks passed. Public deployment of this
+candidate is pending; the old Arena publication below is historical evidence.
+The owner's existing commit/push/Render authorization is retained; service,
+tariff, data and credentials are unchanged.
+
+| Current revision check | Actual result |
+| --- | --- |
+| Repository `verify:release` | PASS, all seven stages |
+| Chromium full suite | **109/109**, no failures, flakes or skips |
+| Immediate-close durability | **10/10** |
+| Typecheck, client/server builds, lint | PASS |
+| WebKit 26.0, Windows | **26/26** targeted authoring, 3D, coach, accessibility and touch/reflow tests |
+| Firefox 146.0.1, Windows | Environment BLOCKED: 5 pure tests pass, 3 existing touch-emulation skips, 18 page tests fail before app navigation; exact pinned revision and blank-page retry reproduce Playwright `_page` initialization error |
+| Actual installed Chrome 155 motion capture | 32.28-second 1440 × 900 recording of the packaged app, zero captured browser/request errors |
+| Maximum 3D scene, 30-second measured trace | 12 steps, ten players, 30 paths × 64 points; **60.010 FPS**, p95 **16.8 ms**, input-to-paint p95 **2.8 ms**, no long tasks or root React playback renders |
+| License/import/bundle audit | Technical PASS: 78 dependency instances, 31 emitted packages, **0 forbidden modules**, **243,471 gzip JS bytes** (<250,000 budget) |
+| Packaged Node smoke | PASS: four static/room/offline/convergence/undo/backup-restore checks, isolated port **32421** |
+| Non-root Docker smoke | PASS: same four checks, read-only filesystem and dropped capabilities, isolated port **32421** |
+| Runtime inventory and archive | **946** files hash-verified; **988** safe relative archive entries, no room data |
+
+The complete suite includes the practical RU/EN coach path, Watch/Edit state,
+unchanged canonical bytes during 3D playback, action origin and one-unit undo,
+compact desktop, phone/tablet limits, legacy records, recovery, cold-offline
+launch, two writers, partition/reconnect, conflict resolution and per-user undo.
+Reports: `release-verification.json`, `release-tests.json`,
+`release-durability.json`, `coach-3d-performance.json`, `slice7-audit.json`,
+`release-smoke-node.json`, `release-smoke-docker.json`, `coach-artifact.json`
+under `packages/replaylab/foundation/evidence/`.
+Browser reports: `coach-webkit.json`, `coach-firefox.json` and
+`coach-firefox-environment.json`. The latter confirms the Firefox failure before
+any application URL was opened, with and without storageState and on a clean
+retry. No application assertion or browser capability was weakened to hide it.
+Earlier Firefox passes belong to the previous application revision.
+
+One intermediate full run had four outdated UI-label/hidden-control expectations
+after the redesign. The expectations were aligned with the actual new labels
+and disabled readonly controls; canonical-data, focus, axe, reorder and undo
+assertions were retained. The subsequent complete run above passed. On this
+Windows host Playwright's Vite teardown hung after all cases finished; only each
+identified task-owned preview process was stopped so the pipeline could finish.
+No running application or unrelated process was stopped by test cleanup.
+
+Local working package: `http://127.0.0.1:32400/`, from
+`tmp/replaylab-coach3d-delivery-20261017`, with the previous local data directory
+retained. HTTP `/`, `/healthz` and `/readyz` return 200; local storage backend is
+filesystem. This is independent of hosted Supabase readiness.
+
+Archive SHA-256:
+`29970c33266eb8a6dd9c3bb07786e44cec082a9cecd7f4f90bf19db66f010bbc`.
+Docker `replaylab:coach3d-20261017` image identity:
+`sha256:c238b47ce15ab3c4f62fe5e7f1676accba344b911fe3709bc153c55ccb61e7e0`.
+Existing Yarn peer/optional TypeScript-patch warnings and Vite's chunk-size
+warning remain visible; builds, audit and measured gzip budget pass.
+
+The technical audit still explicitly leaves independent trademark review,
+manual screen-reader review and human review of the required demo open. Physical
+touch hardware, real IME and a coach field study were not substituted by automation.
+
+The confirmed startup diagnosis and independent local-editor fix remain in
+force: hosted room reads previously threw before HTTP listen. That application
+dependency failure is distinct from an outage of Render itself or network
+blocking. The underlying historical Supabase failure remains unproven. A verified
+Russian route and controlled VPN on/off comparison are still unavailable.
+
+## Historical: Arena / Пятый темп · 2026-10-17
 
 **Published and verified on the existing service, 2026-10-17.** The owner
 explicitly authorized commit, push and Render update: “Разрешаю commit, push и

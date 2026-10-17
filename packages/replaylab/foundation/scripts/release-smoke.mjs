@@ -21,8 +21,10 @@ let data = join(work, 'data'); mkdirSync(data);
 let child;
 let container;
 let browser;
-const origin = 'http://127.0.0.1:32400';
-const report = { generatedAt: new Date().toISOString(), mode: docker ? 'docker' : 'packaged-node', port: 32400, verdict: 'FAIL', checks: [], work };
+const port = Number(process.env.REPLAYLAB_SMOKE_PORT ?? 32400);
+if (!Number.isInteger(port) || port < 32400 || port > 32499) throw new Error('Smoke port must be within 32400–32499');
+const origin = `http://127.0.0.1:${port}`;
+const report = { generatedAt: new Date().toISOString(), mode: docker ? 'docker' : 'packaged-node', port, verdict: 'FAIL', checks: [], work };
 const reportPath = join(root, `evidence/release-smoke-${docker ? 'docker' : 'node'}.json`);
 writeFileSync(reportPath, JSON.stringify(report, null, 2));
 // Keep the orchestrator alive while Node fetch waits on unreferenced sockets.
@@ -44,17 +46,17 @@ async function stop() {
   child = undefined;
 }
 async function boot() {
-  if (docker) container = command('docker', ['run', '-d', '--name', name, '--label', `com.replaylab.smoke=${name}`, ...(typeof process.getuid === 'function' && process.getuid() > 0 ? ['--user', String(process.getuid())] : []), '--read-only', '--tmpfs', '/tmp:size=16m', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges', '--memory', '512m', '-p', '127.0.0.1:32400:32400', '--mount', `type=bind,source=${data},target=/data`, tag]).trim();
+  if (docker) container = command('docker', ['run', '-d', '--name', name, '--label', `com.replaylab.smoke=${name}`, ...(typeof process.getuid === 'function' && process.getuid() > 0 ? ['--user', String(process.getuid())] : []), '--read-only', '--tmpfs', '/tmp:size=16m', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges', '--memory', '512m', '-p', `127.0.0.1:${port}:32400`, '--mount', `type=bind,source=${data},target=/data`, tag]).trim();
   else {
-    child = spawn(process.execPath, [join(artifact, 'server-dist/server-entry.js')], { cwd: artifact, windowsHide: true, stdio: 'pipe', env: { ...process.env, PORT: '32400', HOST: '127.0.0.1', REPLAYLAB_PUBLIC_ORIGIN: '', REPLAYLAB_DATA_DIR: data } });
+    child = spawn(process.execPath, [join(artifact, 'server-dist/server-entry.js')], { cwd: artifact, windowsHide: true, stdio: 'pipe', env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', REPLAYLAB_PUBLIC_ORIGIN: '', REPLAYLAB_DATA_DIR: data } });
     child.stderr.on('data', () => {});
   }
   await waitFor(() => fetch(origin + '/healthz', { signal: AbortSignal.timeout(1000) }).then(r => r.ok).catch(() => false), 'Runtime did not become healthy');
 }
 try {
-  await new Promise((resolve, reject) => { const probe = createServer(); probe.once('error', reject); probe.listen(32400, '127.0.0.1', () => probe.close(resolve)); });
+  await new Promise((resolve, reject) => { const probe = createServer(); probe.once('error', reject); probe.listen(port, '127.0.0.1', () => probe.close(resolve)); });
   // Provision private synthetic links without printing or persisting the tokens.
-  const links = command(process.execPath, [join(artifact, 'server-dist/room-cli.js'), 'smoke'], { cwd: artifact, env: { ...process.env, REPLAYLAB_DATA_DIR: data } });
+  const links = command(process.execPath, [join(artifact, 'server-dist/room-cli.js'), 'smoke', origin], { cwd: artifact, env: { ...process.env, REPLAYLAB_DATA_DIR: data } });
   const writeUrl = links.match(/^write: (.+)$/m)?.[1];
   const readUrl = links.match(/^read: (.+)$/m)?.[1];
   assert.ok(writeUrl && readUrl);

@@ -15,11 +15,11 @@ test('new example tells a four-step pick and roll, playback is derived, pause se
   expect(initial.actions).toHaveLength(5);
   expect(initial.actions.every(a => a.adjacency === 'valid')).toBe(true);
   expect(initial.pose).toEqual({ x: 280, y: 230 });
-  await expect(page.locator('.phase-card')).toHaveText([/Spacing/, /Screen/, /Drive/, /Pass/]);
-  await expect(page.locator('#story-heading')).toHaveText('Stretch the defense');
+  await expect(page.locator('.phase-card')).toHaveText([/5 sets the screen/, /1 drives, 5 rolls/, /1 passes to 5/, /5 receives the ball/]);
+  await expect(page.locator('#story-heading')).toHaveText('5 sets the screen');
   await page.getByRole('button', { name: 'Play tactic', exact: true }).click();
   await expect(page.locator('.phase-card[data-phase-id="pickroll-screen"]')).toHaveAttribute('aria-current', 'step', { timeout: 5000 });
-  await expect(page.locator('#story-heading')).toHaveText('Create the opening');
+  await expect(page.locator('#story-heading')).toHaveText('1 drives, 5 rolls');
   // An editing key during playback pauses first; it must not mutate the old
   // selected keyframe while the court is displaying a later one.
   await page.locator('#court').press('ArrowRight');
@@ -41,16 +41,17 @@ test('new example tells a four-step pick and roll, playback is derived, pause se
   await expect(actor).toContainText('x 305');
 });
 
-test('light/dark and RU/EN persist, motion can pause, reduced motion stays still, desktop transport fits and mobile remains review only', async ({ page }) => {
+test('light/dark and RU/EN persist, motion can pause, reduced motion stays still and desktop transport fits', async ({ page }) => {
   await page.goto('/');
-  const piece = page.locator('.play-showcase [data-piece="offense-5"]');
-  const start = await piece.getAttribute('transform');
-  await expect.poll(() => piece.getAttribute('transform')).not.toBe(start);
+  const sceneCanvas = page.locator('.play-showcase canvas');
+  const progress = page.locator('.play-showcase .demo-progress i');
+  const start = await sceneCanvas.evaluate(canvas => (canvas as HTMLCanvasElement).toDataURL());
+  await expect.poll(() => sceneCanvas.evaluate(canvas => (canvas as HTMLCanvasElement).toDataURL())).not.toBe(start);
   await page.getByRole('button', { name: 'Pause example', exact: true }).click();
-  const stopped = await piece.getAttribute('transform');
+  const stopped = await progress.getAttribute('style');
   await page.getByRole('button', { name: 'Light theme', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-  await expect(piece).toHaveAttribute('transform', stopped!);
+  await expect(progress).toHaveAttribute('style', stopped!);
   await page.getByRole('button', { name: 'RU', exact: true }).click();
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
@@ -58,19 +59,31 @@ test('light/dark and RU/EN persist, motion can pause, reduced motion stays still
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.reload();
   await expect(page.getByRole('button', { name: 'Воспроизвести пример' })).toBeVisible();
-  const still = await piece.getAttribute('transform');
+  const still = await progress.getAttribute('style');
   await page.getByRole('button', { name: 'Светлая тема', exact: true }).click();
-  await expect(piece).toHaveAttribute('transform', still!);
+  await expect(progress).toHaveAttribute('style', still!);
   await page.setViewportSize({ width: 1265, height: 712 });
-  await page.getByRole('button', { name: 'Разобрать пик-н-ролл', exact: true }).click();
+  await page.getByRole('button', { name: 'Смотреть пример', exact: true }).click();
   await page.locator('[data-app-ready]').waitFor();
   const play = await page.getByRole('button', { name: 'Воспроизвести комбинацию', exact: true }).boundingBox();
   expect(play!.y + play!.height).toBeLessThanOrEqual(712);
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('.action-tools')).toHaveCount(0);
-  await expect(page.locator('.title-field input')).toHaveAttribute('readonly');
-  await expect(page.getByRole('button', { name: 'Воспроизвести комбинацию', exact: true })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('a touch phone remains review only with visible playback and no horizontal overflow', async ({ browser, browserName, baseURL }) => {
+  test.skip(browserName === 'firefox', 'Playwright Firefox does not emulate a mobile touch context');
+  const context = await browser.newContext({ baseURL, hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  try {
+    await page.goto(`/app/play/arena-phone-${Date.now()}/edit?lesson=1`);
+    await page.locator('[data-app-ready]').waitFor();
+    await page.getByRole('button', { name: 'RU', exact: true }).click();
+    expect(await page.evaluate(() => matchMedia('(pointer: coarse)').matches)).toBe(true);
+    await expect(page.locator('.mode-notice')).toHaveAttribute('data-responsive-mode', 'mobile');
+    await expect(page.locator('.action-tools')).toHaveCount(0);
+    await expect(page.locator('.title-field input')).toHaveAttribute('readonly');
+    await expect(page.getByRole('button', { name: 'Воспроизвести комбинацию', exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  } finally { await context.close(); }
 });
 
 test('opening a legacy local document with the new example flag never replaces its poses, actions or cues', async ({ page }) => {
@@ -94,7 +107,7 @@ test('the home scene passes accessibility checks in both themes and uses visible
   await page.goto('/');
   for (const theme of ['dark', 'light']) {
     if (await page.locator('html').getAttribute('data-theme') !== theme) await page.getByRole('button', { name: 'Light theme', exact: true }).click();
-    await expect(page.getByRole('button', { name: 'Explore the pick & roll', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Watch example', exact: true })).toBeVisible();
     await page.addScriptTag({ path: axePath });
     const violations = await page.evaluate(async () => {
       const axe = (window as typeof window & { axe: { run(): Promise<{ violations: Array<{ id: string; impact: string; nodes: Array<{ target: string[] }> }> }> } }).axe;

@@ -7,26 +7,25 @@ working product name; independent name/mark clearance remains open.
 
 **[Existing Render deployment](https://replaylab-godaylor.onrender.com)** · [Architecture](docs/ARCHITECTURE.md) · [Deployment](docs/RELEASE.md) · [Portfolio handoff](PORTFOLIO_HANDOFF.md)
 
-The Arena revision is published on the existing Render service. Hosted CI and
-public browser verification passed on 2026-10-17. Actual checks and remaining
-availability limits are recorded in
-[current verification](docs/PRODUCTION_VERIFICATION.md).
+The coach workbench adds a shared procedural 3D court to the homepage and play
+review. Exact publication state, completed checks and remaining availability
+limits are recorded in [current verification](docs/PRODUCTION_VERIFICATION.md).
 
 Баскетбольный замысел в движении: разберите готовый пик-н-ролл, измените расстановку, нарисуйте действие и покажите команде. Два тренера могут редактировать одну комбинацию, продолжать работу офлайн и после подключения явно разрешать конфликты.
 
 Local-first multiplayer editor for animated basketball plays. RU is the default; EN is available in the app. One half-court, ten players, a derived ball, 2–12 phases, four tactical actions, rich coaching cues and local-only undo.
 
-Desktop supports full authoring. Tablet supports playback, player movement and cue editing. Mobile supports playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
+Desktop supports full authoring, including compact windows with a mouse or trackpad. Touch tablets support playback, player movement and cue editing. Phones support playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
 
-![Fifth Tempo — actual Arena editor](docs/design/arena-dark-desktop-en.png)
+![Fifth Tempo — actual 3D play review](docs/design/coach-3d-watch-ru.png)
 
-[Three concepts, dark/light screens, mobile and before/after](docs/design/ARENA_REVIEW.md) · [30 seconds of the real application](docs/design/arena-motion.webm) · [Availability and verification](docs/PRODUCTION_VERIFICATION.md)
+[3D reference, real screens, mobile and before/after](docs/design/COACH_WORKBENCH_REVIEW.md) · [Prior three concepts](docs/design/ARENA_REVIEW.md) · [Availability and verification](docs/PRODUCTION_VERIFICATION.md)
 
 ## Make a play
 
-1. Choose **Explore the pick & roll** for a separate four-step example, or **Create a play** for a blank spread formation.
-2. Watch spacing → screen → drive → pass. Choose a step and move a player.
-3. Draw a cut, dribble or screen to set the next pose; draw a pass to transfer possession. A single Undo restores the whole action. Add a phase to append a copy of the final formation. Scrub or press Play.
+1. Choose **Watch example** for a separate four-step example, or **Create a play** for a blank spread formation.
+2. Watch 5 set the screen, 1 drive while 5 rolls, and 1 pass to 5 near the rim. Choose **Edit play** to switch to the overhead board and move a player.
+3. Choose a movement tool and draw from the player who performs it. A cut, dribble or screen sets their next pose; a pass transfers possession. A single Undo restores the whole action. **Add step** appends a continuation. Press Play to check it.
 4. Edits save automatically in this browser. Return home to reopen recent work. **File & backup → Recovery file** downloads a complete portable copy.
 5. Choose **Invite → Create collaborative room** to create a private shared copy.
    Open that room yourself, then send the edit or view link to a collaborator.
@@ -34,7 +33,7 @@ Desktop supports full authoring. Tablet supports playback, player movement and c
 
 ## What works
 
-- Original canvas court with pointer and keyboard authoring, 2–12 phases and four tactical actions.
+- Shared procedural 3D court and ten athletes in Watch; accurate overhead pointer and keyboard authoring in Edit, 2–12 steps and four tactical actions.
 - Deterministic path-based animation, scrubbing, presenter/follow mode and reduced-motion playback.
 - Rich per-phase coaching cues and one local undo history across text and court edits.
 - Automatic local persistence, cold offline launch, crash journal and recoverable exports.
@@ -44,14 +43,16 @@ Desktop supports full authoring. Tablet supports playback, player movement and c
 
 ## Как начать
 
-Откройте приложение и выберите **Разобрать пик-н-ролл** или
-**Создать комбинацию**. **Как пользоваться** запускает
+Откройте приложение и выберите **Смотреть пример**. Нажмите **Старт**, затем
+**Редактировать**, чтобы изменить комбинацию на схеме. **Создать комбинацию**
+начинает отдельный документ. **Как пользоваться** запускает
 знакомство на отдельной учебной копии: обозначения → перемещение → движение →
 воспроизведение → отмена → экспорт → повторное открытие. Новый пример не меняет
 старые комбинации; изменения учебной копии сохраняются в «Недавних».
 
-Оранжевые круглые O1–O5 — атака, зелёные квадратные D1–D5 — защита, жёлтый кружок —
-мяч. Пунктир обозначает передачу; стрелка — движение, поперечная черта — заслон.
+Оранжевые игроки — атака, голубые — защита. На схеме им соответствуют
+круги и квадраты; мяч показан отдельно. Пунктир обозначает передачу;
+стрелка — движение, поперечная черта — заслон.
 Отпустите указатель, чтобы завершить рисование; Escape отменяет черновик.
 Если игроки рядом, выбирайте точного игрока в списке «Расстановка».
 Удалённое действие можно вернуть через «Отменить».
@@ -65,7 +66,7 @@ Desktop supports full authoring. Tablet supports playback, player movement and c
 текущего документа. Ссылки **Редактирование** и **Только просмотр** дают разные
 права каждому, кто ими владеет. Сохраните их приватно: восстановления через
 аккаунт нет. Локальный оригинал и комната затем живут отдельно.
-На телефоне доступны просмотр, фазы и воспроизведение; полное редактирование —
+На телефоне доступны просмотр, шаги и воспроизведение; полное редактирование —
 на компьютере, на планшете — перемещение игроков и подсказки.
 
 ## Stack

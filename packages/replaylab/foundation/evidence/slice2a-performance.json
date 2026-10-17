@@ -1,8 +1,10 @@
 {
-  "generatedAt": "2026-10-17T19:03:52.248Z",
+  "generatedAt": "2026-10-17T20:53:30.994Z",
   "verdict": "PASS",
   "profile": {
     "id": "replaylab-render-v1",
+    "presentation": "plan",
+    "interaction": "pointer drag",
     "target": "Playwright 1.58.2 pinned Chromium; dedicated 4-vCPU/8-GB CI runner",
     "browserVersion": "145.0.7632.6",
     "viewport": {
@@ -27,26 +29,33 @@
     "actors": 10,
     "derivedBall": 1,
     "actionsPerTransition": 30,
-    "note": "Slice 2A maximum path projection fixture for one visible transition."
+    "maximumPathPoints": 2,
+    "note": "Slice 2A plan maximum path projection fixture for one visible transition."
   },
   "metrics": {
     "frames": 1801,
-    "elapsedMs": 30014.9,
-    "framesPerSecond": 60.003531579315606,
+    "elapsedMs": 30014.500000002983,
+    "framesPerSecond": 60.00433123989475,
     "frameIntervalP95Ms": 16.700000000004366,
     "inputSamples": 1801,
-    "inputToPaintP95Ms": 17.5,
-    "localOpenMs": 26.799999997019768,
+    "inputToPaintP95Ms": 17.599999994039536,
+    "localOpenMs": 37.79999999701977,
     "longTaskCount": 0,
     "longestTaskMs": 0,
     "gfxRenders": 1802,
-    "reactRendersDuringPointerMoves": 0
+    "reactRendersDuringPointerMoves": 0,
+    "reactRendersDuringPlayback": null,
+    "heapBeforeBytes": 10000000,
+    "heapAfterBytes": 10000000,
+    "heapDeltaBytes": 0
   },
   "budgets": {
     "minimumFramesPerSecond": 55,
     "maximumInputToPaintP95Ms": 50,
     "maximumLocalOpenMs": 1500,
-    "maximumReactRendersDuringPointerMoves": 0
+    "maximumReactRendersDuringPointerMoves": 0,
+    "maximumReactRendersDuringPlayback": 0,
+    "maximumHeapGrowthBytes": 67108864
   },
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36"
 }

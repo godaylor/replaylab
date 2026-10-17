@@ -113,7 +113,7 @@ test('action and cue editor pass axe with reduced motion and expose semantic evi
   const reducedMotion = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   expect(reducedMotion).toBe(true);
   const ariaSnapshot = await page.locator('.app-shell').ariaSnapshot();
-  expect(ariaSnapshot).toContain('Actions from this phase');
+  expect(ariaSnapshot).toContain('Movement to the next step');
   expect(ariaSnapshot).toContain('Cue');
   mkdirSync(evidenceRoot, { recursive: true });
   writeFileSync(

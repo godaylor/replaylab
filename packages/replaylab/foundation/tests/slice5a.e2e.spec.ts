@@ -72,7 +72,7 @@ test('two independent browser clients synchronize pose and cue both ways; read c
     await expect(readPage.locator('#network-status')).toHaveAttribute('data-network-state', 'synced');
     await readPage.waitForFunction(() => window.replayLabApp!.facade.getCue() === 'Reverse through the elbow.');
     await expect(readPage.locator('.title-field input')).toHaveAttribute('readonly', '');
-    await expect(readPage.getByRole('button', { name: /Add phase/ })).toBeDisabled();
+    await expect(readPage.locator('.timeline > .section-heading-row button')).toBeDisabled();
     const readState = await readPage.evaluate(() => {
       const app = window.replayLabApp!;
       let commandBlocked = false;

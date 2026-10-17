@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-17T21:03:45.188Z",
+  "platform": {
+    "os": "win32",
+    "release": "10.0.26200",
+    "architecture": "x64",
+    "node": "v22.15.1"
+  },
+  "playwright": "1.58.2",
+  "expected": {
+    "name": "firefox",
+    "revision": "1509",
+    "installByDefault": true,
+    "browserVersion": "146.0.1",
+    "title": "Firefox"
+  },
+  "executable": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\coach-browsers\\firefox-1509\\firefox\\firefox.exe",
+  "exactPinnedRevisionPresent": true,
+  "defaultExactRevisionPresent": false,
+  "earlierReproductions": [
+    {
+      "setup": "Fresh isolated browser/context with the normal locale storageState; no application navigation",
+      "error": "browser.newContext: Error setting storage state: Cannot read properties of undefined (reading '_page')"
+    },
+    {
+      "setup": "Fresh isolated browser/context without storageState; newPage only; no application navigation",
+      "error": "browserContext.newPage: Cannot read properties of undefined (reading '_page')"
+    }
+  ],
+  "finalBlankRetry": {
+    "setup": "Normal pinned Firefox launch, newContext(), newPage(); only about:blank if page creation succeeds",
+    "result": "BLOCKED",
+    "error": "browserContext.newPage: Cannot read properties of undefined (reading '_page')"
+  },
+  "assessment": "Firefox page initialization blocked this run before application navigation. Historical passing Firefox results do not establish this revision passed.",
+  "actualBrowserVersion": "146.0.1",
+  "webkitStats": {
+    "startTime": "2026-10-17T20:59:00.683Z",
+    "duration": 152181.045,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "firefoxStats": {
+    "startTime": "2026-10-17T21:01:45.074Z",
+    "duration": 96448.571,
+    "expected": 5,
+    "skipped": 3,
+    "unexpected": 18,
+    "flaky": 0
+  }
+}

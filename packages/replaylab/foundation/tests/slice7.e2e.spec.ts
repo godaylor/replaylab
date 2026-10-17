@@ -52,23 +52,29 @@ test('unknown saved locale falls back to Russian and RU/EN selection persists wi
   await expect(page.getByRole('heading', { name: 'Тактическая доска' })).toBeVisible();
 });
 
-test('desktop, tablet, and mobile expose only their documented authoring capabilities', async ({ page }) => {
+test('desktop, touch tablet, and touch mobile expose only their documented authoring capabilities', async ({ page: desktopPage, browser, browserName, baseURL }) => {
+  test.skip(browserName === 'firefox', 'Playwright Firefox does not emulate a mobile touch context');
   const url = appUrl('responsive');
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await openApp(page, url);
-  await expect(page.locator('[data-responsive-mode="desktop"]')).toBeVisible();
-  await expect(page.getByRole('toolbar', { name: 'Court tools' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Add phase' })).toBeEnabled();
+  await desktopPage.setViewportSize({ width: 1440, height: 900 });
+  await openApp(desktopPage, url);
+  await expect(desktopPage.locator('.mode-notice')).toHaveAttribute('data-responsive-mode', 'desktop');
+  await expect(desktopPage.getByRole('toolbar', { name: 'Court tools' })).toBeVisible();
+  await expect(desktopPage.getByRole('button', { name: 'Add step' })).toBeEnabled();
 
-  await page.setViewportSize({ width: 900, height: 900 });
-  await expect(page.locator('[data-responsive-mode="tablet"]')).toBeVisible();
+  const touch = await browser.newContext({ baseURL, hasTouch: true, isMobile: true, viewport: { width: 900, height: 900 } });
+  await touch.addInitScript(() => localStorage.setItem('replaylab:locale', 'en'));
+  const page = await touch.newPage();
+  try {
+  await openApp(page, url);
+  expect(await page.evaluate(() => matchMedia('(pointer: coarse)').matches)).toBe(true);
+  await expect(page.locator('.mode-notice')).toHaveAttribute('data-responsive-mode', 'tablet');
   await expect(page.getByRole('toolbar', { name: 'Court tools' })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'Add phase' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Add step' })).toBeDisabled();
   await expect(page.getByRole('textbox', { name: 'Cue block 1 text' })).toBeEditable();
   await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveAttribute('readonly', '');
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('[data-responsive-mode="mobile"]')).toBeVisible();
+  await expect(page.locator('.mode-notice')).toHaveAttribute('data-responsive-mode', 'mobile');
   await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Cue block 1 text' })).toHaveAttribute('readonly', '');
   await expect(page.getByRole('button', { name: 'Play tactic' })).toBeVisible();
@@ -95,6 +101,7 @@ test('desktop, tablet, and mobile expose only their documented authoring capabil
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(page.getByRole('button', { name: 'Как пользоваться', exact: true })).toBeVisible();
+  } finally { await touch.close(); }
 });
 
 test('portfolio route retains its runbook and the repeatable guide does not auto-start or change real work', async ({ page }) => {

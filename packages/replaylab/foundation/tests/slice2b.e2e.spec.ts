@@ -31,9 +31,9 @@ test('keyboard lift/move/drop/cancel restores focus, announces targets, and show
   const moved = page.locator(`[data-phase-id="${setup.ids[1]}"]`);
   await moved.focus();
   await moved.press('Space');
-  await expect(page.locator('#live-region')).toContainText('Lifted phase 2');
+  await expect(page.locator('#live-region')).toContainText('Lifted step 2');
   await moved.press('ArrowRight');
-  await expect(page.locator('#live-region')).toContainText('after phase 3');
+  await expect(page.locator('#live-region')).toContainText('after step 3');
   await moved.press('Escape');
   expect(await timelineIds(page)).toEqual(setup.ids);
   await expect(moved).toBeFocused();
@@ -48,7 +48,7 @@ test('keyboard lift/move/drop/cancel restores focus, announces targets, and show
 
   await page.locator(`[data-phase-id="${setup.ids[0]}"]`).click();
   const action = page.locator(`[data-action-id="${setup.actionId}"]`);
-  await expect(action).toContainText('Needs adjacency repair');
+  await expect(action).toContainText('Reconnect the action to adjacent steps');
   const actionAfter = await page.evaluate(id => {
     const action = window.replayLabApp!.facade.snapshot.actions.find(item => item.id === id)!;
     return { id: action.id, actorId: action.actorId, targetActorId: action.targetActorId, path: action.path };
@@ -59,7 +59,7 @@ test('keyboard lift/move/drop/cancel restores focus, announces targets, and show
   await page.getByRole('button', { name: /Undo/ }).click();
   expect(await timelineIds(page)).toEqual(setup.ids);
   await page.locator(`[data-phase-id="${setup.ids[0]}"]`).click();
-  await expect(action).not.toContainText('Needs adjacency repair');
+  await expect(action).not.toContainText('Reconnect the action to adjacent steps');
 });
 
 test('pointer drag commits the same final order as keyboard and restores moved-card focus', async ({ page }) => {

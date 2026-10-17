@@ -13,6 +13,7 @@ import type {
   Team,
 } from './domain';
 import type { PlaybackFrame } from './playback';
+import { drawCourtScene3D, hitTestCourtScene3D } from './court-scene-3d';
 
 export type ProjectionEntityId = ActorId | 'ball';
 
@@ -70,6 +71,8 @@ class ReplayActionProjectionElement extends GfxLocalElementModel {
 }
 
 type ProjectionOptions = {
+  presentation?: 'plan' | '3d';
+  motionReduced?: boolean;
   draft?: { entityId: ProjectionEntityId; pose: Pose } | null;
   selectedId?: ProjectionEntityId | null;
   selectedActionId?: string | null;
@@ -94,6 +97,9 @@ export class ReplayLabGfxAdapter {
   private readonly floor = document.createElement('canvas');
   private floorKey = '';
   private readonly appearanceObserver: MutationObserver;
+  private readonly forcedColors = window.matchMedia('(forced-colors: active)');
+  private readonly reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  private readonly onMediaChange = () => this.scheduleRender();
 
   constructor(
     private readonly surface: SurfaceBlockModel,
@@ -103,6 +109,8 @@ export class ReplayLabGfxAdapter {
     this.floorImage.src = new URL('./assets/arena-floor.jpg', import.meta.url).href;
     this.appearanceObserver = new MutationObserver(() => { this.floorKey = ''; this.scheduleRender(); });
     this.appearanceObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    this.forcedColors.addEventListener('change', this.onMediaChange);
+    this.reducedMotion.addEventListener('change', this.onMediaChange);
   }
 
   project(
@@ -172,6 +180,18 @@ export class ReplayLabGfxAdapter {
     );
   }
 
+  hitTestPresentation(x: number, y: number): ProjectionEntityId | null {
+    if (this.latestOptions.presentation !== '3d' || this.forcedColors.matches) return this.hitTest(x, y);
+    if (!this.latestSnapshot) return null;
+    return hitTestCourtScene3D(this.canvas.width, this.canvas.height, {
+      snapshot: this.latestSnapshot,
+      phaseIndex: this.latestPhaseIndex,
+      frame: this.latestOptions.playback,
+      selectedId: this.latestOptions.selectedId,
+      motionReduced: this.latestOptions.motionReduced ?? this.reducedMotion.matches,
+    }, x, y);
+  }
+
   renderNow() {
     if (this.animationFrame !== null) {
       cancelAnimationFrame(this.animationFrame);
@@ -182,6 +202,8 @@ export class ReplayLabGfxAdapter {
 
   destroy() {
     this.appearanceObserver.disconnect();
+    this.forcedColors.removeEventListener('change', this.onMediaChange);
+    this.reducedMotion.removeEventListener('change', this.onMediaChange);
     this.floorImage.onload = null;
     if (this.animationFrame !== null) cancelAnimationFrame(this.animationFrame);
     this.animationFrame = null;
@@ -244,6 +266,17 @@ export class ReplayLabGfxAdapter {
     if (!snapshot || !phase || !context) return;
     const width = this.canvas.width;
     const height = this.canvas.height;
+    if (this.latestOptions.presentation === '3d' && !this.forcedColors.matches) {
+      drawCourtScene3D(context, width, height, {
+        snapshot, phaseIndex: this.latestPhaseIndex,
+        frame: this.latestOptions.playback,
+        selectedId: this.latestOptions.selectedId,
+        theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
+        motionReduced: this.latestOptions.motionReduced ?? this.reducedMotion.matches,
+      });
+      this.updateRenderMetadata('3d');
+      return;
+    }
     context.clearRect(0, 0, width, height);
     const light = document.documentElement.dataset.theme === 'light';
     const floorKey = `${width}:${height}:${light}:${this.floorImage.complete}`;
@@ -314,7 +347,12 @@ export class ReplayLabGfxAdapter {
       this.drawBall(context, ball, this.latestOptions.selectedId === 'ball');
     }
 
+    this.updateRenderMetadata('plan');
+  }
+
+  private updateRenderMetadata(presentation: 'plan' | '3d') {
     this.renderCountValue += 1;
+    this.canvas.dataset.presentation = presentation;
     this.canvas.dataset.projection = 'replaylab-gfx-local-elements';
     this.canvas.dataset.projectionCount = String(this.projectionCount);
     this.canvas.dataset.renderCount = String(this.renderCountValue);
@@ -442,11 +480,11 @@ export class ReplayLabGfxAdapter {
     context.shadowBlur = 9;
     context.shadowOffsetY = 5;
     const enamel = context.createRadialGradient(x - 7, y - 11, 1, x, y, 24);
-    enamel.addColorStop(0, team === 'offense' ? '#ffa45a' : '#507a76');
-    enamel.addColorStop(.5, team === 'offense' ? '#f26722' : '#234c4a');
-    enamel.addColorStop(1, team === 'offense' ? '#ae3512' : '#0d2a2b');
+    enamel.addColorStop(0, team === 'offense' ? '#ffa45a' : '#83b9d6');
+    enamel.addColorStop(.5, team === 'offense' ? '#f26722' : '#386b90');
+    enamel.addColorStop(1, team === 'offense' ? '#ae3512' : '#142f4b');
     context.fillStyle = enamel;
-    context.strokeStyle = team === 'offense' ? '#ffcf93' : '#a4d2c8';
+    context.strokeStyle = team === 'offense' ? '#ffcf93' : '#c8e6f2';
     context.lineWidth = 2;
     context.beginPath();
     if (team === 'offense') {
@@ -462,7 +500,7 @@ export class ReplayLabGfxAdapter {
     context.font = '700 21px Bahnschrift, Arial Narrow, system-ui';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.strokeStyle = '#16312c'; context.lineWidth = 1.4;
+    context.strokeStyle = team === 'offense' ? '#16312c' : '#102a43'; context.lineWidth = 1.4;
     context.strokeText(String(number), x, y + 0.5);
     context.fillText(String(number), x, y + 0.5);
     context.restore();

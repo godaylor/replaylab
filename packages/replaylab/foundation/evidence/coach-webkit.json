@@ -65,6 +65,396 @@
   },
   "suites": [
     {
+      "title": "arena-authoring.pw.spec.ts",
+      "file": "arena-authoring.pw.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "resolved matching paths use deterministic distance interpolation and keep the ball with its holder without mutating the snapshot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:03.118Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-e4556e00b2a2a5e8033f",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "stale, archived, competing and unresolved paths defer to canonical poses; zero-length segments stay finite",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:03.157Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-74dee962546f79591916",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "interactive endpoints undo with the action, preserve concurrent remote poses/possession, and reject invalid drafts before writing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1971,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:03.180Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ecc20a98b35b0fc5e185-5c2a0b169fffaf191a67",
+          "file": "arena-authoring.pw.spec.ts",
+          "line": 40,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "arena.e2e.spec.ts",
+      "file": "arena.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "new example tells a four-step pick and roll, playback is derived, pause selects the visible step, reopen preserves edits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7225,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:05.244Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-6fcf611bed0e31975a9d",
+          "file": "arena.e2e.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "light/dark and RU/EN persist, motion can pause, reduced motion stays still and desktop transport fits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6138,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:12.477Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-a0aa3369868daab5bf02",
+          "file": "arena.e2e.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "a touch phone remains review only with visible playback and no horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3971,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:18.625Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-c2d48119c2137936096c",
+          "file": "arena.e2e.spec.ts",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "opening a legacy local document with the new example flag never replaces its poses, actions or cues",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4568,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:22.604Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-70d0642bbf3907bbb41a",
+          "file": "arena.e2e.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "the home scene passes accessibility checks in both themes and uses visible labels as accessible names",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3069,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:27.184Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-067dfa23b26fc72fa169",
+          "file": "arena.e2e.spec.ts",
+          "line": 105,
+          "column": 1
+        },
+        {
+          "title": "action dialog ru: validation stays open, Tab is contained, a pass updates possession and one undo restores it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5244,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:30.262Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-42ca1f5594dc2c43294c",
+          "file": "arena.e2e.spec.ts",
+          "line": 120,
+          "column": 36
+        },
+        {
+          "title": "action dialog en: validation stays open, Tab is contained, a pass updates possession and one undo restores it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5007,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:35.515Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-c7951a1a340c8281f422",
+          "file": "arena.e2e.spec.ts",
+          "line": 120,
+          "column": 36
+        },
+        {
+          "title": "recovery import failure is visible in RU/EN, preserves the original bytes and permits the same file to be retried",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T20:59:40.534Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-40da090ce0d568982e7b",
+          "file": "arena.e2e.spec.ts",
+          "line": 152,
+          "column": 1
+        }
+      ]
+    },
+    {
       "title": "coach-journey.e2e.spec.ts",
       "file": "coach-journey.e2e.spec.ts",
       "column": 0,
@@ -86,12 +476,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5575,
+                  "duration": 9181,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:10.392Z",
+                  "startTime": "2026-10-17T20:59:44.874Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +510,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5537,
+                  "duration": 9235,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:16.039Z",
+                  "startTime": "2026-10-17T20:59:54.061Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -154,12 +544,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1946,
+                  "duration": 3942,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:21.585Z",
+                  "startTime": "2026-10-17T21:00:03.304Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -169,7 +559,7 @@
           ],
           "id": "fec2aa2f1026abc7a067-0fcd5c10a3841748b932",
           "file": "coach-journey.e2e.spec.ts",
-          "line": 51,
+          "line": 58,
           "column": 1
         },
         {
@@ -188,12 +578,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3139,
+                  "duration": 5339,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:23.543Z",
+                  "startTime": "2026-10-17T21:00:07.254Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -203,7 +593,261 @@
           ],
           "id": "fec2aa2f1026abc7a067-94ab6384a618e4a504d9",
           "file": "coach-journey.e2e.spec.ts",
-          "line": 76,
+          "line": 83,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "coach-workbench.e2e.spec.ts",
+      "file": "coach-workbench.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a compact fine-pointer desktop keeps full authoring and visible undo at 700, 900 and 1024 pixels",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4433,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:12.631Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-8c90da9f6bfdb92cbced",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "drawing starts from the touched player rather than the old selection and one undo restores action and destination",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4136,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:17.072Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-c4daa8589cf472b7b3a9",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "watch-to-edit ru: 3D playback is derived and editing restores the plan view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7174,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:21.214Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-423ec3f9dd6519630497",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 66,
+          "column": 36
+        },
+        {
+          "title": "watch-to-edit en: 3D playback is derived and editing restores the plan view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7181,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:28.398Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcecae152d1652592e97-6c48448410f6b921da9c",
+          "file": "coach-workbench.e2e.spec.ts",
+          "line": 66,
+          "column": 36
+        }
+      ]
+    },
+    {
+      "title": "court-scene-3d.pw.spec.ts",
+      "file": "court-scene-3d.pw.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "3D camera keeps canonical bounds and full-height actors inside desktop and narrow views",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 51,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:35.598Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1bf5e8e6462ef2ed1365-2db7577d073826a5de24",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "3D watch selection uses displayed player/ball geometry without changing canonical poses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:35.655Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1bf5e8e6462ef2ed1365-9854b1c9ea71eea07abc",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "ball flight height is deterministic and reduced motion disables cosmetic dribbling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:35.669Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1bf5e8e6462ef2ed1365-631960f433fa35171fe9",
+          "file": "court-scene-3d.pw.spec.ts",
+          "line": 45,
           "column": 1
         }
       ]
@@ -230,12 +874,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 8741,
+                  "duration": 11932,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:26.726Z",
+                  "startTime": "2026-10-17T21:00:35.707Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -249,7 +893,7 @@
           "column": 1
         },
         {
-          "title": "RU and EN home, editor and guide reflow; mobile review, missing target, reduced motion",
+          "title": "RU and EN home, editor and guide reflow across compact and wide desktop viewports",
           "ok": true,
           "tags": [],
           "tests": [
@@ -264,12 +908,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4079,
+                  "duration": 6408,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:35.475Z",
+                  "startTime": "2026-10-17T21:00:47.646Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -277,9 +921,43 @@
               "status": "expected"
             }
           ],
-          "id": "84952e87915267949206-2ced6831f9098ada1d66",
+          "id": "84952e87915267949206-3c98db6f88f4cd1a45a6",
           "file": "practice.e2e.spec.ts",
-          "line": 65,
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "touch mobile guide supports review and reduced motion; tablet guide handles unavailable drawing controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4230,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T21:00:54.063Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-3f52206e7b724f3cabac",
+          "file": "practice.e2e.spec.ts",
+          "line": 92,
           "column": 1
         },
         {
@@ -298,12 +976,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2311,
+                  "duration": 5995,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T00:09:39.565Z",
+                  "startTime": "2026-10-17T21:00:58.298Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -313,7 +991,7 @@
           ],
           "id": "84952e87915267949206-a2b4e16e5a9a3a431148",
           "file": "practice.e2e.spec.ts",
-          "line": 99,
+          "line": 116,
           "column": 1
         }
       ]
@@ -321,9 +999,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-17T00:09:09.101Z",
-    "duration": 33023.824,
-    "expected": 7,
+    "startTime": "2026-10-17T20:59:00.683Z",
+    "duration": 152181.045,
+    "expected": 26,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

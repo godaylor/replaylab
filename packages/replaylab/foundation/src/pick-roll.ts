@@ -45,5 +45,7 @@ export function pickRollCopy(locale: 'ru' | 'en') {
 
 export function exampleStepName(id: string, locale: 'ru' | 'en') {
   const index = PICK_ROLL_IDS.indexOf(id as typeof PICK_ROLL_IDS[number]);
-  return index < 0 ? null : pickRollCopy(locale).steps[index];
+  return index < 0 ? null : (locale === 'ru'
+    ? ['5 ставит заслон', '1 проходит, 5 открывается', '1 передаёт 5', '5 получает мяч']
+    : ['5 sets the screen', '1 drives, 5 rolls', '1 passes to 5', '5 receives the ball'])[index];
 }

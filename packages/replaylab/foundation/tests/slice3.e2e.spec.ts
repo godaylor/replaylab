@@ -48,7 +48,7 @@ test('play, pause, scrub, step, and presentation remain local and restore focus'
   const scrubber = page.getByRole('slider', { name: 'Playhead' });
   await scrubber.fill('1200');
   await expect(canvas).toHaveAttribute('data-playback-phase-index', '1');
-  await page.getByRole('button', { name: 'Previous phase' }).click();
+  await page.getByRole('button', { name: 'Previous step' }).click();
   await expect(canvas).toHaveAttribute('data-playback-phase-index', '0');
 
   const present = page.getByRole('button', { name: 'Present' });

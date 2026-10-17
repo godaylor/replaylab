@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useI18n } from './i18n';
 
 export function openPractice(tour = false) {
-  location.assign(`/app/play/practice-${crypto.randomUUID()}/edit?lesson=1${tour ? '&tour=1' : ''}`);
+  location.assign(`/app/play/practice-${crypto.randomUUID()}/edit?lesson=1${tour ? '&tour=1' : '&watch=1'}`);
 }
 
 export function CourtLegend() {
   const { locale } = useI18n();
   return <ul className="court-legend" aria-label={locale === 'ru' ? 'Обозначения площадки' : 'Court legend'}>
-    <li><span className="token token-offense">O1</span>{locale === 'ru' ? 'Атака' : 'Offense'}</li>
-    <li><span className="token token-defense">D1</span>{locale === 'ru' ? 'Защита' : 'Defense'}</li>
+    <li><span className="token token-offense">1</span>{locale === 'ru' ? 'Атака' : 'Offense'}</li>
+    <li><span className="token token-defense">1</span>{locale === 'ru' ? 'Защита' : 'Defense'}</li>
     <li><span className="token token-ball" aria-hidden="true">●</span>{locale === 'ru' ? 'Мяч · у владельца' : 'Ball · with its holder'}</li>
     <li>{locale === 'ru' ? '→ движение · ⇢ передача · ⊥ заслон' : '→ movement · ⇢ pass · ⊥ screen'}</li>
   </ul>;
@@ -25,18 +25,18 @@ export function PracticeGuide({ mode }: { mode: 'desktop' | 'tablet' | 'mobile' 
   const trigger = useRef<HTMLButtonElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const steps = mode === 'mobile' ? [
-    { title: ru ? 'Прочитайте площадку' : 'Read the court', body: ru ? 'O — атака, D — защита, жёлтый кружок — мяч. На телефоне доступны просмотр и воспроизведение; редактируйте на компьютере.' : 'O is offense, D is defense, the yellow circle is the ball. Phones support review and playback; edit on desktop.', target: '#court' },
-    { title: ru ? 'Запустите комбинацию' : 'Play the combination', body: ru ? 'Нажмите «Старт» под площадкой. Та же кнопка «Пауза» останавливает воспроизведение.' : 'Use Play below the court. The same button becomes Pause to stop playback.', target: '.playback-primary' },
-    { title: ru ? 'Прочитайте подсказку' : 'Read the coaching cue', body: ru ? 'Выбирайте фазы, чтобы читать замысел тренера. Просмотр не изменяет комбинацию.' : 'Choose phases to read the coach’s intent. Reviewing does not change the play.', target: '.phase-card' },
+    { title: ru ? 'Кто где играет' : 'Who is where', body: ru ? 'Оранжевые игроки атакуют, светлые защищаются. В каждой команде номера от 1 до 5. На телефоне можно смотреть комбинацию; редактируйте на компьютере.' : 'Orange players attack; light players defend. Each team has numbers 1 to 5. Review on your phone and edit on a computer.', target: '#court' },
+    { title: ru ? 'Запустите комбинацию' : 'Play the combination', body: ru ? 'Нажмите «Старт» под площадкой. Чтобы остановиться, нажмите «Пауза».' : 'Press Play below the court. Press Pause to stop.', target: '.playback-primary' },
+    { title: ru ? 'Посмотрите каждый шаг' : 'Review each step', body: ru ? 'Выберите шаг под площадкой: увидите позиции игроков и заметку тренера.' : 'Select a step below the court to see player positions and the coach’s note.', target: '.phase-card' },
   ] : [
-    { title: ru ? 'Прочитайте площадку' : 'Read the court', body: ru ? 'O1–O5 атакуют, D1–D5 защищаются. Жёлтый кружок — мяч у владельца. Линии показывают действие между двумя соседними фазами.' : 'O1–O5 attack, D1–D5 defend. The yellow circle is the holder’s ball. Lines describe an action between adjacent phases.', target: '#court' },
-    { title: ru ? 'Переместите игрока' : 'Move a player', body: ru ? 'Выберите O1 в «Расстановке» и нажмите стрелку вправо. Можно также перетащить игрока. Список помогает выбрать игрока, когда значки рядом.' : 'Choose O1 in Lineup and press Right Arrow. You can also drag a player. Use the list when tokens overlap.', target: '[data-actor-id="offense-1"]' },
-    { title: ru ? 'Добавьте движение' : 'Add movement', body: mode === 'tablet' ? (ru ? 'Рисование доступно на компьютере. На планшете можно перемещать игроков и редактировать подсказки; пропустите этот шаг.' : 'Draw paths on desktop. On tablet, reposition players and edit cues; skip this step.') : (ru ? 'В первой фазе выберите «Рывок», проведите линию на площадке и отпустите указатель. Escape отменяет черновик. «Действие с клавиатуры…» создаёт тот же тип движения без рисования.' : 'In the first phase, choose Cut, draw on the court, then release to finish. Escape cancels the draft. Keyboard action… creates the same movement without drawing.'), target: '.action-tools button' },
-    { title: ru ? 'Проиграйте' : 'Play it back', body: ru ? 'Нажмите «Старт». Движение показывает переход между фазами и не меняет сохранённую расстановку.' : 'Press Play. Playback shows the transition between phases without changing the saved formation.', target: '.playback-primary' },
-    { title: ru ? 'Остановите' : 'Pause', body: ru ? 'Нажмите «Пауза». Если комбинация уже закончилась, она остановится сама.' : 'Press Pause. If the play has already ended, playback stops automatically.', target: '.playback-primary' },
-    { title: ru ? 'Отмените изменение' : 'Undo your edit', body: ru ? 'Нажмите «Отменить» вверху. Отменяется последнее ваше изменение, а не воспроизведение. «Повторить» возвращает его.' : 'Press Undo at the top. It undoes your last edit, not playback. Redo restores the edit.', target: '.history-controls button' },
-    { title: ru ? 'Сохраните переносимую копию' : 'Keep a portable copy', body: ru ? 'Изменения сохраняются в этом браузере. «Файл восстановления» скачивает полную копию; на другом устройстве откройте её через «Открыть восстановление…». Обычный JSON предназначен для чтения, не для импорта.' : 'Edits are saved in this browser. Recovery file downloads a full copy; on another device use Open recovery…. Regular JSON is for inspection, not import.', target: '#export-recovery' },
-    { title: ru ? 'Откройте снова' : 'Reopen the play', body: ru ? 'Завершите знакомство, нажмите «Пятый темп» и найдите комбинацию в «Недавних». Она сохранит изменения. Новый пример создаёт отдельную копию.' : 'Finish the guide, go home with Fifth Tempo and find the play in Recent plays. Your edits remain. A new example creates a separate copy.', target: '.brand' },
+    { title: ru ? 'Кто где играет' : 'Who is where', body: ru ? 'Оранжевые игроки атакуют, светлые защищаются. В каждой команде номера от 1 до 5. Стрелки показывают движение к следующему шагу.' : 'Orange players attack; light players defend. Each team has numbers 1 to 5. Arrows show movement to the next step.', target: '#court' },
+    { title: ru ? 'Переместите игрока' : 'Move a player', body: ru ? 'Перетащите игрока на площадке. С клавиатуры: выберите первого атакующего в «Расстановке» и нажмите стрелку вправо.' : 'Drag a player on the court. With a keyboard, select the first offensive player in Lineup and press Right Arrow.', target: '[data-actor-id="offense-1"]' },
+    { title: ru ? 'Добавьте движение' : 'Add movement', body: mode === 'tablet' ? (ru ? 'На сенсорном экране перемещайте игроков и редактируйте заметки. Для рисования нужна мышь или трекпад; этот шаг можно пропустить.' : 'On a touchscreen, move players and edit notes. Drawing needs a mouse or trackpad; you can skip this step.') : (ru ? 'Откройте шаг 1, выберите «Рывок» и проведите линию от игрока к цели. Escape отменяет. Без мыши используйте «Действие с клавиатуры…».' : 'Open step 1, choose Cut and draw from a player to the destination. Escape cancels. Without a mouse, use Keyboard action…. '), target: '.action-tools button' },
+    { title: ru ? 'Проиграйте' : 'Play it back', body: ru ? 'Нажмите «Старт» и посмотрите, как игроки переходят к следующему шагу.' : 'Press Play to see players move to the next step.', target: '.playback-primary' },
+    { title: ru ? 'Остановите' : 'Pause', body: ru ? 'Нажмите «Пауза», чтобы рассмотреть позиции игроков.' : 'Press Pause to inspect player positions.', target: '.playback-primary' },
+    { title: ru ? 'Отмените изменение' : 'Undo your edit', body: ru ? '«Отменить» вверху убирает ваше последнее изменение. «Повторить» возвращает его.' : 'Undo at the top removes your last edit. Redo restores it.', target: '.history-controls button' },
+    { title: ru ? 'Перенесите комбинацию' : 'Move the play to another device', body: ru ? 'Изменения сохраняются автоматически. Для другого устройства скачайте «Файл восстановления» и откройте его через «Открыть восстановление…».' : 'Edits save automatically. For another device, download a Recovery file and open it using Open recovery….', target: '#export-recovery' },
+    { title: ru ? 'Откройте снова' : 'Reopen the play', body: ru ? 'Нажмите «Пятый темп» и откройте комбинацию в «Недавних». Ваши изменения сохранятся.' : 'Go home with Fifth Tempo and open the play in Recent plays. Your edits remain.', target: '.brand' },
   ];
   const current = step === null ? null : steps[Math.min(step, steps.length - 1)]!;
   const close = () => { setStep(null); trigger.current?.focus(); };
@@ -66,7 +66,7 @@ export function PracticeGuide({ mode }: { mode: 'desktop' | 'tablet' | 'mobile' 
   }}>
     <div className="practice-heading">
       <button ref={trigger} className="button" onClick={() => practice ? setStep(step === null ? 0 : null) : openPractice(true)}>{ru ? 'Как пользоваться' : 'How to use'}</button>
-      <p>{practice ? (ru ? 'Учебный пример · изменения сохраняются автоматически.' : 'Practice play · your edits save automatically.') : (ru ? 'Знакомство откроет отдельный учебный пример.' : 'The guide opens a separate practice play.')}</p>
+      <p>{practice ? (ru ? 'Изменения сохраняются автоматически.' : 'Edits save automatically.') : (ru ? 'Откроется отдельный пример.' : 'Opens a separate example.')}</p>
     </div>
     {current && <div className="practice-steps" role="region" aria-label={ru ? 'Пошаговое знакомство' : 'Step-by-step guide'}>
       <h2 ref={heading} tabIndex={-1}>{Math.min(step!, steps.length - 1) + 1} / {steps.length} · {current.title}</h2>

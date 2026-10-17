@@ -67,7 +67,7 @@ test('isolated practice: move, draw, play, undo, archive, export, reopen and gui
   await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeFocused();
 });
 
-test('RU and EN home, editor and guide reflow; mobile review, missing target, reduced motion', async ({ page }) => {
+test('RU and EN home, editor and guide reflow across compact and wide desktop viewports', async ({ page }) => {
   test.setTimeout(120_000);
   const widths = [320, 360, 390, 430, 649, 651, 768, 849, 851, 1024, 1179, 1181, 1280, 1440, 1920, 2560, 3840, 5120, 7680];
   for (const language of ['RU', 'EN']) {
@@ -87,30 +87,42 @@ test('RU and EN home, editor and guide reflow; mobile review, missing target, re
   }
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.screenshot({ path: 'evidence/v3-guide-desktop.png', fullPage: true });
-  await page.setViewportSize({ width: 320, height: 800 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(page.locator('.action-tools')).toHaveCount(0);
-  await expect(page.locator('.title-field input')).toHaveAttribute('readonly');
-  await page.getByRole('region', { name: 'Step-by-step guide' }).getByRole('button', { name: 'Next', exact: true }).click();
-  await page.getByRole('button', { name: 'Play tactic', exact: true }).click();
-  await page.screenshot({ path: 'evidence/v3-mobile-review.png', fullPage: true });
-  await page.setViewportSize({ width: 768, height: 900 });
-  const guide = page.getByRole('region', { name: 'Step-by-step guide' });
-  await guide.getByRole('button', { name: 'Next', exact: true }).click();
-  await guide.getByRole('button', { name: 'Go to control' }).click();
-  await expect(guide.getByRole('status')).toContainText('unavailable');
-  await guide.getByRole('button', { name: 'Skip', exact: true }).click();
+});
+
+test('touch mobile guide supports review and reduced motion; tablet guide handles unavailable drawing controls', async ({ browser, browserName, baseURL }) => {
+  test.skip(browserName === 'firefox', 'Playwright Firefox does not emulate a mobile touch context');
+  const context = await browser.newContext({ baseURL, hasTouch: true, isMobile: true, viewport: { width: 320, height: 800 } });
+  await context.addInitScript(() => localStorage.setItem('replaylab:locale', 'en'));
+  const page = await context.newPage();
+  try {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/app/play/practice-touch-guide-${Date.now()}/edit?lesson=1&tour=1`);
+    await page.locator('[data-app-ready]').waitFor();
+    expect(await page.evaluate(() => matchMedia('(pointer: coarse)').matches)).toBe(true);
+    await expect(page.locator('.action-tools')).toHaveCount(0);
+    await expect(page.locator('.title-field input')).toHaveAttribute('readonly');
+    await page.getByRole('region', { name: 'Step-by-step guide' }).getByRole('button', { name: 'Next', exact: true }).click();
+    await page.getByRole('button', { name: 'Play tactic', exact: true }).click();
+    await page.screenshot({ path: 'evidence/v3-mobile-review.png', fullPage: true });
+    await page.setViewportSize({ width: 768, height: 900 });
+    const guide = page.getByRole('region', { name: 'Step-by-step guide' });
+    await guide.getByRole('button', { name: 'Next', exact: true }).click();
+    await guide.getByRole('button', { name: 'Go to control' }).click();
+    await expect(guide.getByRole('status')).toContainText('unavailable');
+    await guide.getByRole('button', { name: 'Skip', exact: true }).click();
+  } finally { await context.close(); }
 });
 
 test('touch selection disambiguates overlapping players; enlarged text and private invite errors stay usable', async ({ browser, browserName }) => {
   test.skip(browserName === 'firefox', 'Playwright Firefox does not emulate a touch context');
-  const context = await browser.newContext({ hasTouch: true, viewport: { width: 1024, height: 900 } });
+  const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 1024, height: 900 } });
   const page = await context.newPage();
   try {
     await page.goto('/');
     await page.getByRole('button', { name: 'EN', exact: true }).tap();
-    await page.getByRole('button', { name: 'Explore the pick & roll', exact: true }).tap();
+    await page.getByRole('button', { name: 'Watch example', exact: true }).tap();
     await expect(page.locator('[data-app-ready]')).toBeVisible();
+    await page.getByRole('button', { name: 'Edit play', exact: true }).tap();
     await page.locator('.player-controls > summary').tap();
     // Isolated synthetic overlap fixture; the UI must offer an unambiguous target.
     await page.evaluate(() => window.replayLabApp!.facade.setActorPose({ actorId: 'defense-1', x: 110, y: 125 }));

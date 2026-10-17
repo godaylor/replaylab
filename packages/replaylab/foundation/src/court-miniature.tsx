@@ -15,7 +15,7 @@ export function CourtMiniature({ phase, actors }: {
   return <svg className="court-miniature" viewBox="0 0 840 460" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id={`${id}-off`} cx="32%" cy="20%" r="80%"><stop stopColor="#ffa45a"/><stop offset=".55" stopColor="#f26722"/><stop offset="1" stopColor="#ae3512"/></radialGradient>
-      <radialGradient id={`${id}-def`} cx="30%" cy="20%" r="85%"><stop stopColor="#436a68"/><stop offset="1" stopColor="#0d2a2b"/></radialGradient>
+      <radialGradient id={`${id}-def`} cx="30%" cy="20%" r="85%"><stop stopColor="#507a99"/><stop offset="1" stopColor="#17394e"/></radialGradient>
       <filter id={`${id}-shadow`} x="-70%" y="-60%" width="240%" height="260%"><feDropShadow dx="0" dy="5" stdDeviation="4" floodOpacity=".45"/></filter>
       <marker id={`${id}-arrow`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#ffe3a7"/></marker>
     </defs>

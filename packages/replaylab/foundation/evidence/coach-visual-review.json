@@ -1,0 +1,520 @@
+{
+  "generatedAt": "2026-10-17T20:42:17.309Z",
+  "desktopCapturedAt": "2026-10-17T20:39:54.72Z",
+  "scope": "Local browser visual/interaction QA, isolated documents. Installed Chrome desktop and pinned Chromium touch emulation. No physical-device, VPN, Russian access or coach field study claims.",
+  "localOrigins": [
+    "http://127.0.0.1:32400",
+    "http://127.0.0.1:32420"
+  ],
+  "captureNotes": [
+    "Desktop screenshots use fullPage; phone screenshots use the 390x844 viewport.",
+    "Full-page screenshot capture reset coarse pointer emulation during an earlier pass. Those phone results were discarded and replaced with coarse=true viewport captures.",
+    "All new app documents were isolated synthetic examples. Existing user documents and servers were not modified."
+  ],
+  "cases": [
+    {
+      "name": "coach-3d-before-ru",
+      "locale": "ru",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browser": "Installed Chrome",
+      "touch": false,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-before-ru-home.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 646.2215576171875,
+            "y": 222.11972045898438,
+            "width": 747.588623046875,
+            "height": 451.0951232910156
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-before-ru-editor.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 181.953125,
+            "y": 260.46875,
+            "width": 776.078125,
+            "height": 424.984375
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": true,
+        "coarse": false,
+        "maxTouchPoints": 0
+      },
+      "input": {
+        "fine": true,
+        "coarse": false,
+        "mode": null,
+        "presentation": null
+      },
+      "playback": "play/pause completed"
+    },
+    {
+      "name": "coach-3d-ru",
+      "locale": "ru",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browser": "Installed Chrome",
+      "touch": false,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-home-ru.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 509.96875,
+            "y": 202.375,
+            "width": 900.421875,
+            "height": 493.078125
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-watch-ru.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 199.5625,
+            "y": 311.328125,
+            "width": 1040.859375,
+            "height": 569.984375
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-edit-ru.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 427.828125,
+            "y": 342.046875,
+            "width": 584.34375,
+            "height": 319.984375
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": true,
+        "coarse": false,
+        "maxTouchPoints": 0
+      },
+      "input": {
+        "fine": true,
+        "coarse": false,
+        "mode": "desktop",
+        "presentation": "3d"
+      },
+      "playback": "play/pause completed",
+      "authoring": {
+        "tools": 1,
+        "addStepEnabled": true
+      },
+      "afterAddLayout": {
+        "rootFont": "16px",
+        "scrollY": 0,
+        "nodes": {
+          ".app-header": null,
+          ".status-rail": {
+            "x": 0,
+            "y": 66,
+            "width": 1440,
+            "height": 37,
+            "top": 66,
+            "right": 1440,
+            "bottom": 103,
+            "left": 0,
+            "font": "16px",
+            "padding": "5px 28px",
+            "margin": "0px"
+          },
+          ".court-heading": null,
+          ".play-story": {
+            "x": 28,
+            "y": 169,
+            "width": 1384,
+            "height": 87.046875,
+            "top": 169,
+            "right": 1412,
+            "bottom": 256.046875,
+            "left": 28,
+            "font": "16px",
+            "padding": "7px 0px",
+            "margin": "0px 0px 8px"
+          },
+          ".action-tools": {
+            "x": 28,
+            "y": 264.046875,
+            "width": 744.375,
+            "height": 44,
+            "top": 264.046875,
+            "right": 772.375,
+            "bottom": 308.046875,
+            "left": 28,
+            "font": "16px",
+            "padding": "3px",
+            "margin": "8px 0px"
+          },
+          ".drawing-help": {
+            "x": 28,
+            "y": 316.046875,
+            "width": 1384,
+            "height": 18,
+            "top": 316.046875,
+            "right": 1412,
+            "bottom": 334.046875,
+            "left": 28,
+            "font": "12px",
+            "padding": "0px",
+            "margin": "8px 0px"
+          },
+          "#court": {
+            "x": 363.90625,
+            "y": 342.046875,
+            "width": 712.171875,
+            "height": 389.984375,
+            "top": 342.046875,
+            "right": 1076.078125,
+            "bottom": 732.03125,
+            "left": 363.90625,
+            "font": "16px",
+            "padding": "0px",
+            "margin": "0px"
+          },
+          ".playback-bar": {
+            "x": 28,
+            "y": 758.03125,
+            "width": 1384,
+            "height": 67,
+            "top": 758.03125,
+            "right": 1412,
+            "bottom": 825.03125,
+            "left": 28,
+            "font": "16px",
+            "padding": "8px 0px",
+            "margin": "0px"
+          },
+          ".timeline": {
+            "x": 28,
+            "y": 843.03125,
+            "width": 1384,
+            "height": 132,
+            "top": 843.03125,
+            "right": 1412,
+            "bottom": 975.03125,
+            "left": 28,
+            "font": "16px",
+            "padding": "0px",
+            "margin": "0px"
+          },
+          ".practice-help": {
+            "x": 28,
+            "y": 1062.828125,
+            "width": 1384,
+            "height": 32,
+            "top": 1062.828125,
+            "right": 1412,
+            "bottom": 1094.828125,
+            "left": 28,
+            "font": "16px",
+            "padding": "2px 0px",
+            "margin": "0px"
+          }
+        }
+      }
+    },
+    {
+      "name": "coach-3d-en-light",
+      "locale": "en",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browser": "Installed Chrome",
+      "touch": false,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-en-light-home.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 509.96875,
+            "y": 202.375,
+            "width": 900.421875,
+            "height": 493.078125
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-en-light-watch.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 199.5625,
+            "y": 311.328125,
+            "width": 1040.859375,
+            "height": 569.984375
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-en-light-edit.png",
+          "overflow": {
+            "viewport": 1440,
+            "scrollWidth": 1440,
+            "offending": []
+          },
+          "court": {
+            "x": 427.828125,
+            "y": 342.046875,
+            "width": 584.34375,
+            "height": 319.984375
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": true,
+        "coarse": false,
+        "maxTouchPoints": 0
+      },
+      "input": {
+        "fine": true,
+        "coarse": false,
+        "mode": "desktop",
+        "presentation": "3d"
+      },
+      "playback": "play/pause completed",
+      "authoring": {
+        "tools": 1,
+        "addStepEnabled": true
+      }
+    },
+    {
+      "name": "coach-3d-compact-ru",
+      "locale": "ru",
+      "theme": "dark",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "browser": "Installed Chrome",
+      "touch": false,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-compact-ru-home.png",
+          "overflow": {
+            "viewport": 1024,
+            "scrollWidth": 1024,
+            "offending": []
+          },
+          "court": {
+            "x": 359.8125,
+            "y": 186.375,
+            "width": 651.21875,
+            "height": 356.609375
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-compact-ru-watch.png",
+          "overflow": {
+            "viewport": 1024,
+            "scrollWidth": 1024,
+            "offending": []
+          },
+          "court": {
+            "x": 28,
+            "y": 395.703125,
+            "width": 968,
+            "height": 530.09375
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-compact-ru-edit.png",
+          "overflow": {
+            "viewport": 1024,
+            "scrollWidth": 1024,
+            "offending": []
+          },
+          "court": {
+            "x": 28,
+            "y": 434.421875,
+            "width": 968,
+            "height": 530.09375
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": true,
+        "coarse": false,
+        "maxTouchPoints": 0
+      },
+      "input": {
+        "fine": true,
+        "coarse": false,
+        "mode": "desktop",
+        "presentation": "3d"
+      },
+      "playback": "play/pause completed",
+      "authoring": {
+        "tools": 1,
+        "addStepEnabled": true
+      }
+    },
+    {
+      "name": "coach-3d-mobile-ru",
+      "locale": "ru",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browser": "Pinned Chromium",
+      "touch": true,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-mobile-home-ru.png",
+          "overflow": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "offending": []
+          },
+          "court": {
+            "x": 0,
+            "y": 579.34375,
+            "width": 390,
+            "height": 213.5625
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-mobile-ru.png",
+          "overflow": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "offending": []
+          },
+          "court": {
+            "x": 12,
+            "y": 435.40625,
+            "width": 366,
+            "height": 200.421875
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": false,
+        "coarse": true,
+        "maxTouchPoints": 1
+      },
+      "input": {
+        "fine": false,
+        "coarse": true,
+        "mode": "mobile",
+        "presentation": "3d"
+      },
+      "playback": "play/pause completed",
+      "authoring": {
+        "tools": 0,
+        "editButtons": 0
+      }
+    },
+    {
+      "name": "coach-3d-mobile-en-light",
+      "locale": "en",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "browser": "Pinned Chromium",
+      "touch": true,
+      "screens": [
+        {
+          "path": "docs/design/coach-3d-mobile-en-light-home.png",
+          "overflow": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "offending": []
+          },
+          "court": {
+            "x": 0,
+            "y": 579.34375,
+            "width": 390,
+            "height": 213.5625
+          }
+        },
+        {
+          "path": "docs/design/coach-3d-mobile-en-light-watch.png",
+          "overflow": {
+            "viewport": 390,
+            "scrollWidth": 390,
+            "offending": []
+          },
+          "court": {
+            "x": 12,
+            "y": 420.40625,
+            "width": 366,
+            "height": 200.421875
+          }
+        }
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "initialInput": {
+        "fine": false,
+        "coarse": true,
+        "maxTouchPoints": 1
+      },
+      "input": {
+        "fine": false,
+        "coarse": true,
+        "mode": "mobile",
+        "presentation": "3d"
+      },
+      "playback": "play/pause completed",
+      "authoring": {
+        "tools": 0,
+        "editButtons": 0
+      }
+    }
+  ]
+}

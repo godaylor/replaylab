@@ -187,6 +187,7 @@ type ResponsiveMode = 'desktop' | 'tablet' | 'mobile';
 
 function useResponsiveMode(): ResponsiveMode {
   const getMode = (): ResponsiveMode => {
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) return 'desktop';
     if (matchMedia('(max-width: 47.9375rem)').matches) return 'mobile';
     if (matchMedia('(max-width: 73.6875rem)').matches) return 'tablet';
     return 'desktop';
@@ -195,12 +196,15 @@ function useResponsiveMode(): ResponsiveMode {
   useEffect(() => {
     const tablet = matchMedia('(max-width: 73.6875rem)');
     const mobile = matchMedia('(max-width: 47.9375rem)');
+    const precise = matchMedia('(hover: hover) and (pointer: fine)');
     const update = () => setMode(getMode());
     tablet.addEventListener('change', update);
     mobile.addEventListener('change', update);
+    precise.addEventListener('change', update);
     return () => {
       tablet.removeEventListener('change', update);
       mobile.removeEventListener('change', update);
+      precise.removeEventListener('change', update);
     };
   }, []);
   return mode;
@@ -215,6 +219,8 @@ function CourtStage(props: {
   selectedActionId: string | null;
   activeTool: 'select' | TacticalActionType;
   readOnly: boolean;
+  presentation: 'plan' | '3d';
+  onFeedback(message: string): void;
   onSelect(entityId: ProjectionEntityId): void;
   onCreateAction(input: {
     actorId: ActorId;
@@ -229,7 +235,7 @@ function CourtStage(props: {
   playback: ReplayPlaybackController;
   awarenessSource?: ReplayAwarenessSource;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gfxRef = useRef<ReplayLabGfxAdapter | null>(null);
   const snapshotRef = useRef(props.snapshot);
@@ -249,10 +255,12 @@ function CourtStage(props: {
   const renderOptionsRef = useRef({
     selectedId: props.selectedId,
     selectedActionId: props.selectedActionId,
+    presentation: props.presentation,
   });
   renderOptionsRef.current = {
     selectedId: props.selectedId,
     selectedActionId: props.selectedActionId,
+    presentation: props.presentation,
   };
   phaseIndexRef.current = props.phaseIndex;
 
@@ -277,7 +285,7 @@ function CourtStage(props: {
       props.playback.currentFrame,
       renderOptionsRef.current
     );
-  }, [props.snapshot, props.playback, props.selectedId, props.selectedActionId]);
+  }, [props.snapshot, props.playback, props.selectedId, props.selectedActionId, props.presentation]);
 
   const toCourtPose = (event: ReactPointerEvent<HTMLCanvasElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -292,22 +300,39 @@ function CourtStage(props: {
     // A click during playback first pauses the scene. Starting a drag against
     // an interpolated pose could otherwise edit the previously selected phase.
     if (props.playback.playing) { props.playback.pause(); return; }
+    if (props.presentation === '3d') {
+      const entity = gfxRef.current?.hitTestPresentation(pose.x, pose.y);
+      if (entity) props.onSelect(entity);
+      event.currentTarget.focus({ preventScroll: true });
+      return;
+    }
     props.playback.pause();
     props.playback.goToPhase(props.phaseIndex);
     if (props.activeTool !== 'select') {
-      if (props.readOnly || props.selectedId === 'ball') return;
+      if (props.readOnly) return;
       const phase = snapshotRef.current.phases[phaseIndexRef.current];
       if (!phase || !snapshotRef.current.phases[phaseIndexRef.current + 1]) return;
+      const hit = gfxRef.current?.hitTest(pose.x, pose.y);
+      const actorId = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
+      if (!actorId || actorId === 'ball') {
+        props.onFeedback(locale === 'ru' ? 'Начните линию на игроке.' : 'Start the line on a player.');
+        return;
+      }
+      if ((props.activeTool === 'pass' || props.activeTool === 'dribble') && phase.possession.value !== actorId) {
+        props.onFeedback(locale === 'ru' ? 'Начните это действие на игроке с мячом.' : 'Start this action on the ball holder.');
+        return;
+      }
+      props.onSelect(actorId);
       event.currentTarget.focus({ preventScroll: true });
       event.currentTarget.setPointerCapture(event.pointerId);
       actionRef.current = {
-        actorId: props.selectedId,
+        actorId,
         pointerId: event.pointerId,
-        path: { points: [phase.poses[props.selectedId], pose] },
+        path: { points: [phase.poses[actorId], pose] },
       };
       props.coordinator.setContext('court.drawingAction');
       gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: props.selectedId,
+        selectedId: actorId,
         selectedActionId: props.selectedActionId,
         actionDraft: { type: props.activeTool, path: actionRef.current.path },
       });
@@ -326,6 +351,7 @@ function CourtStage(props: {
   };
 
   const onPointerMove = (event: ReactPointerEvent<HTMLCanvasElement>) => {
+    if (props.presentation === '3d') return;
     const action = actionRef.current;
     const drag = dragRef.current;
     const presencePose = toCourtPose(event);
@@ -431,7 +457,7 @@ function CourtStage(props: {
   };
 
   return (
-    <div className="court-frame">
+    <div className="court-frame" data-presentation={props.presentation}>
       <div className="court-scorebug" aria-hidden="true">
         <span>{t('offense').toUpperCase()}</span>
         <strong>5 × 5</strong>
@@ -441,10 +467,11 @@ function CourtStage(props: {
         ref={canvasRef}
         id="court"
         data-testid="court"
+        data-presentation={props.presentation}
         width={840}
         height={460}
         tabIndex={0}
-        aria-label={t('courtEditorLabel')}
+        aria-label={props.presentation === '3d' ? (locale === 'ru' ? 'Трёхмерный просмотр комбинации. Игроки и действия доступны в списке ниже.' : 'Three-dimensional play review. Players and actions are available in the list below.') : t('courtEditorLabel')}
         onFocus={() => props.coordinator.setContext('court.actorSelected')}
         onKeyDown={onKeyDown}
         onPointerDown={onPointerDown}
@@ -452,9 +479,9 @@ function CourtStage(props: {
         onPointerUp={event => finishPointer(event, true)}
         onPointerCancel={event => finishPointer(event, false)}
       />
-      <PresenceLayer source={props.awarenessSource} />
+      {props.presentation === 'plan' && <PresenceLayer source={props.awarenessSource} />}
       <p className="court-help">
-        {t('courtHelp')}
+        {props.presentation === '3d' ? (locale === 'ru' ? 'Просмотр не меняет комбинацию. Запустите её или выберите шаг; для изменений включите «Редактировать».' : 'Review does not change the play. Press Play or choose a step; switch to Edit play to make changes.') : t('courtHelp')}
       </p>
     </div>
   );
@@ -670,15 +697,19 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const shellState = useOfflineShellState();
   const { state: storageRetention, requestPersistence } = useStorageRetention();
   const readOnly = storageMode.kind !== 'indexeddb' || facade.readOnly;
-  const canMoveActors = !readOnly && responsiveMode !== 'mobile';
-  const canEditCue = !readOnly && responsiveMode !== 'mobile';
-  const canAuthorStructure = !readOnly && responsiveMode === 'desktop';
+  const [workbenchMode, setWorkbenchMode] = useState<'watch' | 'edit'>(() =>
+    readOnly || responsiveMode === 'mobile' || new URLSearchParams(location.search).get('watch') === '1' ? 'watch' : 'edit');
+  const watching = workbenchMode === 'watch' || responsiveMode === 'mobile';
+  const canMoveActors = !readOnly && !watching;
+  const canEditCue = !readOnly && !watching;
+  const canAuthorStructure = !readOnly && !watching && responsiveMode === 'desktop';
   const demoMode = new URLSearchParams(location.search).get('demo') === '1';
   const [phaseIndex, setPhaseIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<ProjectionEntityId>('offense-1');
   const [announcement, setAnnouncement] = useState(() => t('localPlayReady'));
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<'select' | TacticalActionType>('select');
+  const [drawingFeedback, setDrawingFeedback] = useState('');
   const [nextIntent, setNextIntent] = useState<'move' | 'draw' | 'phase' | 'play' | 'extend' | 'reopen'>('move');
   const [actionDialogOpen, setActionDialogOpen] = useState(false);
   const [presenting, setPresenting] = useState(false);
@@ -705,6 +736,16 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     playbackRef.current = new ReplayPlaybackController(snapshot);
   }
   const playback = playbackRef.current;
+  const changeWorkbenchMode = (mode: 'watch' | 'edit') => {
+    playback.pause();
+    setActiveTool('select');
+    setWorkbenchMode(mode);
+    const url = new URL(location.href);
+    if (mode === 'watch') url.searchParams.set('watch', '1');
+    else url.searchParams.delete('watch');
+    history.replaceState(history.state, '', url);
+    if (mode === 'edit') playback.goToPhase(playback.currentFrame.phaseIndex);
+  };
   reactRenderCount.current += 1;
 
 
@@ -722,6 +763,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   useEffect(() => {
     if (responsiveMode !== 'desktop') setActiveTool('select');
   }, [responsiveMode]);
+  useEffect(() => setDrawingFeedback(''), [activeTool, phaseIndex, locale]);
   useEffect(() => {
     if (window.replayLabApp) window.replayLabApp.playbackController = playback;
   }, [playback]);
@@ -857,7 +899,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
 
   const addPhase = useCallback(() => {
     if (!canAuthorStructure) return;
-    const frameId = runCommand(locale === 'ru' ? 'Фаза добавлена в конец. Существующие переходы сохранены.' : 'Phase appended. Existing transitions are preserved.', () =>
+    const frameId = runCommand(locale === 'ru' ? 'Шаг добавлен в конец. Нарисуйте движение к нему.' : 'Step appended. Draw the movement to it.', () =>
       facade.addPhaseAfter(facade.snapshot.phases.length - 1)
     );
     if (!frameId) return;
@@ -895,14 +937,14 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   );
 
   const undo = useCallback(() => {
-    if (!facade.canUndo) return;
+    if (!canMoveActors || !facade.canUndo) return;
     runCommand(t('undid'), () => facade.undo());
-  }, [facade, runCommand, t]);
+  }, [canMoveActors, facade, runCommand, t]);
 
   const redo = useCallback(() => {
-    if (!facade.canRedo) return;
+    if (!canMoveActors || !facade.canRedo) return;
     runCommand(t('redid'), () => facade.redo());
-  }, [facade, runCommand, t]);
+  }, [canMoveActors, facade, runCommand, t]);
 
   commandsRef.current = {
     addPhase: canAuthorStructure ? addPhase : () => undefined,
@@ -1033,9 +1075,21 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     <a className="button" href="/">{locale === 'ru' ? 'Открыть локальные комбинации' : 'Open local plays'}</a>
   </main>;
 
+  const playbackControls = <PlaybackControls
+    controller={playback}
+    snapshot={snapshot}
+    getCue={index => facade.getCue(index)}
+    onPhaseSelected={setPhaseIndex}
+    onPresentationChange={setPresenting}
+    restartFromBeginning={nextIntent !== 'reopen' && nextIntent !== 'move'}
+    onPlaybackStarted={() => setNextIntent('reopen')}
+  />;
+
   return (
     <div
       className="app-shell"
+      data-input-mode={responsiveMode}
+      data-workbench-mode={watching ? 'watch' : 'edit'}
       data-app-ready="true"
       data-local-source={facade.loadedFromIndexedDB ? 'indexeddb' : 'seed'}
       data-react-render-count={reactRenderCount.current}
@@ -1047,7 +1101,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           <input
             value={titleDraft}
             maxLength={80}
-            readOnly={readOnly || responsiveMode !== 'desktop'}
+            readOnly={!canAuthorStructure}
             onChange={event => editTitleDraft(event.target.value)}
             onBlur={commitTitle}
             onKeyDown={event => {
@@ -1064,10 +1118,10 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         <div className="command-actions">
           {storageMode.kind === 'indexeddb' && <SharePlay facade={facade} />}
           <nav className="history-controls" aria-label={t('history')}>
-            <button type="button" className="icon-button" disabled={readOnly || responsiveMode === 'mobile' || !facade.canUndo} onClick={undo}>
+            <button type="button" className="icon-button" disabled={!canMoveActors || !facade.canUndo} onClick={undo}>
               {t('undo')} <kbd>{navigator.platform.includes('Mac') ? '⌘Z' : 'Ctrl Z'}</kbd>
             </button>
-            <button type="button" className="icon-button" disabled={readOnly || responsiveMode === 'mobile' || !facade.canRedo} onClick={redo}>
+            <button type="button" className="icon-button" disabled={!canMoveActors || !facade.canRedo} onClick={redo}>
               {t('redo')}
             </button>
           </nav>
@@ -1174,11 +1228,9 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
       />
 
       <section className={`mode-notice mode-${responsiveMode}`} aria-live="polite" data-responsive-mode={responsiveMode}>
-        <strong>{responsiveMode === 'mobile' ? t('mobileReviewTitle') : responsiveMode === 'tablet' ? t('tabletModeTitle') : t('desktopMode')}</strong>
+        <strong>{watching ? t('mobileReviewTitle') : responsiveMode === 'tablet' ? t('tabletModeTitle') : t('desktopMode')}</strong>
         {responsiveMode === 'mobile' ? <span>{t('mobileReviewBody')}</span> : responsiveMode === 'tablet' ? <span>{t('tabletModeBody')}</span> : null}
       </section>
-
-      <div className="coach-guidance"><PracticeGuide mode={responsiveMode} /></div>
 
       {demoMode ? (
         <aside className="demo-runbook" aria-labelledby="demo-heading">
@@ -1215,12 +1267,16 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         <section className="court-panel" aria-labelledby="court-heading" data-playback-viewport>
           <div className="section-heading-row court-heading-row">
             <div>
-              <span className="eyebrow">{isExample ? (locale === 'ru' ? 'ВЫСОКИЙ ПИК-Н-РОЛЛ · ПРИМЕР' : 'HIGH PICK & ROLL · EXAMPLE') : t('basketballHalfCourt')}</span>
+              <span className="eyebrow">{isExample ? (locale === 'ru' ? 'ПРИМЕР · ВЫВЕСТИ №5 К КОЛЬЦУ' : 'EXAMPLE · GET 5 TO THE RIM') : t('basketballHalfCourt')}</span>
               <h1 id="court-heading">{isExample ? (locale === 'ru' ? 'Пик-н-ролл' : 'Pick & roll') : t('formationBoard')}</h1>
             </div>
-            <span className="phase-chip">5 × 5 · {locale === 'ru' ? 'К кольцу →' : 'Attack the rim →'}</span>
+            <div className="workbench-switch" role="group" aria-label={locale === 'ru' ? 'Режим площадки' : 'Court mode'}>
+              <button type="button" aria-pressed={watching} onClick={() => changeWorkbenchMode('watch')}>{locale === 'ru' ? 'Смотреть · 3D' : 'Watch · 3D'}</button>
+              {!readOnly && responsiveMode !== 'mobile' && <button type="button" aria-pressed={!watching} onClick={() => { changeWorkbenchMode('edit'); setAnnouncement(locale === 'ru' ? 'Перетащите игрока или выберите движение и нарисуйте его от игрока.' : 'Drag a player, or choose a movement and draw from a player.'); }}>{locale === 'ru' ? 'Редактировать' : 'Edit play'}</button>}
+            </div>
           </div>
-          <CourtLegend />
+          <PlayStory snapshot={snapshot} controller={playback} phaseIndex={phaseIndex} cue={index => facade.getCue(index)} />
+          {watching && playbackControls}
           {canAuthorStructure ? <div className="action-tools" role="toolbar" aria-label={t('courtTools')}>
             <button type="button" aria-pressed={activeTool === 'select'} onClick={() => setActiveTool('select')}><ToolGlyph type="select" />{t('select')} <kbd>V</kbd></button>
             {(['cut', 'pass', 'dribble', 'screen'] as const).map(type => (
@@ -1248,7 +1304,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
                 const index = playback.currentFrame.phaseIndex;
                 playback.pause();
                 if (index >= snapshot.phases.length - 1) {
-                  setAnnouncement(locale === 'ru' ? 'Это конечная расстановка. Добавьте фазу, чтобы нарисовать продолжение.' : 'This is the final formation. Add a phase to draw the next movement.');
+                  setAnnouncement(locale === 'ru' ? 'Это финал. Добавьте шаг, чтобы нарисовать продолжение.' : 'This is the finish. Add a step to draw the next movement.');
                   return;
                 }
                 coordinatorRef.current.setContext('modal');
@@ -1258,7 +1314,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               {t('keyboardAction')}
             </button>
           </div> : null}
-          <p className="drawing-help" role="status">{!canMoveActors ? (locale === 'ru' ? 'Смотрите комбинацию: выберите фазу или нажмите «Старт».' : 'Review the play: choose a phase or press Play.') : activeTool !== 'select' ? (activeTool === 'pass' ? (locale === 'ru' ? 'Проведите передачу от игрока с мячом к партнёру. Escape — отмена.' : 'Draw a pass from the ball holder to a teammate. Escape cancels.') : (locale === 'ru' ? `${actionLabel(locale, activeTool)}: проведите линию от игрока и отпустите. Escape — отмена.` : `${actionLabel(locale, activeTool)}: draw from a player and release. Escape cancels.`)) : nextIntent === 'extend' ? (locale === 'ru' ? 'Новый шаг добавлен в конец. Выберите движение и нарисуйте его отсюда — конечная позиция появится в новом шаге. Или нажмите «Старт».' : 'New step appended. Choose a movement and draw from here: its destination appears in the new step. Or press Play.') : nextIntent === 'play' ? (locale === 'ru' ? 'Нажмите «Старт», чтобы увидеть комбинацию целиком. Изменения сохраняются автоматически.' : 'Press Play to watch the whole play. Your edits save automatically.') : nextIntent === 'phase' ? (locale === 'ru' ? 'Действие готово: следующая расстановка обновлена. Нажмите «Старт» или добавьте фазу в конце.' : 'Action ready: the next formation is updated. Press Play, or append a phase.') : phaseIndex >= snapshot.phases.length - 1 ? (locale === 'ru' ? 'Добавьте следующую фазу внизу, чтобы нарисовать переход к ней.' : 'Add the next phase below to draw a transition to it.') : nextIntent === 'draw' && canAuthorStructure ? (locale === 'ru' ? 'Теперь выберите «Рывок» или «Передача» и проведите линию от игрока.' : 'Now choose Cut or Pass and draw a path from a player.') : (locale === 'ru' ? 'Переместите игрока на площадке. В списке справа можно выбрать его и нажать стрелки.' : 'Move a player on the court. Or select one in the lineup and use the arrow keys.')}</p>
+          <p className="drawing-help" role="status">{drawingFeedback || (watching ? (locale === 'ru' ? 'Нажмите «Старт» — игроки покажут комбинацию.' : 'Press Play to see the players run the play.') : !canAuthorStructure ? (locale === 'ru' ? 'Перетащите игрока. Движения рисуются на компьютере.' : 'Drag a player. Draw movements on desktop.') : activeTool !== 'select' ? (locale === 'ru' ? `${actionLabel(locale, activeTool)}: начните на игроке, проведите линию, отпустите. Escape — отмена.` : `${actionLabel(locale, activeTool)}: start on a player, draw, release. Escape cancels.`) : nextIntent === 'extend' ? (locale === 'ru' ? `Шаг ${phaseIndex + 1} → ${phaseIndex + 2}: нарисуйте движение к новому шагу.` : `Step ${phaseIndex + 1} → ${phaseIndex + 2}: draw a movement to the new step.`) : phaseIndex >= snapshot.phases.length - 1 ? (locale === 'ru' ? 'Это финал. «Добавить шаг» создаст продолжение.' : 'This is the finish. Add step to continue the play.') : nextIntent === 'phase' ? (locale === 'ru' ? 'Движение готово. Нажмите «Старт», чтобы проверить.' : 'Movement ready. Press Play to check it.') : nextIntent === 'draw' ? (locale === 'ru' ? 'Теперь выберите движение и нарисуйте линию от игрока.' : 'Now choose a movement and draw a line from a player.') : (locale === 'ru' ? 'Перетащите игрока. Чтобы задать движение, выберите инструмент выше.' : 'Drag a player. To add movement, choose a tool above.'))}</p>
           <CourtStage
             facade={facade}
             snapshot={snapshot}
@@ -1267,6 +1323,8 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             selectedActionId={selectedActionId}
             activeTool={activeTool}
             readOnly={!canMoveActors}
+            presentation={watching ? '3d' : 'plan'}
+            onFeedback={message => { setDrawingFeedback(message); setAnnouncement(message); }}
             onSelect={entityId => {
               selectEntity(entityId);
               setAnnouncement(entityId === 'ball' ? t('ballSelected') : t('actorSelected', { actor: actorLabel(locale, entityId) }));
@@ -1279,15 +1337,8 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             playback={playback}
             awarenessSource={awarenessSource}
           />
-          <PlaybackControls
-            controller={playback}
-            snapshot={snapshot}
-            getCue={index => facade.getCue(index)}
-            onPhaseSelected={setPhaseIndex}
-            onPresentationChange={setPresenting}
-            restartFromBeginning={nextIntent !== 'reopen' && nextIntent !== 'move'}
-            onPlaybackStarted={() => setNextIntent('reopen')}
-          />
+          <CourtLegend />
+          {!watching && playbackControls}
         </section>
 
         <PhaseTimeline
@@ -1304,7 +1355,6 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         />
 
         <aside className="semantic-panel" aria-labelledby="lineup-heading">
-          <PlayStory snapshot={snapshot} controller={playback} phaseIndex={phaseIndex} cue={index => facade.getCue(index)} />
           <details className="player-controls" open={!isExample}>
           <summary>{locale === 'ru' ? 'Игроки и действия · клавиатура' : 'Players & actions · keyboard'}</summary>
           <div className="section-heading-row">
@@ -1444,6 +1494,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           </details>
         </aside>
       </main>
+      <div className="coach-guidance"><PracticeGuide mode={responsiveMode} /></div>
 
       <ConflictPanel
         snapshot={snapshot}

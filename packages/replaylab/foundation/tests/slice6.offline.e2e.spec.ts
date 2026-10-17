@@ -88,7 +88,7 @@ test('stale client shell upgrade retains compatibility cache and cold-offline au
     await expect(page.getByRole('textbox', { name: 'Cue block 1 text' })).toHaveValue('Offline upgrade cue');
     await page.locator('[data-actor-id="defense-1"]').focus();
     await page.locator('[data-actor-id="defense-1"]').press('ArrowDown');
-    await page.getByRole('button', { name: 'Add phase' }).click();
+    await page.getByRole('button', { name: 'Add step' }).click();
     await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '3');
     await page.evaluate(() => window.replayLabApp!.facade.flush());
     await page.reload();

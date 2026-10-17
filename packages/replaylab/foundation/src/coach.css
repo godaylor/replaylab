@@ -294,7 +294,7 @@ input[type='range'] { accent-color: var(--accent); }
   .language-switcher button { min-width: 32px; padding-inline: 6px; }
   .share-trigger > span:first-child { display: none; }
   .share-symbol { display: inline; font-size: 1.2rem; }
-  .history-controls { display: none; }
+  .app-shell[data-input-mode='mobile'] .history-controls { display: none; }
   .title-field input { font-size: 1.1rem; padding-left: 0; }
   .status-rail { padding: 5px 16px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; }
   #persistence-status { grid-column: 1; grid-row: 1; }
@@ -313,7 +313,7 @@ input[type='range'] { accent-color: var(--accent); }
   .authoring-grid { padding: 4px 12px 18px; gap: 18px; }
   .court-heading-row h1 { font-size: 1.2rem; }
   .court-legend { font-size: .6rem; margin-bottom: 12px; }
-  .court-legend li:last-child, .drawing-help { display: none; }
+  .court-legend li:last-child { display: none; }
   .court-panel .playback-bar { padding: 10px 0; gap: 8px; }
   .playback-buttons { display: grid; grid-template-columns: 1fr 1.6fr 1fr; width: 100%; }
   .playback-buttons button { min-height: 44px; }
@@ -372,4 +372,93 @@ input[type='range'] { accent-color: var(--accent); }
   .is-selected, .is-active, button[aria-pressed='true'] { outline: 2px solid Highlight; }
   .play-showcase::before { display: none; }
   .brand .brand-mark { color: CanvasText; }
+}
+
+/* Coach workbench: the same dimensional court on the first screen and in Watch. */
+.scene-court.scene-court-3d { transform: none; filter: none; margin: 12px -28px 0; }
+.scene-court-3d canvas { display: block; width: 100%; height: auto; aspect-ratio: 840 / 460; }
+.scene-transport { margin-top: 12px; }
+.scene-transport h2 { font-size: 1.7rem; }
+.home-actions { display: flex; flex-wrap: wrap; align-items: center; }
+.home-help-link { background: transparent; border: 0; color: var(--muted); padding: 10px 0; cursor: pointer; }
+.demo-step-button { text-align: left; background: none; border: 0; border-top: 1px solid var(--border); padding: 12px 0; color: inherit; font-size: inherit; width: 100%; cursor: pointer; }
+.demo-step-button[aria-current='step'] { border-color: var(--accent); color: var(--amber); }
+.home-intro { grid-template-columns: minmax(0, .75fr) minmax(0, 1.4fr); gap: 28px; }
+.home-intro h1 { font-size: clamp(3.2rem, 5.1vw, 6rem); }
+.home-footer { flex-wrap: wrap; }
+.authoring-grid { grid-template-columns: minmax(0, 1fr); width: 100%; max-width: 1440px; margin-inline: auto; gap: 18px; }
+.authoring-grid > .court-panel { grid-column: 1; grid-row: 1; }
+.authoring-grid > .timeline { grid-column: 1; grid-row: 2; }
+.authoring-grid > .semantic-panel { grid-column: 1; grid-row: 3; }
+.semantic-panel { max-height: none; overflow: visible; border: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.player-controls, .cue-disclosure { margin: 0; min-width: 0; }
+.court-heading-row { align-items: center; gap: 20px; margin: 2px 0 6px; }
+.court-heading-row h1 { font-size: 1.5rem; }
+.workbench-switch { display: flex; flex-wrap: wrap; gap: 2px; border: 1px solid var(--border); border-radius: 6px; padding: 3px; }
+.workbench-switch button { color: var(--muted); background: transparent; border: 1px solid transparent; border-radius: 3px; min-height: 38px; padding: 7px 16px; cursor: pointer; }
+.workbench-switch button[aria-pressed='true'] { color: var(--paper); background: var(--soft); border-color: var(--border); }
+.court-legend { position: static; max-width: none; margin: 2px 0 6px; justify-content: center; }
+.token-defense { color: #d8f1ff; background: #21445c; border-color: #a9cce0; }
+.play-story { display: flex; align-items: center; gap: 18px; margin: 0 0 8px; padding: 7px 0; border-block: 1px solid var(--border); }
+.story-number { font: 400 3rem/1 var(--headline); margin: 0; letter-spacing: -.03em; min-width: 48px; color: var(--accent); }
+.story-main { min-width: 0; flex: 1; }
+.story-kicker { display: block; font-size: .57rem; letter-spacing: .12em; color: var(--muted); }
+.play-story h2 { font: 400 1.65rem/1.3 var(--headline); max-width: none; margin: 2px 0 4px; text-transform: none; }
+.story-cue { font-size: .78rem; color: var(--muted); line-height: 1.5; margin: 0; max-width: 720px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.story-goal { max-width: 190px; margin: 0 0 0 20px; font-size: .85rem; line-height: 1.5; color: var(--paper); }
+.story-goal span { display: block; margin-bottom: 5px; color: var(--muted); font-size: .55rem; letter-spacing: .1em; }
+.court-frame { width: 100%; max-width: min(1100px, calc(max(320px, 100dvh - 610px) * 84 / 46)); }
+.court-frame[data-presentation='3d'] { max-width: min(1200px, calc(max(430px, 100dvh - 330px) * 84 / 46)); }
+#court[data-presentation='3d'] { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.drawing-help { font-size: .75rem; margin: 8px 0; min-height: 18px; }
+.action-tools { border-radius: 6px; margin: 8px 0; }
+.action-tools button { font-size: .78rem; }
+.phase-filmstrip { grid-auto-columns: minmax(185px, 1fr); gap: 12px; }
+.phase-card { min-height: 76px; }
+.phase-card > span:nth-child(2) { font: 400 .8rem/1.35 'Segoe UI', sans-serif; }
+.phase-card.is-active { box-shadow: none; }
+.coach-guidance { position: relative; }
+.app-shell:not([data-input-mode='mobile']) .history-controls { display: flex; }
+.command-actions > .share-trigger { background: transparent; color: var(--paper); border-color: var(--border); }
+.practice-heading p { display: none; }
+[data-workbench-mode='watch'] .timeline > .section-heading-row > button { display: none; }
+[data-workbench-mode='watch'] .drawing-help { display: none; }
+[data-workbench-mode='watch'] .play-story { padding-block: 7px; border-top: 0; }
+[data-workbench-mode='watch'] .story-cue { display: none; }
+[data-workbench-mode='watch'] .story-goal span { display: none; }
+[data-workbench-mode='watch'] .story-number { font-size: 2.6rem; }
+[data-workbench-mode='watch'] .story-goal { font-size: .8rem; }
+.mode-notice { font-size: .7rem; }
+.mode-notice strong { text-transform: none; }
+@media (max-width: 1179px) {
+  .court-frame, .court-frame[data-presentation='3d'] { max-width: 100%; }
+  .story-goal { max-width: 160px; }
+}
+@media (max-width: 767px) {
+  .home-intro { grid-template-columns: 1fr; }
+  .home-intro h1 { font-size: clamp(3.2rem, 12vw, 5.2rem); }
+  .scene-court.scene-court-3d { margin: 12px -20px 0; }
+  .scene-transport h2 { font-size: 1.45rem; }
+  .court-heading-row { flex-wrap: wrap; gap: 12px; }
+  .workbench-switch { margin-left: auto; }
+  .workbench-switch button { font-size: .75rem; padding: 6px 12px; }
+  .court-legend { justify-content: center; margin-bottom: 4px; }
+  .story-goal { display: none; }
+  .play-story { gap: 12px; padding: 10px 0; }
+  .story-number { font-size: 2.5rem; min-width: 38px; }
+  .play-story h2 { font-size: 1.3rem; }
+  .story-cue { font-size: .73rem; }
+  .semantic-panel { grid-template-columns: 1fr; gap: 0; }
+  .command-bar { gap: 10px; }
+  [data-input-mode='desktop'] .command-bar .brand small { display: none; }
+  [data-input-mode='desktop'] .command-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .phase-filmstrip { grid-auto-columns: 174px; }
+  [data-workbench-mode='watch'] .phase-card { grid-template-columns: 32px 1fr; min-height: 62px; }
+  [data-workbench-mode='watch'] .phase-card .court-miniature { display: none; }
+  [data-workbench-mode='watch'] .phase-number { grid-column: 1; grid-row: 1 / 3; }
+  [data-input-mode='mobile'] .court-heading-row { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+  .mode-mobile { padding-block: 4px; background: transparent; }
+  .mode-mobile strong { display: none; }
+  .mode-mobile span { margin: 0; }
+  [data-input-mode='mobile'] .phase-filmstrip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row; grid-auto-columns: auto; }
 }

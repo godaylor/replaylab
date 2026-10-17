@@ -89,7 +89,7 @@ test('semantic companion, focus model, announcements, and axe scan cover authori
   await expect(page.getByRole('heading', { name: 'Lineup' })).toBeVisible();
   await expect(page.locator('[data-actor-id]')).toHaveCount(10);
   await expect(page.getByRole('combobox', { name: 'Possession' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /Phase 1/ })).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByRole('button', { name: /Step 1/ })).toHaveAttribute('aria-current', 'step');
 
   const actor = page.locator('[data-actor-id="offense-3"]');
   await actor.focus();
@@ -138,7 +138,13 @@ test('storage failure is explicit, read-only, and exposes export instead of clai
   );
   await expect(page.getByRole('alert')).toContainText('Local storage did not open');
   await expect(page.locator('#persistence-status')).toContainText('Read-only recovery copy');
-  await expect(page.getByRole('button', { name: /Add phase/ })).toBeDisabled();
+  await expect(page.locator('.timeline > .section-heading-row button')).toBeDisabled();
+  await expect(page.locator('.app-shell')).toHaveAttribute('data-workbench-mode', 'watch');
+  await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveAttribute('readonly', '');
+  const before = await page.evaluate(() => Array.from(window.replayLabApp!.facade.encode()));
+  await page.locator('#court').press('ArrowRight');
+  await page.locator('#court').press('f');
+  expect(await page.evaluate(() => Array.from(window.replayLabApp!.facade.encode()))).toEqual(before);
   await expect(page.getByRole('button', { name: 'Export JSON' })).toBeEnabled();
   await expect(page.locator('[data-app-ready="true"]')).toHaveAttribute('data-local-source', 'seed');
 });

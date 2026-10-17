@@ -1,0 +1,60 @@
+{
+  "recordedAt": "2026-10-17T21:03:18.258Z",
+  "origin": "http://127.0.0.1:32400",
+  "browser": "155.0.8059.80",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "locale": "ru",
+  "theme": "dark",
+  "reducedMotion": "no-preference",
+  "scope": "Actual packaged app in an isolated Chrome context. Synthetic local example only; no shared room or pre-existing document. A recorded interaction demonstration, not a coach field study.",
+  "sequence": [
+    {
+      "seconds": 1.53,
+      "action": "Home: live 3D example"
+    },
+    {
+      "seconds": 5.92,
+      "action": "Watch: newly created local example"
+    },
+    {
+      "seconds": 7.65,
+      "action": "Play: deterministic player and ball movement"
+    },
+    {
+      "seconds": 12.89,
+      "action": "Pause"
+    },
+    {
+      "seconds": 14.34,
+      "action": "Edit: accurate overhead board"
+    },
+    {
+      "seconds": 18.74,
+      "action": "Return to Watch"
+    },
+    {
+      "seconds": 19.85,
+      "action": "Watch: replay the complete example"
+    },
+    {
+      "seconds": 32.51,
+      "action": "Recording complete"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "verdict": "PASS",
+  "localDocument": "/app/play/practice-01d69d21-9cae-44d5-99ef-c1b11a3c6403/edit",
+  "wallDurationSeconds": 32.51,
+  "file": "docs/design/coach3d-motion.webm",
+  "bytes": 2818686,
+  "videoMetadata": {
+    "durationSeconds": 32.28,
+    "width": 1440,
+    "height": 900,
+    "error": null
+  }
+}
