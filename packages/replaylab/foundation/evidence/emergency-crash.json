@@ -1,6 +1,6 @@
 {
   "verdict": "PASS",
-  "generatedAt": "2026-10-17T20:52:43.717Z",
+  "generatedAt": "2026-10-17T21:13:40.510Z",
   "mechanism": "SIGKILL isolated browser renderer from its CDP process inventory with stalled IndexedDB push",
   "pose": 333,
   "repeatedReopen": true

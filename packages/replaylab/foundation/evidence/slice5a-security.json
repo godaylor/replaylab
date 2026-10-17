@@ -10,6 +10,6 @@
     "unauthorized": "unauthorized",
     "rate": "rate_limited"
   },
-  "retryAfterMs": 80,
+  "retryAfterMs": 79,
   "documentContentInLogs": false
 }

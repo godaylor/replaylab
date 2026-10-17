@@ -1,6 +1,6 @@
 {
   "verdict": "PASS",
-  "elapsedMs": 131.59999999403954,
+  "elapsedMs": 122.8999999910593,
   "rateState": {
     "status": "synced",
     "role": "write"

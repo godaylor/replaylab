@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-17T20:58:13.146Z",
+  "generatedAt": "2026-10-17T21:17:59.405Z",
   "verdict": "PASS",
-  "artifact": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-delivery-20261017",
+  "artifact": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-delivery-20261018",
   "files": 946,
-  "archive": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-delivery-20261017.tar.gz",
+  "archive": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-delivery-20261018.tar.gz",
   "entries": 988,
-  "sha256": "29970c33266eb8a6dd9c3bb07786e44cec082a9cecd7f4f90bf19db66f010bbc"
+  "sha256": "8aa0a040d7ad2869a9bfc3a9f4cf06ab985dcb1ff37d39b777a68b122c1852bc"
 }

@@ -99,7 +99,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
 
-Generated for repository commit `3dd458f30553794ab05994adcfa126d065321ce2`. This inventory supplements and does not replace the preserved root and nested license files.
+Generated for repository commit `1b2763bd4750c5ca15c5028fa301096131b3abfe`. This inventory supplements and does not replace the preserved root and nested license files.
 
 ## Runtime dependencies
 

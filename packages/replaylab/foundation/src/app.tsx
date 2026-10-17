@@ -592,7 +592,7 @@ function PhaseTimeline(props: {
                 data-phase-index={index}
                 data-phase-id={phase.id}
                 aria-current={phaseId === selectedPhaseId ? 'step' : undefined}
-                aria-label={`${t('phasePosition', { number: index + 1, position: index + 1, total: displayIds.length, lifted: lifted ? t('liftedSuffix') : '' })}${exampleStepName(phase.id, locale) ? ` · ${exampleStepName(phase.id, locale)}` : ''}`}
+                aria-label={`${t('phasePosition', { number: index + 1, position: index + 1, total: displayIds.length, lifted: lifted ? t('liftedSuffix') : '' })}${exampleStepName(phase.id, locale, props.snapshot) ? ` · ${exampleStepName(phase.id, locale, props.snapshot)}` : ''}`}
                 tabIndex={phaseId === selectedPhaseId ? 0 : -1}
                 onFocus={() => props.coordinator.setContext(lifted ? 'timeline.reordering' : 'timeline.focused')}
                 onClick={() => {
@@ -672,7 +672,7 @@ function PhaseTimeline(props: {
                 }}
             >
               <span className="phase-number">{String(index + 1).padStart(2, '0')}</span>
-              <span>{exampleStepName(phase.id, locale) ?? t('phaseCard', { number: index + 1 })}</span>
+              <span>{exampleStepName(phase.id, locale, props.snapshot) ?? t('phaseCard', { number: index + 1 })}</span>
               <CourtMiniature phase={phase} actors={props.snapshot.actors} />
               <small>{phase.possession.value === 'loose' ? t('looseBall') : t('heldBy', { actor: actorLabel(locale, phase.possession.value) })}</small>
               {phaseConflictCount(props.snapshot, phase.id) > 0 ? (

@@ -1,4 +1,4 @@
-import type { ActorId, Pose } from './domain';
+import type { ActorId, Pose, ReplaySnapshot } from './domain';
 
 // Original demonstration data, used only when creating a NEW example. This is
 // not a migration, a second document store, or a reset of an existing play.
@@ -43,9 +43,33 @@ export function pickRollCopy(locale: 'ru' | 'en') {
   };
 }
 
-export function exampleStepName(id: string, locale: 'ru' | 'en') {
+export function exampleStepName(id: string, locale: 'ru' | 'en', snapshot: ReplaySnapshot) {
   const index = PICK_ROLL_IDS.indexOf(id as typeof PICK_ROLL_IDS[number]);
-  return index < 0 ? null : (locale === 'ru'
+  if (index < 0) return null;
+  const phaseIndex = snapshot.phases.findIndex(phase => phase.id === id);
+  const phase = snapshot.phases[phaseIndex];
+  const next = snapshot.phases[phaseIndex + 1];
+  const matchesFormation = (actual: typeof phase, example: number) => Boolean(actual &&
+    actual.id === PICK_ROLL_IDS[example] &&
+    actual.possession.value === (example === 3 ? 'offense-5' : 'offense-1') &&
+    actual.possession.candidates.length === 1 &&
+    Object.entries(PICK_ROLL_POSES[example]!).every(([actor, pose]) => {
+      const current = actual.poses[actor as ActorId];
+      return current.x === pose.x && current.y === pose.y && actual.poseRegisters[actor as ActorId].candidates.length === 1;
+    }));
+  // Example captions describe an unchanged demonstration, never an edited or
+  // archived transition. User cues remain independent and are never rewritten.
+  if (!matchesFormation(phase, index) || (index < 3 ? !matchesFormation(next, index + 1) : Boolean(next))) return null;
+  const expected = PICK_ROLL_ACTIONS.filter(action => action.fromFrameId === id);
+  const actions = snapshot.actions.filter(action => !action.archived && action.fromFrameId === id);
+  if (actions.length !== expected.length || !actions.every(action => expected.some(original =>
+    original.id === action.id && original.actorId === action.actorId && original.type === action.type &&
+    original.toFrameId === action.toFrameId && (('targetActorId' in original ? original.targetActorId : null) === action.targetActorId) &&
+    action.adjacency === 'valid' && action.path.candidates.length === 1 &&
+    action.path.value.points.length === original.path.points.length &&
+    action.path.value.points.every((point, position) => point.x === original.path.points[position]!.x && point.y === original.path.points[position]!.y)
+  ))) return null;
+  return (locale === 'ru'
     ? ['5 ставит заслон', '1 проходит, 5 открывается', '1 передаёт 5', '5 получает мяч']
     : ['5 sets the screen', '1 drives, 5 rolls', '1 passes to 5', '5 receives the ball'])[index];
 }

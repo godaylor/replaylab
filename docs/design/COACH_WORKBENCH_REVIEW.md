@@ -25,6 +25,14 @@ that named an arrived formation while the arrows showed the following movement.
 The interface calls these **steps**, while existing document fields and IDs keep
 their original schema. Choosing a presentation does not create a new document.
 
+A final manual pointer exercise found another misleading state: after editing
+or deleting an example action, the timeline and transport could still show its
+original demonstration caption. Caption selection now checks the actual poses,
+possession, adjacent action set and paths. Edited steps use current movement
+descriptions and neutral step labels; appending removes the former endpoint's
+finish caption. RU/EN regressions verify deletion, destination changes, append
+and undo while preserving a trainer's custom note.
+
 ## Reference and implementation
 
 ![Generated visual direction](coach-3d-concept.png)

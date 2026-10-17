@@ -56,7 +56,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
   useEffect(() => {
     const update = (frame: PlaybackFrame) => {
       setCurrentPhaseIndex(frame.phaseIndex);
-      const phaseLabel = exampleStepName(snapshot.phases[frame.phaseIndex]!.id, locale) ?? t('phaseCard', { number: frame.phaseIndex + 1 });
+      const phaseLabel = exampleStepName(snapshot.phases[frame.phaseIndex]!.id, locale, snapshot) ?? t('phaseCard', { number: frame.phaseIndex + 1 });
       const range = rangeRef.current;
       if (range) {
         range.max = String(frame.totalDurationMs);

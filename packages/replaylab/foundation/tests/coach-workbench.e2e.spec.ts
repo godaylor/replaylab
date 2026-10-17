@@ -82,3 +82,72 @@ for (const locale of ['ru', 'en']) test(`watch-to-edit ${locale}: 3D playback is
   await expect(page.locator('.timeline > .section-heading-row button')).toBeEnabled();
   expect(await page.evaluate(() => Array.from(window.replayLabApp!.facade.encode()))).toEqual(before);
 });
+
+for (const locale of ['ru', 'en']) test(`example captions ${locale}: edited actions and formations use honest labels while undo preserves the coach's note`, async ({ page }) => {
+  await page.goto(playUrl(`captions-${locale}`, '&lesson=1'));
+  await page.locator('[data-app-ready]').waitFor();
+  await page.getByRole('button', { name: locale.toUpperCase(), exact: true }).click();
+  const exampleCaption = locale === 'ru' ? '5 ставит заслон' : '5 sets the screen';
+  const genericCaption = locale === 'ru' ? 'Шаг 1' : 'Step 1';
+  const genericHeading = locale === 'ru' ? 'Следующее движение' : 'Next movement';
+  const phaseCard = page.locator('.phase-card[data-phase-id="pickroll-setup"]');
+  const expectCaptions = async (original: boolean) => {
+    await expect(page.locator('#story-heading')).toHaveText(original ? exampleCaption : genericHeading);
+    await expect(phaseCard.locator(':scope > span').nth(1)).toHaveText(original ? exampleCaption : genericCaption);
+    await expect(page.locator('.playback-readout > span')).toHaveText(original ? exampleCaption : genericCaption);
+    if (original) await expect(phaseCard).toHaveAccessibleName(new RegExp(exampleCaption));
+    else await expect(phaseCard).not.toHaveAccessibleName(new RegExp(exampleCaption));
+  };
+  await expectCaptions(true);
+
+  const note = locale === 'ru' ? 'Моя заметка: дождаться сигнала разыгрывающего.' : 'My note: wait for the ball handler’s signal.';
+  await page.locator('.cue-disclosure > summary').click();
+  await page.getByRole('textbox', { name: locale === 'ru' ? 'Текст блока подсказки 1' : 'Cue block 1 text', exact: true }).fill(note);
+  await page.getByRole('button', { name: locale === 'ru' ? 'Применить подсказку' : 'Apply cue', exact: true }).click();
+  await expect(page.locator('.story-cue')).toHaveText(note);
+  const before = await page.evaluate(() => {
+    const facade = window.replayLabApp!.facade;
+    return {
+      screen: facade.snapshot.actions.find(action => action.id === 'example-screen')!,
+      nextPose: facade.snapshot.phases[1]!.poses['offense-5'],
+      cue: facade.getCueDocument(0),
+    };
+  });
+  expect(before.screen.archived).toBe(false);
+  await expectCaptions(true);
+
+  await page.evaluate(() => window.replayLabApp!.facade.archiveAction('example-screen'));
+  expect(await page.evaluate(() => window.replayLabApp!.facade.snapshot.actions.filter(action => !action.archived && action.fromFrameId === 'pickroll-setup'))).toEqual([]);
+  await expectCaptions(false);
+  await expect(page.locator('.story-cue')).toHaveText(note);
+  expect(await page.evaluate(() => window.replayLabApp!.facade.getCueDocument(0))).toEqual(before.cue);
+  const undo = page.getByRole('button', { name: locale === 'ru' ? 'Отменить' : 'Undo', exact: true });
+  await undo.click();
+  expect(await page.evaluate(() => window.replayLabApp!.facade.snapshot.actions.find(action => action.id === 'example-screen'))).toEqual(before.screen);
+  await expectCaptions(true);
+  await expect(page.locator('.story-cue')).toHaveText(note);
+  expect(await page.evaluate(() => window.replayLabApp!.facade.getCueDocument(0))).toEqual(before.cue);
+
+  // The caption must also stop describing the example when only its destination formation changes.
+  await page.evaluate(pose => window.replayLabApp!.facade.setActorPose({ phaseIndex: 1, actorId: 'offense-5', x: pose.x + 10, y: pose.y }), before.nextPose);
+  expect(await page.evaluate(() => window.replayLabApp!.facade.snapshot.phases[1]!.poses['offense-5'])).toEqual({ ...before.nextPose, x: before.nextPose.x + 10 });
+  await expectCaptions(false);
+  await undo.click();
+  expect(await page.evaluate(() => window.replayLabApp!.facade.snapshot.phases[1]!.poses['offense-5'])).toEqual(before.nextPose);
+  await expectCaptions(true);
+  await expect(page.locator('.story-cue')).toHaveText(note);
+  expect(await page.evaluate(() => window.replayLabApp!.facade.getCueDocument(0))).toEqual(before.cue);
+
+  const lastCard = page.locator('.phase-card[data-phase-id="pickroll-pass"] > span').nth(1);
+  const finalCaption = locale === 'ru' ? '5 получает мяч' : '5 receives the ball';
+  await expect(lastCard).toHaveText(finalCaption);
+  await page.locator('.timeline > .section-heading-row button').click();
+  await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '5');
+  await expect(lastCard).toHaveText(locale === 'ru' ? 'Шаг 4' : 'Step 4');
+  await expect(page.locator('#story-heading')).toHaveText(genericHeading);
+  await expect(page.locator('.playback-readout > span')).toHaveText(locale === 'ru' ? 'Шаг 4' : 'Step 4');
+  await undo.click();
+  await expect(page.locator('#document-status')).toHaveAttribute('data-phase-count', '4');
+  await expect(lastCard).toHaveText(finalCaption);
+  expect(await page.evaluate(() => window.replayLabApp!.facade.getCueDocument(0))).toEqual(before.cue);
+});

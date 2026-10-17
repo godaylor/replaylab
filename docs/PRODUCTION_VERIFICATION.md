@@ -1,6 +1,6 @@
 # Verification and deployment
 
-## Current candidate: Coach workbench / 3D · 2026-10-17
+## Current candidate: Coach workbench / 3D · 2026-10-18
 
 The coach-facing revision replaces the previous Arena workflow. Home opens a
 concrete pick-and-roll in **Watch · 3D**; **Edit play** switches to the accurate
@@ -21,14 +21,14 @@ tariff, data and credentials are unchanged.
 | Current revision check | Actual result |
 | --- | --- |
 | Repository `verify:release` | PASS, all seven stages |
-| Chromium full suite | **109/109**, no failures, flakes or skips |
+| Chromium full suite | **111/111**, no failures, flakes or skips |
 | Immediate-close durability | **10/10** |
 | Typecheck, client/server builds, lint | PASS |
-| WebKit 26.0, Windows | **26/26** targeted authoring, 3D, coach, accessibility and touch/reflow tests |
+| WebKit 26.0, Windows | **26/26** targeted authoring, 3D, coach, accessibility and touch/reflow tests; **2/2** additional final caption regressions |
 | Firefox 146.0.1, Windows | Environment BLOCKED: 5 pure tests pass, 3 existing touch-emulation skips, 18 page tests fail before app navigation; exact pinned revision and blank-page retry reproduce Playwright `_page` initialization error |
 | Actual installed Chrome 155 motion capture | 32.28-second 1440 × 900 recording of the packaged app, zero captured browser/request errors |
-| Maximum 3D scene, 30-second measured trace | 12 steps, ten players, 30 paths × 64 points; **60.010 FPS**, p95 **16.8 ms**, input-to-paint p95 **2.8 ms**, no long tasks or root React playback renders |
-| License/import/bundle audit | Technical PASS: 78 dependency instances, 31 emitted packages, **0 forbidden modules**, **243,471 gzip JS bytes** (<250,000 budget) |
+| Maximum 3D scene, 30-second measured trace | 12 steps, ten players, 30 paths × 64 points; **60.008 FPS**, p95 **16.8 ms**, input-to-paint p95 **2.3 ms**, no long tasks or root React playback renders |
+| License/import/bundle audit | Technical PASS: 78 dependency instances, 31 emitted packages, **0 forbidden modules**, **243,779 gzip JS bytes** (<250,000 budget) |
 | Packaged Node smoke | PASS: four static/room/offline/convergence/undo/backup-restore checks, isolated port **32421** |
 | Non-root Docker smoke | PASS: same four checks, read-only filesystem and dropped capabilities, isolated port **32421** |
 | Runtime inventory and archive | **946** files hash-verified; **988** safe relative archive entries, no room data |
@@ -47,6 +47,12 @@ any application URL was opened, with and without storageState and on a clean
 retry. No application assertion or browser capability was weakened to hide it.
 Earlier Firefox passes belong to the previous application revision.
 
+The final manual coach exercise additionally found stale example captions after
+edits/deletion/append. The fix uses current formations, possession, action sets
+and paths in all three caption surfaces. Targeted Chromium **14/14**, final
+WebKit caption checks **2/2**, then the complete **111/111** and **10/10** passed.
+The new cases explicitly retain a custom rich cue through edits and local undo.
+
 One intermediate full run had four outdated UI-label/hidden-control expectations
 after the redesign. The expectations were aligned with the actual new labels
 and disabled readonly controls; canonical-data, focus, axe, reorder and undo
@@ -56,14 +62,14 @@ identified task-owned preview process was stopped so the pipeline could finish.
 No running application or unrelated process was stopped by test cleanup.
 
 Local working package: `http://127.0.0.1:32400/`, from
-`tmp/replaylab-coach3d-delivery-20261017`, with the previous local data directory
+`tmp/replaylab-coach3d-delivery-20261018`, with the previous local data directory
 retained. HTTP `/`, `/healthz` and `/readyz` return 200; local storage backend is
 filesystem. This is independent of hosted Supabase readiness.
 
 Archive SHA-256:
-`29970c33266eb8a6dd9c3bb07786e44cec082a9cecd7f4f90bf19db66f010bbc`.
-Docker `replaylab:coach3d-20261017` image identity:
-`sha256:c238b47ce15ab3c4f62fe5e7f1676accba344b911fe3709bc153c55ccb61e7e0`.
+`8aa0a040d7ad2869a9bfc3a9f4cf06ab985dcb1ff37d39b777a68b122c1852bc`.
+Docker `replaylab:coach3d-20261018` image identity:
+`sha256:01ced8780a9ddbaab671e2647b338fbdf051a2c31cd3e90b97f9a8856663f5e5`.
 Existing Yarn peer/optional TypeScript-patch warnings and Vite's chunk-size
 warning remain visible; builds, audit and measured gzip budget pass.
 

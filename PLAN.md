@@ -1,6 +1,6 @@
 # ReplayLab transformation plan
 
-## Current coach workbench checkpoint — 2026-10-17
+## Current coach workbench checkpoint — 2026-10-18
 
 Owner rejected the Arena workflow and requested a practical coach exercise,
 stronger graphics and autonomous completion. Existing commit/push/Render
@@ -14,7 +14,7 @@ authorization remains in force. [Decisions](docs/COACH_WORKBENCH.md) and
   copy, input-aware capabilities and persistent locale/view choice.
 - [x] Practical RU/EN exercise and focused regressions; actual desktop/compact/
   mobile screenshots compared, mobile chrome reduced and all four steps visible.
-- [x] Final full release: 109/109 + 10/10; technical license/bundle audit,
+- [x] Final full release: 111/111 + 10/10; technical license/bundle audit,
   946-file runtime inventory, Node and non-root Docker smoke on isolated 32421.
 - [ ] Existing-service publication, hosted CI and public browser/collaboration proof.
 - [ ] Independent coach field study, physical touch/screen reader/IME review,

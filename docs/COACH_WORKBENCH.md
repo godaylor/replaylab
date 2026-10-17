@@ -23,7 +23,10 @@ publication authorization. No canonical migration, protocol or dependencies chan
   feedback for an empty start or an invalid ball-holder action.
 - Captions describe the outgoing transition, not the already-arrived pose:
   5 sets the screen; 1 drives while 5 rolls; 1 passes to 5; 5 receives near the rim.
-  These explain the example; edited actions and trainer cues remain inspectable.
+  These captions apply only to the unchanged example formation, possession,
+  adjacent action set and paths. Edited/archived/reordered/appended transitions
+  use current action descriptions and neutral step labels; the original example
+  never claims that a deleted movement still happens. Trainer cues are retained.
 - Local autosave remains the durability model. File backup, room capabilities,
   readonly review, recovery and per-user undo remain available.
 
