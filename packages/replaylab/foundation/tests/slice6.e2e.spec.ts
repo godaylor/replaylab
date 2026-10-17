@@ -229,6 +229,7 @@ test('future schema opens an explicit read-only recovery route with portable exp
   });
   expect(violations).toEqual([]);
   const downloadPromise = page.waitForEvent('download');
+  if (!(await page.locator('.file-tools').evaluate(element => (element as HTMLDetailsElement).open))) await page.locator('.file-tools > summary').click();
   await page.getByRole('button', { name: 'Recovery file' }).focus();
   await page.getByRole('button', { name: 'Recovery file' }).press('Enter');
   const download = await downloadPromise;

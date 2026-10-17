@@ -13,8 +13,8 @@ async function stall(page: Page) {
 
 async function crashRenderer(page: Page, browser: Browser) {
   const crashed = page.waitForEvent('crash');
-  if (process.platform === 'linux') {
-    // Page.crash can hang behind a host core-dump handler in Docker/WSL.
+  if (process.platform === 'linux' || process.platform === 'win32') {
+    // Page.crash can fail to emit its crash event on Docker/WSL or Windows.
     // Kill only renderer PIDs reported by this isolated test browser, without
     // unload/pagehide/blur or any chance to finish the deliberately stalled write.
     const cdp = await browser.newBrowserCDPSession();
@@ -38,7 +38,7 @@ test('renderer crash before IndexedDB ACK restores the journal, then repeated re
   await expect(recovered.locator('[data-actor-id="offense-1"]')).toContainText('x 333');
   await recovered.reload();
   await expect(recovered.locator('[data-actor-id="offense-1"]')).toContainText('x 333');
-  writeFileSync('evidence/emergency-crash.json', JSON.stringify({ verdict: 'PASS', generatedAt: new Date().toISOString(), mechanism: process.platform === 'linux' ? 'SIGKILL isolated browser renderer with stalled IndexedDB push' : 'CDP Page.crash with stalled IndexedDB push', pose: 333, repeatedReopen: true }, null, 2));
+  writeFileSync('evidence/emergency-crash.json', JSON.stringify({ verdict: 'PASS', generatedAt: new Date().toISOString(), mechanism: process.platform === 'linux' || process.platform === 'win32' ? 'SIGKILL isolated browser renderer from its CDP process inventory with stalled IndexedDB push' : 'CDP Page.crash with stalled IndexedDB push', pose: 333, repeatedReopen: true }, null, 2));
 });
 
 test('corrupt newest record retains raw bytes and recovers the previous valid slot read-only', async ({ page }) => {
@@ -57,6 +57,7 @@ test('corrupt newest record retains raw bytes and recovers the previous valid sl
   expect(await page.evaluate(() => window.replayLabApp!.facade.readOnly)).toBe(true);
   expect(await page.evaluate(key => localStorage.getItem(key), damaged.key)).toBe(damaged.raw);
   const download = page.waitForEvent('download');
+  await page.locator('.draft-tools > summary').click();
   await page.getByRole('button', { name: 'Export drafts / emergency journal', exact: true }).click();
   expect((await download).suggestedFilename()).toBe('replaylab-drafts.json');
 });

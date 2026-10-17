@@ -266,13 +266,15 @@ export class ReplaySyncWebSocketServer {
   private readonly expiryTimer: ReturnType<typeof setInterval>;
   private messageQueue = Promise.resolve();
 
-  constructor(options: { port?: number; host?: string; server?: Server; publicOrigin?: string } = {}) {
+  constructor(options: { port?: number; host?: string; server?: Server; publicOrigin?: string; isReady?: () => boolean } = {}) {
     this.server = new WebSocketServer({
       ...(options.server ? { server: options.server, path: '/sync' } : { port: options.port ?? 32411, host: options.host ?? '127.0.0.1' }),
       maxPayload: 384 * 1024, perMessageDeflate: false,
-      ...(options.server ? { verifyClient: (info: { origin: string; req: import('node:http').IncomingMessage }) => {
+      ...(options.server ? { verifyClient: (info: { origin: string; req: import('node:http').IncomingMessage }, done: (accepted: boolean, code?: number, message?: string) => void) => {
         const allowed = options.publicOrigin ?? `http://${info.req.headers.host}`;
-        return info.origin === allowed;
+        if (info.origin !== allowed) { done(false, 403, 'Origin rejected'); return; }
+        if (options.isReady && !options.isReady()) { done(false, 503, 'Collaboration unavailable'); return; }
+        done(true);
       } } : {}),
     });
     this.server.on('connection', (socket: WebSocket) => {

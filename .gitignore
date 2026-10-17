@@ -98,6 +98,8 @@ storageState.json
 /.understand-anything
 
 # local test/browser artifacts
+/debug.log
+/packages/replaylab/foundation/debug.log
 **/.replaylab-data/
 **/replaylab-private-links.txt
 !/PLAN.md

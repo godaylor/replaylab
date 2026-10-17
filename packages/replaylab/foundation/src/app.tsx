@@ -23,6 +23,7 @@ import type { ReplayAwarenessSource } from './awareness';
 import { ActionDialog } from './action-dialog';
 import { PlayHome } from './home';
 import { SharePlay } from './share-play';
+import { CourtMiniature, ToolGlyph } from './court-miniature';
 import { CourtLegend, PracticeGuide } from './practice-guide';
 import { RichCueEditor } from './rich-cue-editor';
 import {
@@ -53,7 +54,7 @@ export type AppStorageMode =
       recoveryJson: string;
       previewAvailable: boolean;
     }
-  | { kind: 'memory-error'; message: string };
+  | { kind: 'memory-error'; message: string; cause?: 'room' | 'local' };
 
 type ReplayLabAppProps = {
   facade: ReplayLabEditorFacade;
@@ -138,6 +139,14 @@ function saveStateLabel(state: LocalSaveState, t: ReturnType<typeof useI18n>['t'
     default:
       return t('savedLocally');
   }
+}
+
+function closeDisclosureOnEscape(event: ReactKeyboardEvent<HTMLDetailsElement>) {
+  if (event.key !== 'Escape' || !event.currentTarget.open) return;
+  event.preventDefault();
+  event.stopPropagation();
+  event.currentTarget.open = false;
+  event.currentTarget.querySelector('summary')?.focus();
 }
 
 function downloadSnapshot(facade: ReplayLabEditorFacade) {
@@ -457,7 +466,7 @@ function PhaseTimeline(props: {
   canReorder: boolean;
   canAdd: boolean;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const canonicalIds = props.snapshot.phases.map(phase => phase.id);
   const selectedPhaseId = props.snapshot.phases[props.phaseIndex]?.id;
   const [previewIds, setPreviewIds] = useState<string[] | null>(null);
@@ -622,7 +631,8 @@ function PhaseTimeline(props: {
             >
               <span className="phase-number">{String(index + 1).padStart(2, '0')}</span>
               <span>{t('phaseCard', { number: index + 1 })}</span>
-              <small>{phase.possession.value === 'loose' ? t('looseBall') : phase.possession.value}</small>
+              <CourtMiniature phase={phase} actors={props.snapshot.actors} />
+              <small>{phase.possession.value === 'loose' ? t('looseBall') : t('heldBy', { actor: actorLabel(locale, phase.possession.value) })}</small>
               {phaseConflictCount(props.snapshot, phase.id) > 0 ? (
                 <span className="phase-conflict-marker">{t('conflictsCount', { count: phaseConflictCount(props.snapshot, phase.id) })}</span>
               ) : null}
@@ -653,6 +663,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const [announcement, setAnnouncement] = useState(() => t('localPlayReady'));
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<'select' | TacticalActionType>('select');
+  const [nextIntent, setNextIntent] = useState<'move' | 'draw' | 'phase' | 'play' | 'reopen'>('move');
   const [actionDialogOpen, setActionDialogOpen] = useState(false);
   const [presenting, setPresenting] = useState(false);
   const actionDialogButtonRef = useRef<HTMLButtonElement>(null);
@@ -805,7 +816,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
       const next = clampPose({ x: pose.x + dx, y: pose.y + dy });
       runCommand(
         t('actorMoved', { actor: actorLabel(locale, entityId), x: Math.round(next.x), y: Math.round(next.y) }),
-        () => facade.setActorPose({ phaseIndex, actorId: entityId, ...next })
+        () => { facade.setActorPose({ phaseIndex, actorId: entityId, ...next }); setNextIntent('draw'); }
       );
     },
     [canMoveActors, facade, locale, phaseIndex, runCommand, t]
@@ -817,6 +828,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
       facade.addPhaseAfter(phaseIndex)
     );
     if (!frameId) return;
+    setNextIntent('play');
     const index = facade.snapshot.phases.findIndex(phase => phase.id === frameId);
     if (index >= 0) {
       setPhaseIndex(index);
@@ -892,7 +904,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     } else {
       runCommand(
         t('actorMoved', { actor: actorLabel(locale, entityId), x: Math.round(pose.x), y: Math.round(pose.y) }),
-        () => facade.setActorPose({ phaseIndex, actorId: entityId, ...pose })
+        () => { facade.setActorPose({ phaseIndex, actorId: entityId, ...pose }); setNextIntent('draw'); }
       );
     }
   };
@@ -907,6 +919,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
       facade.createAction({ phaseIndex, ...input })
     );
     if (!actionId) return;
+    setNextIntent('phase');
     setSelectedActionId(actionId);
     setSelectedId(input.actorId);
     setActiveTool('select');
@@ -962,6 +975,19 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     if (value === 'loose') setSelectedId('ball');
   };
 
+  if (storageMode.kind === 'memory-error' && storageMode.cause === 'room') return <main className="room-unavailable" data-app-ready="true">
+    <a className="brand" href="/">ReplayLab</a>
+    <div className="language-switcher" role="group" aria-label={t('language')}>
+      <button aria-pressed={locale === 'ru'} onClick={() => setLocale('ru')}>RU</button>
+      <button aria-pressed={locale === 'en'} onClick={() => setLocale('en')}>EN</button>
+    </div>
+    <h1>{locale === 'ru' ? 'Не удалось открыть общую комнату' : 'Could not open the shared room'}</h1>
+    <p role="alert">{locale === 'ru' ? 'Сервер комнаты недоступен или ссылка не даёт доступа. В этом браузере ещё нет локальной копии этой комнаты. Повторите попытку после восстановления связи или проверьте ссылку у автора.' : 'The room server is unavailable or the link does not grant access. This browser has no local copy of this room yet. Retry when connected or check the invitation with its author.'}</p>
+    <p>{locale === 'ru' ? 'Другие локальные комбинации доступны на главной. Их данные не изменены.' : 'Your other local plays are available from Home. Their data is unchanged.'}</p>
+    <button className="button button-accent" onClick={() => location.reload()}>{locale === 'ru' ? 'Попробовать снова' : 'Try again'}</button>
+    <a className="button" href="/">{locale === 'ru' ? 'Открыть локальные комбинации' : 'Open local plays'}</a>
+  </main>;
+
   return (
     <div
       className="app-shell"
@@ -997,7 +1023,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           {storageMode.kind === 'indexeddb' && <SharePlay facade={facade} />}
           <nav className="history-controls" aria-label={t('history')}>
             <button type="button" className="icon-button" disabled={readOnly || responsiveMode === 'mobile' || !facade.canUndo} onClick={undo}>
-              {t('undo')} <kbd>⌘Z</kbd>
+              {t('undo')} <kbd>{navigator.platform.includes('Mac') ? '⌘Z' : 'Ctrl Z'}</kbd>
             </button>
             <button type="button" className="icon-button" disabled={readOnly || responsiveMode === 'mobile' || !facade.canRedo} onClick={redo}>
               {t('redo')}
@@ -1018,6 +1044,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         <span className={`status-pill status-${saveState}`} id="persistence-status" role="status" data-loaded-from-indexed-db={String(facade.loadedFromIndexedDB)}>
           <i aria-hidden="true" /> {saveStateLabel(saveState, t)}
         </span>
+        <details className="storage-details" onKeyDown={closeDisclosureOnEscape}><summary aria-label={locale === 'ru' ? 'Хранение и офлайн' : 'Storage & offline'}><span className="storage-label">{locale === 'ru' ? 'Хранение и офлайн' : 'Storage & offline'}</span><span className="storage-symbol" aria-hidden="true">ⓘ</span></summary><div className="storage-details-body">
         <span
           id="shell-status"
           className={`status-pill ${shellState === 'ready' ? 'status-saved' : shellState === 'checking' ? 'status-pending' : shellState === 'update-ready' ? 'status-review' : 'status-failed'}`}
@@ -1045,12 +1072,15 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             ) : null}
           </span>
         ) : null}
+        </div></details>
         <NetworkStatus source={networkSource} online={online} />
         {snapshot.conflictCount > 0 ? (
           <span className="status-pill status-review">{t('needsReview', { count: snapshot.conflictCount })}</span>
         ) : null}
         <span className="status-meta">{t('phaseProgress', { current: phaseIndex + 1, total: snapshot.phases.length })}</span>
-        <button className="status-action" type="button" onClick={() => downloadSnapshot(facade)}>
+        <details className="file-tools" onKeyDown={closeDisclosureOnEscape} open={storageMode.kind !== 'indexeddb' || saveState === 'failed'}><summary aria-label={locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}><span className="file-label">{locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}</span><span className="file-short-label" aria-hidden="true">{locale === 'ru' ? 'Файл' : 'File'}</span></summary><div className="file-tools-body">
+        <p>{locale === 'ru' ? 'Изменения сохраняются автоматически. Файл восстановления — полная переносимая копия; JSON — данные для чтения.' : 'Edits save automatically. A recovery file is a full portable copy; JSON is for inspection.'}</p>
+        <button className="status-action export-json" type="button" onClick={() => downloadSnapshot(facade)}>
           {t('exportJson')}
         </button>
         <button
@@ -1069,6 +1099,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         <button className="status-action" type="button" onClick={() => recoveryInputRef.current?.click()}>
           {t('openRecovery')}
         </button>
+        </div></details>
         <input
           ref={recoveryInputRef}
           hidden
@@ -1101,8 +1132,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         {responsiveMode === 'mobile' ? <span>{t('mobileReviewBody')}</span> : responsiveMode === 'tablet' ? <span>{t('tabletModeBody')}</span> : null}
       </section>
 
-      <PracticeGuide mode={responsiveMode} />
-      <details className="transfer-help"><summary>{locale === 'ru' ? 'Сохранение и перенос на другое устройство' : 'Saving and moving to another device'}</summary><p>{locale === 'ru' ? 'Изменения сохраняются автоматически в этом браузере. Очистка данных браузера удалит локальные копии. «Файл восстановления» → «Открыть восстановление…» переносит полную копию в отдельную комбинацию, без совместной синхронизации. «Экспорт JSON» — читаемые данные, их нельзя открыть этим импортом. Для совместной работы используйте «Пригласить»: комната — отдельная копия с доступом по секретной ссылке, без аккаунта. Ссылки просмотра и редактирования дают разные права; сохраните их приватно.' : 'Edits save automatically in this browser. Clearing browser data removes local copies. Recovery file → Open recovery… moves a complete copy into a separate play, without live collaboration. Export JSON is readable data, not accepted by this importer. Invite creates a separate room copy with private-link access and no account. View and edit links grant different rights; keep them privately.'}</p></details>
+      <div className="coach-guidance"><PracticeGuide mode={responsiveMode} /></div>
 
       {demoMode ? (
         <aside className="demo-runbook" aria-labelledby="demo-heading">
@@ -1146,7 +1176,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           </div>
           <CourtLegend />
           {canAuthorStructure ? <div className="action-tools" role="toolbar" aria-label={t('courtTools')}>
-            <button type="button" aria-pressed={activeTool === 'select'} onClick={() => setActiveTool('select')}>{t('select')} <kbd>V</kbd></button>
+            <button type="button" aria-pressed={activeTool === 'select'} onClick={() => setActiveTool('select')}><ToolGlyph type="select" />{t('select')} <kbd>V</kbd></button>
             {(['cut', 'pass', 'dribble', 'screen'] as const).map(type => (
               <button
                 key={type}
@@ -1158,7 +1188,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
                   setAnnouncement(t('actionToolDraw', { action: actionLabel(locale, type) }));
                 }}
               >
-                {actionLabel(locale, type)} <kbd>{type[0]!.toUpperCase()}</kbd>
+                <ToolGlyph type={type} />{actionLabel(locale, type)} <kbd>{type[0]!.toUpperCase()}</kbd>
               </button>
             ))}
             <button
@@ -1173,7 +1203,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               {t('keyboardAction')}
             </button>
           </div> : null}
-          {canAuthorStructure && <p className="drawing-help">{locale === 'ru' ? 'Выбор — перемещение игрока. Для движения выберите инструмент, проведите линию и отпустите указатель. Для передачи закончите у партнёра. Escape отменяет рисование; «Выбор» возвращает перемещение. «Удалить действие» находится в списке действий; «Отменить» вернёт удалённое. Игроков удалить нельзя.' : 'Select moves a player. Choose a movement tool, draw, then release to finish. End a pass near a teammate. Escape cancels drawing; Select returns to positioning. Use Delete action in the action list; Undo restores it. Players cannot be deleted.'}</p>}
+          <p className="drawing-help" role="status">{!canMoveActors ? (locale === 'ru' ? 'Смотрите комбинацию: выберите фазу или нажмите «Старт».' : 'Review the play: choose a phase or press Play.') : activeTool !== 'select' ? (activeTool === 'pass' ? (locale === 'ru' ? 'Проведите передачу от игрока с мячом к партнёру. Escape — отмена.' : 'Draw a pass from the ball holder to a teammate. Escape cancels.') : (locale === 'ru' ? `${actionLabel(locale, activeTool)}: проведите линию от игрока и отпустите. Escape — отмена.` : `${actionLabel(locale, activeTool)}: draw from a player and release. Escape cancels.`)) : nextIntent === 'play' ? (locale === 'ru' ? 'Нажмите «Старт», чтобы увидеть комбинацию целиком. Изменения сохраняются автоматически.' : 'Press Play to watch the whole play. Your edits save automatically.') : nextIntent === 'phase' ? (locale === 'ru' ? 'Действие готово. Добавьте фазу внизу — она скопирует текущую расстановку.' : 'Action ready. Add a phase below to copy the current formation.') : phaseIndex >= snapshot.phases.length - 1 ? (locale === 'ru' ? 'Добавьте следующую фазу внизу, чтобы нарисовать переход к ней.' : 'Add the next phase below to draw a transition to it.') : nextIntent === 'draw' && canAuthorStructure ? (locale === 'ru' ? 'Теперь выберите «Рывок» или «Передача» и проведите линию от игрока.' : 'Now choose Cut or Pass and draw a path from a player.') : (locale === 'ru' ? 'Переместите игрока на площадке. В списке справа можно выбрать его и нажать стрелки.' : 'Move a player on the court. Or select one in the lineup and use the arrow keys.')}</p>
           <CourtStage
             facade={facade}
             snapshot={snapshot}
@@ -1200,8 +1230,21 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             getCue={index => facade.getCue(index)}
             onPhaseSelected={setPhaseIndex}
             onPresentationChange={setPresenting}
+            restartFromBeginning={nextIntent === 'play'}
+            onPlaybackStarted={() => setNextIntent('reopen')}
           />
         </section>
+
+        <PhaseTimeline
+          snapshot={snapshot} phaseIndex={phaseIndex} readOnly={readOnly}
+          canReorder={canAuthorStructure} canAdd={canAuthorStructure}
+          onSelect={index => {
+            playback.pause(); playback.goToPhase(index); setPhaseIndex(index);
+            setAnnouncement(t('phaseSelected', { number: index + 1 }));
+          }}
+          onReorder={reorderPhase} onAnnounce={setAnnouncement} onAdd={addPhase}
+          coordinator={coordinatorRef.current}
+        />
 
         <aside className="semantic-panel" aria-labelledby="lineup-heading">
           <div className="section-heading-row">
@@ -1353,23 +1396,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         onAnnounce={setAnnouncement}
       />
 
-      <PhaseTimeline
-        snapshot={snapshot}
-        phaseIndex={phaseIndex}
-        readOnly={readOnly}
-        canReorder={canAuthorStructure}
-        canAdd={canAuthorStructure}
-        onSelect={index => {
-          playback.pause();
-          playback.goToPhase(index);
-          setPhaseIndex(index);
-          setAnnouncement(t('phaseSelected', { number: index + 1 }));
-        }}
-        onReorder={reorderPhase}
-        onAnnounce={setAnnouncement}
-        onAdd={addPhase}
-        coordinator={coordinatorRef.current}
-      />
+      <details className="transfer-help"><summary>{locale === 'ru' ? 'Сохранение и перенос на другое устройство' : 'Saving and moving to another device'}</summary><p>{locale === 'ru' ? 'Изменения сохраняются автоматически в этом браузере. Вернитесь на главную и откройте комбинацию в «Недавних». Для резервной копии скачайте «Файл восстановления»; «Открыть восстановление…» откроет его как отдельную локальную комбинацию. «Экспорт JSON» — данные для чтения. «Пригласить» создаёт общую комнату с копией комбинации: локальный оригинал остаётся здесь. Ссылка редактирования разрешает совместные изменения, ссылка просмотра — только просмотр. Храните их приватно. Очистка данных браузера удаляет локальные копии.' : 'Edits save automatically in this browser. Go home and reopen your play from Recent plays. Download a Recovery file for a backup; Open recovery… imports it as a separate local play. Export JSON is for inspection. Invite creates a shared room with a copy of this play; the local original remains here. Edit links allow collaboration; view links allow review only. Keep them private. Clearing browser data removes local copies.'}</p></details>
 
       {canAuthorStructure && actionDialogOpen && selectedId !== 'ball' ? (
         <ActionDialog

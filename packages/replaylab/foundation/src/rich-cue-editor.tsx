@@ -103,16 +103,16 @@ export function RichCueEditor(props: Props) {
   };
 
   return (
-    <section className="cue-editor" aria-labelledby="cue-heading" data-focus-target="cue">
+    <section className="cue-editor" aria-labelledby="cue-heading" data-focus-target="cue" data-read-only={props.readOnly}>
       {recovered.map((entry, index) => <button key={entry.key} type="button" disabled={props.readOnly} onClick={() => recover(entry.body.session, entry.body.payload)}>{t('restoreDraft', { number: index + 1 })}</button>)}
       {dirty ? <p role="status">{t('draftPending')}</p> : null}
       {draftError ? <p role="alert">{t('draftStorageFailed')}</p> : null}
-      <button type="button" onClick={() => {
+      <details className="draft-tools"><summary>{t('exportDrafts')}</summary><button type="button" onClick={() => {
         let emergency: string | undefined;
         try { emergency = props.journal?.exportRaw(); } catch { setDraftError(true); }
         const blob = new Blob([JSON.stringify({ format: 'replaylab-draft-export', version: 1, phaseId: props.phaseId, draft, titleDraft: props.titleDraft, emergency })], { type: 'application/json' });
         const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'replaylab-drafts.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
-      }}>{t('exportDrafts')}</button>
+      }}>{t('exportDrafts')}</button></details>
       <div className="section-heading-row">
         <div>
           <span className="eyebrow">{t('phaseInstruction')}</span>

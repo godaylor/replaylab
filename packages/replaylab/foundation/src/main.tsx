@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import { EmptyRoute, ReplayLabApp, type AppStorageMode } from './app';
 import { ReplayAwarenessSource } from './awareness';
-import { DEFAULT_DB_NAME, ReplayLabEditorFacade } from './facade';
+import { DEFAULT_DB_NAME, ReplayLabEditorFacade, RoomUnavailableError } from './facade';
 import { EmergencyJournal } from './emergency-journal';
 import { rememberPlay } from './recent-plays';
 import { ReplayNetworkDocSource } from './network-source';
@@ -18,6 +18,7 @@ import './styles.css';
 import './playback.css';
 import './conflicts.css';
 import './presence.css';
+import './coach.css';
 
 const app = document.querySelector<HTMLElement>('#app');
 if (!app) throw new Error('Missing app root');
@@ -93,7 +94,7 @@ if (!routeMatch) {
         cueTwo: translate(initialLocale, 'seededCueTwo'),
       });
       facade.setReadOnly(true);
-      storageMode = { kind: 'memory-error', message: (error as Error).message };
+      storageMode = { kind: 'memory-error', message: (error as Error).message, cause: error instanceof RoomUnavailableError ? 'room' : 'local' };
     }
   }
   performance.mark('replaylab-open-ready');

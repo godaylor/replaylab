@@ -36,6 +36,7 @@ test('isolated practice: move, draw, play, undo, archive, export, reopen and gui
   await page.getByRole('button', { name: /Undo/ }).click();
   await expect(page.locator('[data-action-id]')).toHaveCount(2);
   const downloaded = page.waitForEvent('download');
+  await page.locator('.file-tools > summary').click();
   await page.getByRole('button', { name: 'Recovery file', exact: true }).click();
   const file = info.outputPath('practice.replaylab-recovery.json');
   await (await downloaded).saveAs(file);

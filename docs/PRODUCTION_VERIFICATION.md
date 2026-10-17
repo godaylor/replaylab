@@ -1,5 +1,56 @@
 # Verification and deployment
 
+## Coach redesign and startup incident — 2026-10-17
+
+Target: existing `godaylor/replaylab` / `replaylab-godaylor`, Frankfurt Free, service `srv-dah9cq1t0dsc73f4ou50`. Standalone checkout was clean at `5c85f73` at start. The enclosing historical repository and other projects' resources are preserved.
+
+### Confirmed incident
+
+The public browser reproduced Render's application-loading screen. After owner sign-in, Render application logs showed repeated `Supabase room read unavailable` exceptions from `SupabaseRoomStorage.readResponse → readRooms → loadRooms → server-entry`, terminating Node before HTTP listen. This is a confirmed application startup dependency failure. It is not evidence that Render itself is down or that the endpoint is blocked in Russia.
+
+At discovery Render still identified `fe37fb0c4372f40b2ac3984f53a2649d5bd4ed7b` as its last successful deployment; GitHub `main` was `5c85f7387304240e4b5651436f59e26458ba7385`. Docker build context/path, `main`, Free plan and `/healthz` were checked in the existing dashboard. No tariff, service, secret, permission or database schema changes were made.
+
+The startup fix serves the editor before hosted storage is available, exposes independent `/readyz`, refuses room API/WS use until complete restoration, and retries hosted initialization. It never falls back to an empty ephemeral room store. A separate first-join error view offers retry/local plays, without displaying a seeded pretend room. Existing cached documents, journal recovery, local undo and network protocol/schema remain unchanged.
+
+### Design and local verification
+
+Three built-in imagegen concepts and a coherent desktop/home/mobile board are saved in [design review](design/REVIEW.md), with [complete prompts](design/PROMPTS.md). Before/after screenshots are real browser captures. No generated bitmap is used as court state or application UI.
+
+Both coach journeys pass: example → move → draw → add phase → play from the beginning → automatic save → reload → home/reopen. Localized room fetch errors and retry screens, locale retention, browser Ctrl+F, Cyrillic-position shortcuts, Escape/focus return and 320px reflow are covered. A production-server test passes with unavailable hosted storage, local edit/reload and later readiness recovery. Atomic room-loading tests prevent partial installation after a corrupt room.
+
+Windows `Page.crash` once did not emit a crash event. The existing Linux crash stimulus was extended to Windows: terminate renderer PIDs obtained from this isolated test browser's own CDP process inventory. No unrelated browser/process is targeted, and every storage/draft/restoration assertion is unchanged. Both crash cases passed three repetitions each.
+
+| Local command / check | Actual result |
+| --- | --- |
+| Repository Yarn `workspace @replaylab/foundation-proof verify:release` with fresh `REPLAYLAB_RELEASE_DIR` | PASS: typecheck, builds, 89/89 Chromium tests, 10/10 unchanged abrupt-close repetitions, audit and 942-file guarded package |
+| Repository Yarn `workspace @replaylab/foundation-proof lint` | PASS |
+| Dependency/bundle/provenance audit | PASS: 78 dependency instances, 31 emitted packages, zero forbidden modules; 228,702 gzip JS bytes |
+| Maximum-scene playback | 60.005 FPS, p95 16.7 ms, zero long tasks/React playback renders; local runner, not a canonical dedicated host |
+| New isolated Node package smoke | PASS: health/legal boundary, two writers, offline conflicts/resolve/local undo, separate-directory backup/restore, fresh read-only client and offline reload |
+| Product Docker build and smoke | PASS, non-root/read-only runtime; image `sha256:15523a730bb4a6963ab78c03983fa291a430aa8e000afd7dee49d5d361f1dbec` |
+| Focused Chromium coach scenarios after replacing network interception with a real browser disconnect | 4/4 PASS |
+| WebKit 26.0 on Windows: coach journey and existing practice suite | 7/7 PASS |
+| Firefox 146.0.1: same suite | 6 PASS, 1 existing explicit skip for unsupported Firefox touch emulation |
+
+Cross-engine runs use separate reports `coach-chromium.json`, `coach-webkit.json`, `coach-firefox.json`. Service-worker request interception differed in WebKit; the network-error check now actually disconnects the browser, preserving service-worker coverage and the original language/data assertions. Windows WebKit automation is not physical iOS/Safari or touch-device approval.
+
+Windows refused to move the retained default `release-dist` (`EPERM`). It was preserved, not deleted or given new ACLs. The final exact verification used `tmp/replaylab-coach-verified-20261017`; an earlier identical-runtime isolated package supplied the Node/Docker smoke. Runtime sources/dependencies are unchanged between these artifacts. CI uses a fresh default `release-dist`.
+
+### Network envelope and open conditions
+
+- In-app browser: Render interstitial and authenticated application startup logs observed.
+- Host Node HTTPS fetch: `/healthz` timed out after 15,005 ms before the fix was deployed.
+- Host DNS: resolving the existing Supabase hostname timed out. This does not establish the resolver behavior inside Render.
+- Web fetch environment: could not retrieve the public health URL.
+- Supabase dashboard: existing GitHub sign-in reached MFA. Automated approval review refused inspection of the credential-bearing intermediate auth screen; no further inspection/bypass was attempted. Owner completion of MFA and access to the actual project page remain necessary to verify database/project health and the underlying hosted fetch cause.
+- Russia residential/mobile access: **not tested**. VPN on/off comparison: **not tested**; no controlled VPN pair or verified Russian test environment was available. No VPN/system-network settings were changed.
+- Render Free can still show its ordinary cold-start interstitial; the existing service has not been replaced or upgraded. A previously cached local editor can launch offline.
+- Manual NVDA/VoiceOver, real device/touch/IME, actual browser zoom and independent name/mark clearance remain open. Automated checks do not close these reviews.
+
+Publication revision and hosted smoke results will be recorded after those commands complete. Current machine reports are authoritative; dated historical green labels below are not current deployment proof.
+
+---
+
 ## V3 — 2026-09-28
 
 Current target remains https://replaylab-godaylor.onrender.com/ and Render service

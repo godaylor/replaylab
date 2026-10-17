@@ -1,0 +1,351 @@
+{
+  "config": {
+    "configFile": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\playwright.config.ts",
+    "rootDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.pw.spec.ts",
+          "**/*.e2e.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/coach-firefox.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": {
+      "command": "node ../../../node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 32410 --strictPort",
+      "port": 32410,
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "coach-journey.e2e.spec.ts",
+      "file": "coach-journey.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "coach journey ru: example, move, draw, phase, play, reopen and localized room failure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:44.672Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-ef285c9edaef82248fdb",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 4,
+          "column": 45
+        },
+        {
+          "title": "coach journey en: example, move, draw, phase, play, reopen and localized room failure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:47.912Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-eda838f6a2fedf112986",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 4,
+          "column": 45
+        },
+        {
+          "title": "coach layout fits the initial desktop view; RU/EN reflow and browser shortcuts remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1138,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:49.958Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-0fcd5c10a3841748b932",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 51,
+          "column": 1
+        },
+        {
+          "title": "first room visit without a server shows a localized retry screen and never a fabricated play",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3049,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:51.105Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-94ab6384a618e4a504d9",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 76,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "practice.e2e.spec.ts",
+      "file": "practice.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "isolated practice: move, draw, play, undo, archive, export, reopen and guide focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3233,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:54.178Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-a2756e1966bad7a3cceb",
+          "file": "practice.e2e.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "RU and EN home, editor and guide reflow; mobile review, missing target, reduced motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:09:57.420Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-2ced6831f9098ada1d66",
+          "file": "practice.e2e.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "touch selection disambiguates overlapping players; enlarged text and private invite errors stay usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Playwright Firefox does not emulate a touch context",
+                  "location": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
+                    "line": 100,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T00:10:01.229Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Playwright Firefox does not emulate a touch context",
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\practice.e2e.spec.ts",
+                        "line": 100,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "84952e87915267949206-a2b4e16e5a9a3a431148",
+          "file": "practice.e2e.spec.ts",
+          "line": 99,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-17T00:09:43.367Z",
+    "duration": 18435.395,
+    "expected": 6,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

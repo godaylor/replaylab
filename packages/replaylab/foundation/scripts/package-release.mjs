@@ -5,7 +5,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repo = resolve(root, '../../..');
-const destination = join(root, 'release-dist');
+const customDestination = process.env.REPLAYLAB_RELEASE_DIR;
+const destination = customDestination ? resolve(repo, customDestination) : join(root, 'release-dist');
+// A locked/retained old release must never be deleted to make packaging pass.
+// Alternate local artifacts are fresh directories strictly under repository tmp.
+if (customDestination && (!destination.startsWith(resolve(repo, 'tmp') + sep) || existsSync(destination))) throw new Error('Alternate release must be a new directory inside repository tmp');
 let output = destination;
 const verification = JSON.parse(readFileSync(join(root, 'evidence/release-verification.json'), 'utf8'));
 for (const script of ['typecheck', 'build', 'build:server', 'test:release', 'test:durability', 'audit']) {

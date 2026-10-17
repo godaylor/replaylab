@@ -1,10 +1,18 @@
 # ReplayLab standalone release
 
+2026-10-17 startup contract: HTTP/static/local editing starts independently of hosted room storage. `/healthz` means the local editor can be served; its `collaboration` field is `loading`, `ready` or `unavailable`. `/readyz` returns 503 until the complete room set has been validated and loaded. Keep the Render health check on `/healthz`. An unavailable database must not turn the local site into a restart loop.
+
+While hosted storage is unavailable, room creation returns 503 with `Retry-After: 30` and WebSocket upgrades return 503. The server retries hosted initialization in the background; it never creates an ephemeral replacement room store or clears existing records. Structured `collaboration.unavailable` logs classify network, HTTP status or validation failure without exposing secrets or room contents. A bad local filesystem journal still fails closed. A first-time room visitor sees a localized retry/home screen instead of a fabricated play; a previously cached room remains available locally.
+
+Render's deployed revision must be checked in its dashboard: a passing GitHub revision is not proof that Render deployed it. Current dated results and network limitations are in `docs/PRODUCTION_VERIFICATION.md`; older results below remain historical.
+
 Local status (2026-09-08): **technical verification GREEN**. The unchanged immediate-close regression passes ten consecutive repetitions; the full suite passes 74/74 with no skipped tests. The isolated release package and non-root Docker image pass two-client/offline/conflict/undo and separate-directory backup/restore smoke checks. This is not public deployment or manual accessibility/name clearance; see the current `PLAN.md` checkpoint.
 
 This is a single-process portfolio deployment. The site and authenticated WebSocket endpoint `/sync` share port **32400**. Additional local test listeners are restricted to **32400–32499**. No database, Redis, AFFiNE service, migration container or global tool configuration is required.
 
 ## Build and validate
+
+If Windows prevents moving a retained `release-dist`, preserve it. Set `REPLAYLAB_RELEASE_DIR` to a **new** repository-relative directory under `tmp/` for `verify:release` / `package:release` and `release-smoke.mjs`, for example `tmp/replaylab-coach-verified-20261017`. Alternate destinations outside repository `tmp`, or already-existing destinations, are rejected. All verification/audit gates still apply. Normal CI uses the unchanged default `release-dist` path. No ownership/ACL change or old-artifact deletion is required.
 
 For an owner's source repository, use the reviewed export described in `docs/SOURCE_STATE.md` in the source checkout. It includes the required contracts, provenance and only the ReplayLab workflow; it creates no commits or remote changes.
 

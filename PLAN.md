@@ -1,5 +1,24 @@
 # ReplayLab transformation plan
 
+## Coach redesign and release checkpoint — 2026-10-17
+
+Owner requested a complete coach-facing redesign, RU/EN, network diagnosis and checked publication of the existing application. Work is confined to standalone; existing documents/drafts, protocol, canonical schema, capabilities and recovery formats are retained. No other project's processes, containers, networks or volumes were stopped or changed.
+
+- [x] Reproduced the old public Render loading screen. Authenticated Render logs confirm repeated `Supabase room read unavailable` process exits before HTTP listen. Underlying database/transport health requires completion of Supabase MFA. Render had deployed `fe37fb0`, while repository `main` was `5c85f73`.
+- [x] Three imagegen concepts, selected daylight-court direction, coherent key-screen board, original implementation, and visually inspected desktop/mobile RU/EN before/after captures. See `docs/design/REVIEW.md` and `PROMPTS.md`.
+- [x] Court-first layout, contextual next actions, actual phase miniatures, compact phone playback/cue review, optional storage/backup diagnostics. Full authoring stays desktop-only; keyboard/semantic paths, focus restoration, reduced motion and forced colors are preserved.
+- [x] Typed local commands, one local undo history, local-first persistence, per-writer journal/drafts and room roles are unchanged. Starting playback after adding a phase shows the combination from the beginning; pause/resume otherwise retains position.
+- [x] HTTP/editor startup is independent of hosted room readiness. Complete hosted snapshot validation precedes installation. Unready room API/WS fails closed; hosted startup retries never create a replacement store. Fresh room failure shows retry/local navigation instead of a fabricated play.
+- [x] Repository Yarn 4.18.0 / Node 22.15.1: typecheck, lint, client/server builds, full **89/89** Chromium tests and **10/10** immediate-close repetitions; no skips/flaky outcomes. Windows crash tests use only renderer PIDs from the isolated test browser's CDP inventory; both crash cases also pass three repetitions each. Current reports, not historical numbers below, are authoritative.
+- [x] Real browser-disconnect coach scenarios: focused Chromium 4/4; WebKit 7/7; Firefox 6 pass + one existing unsupported-touch-emulation skip. Separate reports preserve the full Chromium release totals. These Windows engine tests do not approve real iOS/touch/IME behavior.
+- [x] Boundary audit PASS: 78 dependency instances, 31 emitted packages, zero forbidden imports/modules/markers. Official unmodified Yjs 13.6.21; no dependency/lock/license upgrade. Client JavaScript **756,433 raw / 228,702 gzip bytes**. Maximum fixture: **60.005 FPS**, p95 **16.7 ms**, zero long tasks and React playback renders on this local runner.
+- [x] `verify:release` PASS with a fresh `REPLAYLAB_RELEASE_DIR=tmp/replaylab-coach-verified-20261017`: **942** inventoried artifact files. Windows refused to move the old `release-dist`; it remains intact. Alternate destinations must be new directories under repository `tmp`; all gates remain enforced, and CI retains its default destination.
+- [x] Packaged Node and non-root/read-only Docker backup/restore smoke PASS: two independent writers, offline conflict/resolve/local undo, separate restored data directory, fresh read-only client and offline reload. Image `replaylab:coach-20261017`: `sha256:15523a730bb4a6963ab78c03983fa291a430aa8e000afd7dee49d5d361f1dbec`. Only task-owned temporary containers were created and removed.
+- [ ] Hosted CI and deployment of this change, then public HTTP/editor/room checks. The existing Render Free service is retained; no replacement, paid plan or permission/schema change is authorized or needed for the startup fix.
+- [ ] Supabase project/room availability after owner MFA; verified Russia access and controlled VPN on/off environments; manual screen-reader, real touch/IME/browser zoom, human demo review and independent name/mark clearance remain open. Do not interpret automation as these approvals.
+
+Current evidence and publication status: `docs/PRODUCTION_VERIFICATION.md`.
+
 ## V3 usability and availability checkpoint — 2026-09-28
 
 Owner authorized this update in existing `godaylor/replaylab` / `main` and the

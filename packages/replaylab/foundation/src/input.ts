@@ -26,11 +26,12 @@ export class InputCoordinator {
 
   shouldSuspendShortcuts(event: KeyboardEvent) {
     if (event.isComposing || this.contextValue === 'composing') return true;
+    if (this.contextValue === 'modal' || this.contextValue === 'menu') return true;
     const target = event.target;
     if (!(target instanceof HTMLElement)) return false;
     return Boolean(
       target.closest(
-        'input, textarea, select, [contenteditable="true"], [role="dialog"], [role="menu"]'
+        'input, textarea, select, [contenteditable="true"], dialog, details[open], [role="dialog"], [role="menu"]'
       )
     );
   }
@@ -48,7 +49,10 @@ export class InputCoordinator {
     }
   ): InputResult {
     if (this.shouldSuspendShortcuts(event)) return 'ignored';
-    const key = event.key.toLowerCase();
+    if (event.altKey) return 'ignored';
+    // Physical shortcut positions remain usable with a Cyrillic keyboard.
+    const key = event.key.length === 1 && event.key.charCodeAt(0) > 127 && /^Key[A-Z]$/.test(event.code)
+      ? event.code.slice(3).toLowerCase() : event.key.toLowerCase();
     const commandModifier = event.metaKey || event.ctrlKey;
     if (commandModifier && key === 'z') {
       if (event.shiftKey) commands.redo();
@@ -61,6 +65,7 @@ export class InputCoordinator {
       event.preventDefault();
       return 'handled-and-prevented';
     }
+    if (commandModifier || event.altKey) return 'ignored';
     if (key === 'f') {
       commands.addPhase();
       event.preventDefault();

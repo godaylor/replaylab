@@ -1,6 +1,6 @@
 # ReplayLab third-party notices
 
-Generated for repository commit `186fb97de9a6446f82aed80ade6922465fa351ea`. This inventory supplements and does not replace the preserved root and nested license files.
+Generated for repository commit `5c85f7387304240e4b5651436f59e26458ba7385`. This inventory supplements and does not replace the preserved root and nested license files.
 
 ## Runtime dependencies
 

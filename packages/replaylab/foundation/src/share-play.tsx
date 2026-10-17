@@ -17,22 +17,22 @@ export function SharePlay({ facade }: { facade: ReplayLabEditorFacade }) {
   const close = () => { setOpen(false); requestAnimationFrame(() => trigger.current?.focus()); };
   const create = async () => {
     setPending(true); setMessage('');
+    let failure = ru ? 'Не удалось связаться с сервером комнат. Локальная комбинация сохранена; попробуйте позже.' : 'Could not reach the room server. Your local play is safe; try again later.';
     try {
       const response = await fetch('/api/rooms', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ update: bytesToBase64(facade.encode()) }), signal: AbortSignal.timeout(60_000) });
       if (!response.ok) {
-        if (response.status === 429) throw new Error(ru ? 'Слишком много запросов. Повторите через минуту.' : 'Too many requests. Try again in one minute.');
-        if (response.status === 413) throw new Error(ru ? 'Комбинация слишком большая для комнаты. Сохраните экспорт.' : 'This play is too large for a room. Keep an export copy.');
-        throw new Error(ru ? 'Комната пока недоступна. Ваша локальная комбинация сохранена; попробуйте позже.' : 'Rooms are unavailable right now. Your local play is safe; try again later.');
+        failure = response.status === 429 ? (ru ? 'Слишком много запросов. Повторите через минуту.' : 'Too many requests. Try again in one minute.') : response.status === 413 ? (ru ? 'Комбинация слишком большая для комнаты. Сохраните экспорт.' : 'This play is too large for a room. Keep an export copy.') : (ru ? 'Комната пока недоступна. Ваша локальная комбинация сохранена; попробуйте позже.' : 'Rooms are unavailable right now. Your local play is safe; try again later.');
+        throw new Error('Room request rejected');
       }
       const result = await response.json();
       const href = (access: 'read' | 'write') => `${location.origin}/app/play/${encodeURIComponent(result.id)}/edit${capabilityFragment({ roomId: result.id, endpoint: location.origin.replace(/^http/, 'ws') + '/sync', access, capability: result[`${access}Token`] })}`;
       setLinks({ read: href('read'), write: href('write') });
-    } catch (error) { setMessage(error instanceof Error ? error.message : (ru ? 'Не удалось создать комнату.' : 'Could not create the room.')); }
+    } catch { setMessage(failure); }
     finally { setPending(false); }
   };
   const shown = links ?? (connection ? { [connection.access]: location.href } : null);
   return <>
-    <button ref={trigger} className="button" onClick={() => setOpen(true)}>{ru ? 'Пригласить' : 'Invite'}</button>
+    <button ref={trigger} className="button share-trigger" aria-label={ru ? 'Пригласить' : 'Invite'} onClick={() => { setMessage(''); setOpen(true); }}><span>{ru ? 'Пригласить' : 'Invite'}</span><span className="share-symbol" aria-hidden="true">↗</span></button>
     {open && <dialog ref={dialog} className="share-dialog" aria-labelledby="share-title" onCancel={event => { event.preventDefault(); close(); }} onClose={close}>
       <div className="share-heading"><h2 id="share-title">{ru ? 'Работа над комбинацией вместе' : 'Work on this play together'}</h2><button className="icon-button" aria-label={ru ? 'Закрыть' : 'Close'} onClick={close}>×</button></div>
       {shown ? <><p>{ru ? 'Ссылка даёт доступ каждому, у кого она есть. Отправляйте её только участникам. Сохраните ссылки перед закрытием окна.' : 'Anyone with a link can use its access. Share only with your collaborators. Keep the links before closing this window.'}</p>

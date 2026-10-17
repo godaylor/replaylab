@@ -3,13 +3,14 @@ import { spawn, spawnSync } from 'node:child_process';
 import { once } from 'node:events';
 import { cpSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:net';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const repo = resolve(root, '../../..');
-const artifact = join(root, 'release-dist');
+const artifact = process.env.REPLAYLAB_RELEASE_DIR ? resolve(repo, process.env.REPLAYLAB_RELEASE_DIR) : join(root, 'release-dist');
+if (process.env.REPLAYLAB_RELEASE_DIR && !artifact.startsWith(resolve(repo, 'tmp') + sep)) throw new Error('Alternate release must be inside repository tmp');
 const docker = process.argv.includes('--docker');
 const capture = process.argv.includes('--capture');
 const tag = process.env.REPLAYLAB_IMAGE ?? 'replaylab:portfolio-20260908';

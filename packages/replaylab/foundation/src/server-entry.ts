@@ -19,6 +19,7 @@ const supabase = {
   secretKey: process.env.REPLAYLAB_SUPABASE_SECRET_KEY,
 };
 const externalStorage = Boolean(supabase.url && supabase.secretKey);
+let collaboration: 'loading' | 'ready' | 'unavailable' = 'loading';
 if (!externalStorage && (supabase.url || supabase.secretKey)) throw new Error('External storage configuration is incomplete');
 const types: Record<string, string> = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
 const http = createServer((request, response) => {
@@ -28,12 +29,22 @@ const http = createServer((request, response) => {
   response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'");
   response.setHeader('Cache-Control', 'no-store');
-  if (request.url === '/api/rooms') { void handleRoom(request, response); return; }
+  if (request.url === '/api/rooms') {
+    if (collaboration !== 'ready') {
+      response.writeHead(503, { 'Content-Type': 'application/json', 'Retry-After': '30' });
+      response.end(JSON.stringify({ error: 'storage_unavailable' }));
+    } else void handleRoom(request, response);
+    return;
+  }
   if (!['GET', 'HEAD'].includes(request.method ?? '')) { response.writeHead(405); response.end(); return; }
   let pathname: string;
   try { pathname = decodeURIComponent(new URL(request.url ?? '/', 'http://local').pathname); }
   catch { response.writeHead(400); response.end(); return; }
-  if (pathname === '/healthz') { response.setHeader('Content-Type', types['.json']!); response.end(request.method === 'HEAD' ? undefined : JSON.stringify({ status: 'ok', product: 'ReplayLab', storage: externalStorage ? 'supabase-postgres' : 'filesystem' })); return; }
+  if (pathname === '/healthz' || pathname === '/readyz') {
+    response.setHeader('Content-Type', types['.json']!);
+    if (pathname === '/readyz' && collaboration !== 'ready') response.statusCode = 503;
+    response.end(request.method === 'HEAD' ? undefined : JSON.stringify({ status: 'ok', product: 'ReplayLab', collaboration, storage: externalStorage ? 'supabase-postgres' : 'filesystem' })); return;
+  }
   const appRoute = pathname === '/' || /^\/app\/play\/[^/]+\/edit\/?$/.test(pathname);
   const permitted = appRoute || pathname === '/index.html' || pathname === '/sw.js' || /^\/assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(pathname) || /^\/legal\/[a-zA-Z0-9_.-]+$/.test(pathname);
   const target = resolve(dist, appRoute ? 'index.html' : '.' + pathname);
@@ -44,7 +55,7 @@ const http = createServer((request, response) => {
   if (request.method === 'HEAD') { response.end(); return; }
   createReadStream(target).on('error', () => response.destroy()).pipe(response);
 });
-const sync = new ReplaySyncWebSocketServer({ server: http, publicOrigin });
+const sync = new ReplaySyncWebSocketServer({ server: http, publicOrigin, isReady: () => collaboration === 'ready' });
 const dataRoot = resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data');
 const hostedStorage = externalStorage ? new SupabaseRoomStorage({ url: supabase.url!, secretKey: supabase.secretKey! }) : undefined;
 const handleRoom = roomApi({ server: sync, publicOrigin, provision: async (id, snapshot) => {
@@ -54,19 +65,37 @@ const handleRoom = roomApi({ server: sync, publicOrigin, provision: async (id, s
   await sync.rooms.get(id)!.accept({ sessionId: 'create', role: 'write', commitId: 'initial', update: snapshot });
   return tokens;
 } });
-try {
-  if (hostedStorage) {
-    await hostedStorage.loadRooms(sync);
-  } else {
-    loadRooms(sync, resolve(process.env.REPLAYLAB_DATA_DIR ?? '.replaylab-data'));
+let stopping = false;
+let retry: ReturnType<typeof setTimeout> | undefined;
+async function initializeRooms() {
+  try {
+    if (hostedStorage) await hostedStorage.loadRooms(sync);
+    else loadRooms(sync, dataRoot);
+    collaboration = 'ready';
+    console.log(JSON.stringify({ event: 'collaboration.ready', rooms: sync.rooms.size }));
+  } catch (error) {
+    if (!hostedStorage) { await sync.close(); throw error; }
+    collaboration = 'unavailable';
+    // Never expose capabilities, database URLs or raw vendor responses in logs.
+    const message = error instanceof Error ? error.message : '';
+    const status = /^Supabase room read failed \((\d{3})\)$/.exec(message)?.[1];
+    console.error(JSON.stringify({ event: 'collaboration.unavailable', storage: 'supabase-postgres', category: status ? 'http' : message === 'Supabase room read unavailable' ? 'network' : 'validation', ...(status ? { status: Number(status) } : {}), localEditor: 'available' }));
+    if (hostedStorage && !stopping) {
+      retry = setTimeout(() => void initializeRooms(), 30_000);
+      retry.unref();
+    }
   }
 }
-catch (error) { await sync.close(); throw error; }
 http.requestTimeout = 15_000;
 http.headersTimeout = 10_000;
 http.on('error', error => { console.error(error.message); process.exit(1); });
-http.listen(port, host, () => console.log(`ReplayLab listening on ${host}:${port}; ${sync.rooms.size} configured rooms`));
+http.listen(port, host, () => {
+  console.log(`ReplayLab listening on ${host}:${port}; local editor ready`);
+  void initializeRooms();
+});
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => {
+  stopping = true;
+  clearTimeout(retry);
   const deadline = setTimeout(() => process.exit(1), 5000);
   deadline.unref();
   void sync.close().finally(() => http.close(() => process.exit(0)));

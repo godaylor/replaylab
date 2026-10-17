@@ -5,6 +5,8 @@ import { DocEngine, DocEngineStep, DocPeerStep, IndexedDBDocSource as KernelInde
 import * as Y from 'yjs';
 import { EmergencyJournal, decodeUpdate } from './emergency-journal';
 
+export class RoomUnavailableError extends Error {}
+
 // Product-owned durability adapter for the approved kernel's collection schema.
 // Explicitly commit as soon as the write is queued, then await transaction.done;
 // a successful put request alone is not a durable save acknowledgement.
@@ -329,7 +331,7 @@ export class ReplayLabEditorFacade {
       // one here would merge unrelated page/title blocks into the existing room.
       // Cached documents and recovered journal documents remain usable offline.
       if (networkBootstrapFailed && !rootDoc.getMap('replay').has('schemaVersion')) {
-        throw new Error('The room could not be loaded. Reconnect and reload; no local room copy was created.');
+        throw new RoomUnavailableError('The room could not be loaded. Reconnect and reload; no local room copy was created.');
       }
       options.networkSource?.configureImmediateRecovery?.({
         docId: playId,
@@ -376,7 +378,7 @@ export class ReplayLabEditorFacade {
       await registry.close();
       await recoveryStore.close();
       rootDoc.destroy();
-      if (error instanceof ReplayOpenError) throw error;
+      if (error instanceof ReplayOpenError || error instanceof RoomUnavailableError) throw error;
       throw new ReplayOpenError(
         classifyRecoveryIssue(error),
         error instanceof Error ? error.message : 'ReplayLab could not open the local play',

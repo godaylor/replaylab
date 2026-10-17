@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { ReplaySnapshot } from './domain';
 import {
@@ -14,13 +14,15 @@ type Props = {
   getCue(index: number): string;
   onPhaseSelected(index: number): void;
   onPresentationChange?(presenting: boolean): void;
+  restartFromBeginning?: boolean;
+  onPlaybackStarted?(): void;
 };
 
 function formatTime(milliseconds: number) {
   return `${(milliseconds / 1000).toFixed(1)}s`;
 }
 
-export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected, onPresentationChange }: Props) {
+export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected, onPresentationChange, restartFromBeginning, onPlaybackStarted }: Props) {
   const { t } = useI18n();
   const [state, setState] = useState<PlaybackState>(controller.state);
   const [presenting, setPresenting] = useState(false);
@@ -31,6 +33,18 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
   const presenterPhaseRef = useRef<HTMLSpanElement>(null);
   const presenterCloseRef = useRef<HTMLButtonElement>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
+  const togglePlayback = useCallback(() => {
+    // The last phase is a static endpoint. After adding it, Play should show the
+    // combination instead of briefly playing only that final still formation.
+    if (!controller.playing) {
+      if (restartFromBeginning || controller.currentFrame.phaseIndex === snapshot.phases.length - 1) {
+        controller.goToPhase(0);
+        onPhaseSelected(0);
+      }
+      onPlaybackStarted?.();
+    }
+    controller.toggle();
+  }, [controller, onPhaseSelected, snapshot.phases.length, restartFromBeginning, onPlaybackStarted]);
 
   useEffect(() => controller.onState(setState), [controller]);
 
@@ -97,7 +111,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
         setPresenting(false);
       } else if (event.key === ' ') {
         event.preventDefault();
-        controller.toggle();
+        togglePlayback();
       } else if (event.key === '[' || event.key === ']') {
         event.preventDefault();
         const index = controller.step(event.key === '[' ? -1 : 1);
@@ -106,7 +120,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [controller, onPhaseSelected, presenting]);
+  }, [controller, onPhaseSelected, presenting, togglePlayback]);
 
   useEffect(() => {
     document.body.classList.toggle('is-presenting', presenting);
@@ -132,7 +146,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
           type="button"
           className="button button-accent playback-primary"
           aria-label={controller.playing ? t('pausePlayback') : t('playTactic')}
-          onClick={() => controller.toggle()}
+          onClick={togglePlayback}
         >
           {controller.playing ? t('pause') : t('play')} <kbd>Space</kbd>
         </button>

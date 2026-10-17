@@ -234,7 +234,7 @@ export class ReplayLabGfxAdapter {
     const width = this.canvas.width;
     const height = this.canvas.height;
     context.clearRect(0, 0, width, height);
-    context.fillStyle = '#07131f';
+    context.fillStyle = '#e1ecf2';
     context.fillRect(0, 0, width, height);
     this.drawCourt(context, width, height);
 
@@ -314,7 +314,7 @@ export class ReplayLabGfxAdapter {
     height: number
   ) {
     context.save();
-    context.strokeStyle = '#e6d9b6';
+    context.strokeStyle = '#7893a5';
     context.lineWidth = 2;
     context.globalAlpha = 0.9;
     context.strokeRect(20, 20, width - 40, height - 40);
@@ -358,14 +358,14 @@ export class ReplayLabGfxAdapter {
     const beforeLast = path.points.at(-2);
     if (!first || !last || !beforeLast) return;
     const colors: Record<TacticalActionType, string> = {
-      cut: '#f7f1dc',
-      pass: '#ffb020',
-      dribble: '#ff625f',
-      screen: '#45c8f5',
+      cut: '#18364a',
+      pass: '#2459a6',
+      dribble: '#c84d16',
+      screen: '#266e61',
     };
     context.save();
-    context.strokeStyle = selected ? '#ffffff' : colors[type];
-    context.fillStyle = selected ? '#ffffff' : colors[type];
+    context.strokeStyle = selected ? '#163f87' : colors[type];
+    context.fillStyle = selected ? '#163f87' : colors[type];
     context.lineWidth = selected ? 5 : 3;
     context.lineCap = 'round';
     context.lineJoin = 'round';
@@ -406,11 +406,11 @@ export class ReplayLabGfxAdapter {
     const bound = element.elementBound;
     const [x, y] = bound.center;
     context.save();
-    context.shadowColor = 'rgba(0, 0, 0, 0.38)';
-    context.shadowBlur = 8;
-    context.shadowOffsetY = 3;
-    context.fillStyle = team === 'offense' ? '#ff625f' : '#45c8f5';
-    context.strokeStyle = selected ? '#ffb020' : '#07131f';
+    context.shadowColor = 'rgba(24, 54, 74, 0.16)';
+    context.shadowBlur = 4;
+    context.shadowOffsetY = 2;
+    context.fillStyle = team === 'offense' ? '#c84d16' : '#ffffff';
+    context.strokeStyle = selected ? '#2459a6' : team === 'offense' ? '#ffffff' : '#18364a';
     context.lineWidth = selected ? 5 : 3;
     context.beginPath();
     if (team === 'offense') {
@@ -422,7 +422,7 @@ export class ReplayLabGfxAdapter {
     context.fill();
     context.stroke();
     context.shadowColor = 'transparent';
-    context.fillStyle = '#07131f';
+    context.fillStyle = team === 'offense' ? '#ffffff' : '#18364a';
     context.font = '800 15px Bahnschrift, Arial Narrow, system-ui';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
@@ -460,7 +460,7 @@ export class ReplayLabGfxAdapter {
     context.save();
     context.globalAlpha = 0.36;
     context.setLineDash([4, 4]);
-    context.strokeStyle = team === 'offense' ? '#ff625f' : '#45c8f5';
+    context.strokeStyle = team === 'offense' ? '#c84d16' : '#2459a6';
     context.lineWidth = 3;
     context.beginPath();
     context.arc(pose.x, pose.y, 23, 0, Math.PI * 2);

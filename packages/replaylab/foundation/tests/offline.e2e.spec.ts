@@ -104,6 +104,7 @@ test('persistent-storage denial is explicit and leaves IndexedDB authoring avail
 
   const retention = page.locator('#durability-status');
   await expect(retention).toHaveAttribute('data-storage-retention', 'evictable');
+  await page.locator('.storage-details > summary').click();
   await page.getByRole('button', { name: 'Keep offline' }).click();
   await expect(retention).toHaveAttribute('data-storage-retention', 'denied');
   await expect(retention).toContainText('export recommended');

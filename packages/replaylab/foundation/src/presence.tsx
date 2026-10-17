@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { ReplayAwarenessSource } from './awareness';
 import type { ReplaySnapshot } from './domain';
 import type { ReplayPlaybackController } from './playback';
-import { useI18n } from './i18n';
+import { actorLabel, useI18n } from './i18n';
 
 export function PresenceLayer({ source }: { source?: ReplayAwarenessSource }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -44,7 +44,7 @@ export function PresencePanel(props: {
   onPhaseSelected(index: number): void;
   onAnnounce(message: string): void;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { source, playback } = props;
   const revision = useSyncExternalStore(
     listener => source?.onChange(listener) ?? (() => {}),
@@ -110,7 +110,7 @@ export function PresencePanel(props: {
         {presences.map(presence => (
           <li key={presence.clientId}>
             <i style={{ background: presence.color }} aria-hidden="true" />
-            <span>{presence.participantName}{presence.selection ? ` · ${presence.selection.entityId}` : ''}</span>
+            <span>{presence.participantName}{presence.selection ? ` · ${presence.selection.entityId === 'ball' ? t('ball') : /^(offense|defense)-[1-5]$/.test(presence.selection.entityId) ? actorLabel(locale, presence.selection.entityId) : t('phaseCard', { number: Math.max(0, props.snapshot.phases.findIndex(phase => phase.id === presence.selection!.phaseId)) + 1 })}` : ''}</span>
             {presence.presenter ? (
               <button
                 type="button"

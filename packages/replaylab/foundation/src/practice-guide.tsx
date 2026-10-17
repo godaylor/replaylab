@@ -8,8 +8,8 @@ export function openPractice(tour = false) {
 export function CourtLegend() {
   const { locale } = useI18n();
   return <ul className="court-legend" aria-label={locale === 'ru' ? 'Обозначения площадки' : 'Court legend'}>
-    <li><span className="token token-offense">O1</span>{locale === 'ru' ? 'Атака · O1–O5' : 'Offense · O1–O5'}</li>
-    <li><span className="token token-defense">D1</span>{locale === 'ru' ? 'Защита · D1–D5' : 'Defense · D1–D5'}</li>
+    <li><span className="token token-offense">O1</span>{locale === 'ru' ? 'Атака' : 'Offense'}</li>
+    <li><span className="token token-defense">D1</span>{locale === 'ru' ? 'Защита' : 'Defense'}</li>
     <li><span className="token token-ball" aria-hidden="true">●</span>{locale === 'ru' ? 'Мяч · у владельца' : 'Ball · with its holder'}</li>
     <li>{locale === 'ru' ? '→ Движение · ⇢ пунктир — передача · × — заслон' : '→ Movement · ⇢ dashed pass · × — screen'}</li>
   </ul>;
@@ -66,13 +66,14 @@ export function PracticeGuide({ mode }: { mode: 'desktop' | 'tablet' | 'mobile' 
   }}>
     <div className="practice-heading">
       <button ref={trigger} className="button" onClick={() => practice ? setStep(step === null ? 0 : null) : openPractice(true)}>{ru ? 'Как пользоваться' : 'How to use'}</button>
-      <p>{practice ? (ru ? 'Учебная копия · изменения сохраняются в этом браузере. Личные комбинации не затрагиваются.' : 'Practice copy · edits stay in this browser. Your personal plays are untouched.') : (ru ? 'Знакомство откроет отдельный учебный пример.' : 'The guide opens a separate practice play.')}</p>
+      <p>{practice ? (ru ? 'Учебный пример · изменения сохраняются автоматически.' : 'Practice play · your edits save automatically.') : (ru ? 'Знакомство откроет отдельный учебный пример.' : 'The guide opens a separate practice play.')}</p>
     </div>
     {current && <div className="practice-steps" role="region" aria-label={ru ? 'Пошаговое знакомство' : 'Step-by-step guide'}>
       <h2 ref={heading} tabIndex={-1}>{Math.min(step!, steps.length - 1) + 1} / {steps.length} · {current.title}</h2>
       <p>{current.body}</p>
       <button className="button" onClick={() => {
         const target = document.querySelector<HTMLElement>(current.target);
+        for (let disclosure = target?.closest('details'); disclosure; disclosure = disclosure.parentElement?.closest('details') ?? null) disclosure.open = true;
         if (!target || target.getClientRects().length === 0 || target.matches(':disabled')) { setMissing(true); return; }
         target.scrollIntoView({ block: 'center', behavior: 'instant' }); target.focus({ preventScroll: true });
       }}>{ru ? 'Перейти к элементу' : 'Go to control'}</button>

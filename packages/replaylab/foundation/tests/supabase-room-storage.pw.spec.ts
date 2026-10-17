@@ -3,8 +3,30 @@ import { expect, test } from '@playwright/test';
 import { createHash } from 'node:crypto';
 
 import { SupabaseRoomStorage } from '../src/supabase-room-storage';
+import { ReplaySyncWebSocketServer } from '../src/sync-server';
 
 const hash = (character: string) => character.repeat(64);
+
+test('a corrupt hosted room cannot install a partial room set and the next complete load is safe', async () => {
+  const server = new ReplaySyncWebSocketServer({ port: 32414 });
+  await server.ready();
+  let damaged = true;
+  const bytes = Buffer.from([1, 2, 3]);
+  const storage = new SupabaseRoomStorage({ url: 'https://example.supabase.co', secretKey: 'sb_secret_test-only' }, async () => Response.json(['first', 'second'].map((id, index) => ({
+    id, read_capability_hash: hash('a'), write_capability_hash: hash('b'),
+    snapshot_base64: damaged && index === 1 ? bytes.toString('base64') : null,
+    snapshot_sha256: damaged && index === 1 ? createHash('sha256').update(bytes).digest('hex') : null,
+  }))));
+  try {
+    await expect(storage.loadRooms(server)).rejects.toThrow();
+    expect(server.rooms.size).toBe(0);
+    await expect(storage.loadRooms(server)).rejects.toThrow();
+    expect(server.rooms.size).toBe(0);
+    damaged = false;
+    await storage.loadRooms(server);
+    expect([...server.rooms.keys()]).toEqual(['first', 'second']);
+  } finally { await server.close(); }
+});
 
 test('startup retries transient Supabase reads with bounded backoff and respects Retry-After', async () => {
   const delays: number[] = [];

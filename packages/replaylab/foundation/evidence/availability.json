@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-10-17T00:02:47.389Z",
+  "verdict": "PASS",
+  "checks": [
+    "HTTP before hosted storage",
+    "readiness 503",
+    "room API fails closed with Retry-After",
+    "local edit/reload survives",
+    "background storage recovery"
+  ],
+  "network": "isolated dependency fault; no public database writes"
+}

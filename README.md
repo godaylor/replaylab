@@ -10,14 +10,16 @@ Local-first multiplayer editor for animated basketball plays. RU is the default;
 
 Desktop supports full authoring. Tablet supports playback, player movement and cue editing. Mobile supports playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
 
-![ReplayLab — recent plays and a direct entry into the editor](packages/replaylab/foundation/evidence/home-desktop.png)
+![ReplayLab — daylight coaching court](docs/design/after-desktop-en.png)
+
+[Design concepts, mobile screens and before/after](docs/design/REVIEW.md) · [Current availability and verification](docs/PRODUCTION_VERIFICATION.md)
 
 ## Make a play
 
-1. Choose **Create a play**, give it a name and arrange the ten players.
+1. Choose **Open example** to try a separate practice play, or **Create a play** for your own combination.
 2. Select a phase, draw a cut, dribble, pass or screen, and add the next phase.
 3. Add a coaching cue, scrub the timeline, then press Play.
-4. Return home to reopen your recent work. Use export for a portable backup.
+4. Edits save automatically in this browser. Return home to reopen recent work. **File & backup → Recovery file** downloads a complete portable copy.
 5. Choose **Invite → Create collaborative room** to create a private shared copy.
    Open that room yourself, then send the edit or view link to a collaborator.
    The local original is preserved. Anyone with a private link has its access.

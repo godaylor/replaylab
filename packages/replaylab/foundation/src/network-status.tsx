@@ -10,7 +10,10 @@ function label(source: ReplayNetworkDocSource, t: ReturnType<typeof useI18n>['t'
     case 'syncing': return t('networkSyncing');
     case 'synced': return t(state.role === 'read' ? 'networkSyncedRead' : 'networkSyncedWrite');
     case 'rate-limited': return t('networkRateLimited', { milliseconds: state.retryAfterMs ?? 0 });
-    case 'blocked': return t('networkBlocked', { reason: state.errorCode ?? t('terminalError') });
+    case 'blocked': return t('networkBlocked', { reason: t(
+      state.errorCode === 'unauthorized' || state.errorCode === 'forbidden' ? 'roomAccessRejected' :
+      state.errorCode === 'oversize' ? 'roomSizeRejected' : 'roomDataRejected'
+    ) });
     default: return t('networkOffline');
   }
 }

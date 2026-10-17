@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T02:52:00.607Z",
+  "generatedAt": "2026-10-17T00:05:20.801Z",
   "verdict": "PASS",
   "scope": "@replaylab/foundation slice7 production runtime",
   "directDependencies": [
@@ -1618,18 +1618,18 @@
   "bundle": {
     "chunks": [
       {
-        "file": "assets/core-D38naYNX.js",
+        "file": "assets/core-pJ9BEhca.js",
         "rawBytes": 62539,
-        "gzipBytes": 18683
+        "gzipBytes": 18684
       },
       {
-        "file": "assets/index-D-Endx1x.js",
-        "rawBytes": 686641,
-        "gzipBytes": 207522
+        "file": "assets/index-DBbxWAZn.js",
+        "rawBytes": 693894,
+        "gzipBytes": 210018
       }
     ],
-    "rawBytes": 749180,
-    "gzipBytes": 226205,
+    "rawBytes": 756433,
+    "gzipBytes": 228702,
     "budgetGzipBytes": 1500000,
     "emittedPackages": [
       "@blocksuite/global",
@@ -1698,7 +1698,7 @@
     "failures": []
   },
   "sourceBoundaryScan": {
-    "filesScanned": 76,
+    "filesScanned": 80,
     "forbidden": [],
     "protocolMarkers": []
   },
@@ -1769,8 +1769,8 @@
     "finalRetainVersusUnpatchedReviewRequiredBeforeRelease": false
   },
   "sourceNotices": {
-    "generatedAt": "2026-09-28T02:52:00.606Z",
-    "repositoryCommit": "186fb97de9a6446f82aed80ade6922465fa351ea",
+    "generatedAt": "2026-10-17T00:05:20.799Z",
+    "repositoryCommit": "5c85f7387304240e4b5651436f59e26458ba7385",
     "items": [
       {
         "source": "blocksuite/framework/store/src/adapter/base.ts",

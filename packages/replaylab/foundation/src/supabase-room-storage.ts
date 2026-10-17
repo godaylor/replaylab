@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from 'node:crypto';
-import type { ReplaySyncWebSocketServer } from './sync-server';
+import { ReplaySyncRoom, type ReplaySyncWebSocketServer } from './sync-server';
 import { validRoomId } from './room-storage';
 
 const SNAPSHOT_LIMIT = 16 * 1024 * 1024;
@@ -41,6 +41,14 @@ export class SupabaseRoomStorage {
 
   async loadRooms(server: ReplaySyncWebSocketServer) {
     const records = await this.readRooms();
+    // Validate every snapshot before installing any room. A failed load must be
+    // safely retryable and must never expose a partially restored room set.
+    for (const record of records) {
+      if (server.rooms.has(record.id)) throw new Error('Hosted rooms already loaded');
+      const candidate = new ReplaySyncRoom(record.id);
+      try { if (record.snapshot) candidate.restore(record.snapshot); }
+      finally { candidate.doc.destroy(); }
+    }
     for (const record of records) {
       const room = server.createRoom(record.id, {
         capabilityHashes: record.capabilityHashes,

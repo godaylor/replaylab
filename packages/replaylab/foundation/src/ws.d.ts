@@ -9,7 +9,7 @@ declare module 'ws' {
   }
 
   export class WebSocketServer extends EventEmitter {
-    constructor(options: { port?: number; host?: string; server?: import('node:http').Server; path?: string; maxPayload?: number; perMessageDeflate?: boolean; verifyClient?: (info: { origin: string; req: import('node:http').IncomingMessage }) => boolean });
+    constructor(options: { port?: number; host?: string; server?: import('node:http').Server; path?: string; maxPayload?: number; perMessageDeflate?: boolean; verifyClient?: ((info: { origin: string; req: import('node:http').IncomingMessage }) => boolean) | ((info: { origin: string; req: import('node:http').IncomingMessage }, done: (accepted: boolean, code?: number, message?: string) => void) => void) });
     readonly clients: Set<WebSocket>;
     address(): { port: number; address: string; family: string } | string | null;
     close(callback?: (error?: Error) => void): void;
