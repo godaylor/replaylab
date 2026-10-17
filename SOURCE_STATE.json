@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "e2a54c028eae6b9ea7bfa48eaca7e48718466b50cfa3bc457efd1cb0bf188c39",
+  "snapshotSha256": "0246ca3a57edb6afd0076d08dc6619b68c0b9012186aa4937267445659dcbbfd",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -2745,6 +2745,11 @@
       "origin": "original-replaylab"
     },
     {
+      "path": "docs/design/public-coach3d-render.png",
+      "sha256": "f6796d273c66a65b60ced87aeaa4f21009824ba99197b8469e7b456d172bbf8f",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "package.json",
       "sha256": "60284420348d6efe9b01e7d92fbbb590a784bc3804f5870bc8584034164f4819",
       "origin": "export-configuration"
@@ -3301,7 +3306,7 @@
     },
     {
       "path": "packages/replaylab/foundation/index.html",
-      "sha256": "17e60cf87ba89a2b0d3575ab63605ab05b540bddbd2f1356901c5a1c0a0bbdf3",
+      "sha256": "d61e2146a0bf87a2986b0edb250214861e54b387749b9ed8ffb683b001bd5846",
       "origin": "working-tree-copy"
     },
     {
