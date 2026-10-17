@@ -4,6 +4,7 @@ test('isolated practice: move, draw, play, undo, archive, export, reopen and gui
   await page.goto('/');
   await page.getByRole('button', { name: 'How to use', exact: true }).click();
   await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Pick & roll · create the opening');
+  await page.getByRole('button', { name: 'Plan view', exact: true }).click();
   const practiceUrl = page.url();
   const guide = page.getByRole('region', { name: 'Step-by-step guide' });
   await expect(guide).toBeVisible();

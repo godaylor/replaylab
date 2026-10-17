@@ -243,13 +243,23 @@ function CourtStage(props: {
   const dragRef = useRef<{
     entityId: ProjectionEntityId;
     pose: Pose;
+    original: Pose;
+    offset: Pose;
+    phaseId: string;
     pointerId: number;
   } | null>(null);
   const actionRef = useRef<{
     actorId: ActorId;
     pointerId: number;
+    phaseId: string;
+    type: TacticalActionType;
+    nextPhaseId: string;
+    start: Pose;
+    moved: boolean;
     path: ActionPath;
   } | null>(null);
+  const propsRef = useRef(props);
+  propsRef.current = props;
 
   snapshotRef.current = props.snapshot;
   const renderOptionsRef = useRef({
@@ -264,56 +274,92 @@ function CourtStage(props: {
   };
   phaseIndexRef.current = props.phaseIndex;
 
+  const projectCurrent = useCallback(() => {
+    const current = propsRef.current;
+    const drag = dragRef.current;
+    const action = actionRef.current;
+    const index = Math.min(phaseIndexRef.current, snapshotRef.current.phases.length - 1);
+    if (drag || action) {
+      gfxRef.current?.project(snapshotRef.current, index, {
+        ...renderOptionsRef.current,
+        ...(drag ? { draft: { entityId: drag.entityId, pose: drag.pose } } : {}),
+        ...(action ? { actionDraft: { type: action.type, path: action.path } } : {}),
+      });
+    } else if (current.playback.currentFrame.phaseIndex < snapshotRef.current.phases.length) {
+      gfxRef.current?.projectPlayback(snapshotRef.current, current.playback.currentFrame, renderOptionsRef.current);
+    } else {
+      gfxRef.current?.project(snapshotRef.current, index, renderOptionsRef.current);
+    }
+  }, []);
+
+  const cancelGesture = useCallback((announce = true) => {
+    const gesture = dragRef.current ?? actionRef.current;
+    if (!gesture) return;
+    const wasAction = Boolean(actionRef.current);
+    dragRef.current = null;
+    actionRef.current = null;
+    const canvas = canvasRef.current;
+    if (canvas?.hasPointerCapture(gesture.pointerId)) canvas.releasePointerCapture(gesture.pointerId);
+    propsRef.current.awarenessSource?.publish({ gesture: null });
+    propsRef.current.coordinator.setContext('court.actorSelected');
+    if (announce && wasAction) propsRef.current.onCancelAction();
+    projectCurrent();
+  }, [projectCurrent]);
+
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const gfx = new ReplayLabGfxAdapter(props.facade.surface, canvas);
     gfxRef.current = gfx;
     const unsubscribe = props.playback.onFrame(frame => {
+      if (props.playback.playing) cancelGesture();
+      if (dragRef.current || actionRef.current) { projectCurrent(); return; }
       gfx.projectPlayback(snapshotRef.current, frame, renderOptionsRef.current);
     });
     return () => {
+      cancelGesture(false);
       unsubscribe();
       gfx.destroy();
       gfxRef.current = null;
     };
-  }, [props.facade, props.playback]);
+  }, [props.facade, props.playback, cancelGesture, projectCurrent]);
 
+  useLayoutEffect(() => { cancelGesture(); }, [props.snapshot.phases[props.phaseIndex]?.id, props.snapshot.phases[props.phaseIndex + 1]?.id, props.activeTool, props.presentation, props.readOnly, cancelGesture]);
   useEffect(() => {
-    gfxRef.current?.projectPlayback(
-      props.snapshot,
-      props.playback.currentFrame,
-      renderOptionsRef.current
-    );
-  }, [props.snapshot, props.playback, props.selectedId, props.selectedActionId, props.presentation]);
+    const media = matchMedia('(forced-colors: active)');
+    const cancel = () => cancelGesture();
+    media.addEventListener('change', cancel);
+    return () => media.removeEventListener('change', cancel);
+  }, [cancelGesture]);
+  useEffect(projectCurrent, [props.snapshot, props.playback, props.selectedId, props.selectedActionId, props.presentation, projectCurrent]);
 
-  const toCourtPose = (event: ReactPointerEvent<HTMLCanvasElement>) => {
+  const toScreenPose = (event: ReactPointerEvent<HTMLCanvasElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
-    return clampPose({
+    return {
       x: ((event.clientX - bounds.left) / bounds.width) * event.currentTarget.width,
       y: ((event.clientY - bounds.top) / bounds.height) * event.currentTarget.height,
-    });
+    };
+  };
+  const floorPose = (screen: Pose) => {
+    const pose = gfxRef.current?.screenToCourt(screen.x, screen.y);
+    return pose ? clampPose(pose) : null;
   };
 
   const onPointerDown = (event: ReactPointerEvent<HTMLCanvasElement>) => {
-    const pose = toCourtPose(event);
+    if (event.button !== 0 || dragRef.current || actionRef.current) return;
+    const screen = toScreenPose(event);
     // A click during playback first pauses the scene. Starting a drag against
     // an interpolated pose could otherwise edit the previously selected phase.
     if (props.playback.playing) { props.playback.pause(); return; }
-    if (props.presentation === '3d') {
-      const entity = gfxRef.current?.hitTestPresentation(pose.x, pose.y);
-      if (entity) props.onSelect(entity);
-      event.currentTarget.focus({ preventScroll: true });
-      return;
-    }
     props.playback.pause();
     props.playback.goToPhase(props.phaseIndex);
+    const phase = snapshotRef.current.phases[phaseIndexRef.current];
+    if (!phase) return;
+    const hit = gfxRef.current?.hitTestPresentation(screen.x, screen.y);
+    const actorId = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
     if (props.activeTool !== 'select') {
       if (props.readOnly) return;
-      const phase = snapshotRef.current.phases[phaseIndexRef.current];
-      if (!phase || !snapshotRef.current.phases[phaseIndexRef.current + 1]) return;
-      const hit = gfxRef.current?.hitTest(pose.x, pose.y);
-      const actorId = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
+      if (!snapshotRef.current.phases[phaseIndexRef.current + 1]) return;
       if (!actorId || actorId === 'ball') {
         props.onFeedback(locale === 'ru' ? 'Начните линию на игроке.' : 'Start the line on a player.');
         return;
@@ -328,66 +374,76 @@ function CourtStage(props: {
       actionRef.current = {
         actorId,
         pointerId: event.pointerId,
-        path: { points: [phase.poses[actorId], pose] },
+        phaseId: phase.id,
+        type: props.activeTool,
+        nextPhaseId: snapshotRef.current.phases[phaseIndexRef.current + 1]!.id,
+        start: screen,
+        moved: false,
+        path: { points: [phase.poses[actorId], phase.poses[actorId]] },
       };
       props.coordinator.setContext('court.drawingAction');
-      gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: actorId,
-        selectedActionId: props.selectedActionId,
-        actionDraft: { type: props.activeTool, path: actionRef.current.path },
-      });
+      projectCurrent();
       return;
     }
-    const entityId = gfxRef.current?.hitTest(pose.x, pose.y);
+    const entityId = actorId;
     if (!entityId) return;
     props.onSelect(entityId);
     event.currentTarget.focus({ preventScroll: true });
     if (props.readOnly) return;
-    const phase = snapshotRef.current.phases[phaseIndexRef.current];
     if (entityId === 'ball' && phase?.possession.value !== 'loose') return;
+    const original = entityId === 'ball' ? phase.ballPose : phase.poses[entityId];
+    const anchor = gfxRef.current!.courtToScreen(original);
     event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = { entityId, pose, pointerId: event.pointerId };
+    dragRef.current = { entityId, pose: original, original, phaseId: phase.id, offset: { x: screen.x - anchor.x, y: screen.y - anchor.y }, pointerId: event.pointerId };
     props.coordinator.setContext('court.draggingActor');
   };
 
   const onPointerMove = (event: ReactPointerEvent<HTMLCanvasElement>) => {
-    if (props.presentation === '3d') return;
     const action = actionRef.current;
     const drag = dragRef.current;
-    const presencePose = toCourtPose(event);
+    const screen = toScreenPose(event);
+    const presencePose = floorPose(screen);
+    const phase = snapshotRef.current.phases[phaseIndexRef.current];
+    if (!presencePose || !phase) return;
+    if (drag && drag.pointerId === event.pointerId) {
+      const pose = floorPose({ x: screen.x - drag.offset.x, y: screen.y - drag.offset.y });
+      if (pose) drag.pose = pose;
+    }
     props.awarenessSource?.publish({
-      pointer: { phaseId: snapshotRef.current.phases[phaseIndexRef.current]!.id, ...presencePose },
+      pointer: { phaseId: phase.id, ...presencePose },
       gesture: drag
-        ? { phaseId: snapshotRef.current.phases[phaseIndexRef.current]!.id, entityId: drag.entityId, ...presencePose }
+        ? { phaseId: phase.id, entityId: drag.entityId, ...drag.pose }
         : action
-          ? { phaseId: snapshotRef.current.phases[phaseIndexRef.current]!.id, entityId: action.actorId, ...presencePose }
+          ? { phaseId: phase.id, entityId: action.actorId, ...presencePose }
           : null,
     });
     if (action && action.pointerId === event.pointerId) {
-      const pose = presencePose;
+      if (Math.hypot(screen.x - action.start.x, screen.y - action.start.y) > 2) action.moved = true;
+      if (!action.moved) return;
+      const hit = gfxRef.current?.hitTestPresentation(screen.x, screen.y);
+      const target = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
+      const pose = (action.type === 'pass' || action.type === 'screen') && target && target !== 'ball' && target !== action.actorId ? phase.poses[target] : presencePose;
       const previous = action.path.points.at(-1)!;
       if (Math.hypot(pose.x - previous.x, pose.y - previous.y) >= 8) {
         action.path = { points: [...action.path.points.slice(0, 63), pose] };
       } else {
         action.path = { points: [...action.path.points.slice(0, -1), pose] };
       }
-      gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: props.selectedId,
-        selectedActionId: props.selectedActionId,
-        actionDraft: { type: props.activeTool as TacticalActionType, path: action.path },
-      });
+      projectCurrent();
       return;
     }
     if (!drag || drag.pointerId !== event.pointerId) return;
-    drag.pose = presencePose;
-    gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-      draft: { entityId: drag.entityId, pose: drag.pose },
-      selectedId: drag.entityId,
-      selectedActionId: props.selectedActionId,
-    });
+    projectCurrent();
   };
 
   const finishPointer = (event: ReactPointerEvent<HTMLCanvasElement>, commit: boolean) => {
+    if (!commit) {
+      if (dragRef.current?.pointerId === event.pointerId || actionRef.current?.pointerId === event.pointerId) cancelGesture();
+      return;
+    }
+    if (props.readOnly || props.playback.playing) { cancelGesture(); return; }
+    if (dragRef.current?.pointerId !== event.pointerId && actionRef.current?.pointerId !== event.pointerId) return;
+    onPointerMove(event);
     props.awarenessSource?.publish({ gesture: null });
     const action = actionRef.current;
     if (action && action.pointerId === event.pointerId) {
@@ -396,22 +452,21 @@ function CourtStage(props: {
         event.currentTarget.releasePointerCapture(event.pointerId);
       }
       props.coordinator.setContext('court.actorSelected');
-      if (commit) {
-        const last = action.path.points.at(-1)!;
-        const hit = gfxRef.current?.hitTest(last.x, last.y);
+      if (action.moved && action.phaseId === snapshotRef.current.phases[phaseIndexRef.current]?.id && action.nextPhaseId === snapshotRef.current.phases[phaseIndexRef.current + 1]?.id) {
+        const screen = toScreenPose(event);
+        const hit = gfxRef.current?.hitTestPresentation(screen.x, screen.y);
+        const phase = snapshotRef.current.phases[phaseIndexRef.current]!;
+        const target = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
         props.onCreateAction({
           actorId: action.actorId,
-          type: props.activeTool as TacticalActionType,
-          targetActorId: hit && hit !== 'ball' && hit !== action.actorId ? hit : null,
+          type: action.type,
+          targetActorId: target && target !== 'ball' && target !== action.actorId ? target : null,
           path: action.path,
         });
       } else {
         props.onCancelAction();
       }
-      gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: props.selectedId,
-        selectedActionId: props.selectedActionId,
-      });
+      projectCurrent();
       return;
     }
     const drag = dragRef.current;
@@ -421,25 +476,14 @@ function CourtStage(props: {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
     props.coordinator.setContext('court.actorSelected');
-    if (commit) props.onCommitPose(drag.entityId, drag.pose);
-    else {
-      gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: drag.entityId,
-        selectedActionId: props.selectedActionId,
-      });
-    }
+    if (drag.phaseId === snapshotRef.current.phases[phaseIndexRef.current]?.id && Math.hypot(drag.pose.x - drag.original.x, drag.pose.y - drag.original.y) > .01) props.onCommitPose(drag.entityId, drag.pose);
+    projectCurrent();
   };
 
   const onKeyDown = (event: ReactKeyboardEvent<HTMLCanvasElement>) => {
-    if (event.key === 'Escape' && actionRef.current) {
+    if (event.key === 'Escape' && (actionRef.current || dragRef.current)) {
       event.preventDefault();
-      actionRef.current = null;
-      props.coordinator.setContext('court.actorSelected');
-      props.onCancelAction();
-      gfxRef.current?.project(snapshotRef.current, phaseIndexRef.current, {
-        selectedId: props.selectedId,
-        selectedActionId: props.selectedActionId,
-      });
+      cancelGesture();
       return;
     }
     if (props.readOnly) return;
@@ -453,6 +497,7 @@ function CourtStage(props: {
     const offset = offsets[event.key];
     if (!offset) return;
     event.preventDefault();
+    cancelGesture();
     props.onNudge(props.selectedId, offset[0], offset[1]);
   };
 
@@ -471,17 +516,19 @@ function CourtStage(props: {
         width={840}
         height={460}
         tabIndex={0}
-        aria-label={props.presentation === '3d' ? (locale === 'ru' ? 'Трёхмерный просмотр комбинации. Игроки и действия доступны в списке ниже.' : 'Three-dimensional play review. Players and actions are available in the list below.') : t('courtEditorLabel')}
+        aria-label={props.presentation === '3d' ? props.readOnly ? (locale === 'ru' ? 'Трёхмерный просмотр комбинации. Игроки и действия доступны в списке ниже.' : 'Three-dimensional play review. Players and actions are available in the list below.') : (locale === 'ru' ? 'Объёмная площадка. Перетащите игрока; выберите движение и нарисуйте от игрока. Стрелки перемещают выбранного игрока, Escape отменяет перетаскивание.' : '3D court. Drag a player; choose a movement and draw from a player. Arrow keys move the selected player, Escape cancels a drag.') : t('courtEditorLabel')}
         onFocus={() => props.coordinator.setContext('court.actorSelected')}
         onKeyDown={onKeyDown}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={event => finishPointer(event, true)}
         onPointerCancel={event => finishPointer(event, false)}
+        onLostPointerCapture={() => cancelGesture()}
+        onPointerLeave={() => { if (!dragRef.current && !actionRef.current) props.awarenessSource?.publish({ pointer: null }); }}
       />
-      {props.presentation === 'plan' && <PresenceLayer source={props.awarenessSource} />}
+      <PresenceLayer source={props.awarenessSource} presentation={props.presentation} phaseId={(props.snapshot.phases[props.phaseIndex] ?? props.snapshot.phases[0]!).id} />
       <p className="court-help">
-        {props.presentation === '3d' ? (locale === 'ru' ? 'Просмотр не меняет комбинацию. Запустите её или выберите шаг; для изменений включите «Редактировать».' : 'Review does not change the play. Press Play or choose a step; switch to Edit play to make changes.') : t('courtHelp')}
+        {props.readOnly ? (locale === 'ru' ? 'Запустите комбинацию или выберите шаг.' : 'Play the sequence or choose a step.') : (locale === 'ru' ? 'Перетащите игрока · Стрелки — точное перемещение · Esc — отмена' : 'Drag a player · Arrow keys for precise movement · Esc to cancel')}
       </p>
     </div>
   );
@@ -612,16 +659,18 @@ function PhaseTimeline(props: {
                 onPointerMove={event => {
                   const pointer = pointerRef.current;
                   if (!pointer || pointer.pointerId !== event.pointerId) return;
-                  const target = [...document.querySelectorAll<HTMLButtonElement>('[data-phase-id]')]
-                    .toSorted((left, right) => {
-                      const leftRect = left.getBoundingClientRect();
-                      const rightRect = right.getBoundingClientRect();
-                      return Math.abs(leftRect.left + leftRect.width / 2 - event.clientX) - Math.abs(rightRect.left + rightRect.width / 2 - event.clientX);
-                    })[0];
-                  const targetId = target?.dataset.phaseId;
+                  const { clientX, clientY } = event;
+                  let targetIndex = -1;
+                  let nearest = Infinity;
+                  for (const card of document.querySelectorAll<HTMLButtonElement>('[data-phase-id]')) {
+                    const rect = card.getBoundingClientRect();
+                    const distance = Math.hypot(rect.left + rect.width / 2 - clientX, rect.top + rect.height / 2 - clientY);
+                    if (distance < nearest) { nearest = distance; targetIndex = Number(card.dataset.phaseIndex); }
+                  }
                   const order = previewRef.current ?? canonicalIds;
-                  const targetIndex = targetId ? order.indexOf(targetId) : -1;
-                  if (targetIndex >= 0 && order.indexOf(pointer.phaseId) !== targetIndex) movePreview(pointer.phaseId, targetIndex);
+                  // Use the rendered slot, not its ID's position in the newer
+                  // preview ref: React may batch DOM updates between pointermoves.
+                  if (Number.isInteger(targetIndex) && targetIndex >= 0 && targetIndex < order.length && order.indexOf(pointer.phaseId) !== targetIndex) movePreview(pointer.phaseId, targetIndex);
                 }}
                 onPointerUp={event => {
                   const pointer = pointerRef.current;
@@ -644,11 +693,11 @@ function PhaseTimeline(props: {
                       props.onAnnounce(t('liftedPhaseKeyboard', { number: index + 1, position: index + 1, total: canonicalIds.length }));
                       return;
                     }
-                    if (event.key === 'ArrowLeft' && index > 0) {
+                    if ((event.key === 'ArrowLeft' || event.key === 'ArrowUp') && index > 0) {
                       event.preventDefault();
                       focusPhase(displayIds[index - 1]!);
                     }
-                    if (event.key === 'ArrowRight' && index < displayIds.length - 1) {
+                    if ((event.key === 'ArrowRight' || event.key === 'ArrowDown') && index < displayIds.length - 1) {
                       event.preventDefault();
                       focusPhase(displayIds[index + 1]!);
                     }
@@ -664,9 +713,9 @@ function PhaseTimeline(props: {
                     finishReorder(phaseId, false);
                     return;
                   }
-                  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                  if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
                     event.preventDefault();
-                    const direction = event.key === 'ArrowLeft' ? -1 : 1;
+                    const direction = event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 1;
                     movePreview(phaseId, Math.max(0, Math.min(displayIds.length - 1, index + direction)));
                   }
                 }}
@@ -699,12 +748,16 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const readOnly = storageMode.kind !== 'indexeddb' || facade.readOnly;
   const [workbenchMode, setWorkbenchMode] = useState<'watch' | 'edit'>(() =>
     readOnly || responsiveMode === 'mobile' || new URLSearchParams(location.search).get('watch') === '1' ? 'watch' : 'edit');
+  const [courtView, setCourtView] = useState<'plan' | '3d'>(() => new URLSearchParams(location.search).get('view') === 'plan' ? 'plan' : '3d');
   const watching = workbenchMode === 'watch' || responsiveMode === 'mobile';
   const canMoveActors = !readOnly && !watching;
   const canEditCue = !readOnly && !watching;
   const canAuthorStructure = !readOnly && !watching && responsiveMode === 'desktop';
   const demoMode = new URLSearchParams(location.search).get('demo') === '1';
-  const [phaseIndex, setPhaseIndex] = useState(0);
+  const [requestedPhaseIndex, setPhaseIndex] = useState(0);
+  // Undo or a remote reorder can remove the selected endpoint before effects
+  // restore selection. Every render-time cue/projection read needs a valid index.
+  const phaseIndex = Math.min(requestedPhaseIndex, snapshot.phases.length - 1);
   const [selectedId, setSelectedId] = useState<ProjectionEntityId>('offense-1');
   const [announcement, setAnnouncement] = useState(() => t('localPlayReady'));
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
@@ -736,6 +789,14 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     playbackRef.current = new ReplayPlaybackController(snapshot);
   }
   const playback = playbackRef.current;
+  const changeCourtView = (view: 'plan' | '3d') => {
+    playback.pause();
+    setCourtView(view);
+    const url = new URL(location.href);
+    if (view === 'plan') url.searchParams.set('view', 'plan');
+    else url.searchParams.delete('view');
+    history.replaceState(history.state, '', url);
+  };
   const changeWorkbenchMode = (mode: 'watch' | 'edit') => {
     playback.pause();
     setActiveTool('select');
@@ -771,10 +832,10 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const activePhase = snapshot.phases[phaseIndex] ?? snapshot.phases[0]!;
 
   useEffect(() => {
-    if (phaseIndex >= snapshot.phases.length) {
+    if (requestedPhaseIndex >= snapshot.phases.length) {
       setPhaseIndex(snapshot.phases.length - 1);
     }
-  }, [phaseIndex, snapshot.phases.length]);
+  }, [requestedPhaseIndex, snapshot.phases.length]);
 
   useEffect(() => {
     if (!titleDirty) setTitleDraft(snapshot.title);
@@ -1270,13 +1331,18 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               <span className="eyebrow">{isExample ? (locale === 'ru' ? 'ПРИМЕР · ВЫВЕСТИ №5 К КОЛЬЦУ' : 'EXAMPLE · GET 5 TO THE RIM') : t('basketballHalfCourt')}</span>
               <h1 id="court-heading">{isExample ? (locale === 'ru' ? 'Пик-н-ролл' : 'Pick & roll') : t('formationBoard')}</h1>
             </div>
+            <div className="court-switches">
+            <div className="court-view-switch" role="group" aria-label={locale === 'ru' ? 'Вид площадки' : 'Court view'}>
+              <button type="button" aria-label={locale === 'ru' ? 'Объёмный вид' : '3D view'} aria-pressed={courtView === '3d'} onClick={() => changeCourtView('3d')}>3D</button>
+              <button type="button" aria-label={locale === 'ru' ? 'Вид сверху' : 'Plan view'} aria-pressed={courtView === 'plan'} onClick={() => changeCourtView('plan')}>{locale === 'ru' ? 'Сверху' : 'Plan'}</button>
+            </div>
             <div className="workbench-switch" role="group" aria-label={locale === 'ru' ? 'Режим площадки' : 'Court mode'}>
-              <button type="button" aria-pressed={watching} onClick={() => changeWorkbenchMode('watch')}>{locale === 'ru' ? 'Смотреть · 3D' : 'Watch · 3D'}</button>
+              <button type="button" aria-pressed={watching} onClick={() => changeWorkbenchMode('watch')}>{locale === 'ru' ? 'Смотреть' : 'Watch'}</button>
               {!readOnly && responsiveMode !== 'mobile' && <button type="button" aria-pressed={!watching} onClick={() => { changeWorkbenchMode('edit'); setAnnouncement(locale === 'ru' ? 'Перетащите игрока или выберите движение и нарисуйте его от игрока.' : 'Drag a player, or choose a movement and draw from a player.'); }}>{locale === 'ru' ? 'Редактировать' : 'Edit play'}</button>}
+            </div>
             </div>
           </div>
           <PlayStory snapshot={snapshot} controller={playback} phaseIndex={phaseIndex} cue={index => facade.getCue(index)} />
-          {watching && playbackControls}
           {canAuthorStructure ? <div className="action-tools" role="toolbar" aria-label={t('courtTools')}>
             <button type="button" aria-pressed={activeTool === 'select'} onClick={() => setActiveTool('select')}><ToolGlyph type="select" />{t('select')} <kbd>V</kbd></button>
             {(['cut', 'pass', 'dribble', 'screen'] as const).map(type => (
@@ -1323,7 +1389,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             selectedActionId={selectedActionId}
             activeTool={activeTool}
             readOnly={!canMoveActors}
-            presentation={watching ? '3d' : 'plan'}
+            presentation={courtView}
             onFeedback={message => { setDrawingFeedback(message); setAnnouncement(message); }}
             onSelect={entityId => {
               selectEntity(entityId);
@@ -1338,9 +1404,10 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             awarenessSource={awarenessSource}
           />
           <CourtLegend />
-          {!watching && playbackControls}
         </section>
 
+        <div className="sequence-panel">
+        {playbackControls}
         <PhaseTimeline
           snapshot={snapshot} phaseIndex={phaseIndex} readOnly={readOnly}
           canReorder={canAuthorStructure} canAdd={canAuthorStructure}
@@ -1353,6 +1420,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           coordinator={coordinatorRef.current}
           playback={playback}
         />
+        </div>
 
         <aside className="semantic-panel" aria-labelledby="lineup-heading">
           <details className="player-controls" open={!isExample}>

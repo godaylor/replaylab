@@ -18,6 +18,7 @@ async function open(page: Page, name: string) {
 
 test('pointer draw, Escape cancel, and keyboard dialog create actions without pointermove history', async ({ page }) => {
   await open(page, 'slice2a-action-parity');
+  await page.getByRole('button', { name: 'Plan view', exact: true }).click();
   const canvas = page.locator('#court');
   const bounds = await canvas.boundingBox();
   if (!bounds) throw new Error('Court has no visible bounds');

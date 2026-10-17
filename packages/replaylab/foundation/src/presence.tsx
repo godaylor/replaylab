@@ -4,34 +4,42 @@ import type { ReplayAwarenessSource } from './awareness';
 import type { ReplaySnapshot } from './domain';
 import type { ReplayPlaybackController } from './playback';
 import { actorLabel, useI18n } from './i18n';
+import { projectCourtPoint3D } from './court-scene-3d';
 
-export function PresenceLayer({ source }: { source?: ReplayAwarenessSource }) {
+export function PresenceLayer({ source, presentation, phaseId }: { source?: ReplayAwarenessSource; presentation: 'plan' | '3d'; phaseId: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (!source) return;
+    const forcedColors = matchMedia('(forced-colors: active)');
+    let scheduled = 0;
     const draw = () => {
+      scheduled = 0;
       const canvas = canvasRef.current;
       const context = canvas?.getContext('2d');
       if (!canvas || !context) return;
       context.clearRect(0, 0, canvas.width, canvas.height);
       for (const presence of source.presences) {
         const point = presence.gesture ?? presence.pointer;
-        if (!point) continue;
+        if (!point || point.phaseId !== phaseId) continue;
+        const screen = presentation === '3d' && !forcedColors.matches ? projectCourtPoint3D(canvas.width, canvas.height, point) : point;
         context.save();
         context.strokeStyle = presence.color;
         context.fillStyle = presence.color;
         context.lineWidth = 3;
         context.beginPath();
-        context.arc(point.x, point.y, presence.gesture ? 15 : 7, 0, Math.PI * 2);
+        context.arc(screen.x, screen.y, presence.gesture ? 15 : 7, 0, Math.PI * 2);
         context.stroke();
         context.font = '700 12px sans-serif';
-        context.fillText(presence.participantName, point.x + 12, point.y - 12);
+        context.fillText(presence.participantName, screen.x + 12, screen.y - 12);
         context.restore();
       }
     };
+    const schedule = () => { if (!scheduled) scheduled = requestAnimationFrame(draw); };
     draw();
-    return source.onVisualChange(draw);
-  }, [source]);
+    const unsubscribe = source.onVisualChange(schedule);
+    forcedColors.addEventListener('change', schedule);
+    return () => { unsubscribe(); forcedColors.removeEventListener('change', schedule); cancelAnimationFrame(scheduled); };
+  }, [source, presentation, phaseId]);
   if (!source) return null;
   return <canvas ref={canvasRef} className="presence-layer" width={840} height={460} aria-hidden="true" />;
 }

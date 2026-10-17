@@ -1,5 +1,19 @@
 # ReplayLab transformation plan
 
+## Direct 3D authoring checkpoint — 2026-10-18
+
+Owner rejected the forced switch to a plan for editing and requested the full
+published coaching exercise in the dimensional scene. This supersedes the
+Watch=3D / Edit=plan decision below; publication authorization is unchanged.
+See [interaction decision](docs/DIRECT_3D_WORKBENCH.md).
+
+- [x] Shared 3D drag/draw, independent optional plan view, cancellation and undo.
+- [x] Larger court and compact step sequence; compare actual/reference screens.
+- [x] RU/EN practical exercise, high contrast, resize, offline and regression gates:
+  Chromium 125/125, durability 10/10, direct-3D WebKit 11/11; lint and technical
+  boundary audit PASS, 246,424 gzip JS bytes, zero forbidden modules.
+- [ ] Publish existing service and demonstrate move → action → step → play → reopen.
+
 ## Current coach workbench checkpoint — 2026-10-18
 
 Owner rejected the Arena workflow and requested a practical coach exercise,

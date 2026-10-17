@@ -1,5 +1,8 @@
 # Coach workbench revision — 2026-10-17
 
+The Watch=3D / Edit=plan split below is superseded by the owner's 2026-10-18
+[direct 3D authoring decision](DIRECT_3D_WORKBENCH.md). Other invariants remain.
+
 The owner's practical review rejected Arena's abstract counters and prose-heavy
 flow. This revision is within the existing basketball animator and existing
 publication authorization. No canonical migration, protocol or dependencies change.

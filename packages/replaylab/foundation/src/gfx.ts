@@ -13,7 +13,7 @@ import type {
   Team,
 } from './domain';
 import type { PlaybackFrame } from './playback';
-import { drawCourtScene3D, hitTestCourtScene3D } from './court-scene-3d';
+import { courtScenePoses3D, drawCourtScene3D, hitTestCourtScene3D, inverseCourtPoint3D, projectCourtPoint3D } from './court-scene-3d';
 
 export type ProjectionEntityId = ActorId | 'ball';
 
@@ -132,10 +132,7 @@ export class ReplayLabGfxAdapter {
           : options.playback?.poses[actor.id] ?? phase.poses[actor.id];
       this.upsert(actor.id, pose, 20);
     }
-    const ballPose =
-      options.draft?.entityId === 'ball'
-        ? options.draft.pose
-        : options.playback?.ballPose ?? phase.ballPose;
+    const { ballPose } = courtScenePoses3D({ snapshot, phaseIndex: resolvedPhaseIndex, frame: options.playback, draft: options.draft });
     this.upsert('ball', ballPose, 9);
 
     const activeActionIds = new Set<string>();
@@ -188,8 +185,22 @@ export class ReplayLabGfxAdapter {
       phaseIndex: this.latestPhaseIndex,
       frame: this.latestOptions.playback,
       selectedId: this.latestOptions.selectedId,
+      draft: this.latestOptions.draft,
       motionReduced: this.latestOptions.motionReduced ?? this.reducedMotion.matches,
     }, x, y);
+  }
+
+  screenToCourt(x: number, y: number): Pose | null {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    return this.latestOptions.presentation === '3d' && !this.forcedColors.matches
+      ? inverseCourtPoint3D(this.canvas.width, this.canvas.height, { x, y })
+      : { x, y };
+  }
+
+  courtToScreen(pose: Pose, z = 0): Pose {
+    if (this.latestOptions.presentation !== '3d' || this.forcedColors.matches) return { ...pose };
+    const { x, y } = projectCourtPoint3D(this.canvas.width, this.canvas.height, pose, z);
+    return { x, y };
   }
 
   renderNow() {
@@ -271,6 +282,9 @@ export class ReplayLabGfxAdapter {
         snapshot, phaseIndex: this.latestPhaseIndex,
         frame: this.latestOptions.playback,
         selectedId: this.latestOptions.selectedId,
+        selectedActionId: this.latestOptions.selectedActionId,
+        draft: this.latestOptions.draft,
+        actionDraft: this.latestOptions.actionDraft,
         theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
         motionReduced: this.latestOptions.motionReduced ?? this.reducedMotion.matches,
       });

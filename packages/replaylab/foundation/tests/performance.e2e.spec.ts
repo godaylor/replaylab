@@ -21,7 +21,7 @@ test(`30-second maximum ${presentation === 'plan' ? 'Slice 2A plan' : 'Watch 3D'
 }) => {
   test.setTimeout(60_000);
   const database = `replaylab-perf-${presentation}-` + Date.now();
-  await page.goto('/app/play/performance/edit?db=' + database + (presentation === '3d' ? '&watch=1' : ''));
+  await page.goto('/app/play/performance/edit?db=' + database + (presentation === '3d' ? '&watch=1' : '&view=plan'));
   await page.locator('[data-app-ready="true"]').waitFor();
   await page.waitForFunction(() => Boolean(window.replayLabApp));
 

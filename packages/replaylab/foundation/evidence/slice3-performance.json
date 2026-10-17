@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T21:16:00.359Z",
+  "generatedAt": "2026-10-17T23:32:28.947Z",
   "verdict": "PASS",
   "profile": {
     "id": "replaylab-render-v1",
@@ -26,14 +26,14 @@
     "visibleActions": 30
   },
   "metrics": {
-    "framesPerSecond": 60.003531579315606,
-    "frameIntervalP95Ms": 16.700000000004366,
+    "framesPerSecond": 60.00593062500862,
+    "frameIntervalP95Ms": 16.799999999999272,
     "gfxRenders": 1801,
     "reactRendersDuringPlayback": 0,
     "longTaskCount": 0,
     "longestTaskMs": 0,
-    "heapBeforeBytes": 10000000,
-    "heapAfterBytes": 10000000,
+    "heapBeforeBytes": 12700000,
+    "heapAfterBytes": 12700000,
     "heapDeltaBytes": 0
   },
   "budgets": {

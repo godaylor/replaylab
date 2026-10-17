@@ -11,7 +11,8 @@ export function PlayStory({ snapshot, controller, phaseIndex, cue }: {
   cue(index: number): string;
 }) {
   const { locale } = useI18n();
-  const [index, setIndex] = useState(phaseIndex);
+  const [playbackIndex, setIndex] = useState(phaseIndex);
+  const index = Math.min(playbackIndex, snapshot.phases.length - 1);
   useEffect(() => { setIndex(phaseIndex); }, [phaseIndex]);
   useEffect(() => controller.onFrame(frame => setIndex(previous => previous === frame.phaseIndex ? previous : frame.phaseIndex)), [controller]);
   const phase = snapshot.phases[index] ?? snapshot.phases[0]!;

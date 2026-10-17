@@ -1,4 +1,4 @@
-import type { ActorId, Pose, ReplaySnapshot } from './domain';
+import { deriveBallPose, type ActionPath, type ActorId, type Pose, type ReplaySnapshot, type TacticalActionType } from './domain';
 import type { PlaybackFrame } from './playback';
 
 /** A product-owned presentation of the same canonical half-court. Geometry and
@@ -11,6 +11,9 @@ export type CourtScene3D = {
   theme?: 'dark' | 'light';
   showActions?: boolean;
   motionReduced?: boolean;
+  draft?: { entityId: ActorId | 'ball'; pose: Pose } | null;
+  actionDraft?: { type: TacticalActionType; path: ActionPath } | null;
+  selectedActionId?: string | null;
 };
 
 type Vec3 = { x: number; y: number; z: number };
@@ -22,7 +25,7 @@ const dot = (a: Vec3, b: Vec3) => a.x * b.x + a.y * b.y + a.z * b.z;
 const subtract = (a: Vec3, b: Vec3) => v(a.x - b.x, a.y - b.y, a.z - b.z);
 const normalize = (a: Vec3) => { const length = Math.hypot(a.x, a.y, a.z); return v(a.x / length, a.y / length, a.z / length); };
 const cross = (a: Vec3, b: Vec3) => v(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
-const camera = v(150, 1160, 1150);
+const camera = v(140, 1120, 1000);
 const forward = normalize(subtract(v(430, 230, 12), camera));
 const right = normalize(cross(v(0, 0, 1), forward));
 const up = cross(forward, right);
@@ -33,7 +36,8 @@ const rawProjection = (point: Vec3) => {
 };
 const sceneExtent = [
   v(-38, -34, -15), v(878, -34, -15), v(878, 494, -15), v(-38, 494, -15),
-  v(805, 188, 148), v(863, 272, 148), v(20, 20, 85), v(20, 440, 85),
+  v(805, 188, 148), v(863, 272, 148),
+  v(20, 20, 90), v(20, 440, 90), v(820, 20, 90), v(820, 440, 90),
 ].map(rawProjection);
 const extent = {
   minX: Math.min(...sceneExtent.map(point => point.x)),
@@ -42,11 +46,16 @@ const extent = {
   maxY: Math.max(...sceneExtent.map(point => point.y)),
 };
 
-function projector(width: number, height: number): Project {
-  const margin = Math.min(width, height) * .048;
+function projectionLayout(width: number, height: number) {
+  const margin = Math.min(width, height) * .035;
   const scale = Math.min((width - margin * 2) / (extent.maxX - extent.minX), (height - margin * 2) / (extent.maxY - extent.minY));
   const centerX = (extent.minX + extent.maxX) / 2;
   const centerY = (extent.minY + extent.maxY) / 2;
+  return { scale, centerX, centerY };
+}
+
+function projector(width: number, height: number): Project {
+  const { scale, centerX, centerY } = projectionLayout(width, height);
   return point => {
     const raw = rawProjection(point);
     return { x: width / 2 + (raw.x - centerX) * scale, y: height / 2 + (raw.y - centerY) * scale, scale: scale / raw.depth, depth: raw.depth };
@@ -56,6 +65,36 @@ function projector(width: number, height: number): Project {
 /** Canvas-pixel coordinates, independent of CSS size/device-pixel ratio. */
 export function projectCourtPoint3D(width: number, height: number, pose: Pose, z = 0) {
   return projector(width, height)(v(pose.x, pose.y, z));
+}
+
+/** Intersect the screen ray with the canonical floor. Deliberately do not clamp:
+ * pointer capture needs continuous coordinates beyond the floor while the
+ * command layer owns the legal court boundary. */
+export function inverseCourtPoint3D(width: number, height: number, screen: Pose): Pose | null {
+  if (![width, height, screen.x, screen.y].every(Number.isFinite) || width <= 0 || height <= 0) return null;
+  const { scale, centerX, centerY } = projectionLayout(width, height);
+  const rawX = (screen.x - width / 2) / scale + centerX;
+  const rawY = (screen.y - height / 2) / scale + centerY;
+  const direction = v(forward.x + right.x * rawX - up.x * rawY, forward.y + right.y * rawX - up.y * rawY, forward.z + right.z * rawX - up.z * rawY);
+  if (Math.abs(direction.z) < 1e-9) return null;
+  const distance = -camera.z / direction.z;
+  if (!Number.isFinite(distance) || distance <= 0) return null;
+  const pose = { x: camera.x + distance * direction.x, y: camera.y + distance * direction.y };
+  return Number.isFinite(pose.x) && Number.isFinite(pose.y) ? pose : null;
+}
+
+/** A single derived pose projection shared by drawing and hit testing. Neither
+ * the drag preview nor its possession-derived ball can write into the snapshot. */
+export function courtScenePoses3D(scene: CourtScene3D) {
+  const phase = scene.snapshot.phases[scene.frame?.phaseIndex ?? scene.phaseIndex ?? 0]!;
+  let poses = scene.frame?.poses ?? phase.poses;
+  let ballPose = scene.frame?.ballPose ?? phase.ballPose;
+  if (scene.draft?.entityId === 'ball') ballPose = scene.draft.pose;
+  else if (scene.draft) {
+    poses = { ...poses, [scene.draft.entityId]: scene.draft.pose };
+    if (phase.possession.value === scene.draft.entityId) ballPose = deriveBallPose(poses, phase.possession.value, null);
+  }
+  return { poses, ballPose };
 }
 
 function polygon(ctx: CanvasRenderingContext2D, project: Project, points: Vec3[], fill: string, stroke?: string, lineWidth = 1) {
@@ -96,12 +135,12 @@ function rectangle(x: number, y: number, width: number, height: number, z = 0) {
 
 function drawFloor(ctx: CanvasRenderingContext2D, project: Project, light: boolean) {
   // The slab, apron, boards and every marking share the exact same perspective.
-  prism(ctx, project, rectangle(-30, -28, 900, 516, -15), rectangle(-30, -28, 900, 516), ['#122b30', '#10232a', '#0a161c', '#1c3538', '#233b3a']);
+  prism(ctx, project, rectangle(-30, -28, 900, 516, -15), rectangle(-30, -28, 900, 516), ['#292820', '#191d1a', '#101613', '#39382a', '#34382d']);
   line(ctx, project, [v(-30, 488, -3), v(870, 488, -3), v(870, -28, -3)], '#d49a50', 1.5);
   polygon(ctx, project, rectangle(0, 0, 840, 460, .1), '#c99a61');
   const wood = light
-    ? ['#c99861', '#d4a46c', '#c59760', '#dfb27b', '#cfa16a', '#d5a56c', '#dcb17c']
-    : ['#aa774c', '#bb8b58', '#ad7c50', '#ce9e68', '#b58354', '#bf905e', '#c99c69'];
+    ? ['#c49b6b', '#c8a071', '#c29a69', '#cca576', '#c69e6d', '#c9a172', '#cba474']
+    : ['#b38456', '#b78b5b', '#b08254', '#bc9060', '#b58859', '#b88c5d', '#bc9061'];
   for (let row = 0; row < 23; row++) {
     const offset = (row * 67) % 150;
     for (let column = -1; column < 6; column++) {
@@ -109,13 +148,13 @@ function drawFloor(ctx: CanvasRenderingContext2D, project: Project, light: boole
       const end = Math.min(840, column * 168 + offset + 168);
       if (end <= start) continue;
       const color = wood[(row * 3 + column + 8) % wood.length]!;
-      polygon(ctx, project, rectangle(start, row * 20, end - start, 20, .13), color, 'rgba(102,65,29,.14)', .45);
-      for (let grain = 1; grain <= 3; grain++) line(ctx, project, [v(start + 4, row * 20 + grain * 4.6, .16), v(end - 4, row * 20 + grain * 4.6 + .3, .16)], 'rgba(105,65,22,.065)', .55);
+      polygon(ctx, project, rectangle(start, row * 20, end - start, 20, .13), color, 'rgba(75,46,22,.16)', .4);
+      for (let grain = 1; grain <= 4; grain++) line(ctx, project, [v(start + 4, row * 20 + grain * 3.7, .16), v((start + end) / 2, row * 20 + grain * 3.7 + .9, .16), v(end - 4, row * 20 + grain * 3.7 + .3, .16)], 'rgba(80,49,24,.08)', .5);
     }
   }
   // Painted lane and restrained single-half-court linework.
-  polygon(ctx, project, rectangle(560, 154, 260, 152, .2), light ? 'rgba(41,81,79,.82)' : 'rgba(25,61,61,.9)');
-  polygon(ctx, project, rectangle(796, 154, 24, 152, .25), 'rgba(14,38,40,.26)');
+  polygon(ctx, project, rectangle(560, 154, 260, 152, .2), light ? 'rgba(78,61,42,.2)' : 'rgba(60,47,30,.24)');
+  polygon(ctx, project, rectangle(796, 154, 24, 152, .25), 'rgba(51,40,25,.14)');
   const markings = '#fff0d2';
   line(ctx, project, [...rectangle(20, 20, 800, 420, .4), v(20, 20, .4)], markings, 2.2);
   line(ctx, project, [...rectangle(560, 154, 260, 152, .4), v(560, 154, .4)], markings, 2.2);
@@ -137,9 +176,9 @@ function drawFloor(ctx: CanvasRenderingContext2D, project: Project, light: boole
   ctx.closePath(); ctx.clip();
   const center = project(v(410, 150));
   const glow = ctx.createRadialGradient(center.x, center.y, 10, center.x, center.y, 520 * center.scale);
-  glow.addColorStop(0, light ? 'rgba(255,247,203,.19)' : 'rgba(255,230,169,.24)');
+  glow.addColorStop(0, light ? 'rgba(255,247,203,.2)' : 'rgba(255,230,169,.28)');
   glow.addColorStop(.6, 'rgba(25,34,32,.04)');
-  glow.addColorStop(1, light ? 'rgba(17,33,38,.17)' : 'rgba(7,24,32,.36)');
+  glow.addColorStop(1, light ? 'rgba(36,29,22,.17)' : 'rgba(17,20,17,.31)');
   ctx.fillStyle = glow; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height); ctx.restore();
 }
 
@@ -173,7 +212,7 @@ function drawPlayer(ctx: CanvasRenderingContext2D, project: Project, scene: Cour
   const next = scene.frame?.nextPhaseIndex == null ? null : scene.snapshot.phases[scene.frame.nextPhaseIndex];
   const movement = next ? subtract(v(next.poses[actor.id].x, next.poses[actor.id].y), v(phase.poses[actor.id].x, phase.poses[actor.id].y)) : v(0, 0);
   const moving = Math.hypot(movement.x, movement.y) > 4 && (scene.frame?.transitionProgress ?? 0) > 0;
-  const ballPose = scene.frame?.ballPose ?? phase.ballPose;
+  const { ballPose } = courtScenePoses3D(scene);
   const direction = moving ? Math.atan2(movement.y, movement.x) : actor.team === 'offense' ? Math.atan2(230 - pose.y, 774 - pose.x) : Math.atan2(ballPose.y - pose.y, ballPose.x - pose.x);
   const f = { x: Math.cos(direction), y: Math.sin(direction) };
   const lateral = { x: -f.y, y: f.x };
@@ -181,16 +220,14 @@ function drawPlayer(ctx: CanvasRenderingContext2D, project: Project, scene: Cour
   const lean = moving ? 3 : 0;
   const p = (side: number, ahead: number, z: number) => v(pose.x + lateral.x * side + f.x * (ahead + lean * z / 70), pose.y + lateral.y * side + f.y * (ahead + lean * z / 70), z);
   const offense = actor.team === 'offense';
-  const jersey = offense ? ['#a83a14', '#de541e', '#ff8940', '#bd4115', '#ffac60'] : ['#2b5f88', '#edf5f8', '#fffdf3', '#749bb7', '#ffffff'];
-  const shorts = offense ? ['#a73714', '#d54b1a', '#ed682a', '#af3b16', '#fa8440'] : ['#0b2946', '#163d5b', '#2e6084', '#163b59', '#3e7396'];
   const skins: [string, string, string][] = [['#d6925c', '#a8663e', '#623a28'], ['#9d6244', '#70412e', '#412a24'], ['#e0b38a', '#b7825c', '#745139'], ['#bc7b50', '#8f5638', '#503425'], ['#80513d', '#54382c', '#332720']];
   const skin = skins[(actor.number - 1 + (offense ? 0 : 2)) % skins.length]!;
   const isHolder = phase.possession.value === actor.id && (!next || next.possession.value === actor.id || (scene.frame?.transitionProgress ?? 0) < .12);
   const action = scene.snapshot.actions.find(a => !a.archived && a.fromFrameId === phase.id && a.actorId === actor.id);
   const screening = action?.type === 'screen';
   const footSpread = offense ? screening ? 11 : 7 : 10;
-  const torsoZ = offense ? 36 : 33;
-  const headZ = offense ? 68 : 64;
+  const torsoZ = offense ? 39 : 36;
+  const headZ = offense ? 76 : 72;
 
   if (scene.selectedId === actor.id) {
     polygon(ctx, project, ringPoints(pose.x, pose.y, 29, 24, .9), 'rgba(255,225,128,.23)');
@@ -207,12 +244,28 @@ function drawPlayer(ctx: CanvasRenderingContext2D, project: Project, scene: Cour
     const shoe = [p(leg.side * footSpread - 4, shoeAhead - 4, 2), p(leg.side * footSpread + 4, shoeAhead - 4, 2), p(leg.side * footSpread + 4, shoeAhead + 10, 2), p(leg.side * footSpread - 4, shoeAhead + 10, 2)];
     prism(ctx, project, shoe, shoe.map(point => ({ ...point, z: 5 })), ['#183144', '#d8e6e7', '#eef3ea', '#718f9c', offense ? '#f9eed9' : '#a7d4e6']);
   }
-  const bodyRing = (width: number, depth: number, z: number) => [p(-width, -depth, z), p(width, -depth, z), p(width, depth, z), p(-width, depth, z)];
-  prism(ctx, project, bodyRing(10, 6, torsoZ - 8), bodyRing(9, 6, torsoZ + 4), shorts);
+  // Twelve rounded cloth faces avoid the square box silhouette. Light is fixed
+  // in world space, so the shading remains coherent as athletes turn or move.
+  const cloth = (bottomWidth: number, topWidth: number, depth: number, bottomZ: number, topZ: number, shorts: boolean) => {
+    const count = 12;
+    const bodyRing = (width: number, z: number) => Array.from({ length: count }, (_, index) => p(Math.cos(index / count * Math.PI * 2) * width, Math.sin(index / count * Math.PI * 2) * depth, z));
+    const bottom = bodyRing(bottomWidth, bottomZ); const top = bodyRing(topWidth, topZ);
+    const faces = bottom.map((point, index) => {
+      const angle = (index + .5) / count * Math.PI * 2;
+      const normal = { x: lateral.x * Math.cos(angle) + f.x * Math.sin(angle), y: lateral.y * Math.cos(angle) + f.y * Math.sin(angle) };
+      const brightness = Math.max(0, -normal.x * .45 - normal.y * .8);
+      const color = offense ? `hsl(19 84% ${shorts ? 34 + brightness * 13 : 40 + brightness * 18}%)` : `hsl(201 44% ${shorts ? 24 + brightness * 15 : 40 + brightness * 22}%)`;
+      return { points: [point, bottom[(index + 1) % count]!, top[(index + 1) % count]!, top[index]!], color };
+    });
+    faces.sort((a, b) => b.points.reduce((sum, point) => sum + project(point).depth, 0) - a.points.reduce((sum, point) => sum + project(point).depth, 0));
+    for (const face of faces) polygon(ctx, project, face.points, face.color);
+    polygon(ctx, project, top, offense ? '#f67b3c' : '#83b3c6');
+  };
+  cloth(11, 10, 7, torsoZ - 10, torsoZ + 3, true);
   line(ctx, project, [p(0, 6.2, torsoZ - 8), p(0, 6.2, torsoZ + 1)], offense ? '#96330f' : '#061e31', 1.2);
-  prism(ctx, project, bodyRing(8, 5, torsoZ + 2), bodyRing(12, 6, headZ - 15), jersey);
+  cloth(9, 13, 6.4, torsoZ + 2, headZ - 17, false);
   // Uniform piping is visible on both shoulders and down both sides.
-  for (const side of [-1, 1]) line(ctx, project, [p(side * 11.4, -5.8, headZ - 15), p(side * 8, -5.3, torsoZ + 3)], offense ? '#ffe5b7' : '#8db8cf', 1.5);
+  for (const side of [-1, 1]) line(ctx, project, [p(side * 11.5, -3, headZ - 17), p(side * 8, -3, torsoZ + 3)], offense ? '#ffb979' : '#c8dfe6', 1.5);
 
   const arms = [-1, 1].map(side => {
     const reach = screening ? -2 : isHolder && side === 1 ? 15 : offense ? -side * step * 9 : 8;
@@ -233,11 +286,13 @@ function drawPlayer(ctx: CanvasRenderingContext2D, project: Project, scene: Cour
   // Jersey numbers face the viewer; a small ground badge stays readable when
   // two models overlap. These are labels, never separate canonical entities.
   const chest = project(p(0, -6.5, headZ - 23));
-  ctx.font = `800 ${Math.max(6, 10 * chest.scale)}px system-ui, sans-serif`;
+  ctx.font = `800 ${Math.max(7, 12 * chest.scale)}px system-ui, sans-serif`;
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillStyle = offense ? '#fff7dc' : '#153956'; ctx.fillText(String(actor.number), chest.x, chest.y);
+  ctx.strokeStyle = offense ? '#8e2f16' : '#244f66'; ctx.lineWidth = 1.1;
+  ctx.strokeText(String(actor.number), chest.x, chest.y);
+  ctx.fillStyle = '#fff7e1'; ctx.fillText(String(actor.number), chest.x, chest.y);
   const badge = project(v(pose.x, pose.y + 25, 2));
-  const badgeRadius = 10 * badge.scale;
+  const badgeRadius = 12 * badge.scale;
   ctx.fillStyle = offense ? '#ed6927' : '#e3f1f4';
   ctx.strokeStyle = offense ? '#ffbc77' : '#5396bc'; ctx.lineWidth = Math.max(.7, badge.scale);
   ctx.beginPath(); ctx.roundRect(badge.x - badgeRadius, badge.y - badgeRadius * .7, badgeRadius * 2, badgeRadius * 1.4, offense ? badgeRadius * .7 : badgeRadius * .2); ctx.fill(); ctx.stroke();
@@ -281,38 +336,74 @@ function drawBall(ctx: CanvasRenderingContext2D, project: Project, pose: Pose, h
   ctx.beginPath(); ctx.moveTo(point.x - r * .9, point.y - r * .4); ctx.quadraticCurveTo(point.x, point.y + r * .3, point.x + r * .9, point.y + r * .35); ctx.stroke();
 }
 
-function drawActions(ctx: CanvasRenderingContext2D, project: Project, scene: CourtScene3D) {
+function ballObjectDepth(project: Project, scene: CourtScene3D, poses: Record<ActorId, Pose>, ballPose: Pose, height: number) {
+  const depth = project(v(ballPose.x, ballPose.y, height)).depth - 1;
   const phase = scene.snapshot.phases[scene.frame?.phaseIndex ?? scene.phaseIndex ?? 0]!;
-  for (const action of scene.snapshot.actions) {
-    if (action.archived || action.adjacency !== 'valid' || action.fromFrameId !== phase.id) continue;
-    const color = action.type === 'pass' ? '#c3e9ff' : action.type === 'dribble' ? '#fff0b3' : '#fff9e7';
-    const path = action.path.value.points.map(point => v(point.x, point.y, 1.5));
+  if (phase.possession.value === 'loose') return depth;
+  const holder = poses[phase.possession.value];
+  // A held ball is drawn at the hand in front of its own jersey. Preserve normal
+  // occlusion by other players and the physical depth of a pass in flight.
+  return Math.hypot(ballPose.x - holder.x, ballPose.y - holder.y) <= 35
+    ? Math.min(depth, project(v(holder.x, holder.y, 25)).depth - 2)
+    : depth;
+}
+
+function drawAction(ctx: CanvasRenderingContext2D, project: Project, type: TacticalActionType, actionPath: ActionPath, selected: boolean, ghost: boolean, draft = false) {
+    const color = ghost && !draft ? '#e6a8ee' : selected ? '#ffae58' : type === 'pass' ? '#d1edff' : type === 'dribble' ? '#ffdfa0' : '#fff9e7';
+    const path = actionPath.points.map(point => v(point.x, point.y, 1.5));
     const first = path[0]; const last = path.at(-1); const beforeLast = path.at(-2);
-    if (!first || !last || !beforeLast) continue;
+    if (!first || !last || !beforeLast) return;
     ctx.save();
-    ctx.globalAlpha = .78;
-    if (action.type === 'pass') ctx.setLineDash([6 * project(first).scale, 6 * project(first).scale]);
-    line(ctx, project, path, 'rgba(16,43,44,.35)', 6);
-    line(ctx, project, path, color, 2.5);
+    ctx.globalAlpha = ghost && !draft ? .55 : .95;
+    if (ghost || type === 'pass') ctx.setLineDash([6 * project(first).scale, 6 * project(first).scale]);
+    line(ctx, project, path, 'rgba(26,31,25,.6)', selected ? 8 : 6);
+    line(ctx, project, path, color, selected ? 4 : 2.7);
     ctx.setLineDash([]);
     const angle = Math.atan2(last.y - beforeLast.y, last.x - beforeLast.x);
-    if (action.type === 'screen') {
-      line(ctx, project, [v(last.x - Math.sin(angle) * 11, last.y + Math.cos(angle) * 11, 2), v(last.x + Math.sin(angle) * 11, last.y - Math.cos(angle) * 11, 2)], color, 3.6);
+    if (type === 'screen') {
+      line(ctx, project, [v(last.x - Math.sin(angle) * 13, last.y + Math.cos(angle) * 13, 2), v(last.x + Math.sin(angle) * 13, last.y - Math.cos(angle) * 13, 2)], color, selected ? 5 : 3.8);
     } else {
       polygon(ctx, project, [last, v(last.x - 13 * Math.cos(angle - .5), last.y - 13 * Math.sin(angle - .5), 2), v(last.x - 13 * Math.cos(angle + .5), last.y - 13 * Math.sin(angle + .5), 2)], color);
     }
+    if (selected) {
+      line(ctx, project, ringPoints(last.x, last.y, 9, 9, 2), color, 2);
+      polygon(ctx, project, ringPoints(first.x, first.y, 5, 5, 2), color);
+    }
     ctx.restore();
+}
+
+function drawActions(ctx: CanvasRenderingContext2D, project: Project, scene: CourtScene3D) {
+  const phase = scene.snapshot.phases[scene.frame?.phaseIndex ?? scene.phaseIndex ?? 0]!;
+  for (const action of scene.snapshot.actions) {
+    if (action.archived || action.fromFrameId !== phase.id) continue;
+    for (const candidate of action.path.candidates) {
+      if (candidate.id !== action.path.winnerId) drawAction(ctx, project, action.type, candidate.value, false, true);
+    }
+    drawAction(ctx, project, action.type, action.path.value, scene.selectedActionId === action.id, action.adjacency !== 'valid');
   }
 }
 
 function drawStage(ctx: CanvasRenderingContext2D, width: number, height: number, project: Project, light: boolean) {
   ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  const backdrop = ctx.createRadialGradient(width * .48, height * .43, 0, width * .48, height * .5, width * .7);
-  backdrop.addColorStop(0, light ? '#e9e9db' : '#19333a'); backdrop.addColorStop(1, light ? '#bdcfc8' : '#06151e');
+  const backdrop = ctx.createRadialGradient(width * .48, height * .35, 0, width * .48, height * .5, width * .7);
+  backdrop.addColorStop(0, light ? '#ddd5bd' : '#34372b'); backdrop.addColorStop(.5, light ? '#c5c7b7' : '#151f1b'); backdrop.addColorStop(1, light ? '#a8b7ac' : '#061310');
   ctx.fillStyle = backdrop; ctx.fillRect(0, 0, width, height);
+  // Original arena architecture, cached with the floor. Subdued seats and the
+  // sideline establish scale without hiding the playable court or adding motion.
+  polygon(ctx, project, rectangle(-300, -340, 1500, 1160, -18), light ? 'rgba(89,85,66,.25)' : 'rgba(3,10,8,.5)');
+  for (let row = 2; row >= 0; row--) {
+    const seatY = -72 - row * 37;
+    const seatZ = row * 15;
+    line(ctx, project, [v(-60, seatY - 14, seatZ), v(920, seatY - 14, seatZ)], light ? '#78877b' : '#28382e', 2);
+    for (let column = 0; column < 23; column++) {
+      const seatX = -40 + column * 42;
+      polygon(ctx, project, rectangle(seatX, seatY, 28, 24, seatZ + 6), light ? '#73857c' : '#20382f', '#405246', .5);
+      polygon(ctx, project, [v(seatX, seatY, seatZ + 6), v(seatX + 28, seatY, seatZ + 6), v(seatX + 28, seatY - 4, seatZ + 32), v(seatX, seatY - 4, seatZ + 32)], light ? '#7f9187' : '#2b4035', light ? '#a3afa0' : '#3b4c3d', .55);
+    }
+  }
   const center = project(v(420, 250, -30));
   const ambient = ctx.createRadialGradient(center.x, center.y, width * .17, center.x, center.y, width * .46);
-  ambient.addColorStop(0, light ? 'rgba(23,43,43,.25)' : 'rgba(0,4,11,.72)'); ambient.addColorStop(1, 'rgba(0,0,0,0)');
+  ambient.addColorStop(0, light ? 'rgba(35,35,24,.3)' : 'rgba(0,5,2,.72)'); ambient.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.save(); ctx.translate(center.x, center.y); ctx.scale(1, .45); ctx.translate(-center.x, -center.y);
   ctx.fillStyle = ambient; ctx.fillRect(0, -height, width, height * 3); ctx.restore();
   drawFloor(ctx, project, light);
@@ -337,34 +428,78 @@ export function drawCourtScene3D(ctx: CanvasRenderingContext2D, width: number, h
   }
   ctx.drawImage(stage.canvas, 0, 0);
   if (scene.showActions !== false) drawActions(ctx, project, scene);
-  const poses = scene.frame?.poses ?? phase.poses;
+  if (scene.actionDraft) drawAction(ctx, project, scene.actionDraft.type, scene.actionDraft.path, true, true, true);
+  const { poses, ballPose } = courtScenePoses3D(scene);
+  // Competing intentions remain visible in the same scene as the winning pose.
+  // Ghosts are derived, never selectable entities or replacement document data.
+  for (const actor of scene.snapshot.actors) {
+    const register = phase.poseRegisters[actor.id];
+    for (const candidate of register.candidates) {
+      if (candidate.id === register.winnerId) continue;
+      ctx.save(); ctx.globalAlpha = .3;
+      drawPlayer(ctx, project, { ...scene, selectedId: null }, actor, candidate.value);
+      ctx.globalAlpha = .8; ctx.setLineDash([4, 4]);
+      line(ctx, project, ringPoints(candidate.value.x, candidate.value.y, 26, 22, 1), '#e6a8ee', 2.8);
+      ctx.restore();
+    }
+  }
+  const ballGhosts = phase.looseBallPose?.candidates.filter(candidate => candidate.id !== phase.looseBallPose!.winnerId).map(candidate => ({ pose: candidate.value, height: 7 })) ?? [];
+  for (const candidate of phase.possession.candidates) {
+    if (candidate.id === phase.possession.winnerId) continue;
+    if (candidate.value === 'loose' && !phase.looseBallPose) continue;
+    ballGhosts.push({ pose: deriveBallPose(poses, candidate.value, phase.looseBallPose?.value ?? null), height: candidate.value === 'loose' ? 7 : 35 });
+  }
+  for (const ghost of ballGhosts) {
+    ctx.save(); ctx.globalAlpha = .4; drawBall(ctx, project, ghost.pose, ghost.height);
+    ctx.globalAlpha = .8; ctx.setLineDash([4, 4]);
+    line(ctx, project, ringPoints(ghost.pose.x, ghost.pose.y, 13, 13, ghost.height), '#e6a8ee', 2);
+    ctx.restore();
+  }
   for (const actor of scene.snapshot.actors) shadow(ctx, project, poses[actor.id], 24, .18);
-  const ballPose = scene.frame?.ballPose ?? phase.ballPose;
   const ballHeight = courtBallHeight3D(scene);
   shadow(ctx, project, ballPose, 5 + ballHeight * .05, .15);
+  if (scene.selectedId === 'ball') line(ctx, project, ringPoints(ballPose.x, ballPose.y, 14, 14, ballHeight), '#ffba68', 2.5);
   const objects = scene.snapshot.actors.map(actor => ({ depth: project(v(poses[actor.id].x, poses[actor.id].y, 25)).depth, draw: () => drawPlayer(ctx, project, scene, actor, poses[actor.id]) }));
   objects.push({ depth: project(v(810, 230, 72)).depth, draw: () => drawBasket(ctx, project) });
-  objects.push({ depth: project(v(ballPose.x, ballPose.y, ballHeight)).depth - 1, draw: () => drawBall(ctx, project, ballPose, ballHeight) });
+  objects.push({ depth: ballObjectDepth(project, scene, poses, ballPose, ballHeight), draw: () => drawBall(ctx, project, ballPose, ballHeight) });
   objects.sort((a, b) => b.depth - a.depth);
   objects.forEach(object => object.draw());
   ctx.restore();
 }
 
-/** Read-only watch selection. Editing continues to use Gfx's plan hit testing. */
+function distanceToSegment(point: Pose, start: Pose, end: Pose) {
+  const dx = end.x - start.x; const dy = end.y - start.y;
+  const lengthSquared = dx * dx + dy * dy;
+  const t = lengthSquared > 0 ? Math.max(0, Math.min(1, ((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared)) : 0;
+  return Math.hypot(point.x - start.x - dx * t, point.y - start.y - dy * t);
+}
+
+/** Pick rendered bodies, shoulders, heads and number badges, not just their
+ * floor origins. Front-to-back ordering matches the renderer when models overlap. */
 export function hitTestCourtScene3D(width: number, height: number, scene: CourtScene3D, x: number, y: number): ActorId | 'ball' | null {
+  if (![width, height, x, y].every(Number.isFinite) || width <= 0 || height <= 0) return null;
   const phase = scene.snapshot.phases[scene.frame?.phaseIndex ?? scene.phaseIndex ?? 0];
   if (!phase) return null;
   const project = projector(width, height);
-  const poses = scene.frame?.poses ?? phase.poses;
-  const ballPose = scene.frame?.ballPose ?? phase.ballPose;
+  const { poses, ballPose } = courtScenePoses3D(scene);
   const ball = project(v(ballPose.x, ballPose.y, courtBallHeight3D(scene)));
-  if (Math.hypot(x - ball.x, y - ball.y) <= Math.max(9, ball.scale * 10)) return 'ball';
-  const actors = [...scene.snapshot.actors].sort((a, b) => project(v(poses[a.id].x, poses[a.id].y, 25)).depth - project(v(poses[b.id].x, poses[b.id].y, 25)).depth);
-  for (const actor of actors) {
-    const ground = project(v(poses[actor.id].x, poses[actor.id].y));
-    const head = project(v(poses[actor.id].x, poses[actor.id].y, 76));
-    const radius = Math.max(11, ground.scale * 23);
-    if (x >= Math.min(ground.x, head.x) - radius && x <= Math.max(ground.x, head.x) + radius && y >= head.y - radius * .3 && y <= ground.y + radius) return actor.id;
+  const hits: Array<{ id: ActorId | 'ball'; depth: number; distance: number }> = [];
+  const ballDistance = Math.hypot(x - ball.x, y - ball.y) / Math.max(8, ball.scale * 10);
+  if (ballDistance <= 1) hits.push({ id: 'ball', depth: ballObjectDepth(project, scene, poses, ballPose, courtBallHeight3D(scene)), distance: ballDistance });
+  for (const actor of scene.snapshot.actors) {
+    const pose = poses[actor.id];
+    const ground = project(v(pose.x, pose.y, 5));
+    const head = project(v(pose.x, pose.y, actor.team === 'offense' ? 76 : 72));
+    const badge = project(v(pose.x, pose.y + 25, 2));
+    const direction = actor.team === 'offense' ? Math.atan2(230 - pose.y, 774 - pose.x) : Math.atan2(ballPose.y - pose.y, ballPose.x - pose.x);
+    const reach = actor.team === 'offense' ? 17 : 25;
+    const side = { x: -Math.sin(direction) * reach, y: Math.cos(direction) * reach };
+    const left = project(v(pose.x + side.x, pose.y + side.y, 49));
+    const rightShoulder = project(v(pose.x - side.x, pose.y - side.y, 49));
+    const pointer = { x, y };
+    const distance = Math.min(distanceToSegment(pointer, ground, head) / Math.max(7, ground.scale * 13), distanceToSegment(pointer, left, rightShoulder) / Math.max(5, ground.scale * 8), Math.hypot(x - badge.x, y - badge.y) / Math.max(7, badge.scale * 12));
+    if (distance <= 1) hits.push({ id: actor.id, depth: project(v(pose.x, pose.y, 25)).depth, distance });
   }
-  return null;
+  hits.sort((a, b) => Math.abs(a.depth - b.depth) < .01 ? a.distance - b.distance : a.depth - b.depth);
+  return hits[0]?.id ?? null;
 }

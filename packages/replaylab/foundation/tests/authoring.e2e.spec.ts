@@ -26,6 +26,7 @@ async function waitUntilReady(page: Page, url: string) {
 test('pointer drag and keyboard nudge are parity paths for one durable pose command each', async ({ page }) => {
   const target = authoringUrl('pointer-keyboard');
   await waitUntilReady(page, target.url);
+  await page.getByRole('button', { name: 'Plan view', exact: true }).click();
   const canvas = page.locator('#court');
   const bounds = await canvas.boundingBox();
   if (!bounds) throw new Error('Court has no visible bounds');

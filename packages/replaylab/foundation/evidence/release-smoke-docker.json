@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T21:37:40.253Z",
+  "generatedAt": "2026-10-17T23:35:35.180Z",
   "mode": "docker",
   "port": 32421,
   "verdict": "PASS",
@@ -9,7 +9,7 @@
     "offline concurrent intentions; resolve; local undo",
     "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
   ],
-  "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-xe1qgr",
-  "imageId": "sha256:aa13d6a0f6e108494785716570bcb1a219920305f3b0293496976999f79975f7",
+  "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-RUQOJW",
+  "imageId": "sha256:c0d0fe5cf9f78ec994e4a318a4ba0d1b81c98267fb41ab1943443dfb9ceace3e",
   "runtimeUser": "node"
 }

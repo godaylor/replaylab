@@ -7,8 +7,8 @@ working product name; independent name/mark clearance remains open.
 
 **[Existing Render deployment](https://replaylab-godaylor.onrender.com)** · [Architecture](docs/ARCHITECTURE.md) · [Deployment](docs/RELEASE.md) · [Portfolio handoff](PORTFOLIO_HANDOFF.md)
 
-The coach workbench adds a shared procedural 3D court to the homepage and play
-review. Exact publication state, completed checks and remaining availability
+The coach workbench uses the same procedural 3D court for review and direct
+player/path editing, with an optional overhead view. Exact publication state, completed checks and remaining availability
 limits are recorded in [current verification](docs/PRODUCTION_VERIFICATION.md).
 [Результат по-русски: экраны, сценарий, проверки и ограничения](docs/COACH_DELIVERY_RU.md).
 
@@ -25,7 +25,7 @@ Desktop supports full authoring, including compact windows with a mouse or track
 ## Make a play
 
 1. Choose **Watch example** for a separate four-step example, or **Create a play** for a blank spread formation.
-2. Watch 5 set the screen, 1 drive while 5 rolls, and 1 pass to 5 near the rim. Choose **Edit play** to switch to the overhead board and move a player.
+2. Watch 5 set the screen, 1 drive while 5 rolls, and 1 pass to 5 near the rim. Choose **Edit play** and drag a player directly in the same 3D court. **Plan** is an optional view.
 3. Choose a movement tool and draw from the player who performs it. A cut, dribble or screen sets their next pose; a pass transfers possession. A single Undo restores the whole action. **Add step** appends a continuation. Press Play to check it.
 4. Edits save automatically in this browser. Return home to reopen recent work. **File & backup → Recovery file** downloads a complete portable copy.
 5. Choose **Invite → Create collaborative room** to create a private shared copy.
@@ -34,7 +34,7 @@ Desktop supports full authoring, including compact windows with a mouse or track
 
 ## What works
 
-- Shared procedural 3D court and ten athletes in Watch; accurate overhead pointer and keyboard authoring in Edit, 2–12 steps and four tactical actions.
+- Shared procedural 3D court and ten athletes, direct body drag/path drawing, optional overhead view and keyboard authoring; 2–12 steps and four tactical actions.
 - Deterministic path-based animation, scrubbing, presenter/follow mode and reduced-motion playback.
 - Rich per-phase coaching cues and one local undo history across text and court edits.
 - Automatic local persistence, cold offline launch, crash journal and recoverable exports.
@@ -45,7 +45,7 @@ Desktop supports full authoring, including compact windows with a mouse or track
 ## Как начать
 
 Откройте приложение и выберите **Смотреть пример**. Нажмите **Старт**, затем
-**Редактировать**, чтобы изменить комбинацию на схеме. **Создать комбинацию**
+**Редактировать**, чтобы двигать игроков и рисовать действия прямо в 3D. **Создать комбинацию**
 начинает отдельный документ. **Как пользоваться** запускает
 знакомство на отдельной учебной копии: обозначения → перемещение → движение →
 воспроизведение → отмена → экспорт → повторное открытие. Новый пример не меняет

@@ -7,6 +7,7 @@ for (const locale of ['ru', 'en'] as const) test(`coach journey ${locale}: examp
   await page.getByRole('button', { name: locale === 'ru' ? 'Смотреть пример' : 'Watch example', exact: true }).click();
   await page.locator('[data-app-ready]').waitFor();
   await page.getByRole('button', { name: locale === 'ru' ? 'Редактировать' : 'Edit play', exact: true }).click();
+  await page.getByRole('button', { name: locale === 'ru' ? 'Вид сверху' : 'Plan view', exact: true }).click();
   const actor = page.locator('[data-actor-id="offense-1"]');
   const title = locale === 'ru' ? 'Пик-н-ролл · свободный проход' : 'Pick & roll · create the opening';
   await expect(page.getByRole('textbox', { name: locale === 'ru' ? 'Название комбинации' : 'Play name' })).toHaveValue(title);

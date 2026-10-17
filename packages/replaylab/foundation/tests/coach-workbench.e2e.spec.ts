@@ -28,7 +28,7 @@ test('a compact fine-pointer desktop keeps full authoring and visible undo at 70
 });
 
 test('drawing starts from the touched player rather than the old selection and one undo restores action and destination', async ({ page }) => {
-  await page.goto(playUrl('draw-origin'));
+  await page.goto(playUrl('draw-origin', '&view=plan'));
   await page.locator('[data-app-ready]').waitFor();
   const before = await page.evaluate(() => {
     const facade = window.replayLabApp!.facade;
@@ -63,7 +63,7 @@ test('drawing starts from the touched player rather than the old selection and o
   expect(await page.evaluate(() => ({ poses: window.replayLabApp!.facade.snapshot.phases.map(phase => phase.poses), actions: window.replayLabApp!.facade.snapshot.actions }))).toEqual(before);
 });
 
-for (const locale of ['ru', 'en']) test(`watch-to-edit ${locale}: 3D playback is derived and editing restores the plan view`, async ({ page }) => {
+for (const locale of ['ru', 'en']) test(`watch-to-edit ${locale}: 3D playback is derived and editing keeps the same 3D court`, async ({ page }) => {
   await page.goto(playUrl(`watch-${locale}`, '&lesson=1&watch=1'));
   await page.locator('[data-app-ready]').waitFor();
   await page.getByRole('button', { name: locale.toUpperCase(), exact: true }).click();
@@ -77,7 +77,7 @@ for (const locale of ['ru', 'en']) test(`watch-to-edit ${locale}: 3D playback is
   expect(await page.evaluate(() => Array.from(window.replayLabApp!.facade.encode()))).toEqual(before);
   await page.getByRole('group', { name: locale === 'ru' ? 'Режим площадки' : 'Court mode' }).getByRole('button', { name: locale === 'ru' ? 'Редактировать' : 'Edit play', exact: true }).click();
   await expect(page.locator('.app-shell')).toHaveAttribute('data-workbench-mode', 'edit');
-  await expect(page.locator('#court')).toHaveAttribute('data-presentation', 'plan');
+  await expect(page.locator('#court')).toHaveAttribute('data-presentation', '3d');
   await expect(page.getByRole('toolbar', { name: locale === 'ru' ? 'Инструменты площадки' : 'Court tools' })).toBeVisible();
   await expect(page.locator('.timeline > .section-heading-row button')).toBeEnabled();
   expect(await page.evaluate(() => Array.from(window.replayLabApp!.facade.encode()))).toEqual(before);
