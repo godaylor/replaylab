@@ -1,5 +1,16 @@
 # License boundaries
 
+2026-10-17 asset-only decision: the Arena presentation includes the unmodified
+Oswald variable font under SIL OFL-1.1, sourced from
+`googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261`.
+Its complete copyright/license is preserved in `public/legal/OFL-Oswald.txt`,
+emitted static files, generated notices and release packaging; its source and
+emitted SHA-256 are checked by `scripts/audit.mjs`. This acceptance is limited to
+this font asset. It does not change accepted runtime-package licenses, the four
+approved kernel roots, the forbidden-path policy or protocol provenance rules.
+The hardwood raster and V/motion mark are original product artwork; generation
+prompts and asset identities are recorded in `docs/design/ARENA_PROMPTS.md`.
+
 Статус: normative engineering policy  
 Audited checkout: `329839e467d936f90230fb02a8983f8eb4b62fc0`  
 Disclaimer: это инженерная инвентаризация, не юридическое заключение.

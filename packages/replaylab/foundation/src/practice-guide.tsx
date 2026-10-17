@@ -11,7 +11,7 @@ export function CourtLegend() {
     <li><span className="token token-offense">O1</span>{locale === 'ru' ? 'Атака' : 'Offense'}</li>
     <li><span className="token token-defense">D1</span>{locale === 'ru' ? 'Защита' : 'Defense'}</li>
     <li><span className="token token-ball" aria-hidden="true">●</span>{locale === 'ru' ? 'Мяч · у владельца' : 'Ball · with its holder'}</li>
-    <li>{locale === 'ru' ? '→ Движение · ⇢ пунктир — передача · × — заслон' : '→ Movement · ⇢ dashed pass · × — screen'}</li>
+    <li>{locale === 'ru' ? '→ движение · ⇢ передача · ⊥ заслон' : '→ movement · ⇢ pass · ⊥ screen'}</li>
   </ul>;
 }
 
@@ -36,7 +36,7 @@ export function PracticeGuide({ mode }: { mode: 'desktop' | 'tablet' | 'mobile' 
     { title: ru ? 'Остановите' : 'Pause', body: ru ? 'Нажмите «Пауза». Если комбинация уже закончилась, она остановится сама.' : 'Press Pause. If the play has already ended, playback stops automatically.', target: '.playback-primary' },
     { title: ru ? 'Отмените изменение' : 'Undo your edit', body: ru ? 'Нажмите «Отменить» вверху. Отменяется последнее ваше изменение, а не воспроизведение. «Повторить» возвращает его.' : 'Press Undo at the top. It undoes your last edit, not playback. Redo restores the edit.', target: '.history-controls button' },
     { title: ru ? 'Сохраните переносимую копию' : 'Keep a portable copy', body: ru ? 'Изменения сохраняются в этом браузере. «Файл восстановления» скачивает полную копию; на другом устройстве откройте её через «Открыть восстановление…». Обычный JSON предназначен для чтения, не для импорта.' : 'Edits are saved in this browser. Recovery file downloads a full copy; on another device use Open recovery…. Regular JSON is for inspection, not import.', target: '#export-recovery' },
-    { title: ru ? 'Откройте снова' : 'Reopen the play', body: ru ? 'Завершите знакомство, нажмите ReplayLab и найдите учебную комбинацию в «Недавних». Она сохранит изменения. Новый пример создаёт отдельную копию.' : 'Finish the guide, go home with ReplayLab and find the practice play in Recent plays. Your edits remain. A new example creates a separate copy.', target: '.brand' },
+    { title: ru ? 'Откройте снова' : 'Reopen the play', body: ru ? 'Завершите знакомство, нажмите «Пятый темп» и найдите комбинацию в «Недавних». Она сохранит изменения. Новый пример создаёт отдельную копию.' : 'Finish the guide, go home with Fifth Tempo and find the play in Recent plays. Your edits remain. A new example creates a separate copy.', target: '.brand' },
   ];
   const current = step === null ? null : steps[Math.min(step, steps.length - 1)]!;
   const close = () => { setStep(null); trigger.current?.focus(); };

@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-10-17T19:11:27.625Z",
+  "origin": "http://127.0.0.1:32400",
+  "status": "PASS",
+  "chrome": "installed Google Chrome",
+  "browserVersion": "155.0.8059.80",
+  "networkScope": "This Windows host only; fresh browser context, not the owner’s existing Chrome profile; no controlled VPN/Russia environment",
+  "failures": [],
+  "checks": [
+    "animated home in a fresh browser profile",
+    "complete four-step playback, named steps and live explanation",
+    "keyboard movement and local undo",
+    "no failed HTTP assets, self-hosted Cyrillic font and light theme"
+  ]
+}

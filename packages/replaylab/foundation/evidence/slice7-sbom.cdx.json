@@ -3,7 +3,7 @@
   "specVersion": "1.5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-17T00:05:20.801Z",
+    "timestamp": "2026-10-17T19:05:38.513Z",
     "component": {
       "type": "application",
       "name": "ReplayLab",
@@ -13,11 +13,11 @@
     "properties": [
       {
         "name": "replaylab:production-bundle-gzip-bytes",
-        "value": "228702"
+        "value": "236786"
       },
       {
         "name": "replaylab:repository-commit",
-        "value": "5c85f7387304240e4b5651436f59e26458ba7385"
+        "value": "1db56b11bd7c435dfd34be16f8324309360a27eb"
       }
     ]
   },
@@ -2127,6 +2127,54 @@
           "value": "node_modules/zod/package.json"
         }
       ]
+    },
+    {
+      "type": "file",
+      "name": "Oswald variable font",
+      "bom-ref": "packages/replaylab/foundation/src/assets/Oswald.ttf",
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:provenance",
+          "value": "Unmodified googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261/fonts/variable/Oswald[wght].ttf; Copyright 2016 The Oswald Project Authors; full OFL in public/legal/OFL-Oswald.txt"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "Arena hardwood material",
+      "bom-ref": "packages/replaylab/foundation/src/assets/arena-floor.jpg",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160"
+        }
+      ],
+      "properties": [
+        {
+          "name": "replaylab:provenance",
+          "value": "Original imagegen asset generated 2026-10-17; JPEG format optimization only; prompt and original output identity in docs/design/ARENA_PROMPTS.md"
+        }
+      ]
     }
   ],
   "dependencies": [
@@ -2143,7 +2191,9 @@
         "rxjs@7.8.2:node_modules/rxjs/package.json",
         "ws@8.21.3:node_modules/ws/package.json",
         "y-protocols@1.0.6:node_modules/y-protocols/package.json",
-        "yjs@13.6.21:node_modules/yjs/package.json"
+        "yjs@13.6.21:node_modules/yjs/package.json",
+        "packages/replaylab/foundation/src/assets/Oswald.ttf",
+        "packages/replaylab/foundation/src/assets/arena-floor.jpg"
       ]
     },
     {

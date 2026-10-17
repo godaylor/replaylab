@@ -1,5 +1,10 @@
 # Visual review
 
+**Historical, owner-rejected daylight revision.** The current implementation,
+new concepts, real dark/light/mobile captures and before/after comparison are in
+[ARENA_REVIEW.md](ARENA_REVIEW.md). Do not treat this page's old “After” images as
+acceptance of the current product.
+
 Chosen concept: B, daylight court. [Generation prompts](PROMPTS.md).
 
 ![Key-screen design reference](key-screens.png)

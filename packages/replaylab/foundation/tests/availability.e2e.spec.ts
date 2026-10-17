@@ -33,11 +33,14 @@ test('local HTTP editor remains durable while hosted storage fails, then room re
     expect(post.headers()['retry-after']).toBe('30');
     const page = await context.newPage();
     await page.goto(origin + '/app/play/independent-editor/edit?lesson=1');
+    await page.locator('.player-controls > summary').click();
     const actor = page.locator('[data-actor-id="offense-1"]');
     await actor.click(); await actor.press('ArrowRight');
-    await expect(actor).toContainText('x 115');
+    await expect(actor).toContainText('x 285');
     await expect(page.locator('#persistence-status')).toContainText(/Saved in this browser|Сохранено в этом браузере/);
-    await page.reload(); await expect(actor).toContainText('x 115');
+    await page.reload();
+    await page.locator('.player-controls > summary').click();
+    await expect(actor).toContainText('x 285');
     await expect.poll(() => request.get(origin + '/readyz').then(r => r.status()), { timeout: 40_000 }).toBe(200);
     expect(logs).toContain('collaboration.unavailable');
     expect(logs).toContain('collaboration.ready');

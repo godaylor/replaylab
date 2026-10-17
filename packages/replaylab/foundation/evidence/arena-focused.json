@@ -1,0 +1,755 @@
+{
+  "config": {
+    "configFile": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\playwright.config.ts",
+    "rootDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "E:/Projects/PetProjects/05-replaylab/standalone/packages/replaylab/foundation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.pw.spec.ts",
+          "**/*.e2e.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/arena-focused.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": {
+      "command": "node ../../../node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 32410 --strictPort",
+      "port": 32410,
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "arena.e2e.spec.ts",
+      "file": "arena.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "new example tells a four-step pick and roll, playback is derived, pause selects the visible step, reopen preserves edits",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3981,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:25.919Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-6fcf611bed0e31975a9d",
+          "file": "arena.e2e.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "light/dark and RU/EN persist, motion can pause, reduced motion stays still, desktop transport fits and mobile remains review only",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1974,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:30.750Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-d87d9314182fa4cd2d01",
+          "file": "arena.e2e.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "opening a legacy local document with the new example flag never replaces its poses, actions or cues",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 460,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:32.734Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936a9e07bb62cefe9443-70d0642bbf3907bbb41a",
+          "file": "arena.e2e.spec.ts",
+          "line": 71,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "coach-journey.e2e.spec.ts",
+      "file": "coach-journey.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "coach journey ru: example, move, draw, phase, play, reopen and localized room failure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2548,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:33.224Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-ef285c9edaef82248fdb",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 4,
+          "column": 45
+        },
+        {
+          "title": "coach journey en: example, move, draw, phase, play, reopen and localized room failure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2536,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:35.780Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-eda838f6a2fedf112986",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 4,
+          "column": 45
+        },
+        {
+          "title": "coach layout fits the initial desktop view; RU/EN reflow and browser shortcuts remain available",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 557,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1000\u001b[39m\nReceived:    \u001b[31m1126.1875\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1000\u001b[39m\nReceived:    \u001b[31m1126.1875\u001b[39m\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\coach-journey.e2e.spec.ts:69:40",
+                    "location": {
+                      "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\coach-journey.e2e.spec.ts",
+                      "column": 40,
+                      "line": 69
+                    },
+                    "snippet": "  67 |   const timeline = (await page.locator('.timeline').boundingBox())!;\n  68 |   expect(court.y).toBeLessThan(350);\n> 69 |   expect(timeline.y + timeline.height).toBeLessThanOrEqual(1000);\n     |                                        ^\n  70 |   for (const locale of ['RU', 'EN']) {\n  71 |     await page.getByRole('button', { name: locale, exact: true }).click();\n  72 |     for (const width of [320, 390, 768, 1024, 1180, 1440]) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\coach-journey.e2e.spec.ts",
+                        "column": 40,
+                        "line": 69
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1000\u001b[39m\nReceived:    \u001b[31m1126.1875\u001b[39m\n\n  67 |   const timeline = (await page.locator('.timeline').boundingBox())!;\n  68 |   expect(court.y).toBeLessThan(350);\n> 69 |   expect(timeline.y + timeline.height).toBeLessThanOrEqual(1000);\n     |                                        ^\n  70 |   for (const locale of ['RU', 'EN']) {\n  71 |     await page.getByRole('button', { name: locale, exact: true }).click();\n  72 |     for (const width of [320, 390, 768, 1024, 1180, 1440]) {\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\coach-journey.e2e.spec.ts:69:40"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:38.326Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\test-results\\coach-journey.e2e-coach-la-e4de5--shortcuts-remain-available\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\coach-journey.e2e.spec.ts",
+                    "column": 40,
+                    "line": 69
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-0fcd5c10a3841748b932",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "first room visit without a server shows a localized retry screen and never a fabricated play",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2905,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:40.068Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fec2aa2f1026abc7a067-94ab6384a618e4a504d9",
+          "file": "coach-journey.e2e.spec.ts",
+          "line": 79,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "offline.e2e.spec.ts",
+      "file": "offline.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "service worker installs, activates, and caches the versioned production shell",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 761,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:43.910Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e301e10ede420f7fbe6f-14379e42be23c35aa91f",
+          "file": "offline.e2e.spec.ts",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "persistent-storage denial is explicit and leaves IndexedDB authoring available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1001,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:44.684Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e301e10ede420f7fbe6f-8724dd979559c71a823d",
+          "file": "offline.e2e.spec.ts",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "service-worker registration failure never blocks an online local load",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:45.703Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e301e10ede420f7fbe6f-db55d0c514b7cf08e737",
+          "file": "offline.e2e.spec.ts",
+          "line": 121,
+          "column": 1
+        },
+        {
+          "title": "cold browser restart stays editable offline and preserves reload plus local undo",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3684,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:46.902Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e301e10ede420f7fbe6f-a99ac112009e7c05c9a1",
+          "file": "offline.e2e.spec.ts",
+          "line": 144,
+          "column": 1
+        },
+        {
+          "title": "an active worker shows an explicit failure when shell cache and document are both absent",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1293,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading')\nExpected substring: \u001b[32m\"недоступен офлайн\"\u001b[39m\nError: strict mode violation: getByRole('heading') resolved to 2 elements:\n    1) <h1>Пятый темп пока недоступен офлайн.</h1> aka getByRole('heading', { name: 'Пятый темп пока недоступен офлайн' })\n    2) <h2>Fifth Tempo is not available offline yet.</h2> aka getByRole('heading', { name: 'Fifth Tempo is not available' })\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading')\nExpected substring: \u001b[32m\"недоступен офлайн\"\u001b[39m\nError: strict mode violation: getByRole('heading') resolved to 2 elements:\n    1) <h1>Пятый темп пока недоступен офлайн.</h1> aka getByRole('heading', { name: 'Пятый темп пока недоступен офлайн' })\n    2) <h2>Fifth Tempo is not available offline yet.</h2> aka getByRole('heading', { name: 'Fifth Tempo is not available' })\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading')\u001b[22m\n\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\offline.e2e.spec.ts:270:50",
+                    "location": {
+                      "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\offline.e2e.spec.ts",
+                      "column": 50,
+                      "line": 270
+                    },
+                    "snippet": "  268 |     offlinePage.locator('[data-offline-unavailable=\"true\"]')\n  269 |   ).toBeVisible();\n> 270 |   await expect(offlinePage.getByRole('heading')).toContainText(\n      |                                                  ^\n  271 |     'недоступен офлайн'\n  272 |   );\n  273 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\offline.e2e.spec.ts",
+                        "column": 50,
+                        "line": 270
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading')\nExpected substring: \u001b[32m\"недоступен офлайн\"\u001b[39m\nError: strict mode violation: getByRole('heading') resolved to 2 elements:\n    1) <h1>Пятый темп пока недоступен офлайн.</h1> aka getByRole('heading', { name: 'Пятый темп пока недоступен офлайн' })\n    2) <h2>Fifth Tempo is not available offline yet.</h2> aka getByRole('heading', { name: 'Fifth Tempo is not available' })\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading')\u001b[22m\n\n\n  268 |     offlinePage.locator('[data-offline-unavailable=\"true\"]')\n  269 |   ).toBeVisible();\n> 270 |   await expect(offlinePage.getByRole('heading')).toContainText(\n      |                                                  ^\n  271 |     'недоступен офлайн'\n  272 |   );\n  273 | });\n    at E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\offline.e2e.spec.ts:270:50"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:50.596Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\test-results\\offline.e2e-an-active-work-7e43e-nd-document-are-both-absent\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\packages\\replaylab\\foundation\\tests\\offline.e2e.spec.ts",
+                    "column": 50,
+                    "line": 270
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e301e10ede420f7fbe6f-827fa02d9e637bc9282a",
+          "file": "offline.e2e.spec.ts",
+          "line": 249,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "practice.e2e.spec.ts",
+      "file": "practice.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "isolated practice: move, draw, play, undo, archive, export, reopen and guide focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3537,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:53.849Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-a2756e1966bad7a3cceb",
+          "file": "practice.e2e.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "RU and EN home, editor and guide reflow; mobile review, missing target, reduced motion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3939,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:24:58.357Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-2ced6831f9098ada1d66",
+          "file": "practice.e2e.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "touch selection disambiguates overlapping players; enlarged text and private invite errors stay usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2018,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:25:02.305Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "84952e87915267949206-a2b4e16e5a9a3a431148",
+          "file": "practice.e2e.spec.ts",
+          "line": 105,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "product-flow.e2e.spec.ts",
+      "file": "product-flow.e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "home creates independent plays, reopens real edits and supports mobile review",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3060,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:25:04.356Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8f2bc1bd7d1b8364096e-a0a4bfb225131e5dce12",
+          "file": "product-flow.e2e.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "browser creates durable private room, separate writer and reader join the exact play",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T18:25:07.424Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8f2bc1bd7d1b8364096e-a686d9b33c10c9ea0e03",
+          "file": "product-flow.e2e.spec.ts",
+          "line": 29,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-17T18:24:24.211Z",
+    "duration": 45999.443,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -7,6 +7,7 @@ import {
   type PlaybackState,
 } from './playback';
 import { useI18n } from './i18n';
+import { exampleStepName } from './pick-roll';
 
 type Props = {
   controller: ReplayPlaybackController;
@@ -23,7 +24,7 @@ function formatTime(milliseconds: number) {
 }
 
 export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected, onPresentationChange, restartFromBeginning, onPlaybackStarted }: Props) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [state, setState] = useState<PlaybackState>(controller.state);
   const [presenting, setPresenting] = useState(false);
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(controller.currentFrame.phaseIndex);
@@ -55,7 +56,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
   useEffect(() => {
     const update = (frame: PlaybackFrame) => {
       setCurrentPhaseIndex(frame.phaseIndex);
-      const phaseLabel = t('phaseCard', { number: frame.phaseIndex + 1 });
+      const phaseLabel = exampleStepName(snapshot.phases[frame.phaseIndex]!.id, locale) ?? t('phaseCard', { number: frame.phaseIndex + 1 });
       const range = rangeRef.current;
       if (range) {
         range.max = String(frame.totalDurationMs);
@@ -72,7 +73,7 @@ export function PlaybackControls({ controller, snapshot, getCue, onPhaseSelected
       if (presenterPhaseRef.current) presenterPhaseRef.current.textContent = phaseLabel;
     };
     return controller.onFrame(update);
-  }, [controller, t]);
+  }, [controller, t, locale, snapshot]);
 
   useEffect(() => {
     const query = matchMedia('(prefers-reduced-motion: reduce)');

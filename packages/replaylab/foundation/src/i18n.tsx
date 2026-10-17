@@ -14,10 +14,10 @@ export const DEFAULT_LOCALE: Locale = 'ru';
 export const LOCALE_STORAGE_KEY = 'replaylab:locale';
 
 const en = {
-  appTitle: 'ReplayLab — basketball play editor',
-  appDescription: 'ReplayLab local-first basketball play authoring',
+  appTitle: 'Fifth Tempo — basketball in motion',
+  appDescription: 'Fifth Tempo — a basketball play animator that works offline',
   bootLoading: 'Opening local play…',
-  brandHome: 'ReplayLab home',
+  brandHome: 'Fifth Tempo home',
   brandTagline: 'Half-court authoring',
   language: 'Language',
   languageRu: 'RU',
@@ -102,7 +102,7 @@ const en = {
   conflictPhaseSelected: 'Phase {{number}} selected for conflict review.',
   phaseSelected: 'Phase {{number}} selected.',
   formationSequence: 'Formation sequence',
-  phases: 'Phases',
+  phases: 'Play sequence',
   addPhase: 'Add phase',
   phaseCard: 'Phase {{number}}',
   phasePosition: 'Phase {{number}}, position {{position}} of {{total}}{{lifted}}',
@@ -248,10 +248,10 @@ const ru: Record<MessageKey, string> = {
   draftPending: 'Неприменённый локальный черновик; соавторам не передаётся.',
   draftStorageFailed: 'Не удалось сохранить черновик для восстановления. Не закрывайте вкладку и экспортируйте черновики.',
   exportDrafts: 'Экспорт черновиков / аварийного журнала',
-  appTitle: 'ReplayLab — редактор баскетбольных комбинаций',
-  appDescription: 'ReplayLab — локальный редактор баскетбольных комбинаций',
+  appTitle: 'Пятый темп — баскетбол в движении',
+  appDescription: 'Пятый темп — аниматор баскетбольных комбинаций с работой без сети',
   bootLoading: 'Открываем локальную комбинацию…',
-  brandHome: 'Главная ReplayLab',
+  brandHome: 'Пятый темп — главная',
   brandTagline: 'Редактор половины площадки',
   language: 'Язык', languageRu: 'RU', languageEn: 'EN', playName: 'Название комбинации', history: 'История', undo: 'Отменить', redo: 'Повторить',
   documentStatus: 'Состояние документа', savedLocally: 'Сохранено в этом браузере', savingLocally: 'Сохраняем в этом браузере…', localSaveFailed: 'Сохранение не удалось — рекомендуем экспорт', memoryOnly: 'Копия восстановления только для чтения',
@@ -290,7 +290,7 @@ export function readInitialLocale(): Locale {
 }
 
 export function translate(locale: Locale, key: MessageKey, values?: Record<string, string | number>) {
-  return interpolate(dictionaries[locale][key], values);
+  return interpolate(dictionaries[locale][key].replaceAll('ReplayLab', locale === 'ru' ? 'Пятый темп' : 'Fifth Tempo'), values);
 }
 
 export function applyDocumentLocale(locale: Locale) {

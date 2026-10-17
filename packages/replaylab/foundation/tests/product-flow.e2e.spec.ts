@@ -11,10 +11,10 @@ test('home creates independent plays, reopens real edits and supports mobile rev
   const first = page.url();
   await page.getByRole('textbox', { name: 'Play name' }).fill('Horns into Spain');
   await page.getByRole('textbox', { name: 'Play name' }).press('Enter');
-  await page.getByRole('link', { name: 'ReplayLab home' }).click();
+  await page.getByRole('link', { name: 'Fifth Tempo home' }).click();
   await page.getByRole('link', { name: /Horns into Spain/ }).click();
   await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Horns into Spain');
-  await page.getByRole('link', { name: 'ReplayLab home' }).click();
+  await page.getByRole('link', { name: 'Fifth Tempo home' }).click();
   await page.getByRole('button', { name: 'Create a play', exact: true }).click();
   expect(page.url()).not.toBe(first);
   await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Untitled play');
@@ -38,6 +38,20 @@ test('browser creates durable private room, separate writer and reader join the 
   const reader = await browser.newContext();
   try {
     await expect.poll(() => request.get(origin + '/healthz').then(r => r.status()).catch(() => 0)).toBe(200);
+    const html = await (await request.get(origin)).text();
+    const cssPath = html.match(/href="(\/assets\/[^\"]+\.css)"/)![1]!;
+    const css = await (await request.get(origin + cssPath)).text();
+    const materials = [...css.matchAll(/url\((\/assets\/[^)]+\.(?:jpg|ttf))\)/g)].map(match => match[1]!);
+    expect(materials.some(path => path.endsWith('.jpg'))).toBe(true);
+    expect(materials.some(path => path.endsWith('.ttf'))).toBe(true);
+    for (const path of new Set(materials)) {
+      const asset = await request.get(origin + path);
+      expect(asset.status(), path).toBe(200);
+      expect(asset.headers()['content-type']).toBe(path.endsWith('.jpg') ? 'image/jpeg' : 'font/ttf');
+    }
+    const fontLicense = await request.get(origin + '/legal/OFL-Oswald.txt');
+    expect(fontLicense.status()).toBe(200);
+    expect(await fontLicense.text()).toContain('SIL OPEN FONT LICENSE');
     expect((await request.post(origin + '/api/rooms', { data: { update: 'AA==' }, headers: { Origin: 'https://foreign.example' } })).status()).toBe(403);
     expect((await request.post(origin + '/api/rooms', { data: { update: 'AA==' }, headers: { Origin: origin } })).status()).toBe(400);
     const page = await a.newPage();

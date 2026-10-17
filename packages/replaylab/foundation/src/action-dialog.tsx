@@ -17,7 +17,7 @@ type Props = {
     targetActorId: ActorId | null;
     x: number;
     y: number;
-  }): void;
+  }): boolean;
   onClose(cancelled: boolean): void;
 };
 
@@ -30,6 +30,7 @@ export function ActionDialog(props: Props) {
     props.snapshot.phases[props.phaseIndex]!.poses[actorId];
   const [x, setX] = useState(destination.x);
   const [y, setY] = useState(destination.y);
+  const [error, setError] = useState('');
   const firstRef = useRef<HTMLSelectElement>(null);
   const needsTarget = type === 'pass' || type === 'screen';
 
@@ -46,6 +47,11 @@ export function ActionDialog(props: Props) {
           if (event.key === 'Escape') {
             event.preventDefault();
             props.onClose(true);
+          } else if (event.key === 'Tab') {
+            const controls = [...event.currentTarget.querySelectorAll<HTMLElement>('button, select, input, textarea, [href]')].filter(element => !element.matches(':disabled'));
+            const first = controls[0]; const last = controls.at(-1);
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
           }
         }}
       >
@@ -73,16 +79,23 @@ export function ActionDialog(props: Props) {
             </select>
           </label>
         ) : null}
-        <div className="coordinate-fields">
+        {type === 'pass' ? <p>{locale === 'ru' ? 'Передача направляется к выбранному игроку в следующей расстановке. Мяч перейдёт к нему.' : 'The pass goes to the selected player in the next formation. They receive possession.'}</p> : <div className="coordinate-fields">
           <label><span>{t('endX')}</span><input type="number" min="20" max="820" value={x} onChange={event => setX(event.target.valueAsNumber)} /></label>
           <label><span>{t('endY')}</span><input type="number" min="20" max="440" value={y} onChange={event => setY(event.target.valueAsNumber)} /></label>
-        </div>
+        </div>}
+        {error && <p role="alert">{error}</p>}
         <div className="dialog-actions">
           <button type="button" onClick={() => props.onClose(true)}>{t('cancel')}</button>
           <button
             className="button button-accent"
             type="button"
-            onClick={() => props.onCreate({ actorId, type, targetActorId: needsTarget ? targetActorId : null, x, y })}
+            onClick={() => {
+              if (type !== 'pass' && (![x, y].every(Number.isFinite) || x < 20 || x > 820 || y < 20 || y > 440)) { setError(locale === 'ru' ? 'Конечная позиция должна быть внутри площадки: X от 20 до 820, Y от 20 до 440.' : 'The destination must be inside the court: X 20–820, Y 20–440.'); return; }
+              if (needsTarget && targetActorId === actorId) { setError(locale === 'ru' ? 'Выберите другого игрока в качестве цели.' : 'Choose a different target player.'); return; }
+              if ((type === 'pass' || type === 'dribble') && props.snapshot.phases[props.phaseIndex]!.possession.value !== actorId) { setError(locale === 'ru' ? 'Передачу или ведение начинает игрок с мячом. Выберите владельца мяча или измените владение.' : 'The ball holder starts a pass or dribble. Choose the ball holder or change possession.'); return; }
+              setError('');
+              if (!props.onCreate({ actorId, type, targetActorId: needsTarget ? targetActorId : null, x, y })) setError(t('commandFailed'));
+            }}
           >
             {t('createAction')}
           </button>

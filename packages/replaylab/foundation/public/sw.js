@@ -1,4 +1,4 @@
-const SHELL_VERSION = 'v3';
+const SHELL_VERSION = 'v4';
 const CACHE_PREFIX = 'replaylab-shell-';
 const CACHE_NAME = CACHE_PREFIX + SHELL_VERSION;
 const INDEX_KEY = '/index.html';
@@ -17,7 +17,18 @@ async function primeShellCache() {
     [...new Set(assetPaths)].map(async path => {
       const asset = await fetch(path, { cache: 'reload' });
       if (!asset.ok) throw new Error('ReplayLab shell asset could not be cached');
-      await cache.put(path, asset);
+      await cache.put(path, asset.clone());
+      // Material and Cyrillic font assets must survive a cold offline launch,
+      // including their first requests made before this worker controls a page.
+      if (path.endsWith('.css')) {
+        const css = await asset.text();
+        const dependencies = [...css.matchAll(/url\(\s*["']?(\/assets\/[^)"'\s]+)["']?\s*\)/g)].map(match => match[1]);
+        await Promise.all([...new Set(dependencies)].map(async dependency => {
+          const response = await fetch(dependency, { cache: 'reload' });
+          if (!response.ok) throw new Error('ReplayLab visual asset could not be cached');
+          await cache.put(dependency, response);
+        }));
+      }
     })
   );
 }
@@ -26,12 +37,13 @@ function offlineUnavailableResponse() {
   return new Response(
     '<!doctype html><html lang="ru"><meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-      '<title>ReplayLab недоступен офлайн</title>' +
+      '<title>Пятый темп / Fifth Tempo · offline</title>' +
       '<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#07131f;color:#e6d9b6;font:16px system-ui">' +
       '<main data-offline-unavailable="true" style="max-width:36rem;padding:2rem">' +
       '<p style="color:#ffb020;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Офлайн-восстановление</p>' +
-      '<h1>ReplayLab пока недоступен офлайн.</h1>' +
-      '<p>Кэш приложения отсутствует, поэтому ReplayLab не может открыть локальные комбинации. Подключитесь к сети один раз и дождитесь статуса «Офлайн-оболочка готова», прежде чем закрывать браузер.</p>' +
+      '<h1>Пятый темп пока недоступен офлайн.</h1>' +
+      '<p>Кэш приложения отсутствует. Подключитесь к сети один раз и дождитесь статуса готовности офлайн, прежде чем закрывать браузер.</p>' +
+      '<section lang="en"><h2>Fifth Tempo is not available offline yet.</h2><p>The app cache is missing. Connect once and wait for the offline-ready status before closing the browser.</p></section>' +
       '</main></body></html>',
     {
       status: 503,

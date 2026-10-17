@@ -1,5 +1,37 @@
 # ReplayLab transformation plan
 
+## Current Arena rework checkpoint — 2026-10-17
+
+Owner rejected the daylight UI and requested a coherent animated basketball
+experience, meaningful formations, both themes, a Russian name and usable first
+actions. Scope remains the basketball v1/release slice; no new schema/protocol,
+broader kernel dependency, account system or data reset was introduced.
+
+- [x] Three imagegen concepts; selected Arena; dark/light/mobile references and
+  real implementation captures with before/after comparison.
+- [x] Original spread pick-and-roll with four named states and role explanations;
+  existing documents are never reseeded. New blank plays start in spread spacing.
+- [x] Interactive actions update the next pose/possession in one undo unit;
+  deterministic resolved-path playback, concurrent-intent preservation, append
+  without breaking adjacency, immediately available drawing and correct paused
+  editing/undo selection.
+- [x] RU/EN, persistent themes/locale, localized visible validation/recovery
+  failure, keyboard focus and existing recovery/offline/room behavior retained.
+- [x] Exact final `verify:release`: 99/99 Chromium, 10/10 durability repetitions,
+  typecheck/builds/audit, fresh 946-file guarded runtime package. Lint passes.
+- [x] WebKit 17/17; Firefox 16 plus one explicit unsupported touch-emulation skip;
+  installed Chrome 155 local fresh-profile check and actual motion recording.
+- [x] Node and non-root/read-only Docker smoke, each four runtime/collaboration/
+  backup-restore checks. Package manifest and archive rechecked.
+- [ ] Explicit remote mutation approval, hosted CI/deploy/public smoke; underlying
+  Supabase availability after owner MFA. No rejected push was retried.
+- [ ] Verified Russian route/VPN pair, manual screen reader, physical devices,
+  real IME/browser zoom, human demo review and independent new-name clearance.
+
+Evidence and exact artifact identities: `docs/PRODUCTION_VERIFICATION.md`.
+Product decisions: `docs/ARENA_REWORK.md`; reference/actual screens:
+`docs/design/ARENA_REVIEW.md`. The older checkpoint below is historical.
+
 ## Coach redesign and release checkpoint — 2026-10-17
 
 Owner requested a complete coach-facing redesign, RU/EN, network diagnosis and checked publication of the existing application. Work is confined to standalone; existing documents/drafts, protocol, canonical schema, capabilities and recovery formats are retained. No other project's processes, containers, networks or volumes were stopped or changed.

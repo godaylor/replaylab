@@ -1,0 +1,126 @@
+{
+  "width": 390,
+  "height": 844,
+  "court": {
+    "x": 12,
+    "y": 326.28125,
+    "width": 366,
+    "height": 200.421875,
+    "top": 326.28125,
+    "right": 378,
+    "bottom": 526.703125,
+    "left": 12
+  },
+  "timeline": {
+    "x": 12,
+    "y": 667.703125,
+    "width": 366,
+    "height": 116,
+    "top": 667.703125,
+    "right": 378,
+    "bottom": 783.703125,
+    "left": 12
+  },
+  "overflow": [
+    {
+      "tag": "LI",
+      "class": "",
+      "right": 523
+    },
+    {
+      "tag": "BUTTON",
+      "class": "phase-card",
+      "right": 523
+    },
+    {
+      "tag": "SPAN",
+      "class": "phase-number",
+      "right": 514
+    },
+    {
+      "tag": "SPAN",
+      "class": "",
+      "right": 514
+    },
+    {
+      "tag": "svg",
+      "class": {},
+      "right": 424
+    },
+    {
+      "tag": "rect",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "g",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    },
+    {
+      "tag": "path",
+      "class": {},
+      "right": 423.990478515625
+    }
+  ]
+}

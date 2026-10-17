@@ -1,5 +1,20 @@
 # ReplayLab target architecture
 
+2026-10-17 Arena authoring decision: interactive action creation explicitly opts
+into `createAction({ applyEndpoint: true })`. Cut/dribble/screen also draft the
+next frame's actor pose; pass drafts the next frame's possession. These MV-register
+drafts validate before the single local transaction and undo together with the
+action. The default facade API remains annotation-only for existing clients.
+No schema, room protocol, recovery format or existing document is migrated.
+Canonical full poses and possession still own every keyframe. Playback may use
+one unambiguous, resolved, adjacent movement path only when both endpoints match
+those canonical poses; otherwise existing pose interpolation applies. The ball
+follows the interpolated holder when possession is unchanged. Rendering never
+writes a trajectory/playhead into Yjs. The main Add phase/F command now appends a
+copy of the final formation, preserving existing action adjacency. Adversarial
+endpoint/concurrent-edit/undo and deterministic path tests accompany this
+decision. Reordering still exposes repair without retargeting actions.
+
 Статус: implemented through Slice 7; immediate-tab-close durability regression resolved by emergency journal v1 (2026-09-08); public release awaits external/manual gates
 Upstream baseline: `329839e467d936f90230fb02a8983f8eb4b62fc0`
 

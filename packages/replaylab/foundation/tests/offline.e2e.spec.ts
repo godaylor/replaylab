@@ -70,7 +70,7 @@ test('service worker installs, activates, and caches the versioned production sh
   const evidence = await page.evaluate(async () => {
     const registration = await navigator.serviceWorker.getRegistration('/');
     const cacheNames = await caches.keys();
-    const shellCache = await caches.open('replaylab-shell-v3');
+    const shellCache = await caches.open('replaylab-shell-v4');
     const cachedPaths = (await shellCache.keys()).map(request => new URL(request.url).pathname);
     return {
       activeState: registration?.active?.state ?? 'missing',
@@ -81,7 +81,9 @@ test('service worker installs, activates, and caches the versioned production sh
   });
 
   expect(evidence.activeState).toBe('activated');
-  expect(evidence.cacheNames).toContain('replaylab-shell-v3');
+  expect(evidence.cacheNames).toContain('replaylab-shell-v4');
+  expect(evidence.cachedPaths.some(path => path.endsWith('.jpg'))).toBe(true);
+  expect(evidence.cachedPaths.some(path => path.endsWith('.ttf'))).toBe(true);
   expect(evidence.cachedPaths).toContain('/index.html');
   expect(evidence.cachedPaths.some(path => path.startsWith('/assets/'))).toBe(true);
 });
@@ -265,7 +267,7 @@ test('an active worker shows an explicit failure when shell cache and document a
   await expect(
     offlinePage.locator('[data-offline-unavailable="true"]')
   ).toBeVisible();
-  await expect(offlinePage.getByRole('heading')).toContainText(
+  await expect(offlinePage.getByRole('heading', { level: 1 })).toContainText(
     'недоступен офлайн'
   );
 });

@@ -1,6 +1,111 @@
 # Verification and deployment
 
-## Coach redesign and startup incident — 2026-10-17
+## Current: Arena / Пятый темп · 2026-10-17
+
+**Implemented and technically verified locally. Not published.** The Arena
+revision is an uncommitted working tree based on local parent `1db56b1`; that
+commit alone does not contain this revision. A read-only GitHub API check still
+returned public `main` at `5c85f7387304240e4b5651436f59e26458ba7385`.
+No new push, deployment, hosted room/database write, tariff or permission change
+was performed. Hosted CI/public smoke for this revision therefore remain open.
+
+Working result: `http://127.0.0.1:32400/`, served by the **verified runtime
+package**, not the development server. The explicit isolated review document is
+`/app/play/arena-preview-final-20261017/edit?lesson=1&db=arena-preview-final-20261017`.
+Health returns HTTP 200 with `collaboration: ready, storage: filesystem` locally;
+this does not claim readiness of hosted Supabase rooms.
+
+[Three concepts, mockups, real screens and before/after](design/ARENA_REVIEW.md).
+[Product and architecture decisions](ARENA_REWORK.md). Previous daylight “After”
+images and the section below are historical, owner-rejected design evidence.
+
+### Actual final checks
+
+| Check | Result |
+| --- | --- |
+| Repository Yarn `workspace @replaylab/foundation-proof verify:release` | **PASS**, all seven stages, exact current application source |
+| Chromium full suite | **99/99**, zero failures, flaky results or skips |
+| Immediate-close durability repetitions | **10/10**, unchanged assertions |
+| Typecheck, client/server builds, lint, working-tree `git diff --check` | PASS |
+| New action/endpoint/path tests | PASS: a single undo unit, concurrent remote pose/possession retained, invalid drafts write nothing, deterministic path sampling and ball follows holder |
+| New first-use tests | PASS RU/EN: example → move → draw → append → play → reload → home/reopen; appending preserves adjacency and leaves drawing enabled |
+| New keyboard/dialog/error checks | PASS: pause before arrow editing, undo/canvas selection alignment, contained dialog Tab/Escape, visible localized validation and failed recovery import with original bytes preserved |
+| Theme/locale/reflow | PASS: preferences persist; 320px through wide desktop; phone review/tablet capabilities; browser Ctrl+F/Cyrillic key positions; Home axe scan in both themes |
+| Installed Google Chrome | **155.0.8059.80**, fresh profile on this Windows host: HTTP assets, animation, full playback, keyboard/undo and light theme PASS; zero failed HTTP requests |
+| WebKit 26.0 / Windows | **17/17** targeted action, Arena, coach and practice tests PASS |
+| Firefox 146.0.1 / Windows | **16 PASS, 1 explicit existing skip**: Playwright Firefox cannot emulate the touch context |
+| Maximum scene | 12 phases, 10 actors, derived ball, 30 visible actions: **60.005 FPS**, frame p95 **16.7ms**, zero long tasks/root React playback renders, no growth in the reported coarse heap metric |
+| License/import/bundle audit | PASS: **78 dependency instances, 31 emitted packages, 0 forbidden modules**, **236,786 gzip JS bytes**; two visual assets included in SBOM/license inventory |
+| Packaged Node smoke | PASS, four checks: static/legal/health boundary; two writers; offline conflict/reconnect/local undo; backup into a separate restored directory and fresh read-only offline client |
+| Product Docker build + smoke | PASS, same four checks; non-root `node`, read-only filesystem, dropped capabilities; only the task's temporary container was created/removed |
+
+Authoritative machine reports are in `packages/replaylab/foundation/evidence/`:
+`release-verification.json`, `release-tests.json`, `release-durability.json`,
+`arena-webkit.json`, `arena-firefox.json`, `release-smoke-node.json`,
+`release-smoke-docker.json`, `slice7-audit.json`, `slice3-performance.json`.
+`docs/design/arena-browser-check.json` records the exact installed-Chrome scope.
+`arena-motion.webm` is a 30-second recording of the real app, not generated video.
+
+The earlier availability assertion used the old example's coordinate and hidden
+roster; it was updated for the new actual formation/disclosure. An intermediate
+run also timed out in `browserContext.newPage` before the application page was
+created; its timeout/assertions were not weakened. The affected accessibility
+case and the final complete suite subsequently passed. These superseded runs do
+not override the final 99-test report.
+
+### Reproducible local delivery
+
+- Runtime package: `tmp/replaylab-arena-delivery-20261017`.
+- **946 inventoried files**, all hashes rechecked; no room data inside the package.
+- Archive: `tmp/replaylab-arena-delivery-20261017.tar.gz`; 988 safe relative
+  archive entries, zero traversal/private data paths.
+- Archive SHA-256:
+  `884f705ef088b29f83c43ca3d8c5ecc5dbe4c0fe8875945b7526af33818b5d28`.
+- Local Docker image `replaylab:arena-20261017`:
+  `sha256:dadf448b53d1ab78197ae38846556be3475b246bf9a58575210f47af4220b6a2`.
+- The previously locked default `release-dist` was preserved. The guarded
+  alternate output is a fresh directory under `tmp`; no ACL/data reset was used.
+- `SOURCE_STATE.json` is refreshed after final generated evidence. It preserves
+  upstream kernel provenance and explicitly identifies the unmodified OFL font
+  as third-party, rather than original product code.
+
+Builds retain the existing Yarn peer/optional TypeScript patch warnings and the
+Vite 500KB chunk advisory. Immutable installation/build and the explicit gzip
+budget pass. The warnings were not suppressed or “fixed” by dependency upgrades.
+
+### Hosting, network and approval boundaries
+
+The original Render logs confirmed **an application startup dependency failure**:
+hosted room reads threw before HTTP listen. It is not evidence of a general
+Render outage or Russian blocking. The retained fix starts the editor shell
+first, separates `/readyz`, fails room operations closed and retries hosted
+restoration without replacing data. A fault-injected server check proves HTTP,
+local edits/reload and later room readiness recovery independently.
+
+The old hosted Supabase failure's underlying cause is still unverified. Existing
+Supabase sign-in reached owner MFA; automatic approval review rejected further
+inspection of the intermediate credential-bearing auth screen. No inspection
+or alternate bypass followed. The authenticated Render observations and earlier
+host DNS/HTTP timeouts are recorded below; they do not establish DNS/connectivity
+inside the current Render container.
+
+**Public publication is still blocked by approval.** The prior `git push` attempt
+was automatically rejected because the enclosing repository's `AGENTS.md` says
+“No public deploy, commit, push or remote mutation is authorized.” That rejected
+action was not retried through another interface. Explicit authorization to
+commit/push this reviewed revision to `godaylor/replaylab:main` and update the
+existing Render service is required. No replacement service is proposed.
+
+**Not tested:** a verified Russian residential/mobile route; a controlled VPN
+on/off pair; the owner's existing Chrome profile/extensions; physical iOS/Android
+touch hardware; manual NVDA/VoiceOver, real IME, actual browser zoom; human review
+of the complete required demo. Local multi-engine automation does not establish
+these conditions. Initial exact-name web searching is not independent trademark,
+company/store/domain clearance: **Пятый темп / Fifth Tempo remains a working name**.
+
+---
+
+## Historical daylight revision and startup incident — 2026-10-17
 
 Target: existing `godaylor/replaylab` / `replaylab-godaylor`, Frankfurt Free, service `srv-dah9cq1t0dsc73f4ou50`. Standalone checkout was clean at `5c85f73` at start. The enclosing historical repository and other projects' resources are preserved.
 

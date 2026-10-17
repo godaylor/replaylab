@@ -90,11 +90,20 @@ export class ReplayLabGfxAdapter {
   private latestOptions: ProjectionOptions = {};
   private animationFrame: number | null = null;
   private renderCountValue = 0;
+  private readonly floorImage = new Image();
+  private readonly floor = document.createElement('canvas');
+  private floorKey = '';
+  private readonly appearanceObserver: MutationObserver;
 
   constructor(
     private readonly surface: SurfaceBlockModel,
     private readonly canvas: HTMLCanvasElement
-  ) {}
+  ) {
+    this.floorImage.onload = () => { this.floorKey = ''; this.scheduleRender(); };
+    this.floorImage.src = new URL('./assets/arena-floor.jpg', import.meta.url).href;
+    this.appearanceObserver = new MutationObserver(() => { this.floorKey = ''; this.scheduleRender(); });
+    this.appearanceObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
 
   project(
     snapshot: ReplaySnapshot,
@@ -172,6 +181,8 @@ export class ReplayLabGfxAdapter {
   }
 
   destroy() {
+    this.appearanceObserver.disconnect();
+    this.floorImage.onload = null;
     if (this.animationFrame !== null) cancelAnimationFrame(this.animationFrame);
     this.animationFrame = null;
     for (const element of this.elements.values()) {
@@ -234,9 +245,24 @@ export class ReplayLabGfxAdapter {
     const width = this.canvas.width;
     const height = this.canvas.height;
     context.clearRect(0, 0, width, height);
-    context.fillStyle = '#e1ecf2';
-    context.fillRect(0, 0, width, height);
-    this.drawCourt(context, width, height);
+    const light = document.documentElement.dataset.theme === 'light';
+    const floorKey = `${width}:${height}:${light}:${this.floorImage.complete}`;
+    if (floorKey !== this.floorKey) {
+      this.floor.width = width; this.floor.height = height;
+      const floor = this.floor.getContext('2d')!;
+      floor.fillStyle = light ? '#d9b781' : '#51321f';
+      floor.fillRect(0, 0, width, height);
+      if (this.floorImage.complete && this.floorImage.naturalWidth) floor.drawImage(this.floorImage, 0, 0, width, height);
+      floor.fillStyle = light ? 'rgba(255,238,202,.45)' : 'rgba(10,19,18,.28)';
+      floor.fillRect(0, 0, width, height);
+      const lightPool = floor.createRadialGradient(width * .55, height * .36, 20, width * .5, height * .5, width * .65);
+      lightPool.addColorStop(0, light ? 'rgba(255,255,240,.12)' : 'rgba(255,190,100,.13)');
+      lightPool.addColorStop(1, light ? 'rgba(43,45,27,.08)' : 'rgba(2,13,13,.6)');
+      floor.fillStyle = lightPool; floor.fillRect(0, 0, width, height);
+      this.drawCourt(floor, width, height);
+      this.floorKey = floorKey;
+    }
+    context.drawImage(this.floor, 0, 0);
 
     for (const action of snapshot.actions) {
       if (action.archived || action.fromFrameId !== phase.id) continue;
@@ -314,7 +340,7 @@ export class ReplayLabGfxAdapter {
     height: number
   ) {
     context.save();
-    context.strokeStyle = '#7893a5';
+    context.strokeStyle = document.documentElement.dataset.theme === 'light' ? '#344f42' : '#fff1d4';
     context.lineWidth = 2;
     context.globalAlpha = 0.9;
     context.strokeRect(20, 20, width - 40, height - 40);
@@ -357,15 +383,18 @@ export class ReplayLabGfxAdapter {
     const last = path.points.at(-1);
     const beforeLast = path.points.at(-2);
     if (!first || !last || !beforeLast) return;
-    const colors: Record<TacticalActionType, string> = {
-      cut: '#18364a',
-      pass: '#2459a6',
-      dribble: '#c84d16',
-      screen: '#266e61',
+    const light = document.documentElement.dataset.theme === 'light';
+    const colors: Record<TacticalActionType, string> = light ? {
+      cut: '#173d35', pass: '#165378', dribble: '#8c3012', screen: '#173d35',
+    } : {
+      cut: '#fff5dc',
+      pass: '#a7e7de',
+      dribble: '#ffc376',
+      screen: '#ffe3a7',
     };
     context.save();
-    context.strokeStyle = selected ? '#163f87' : colors[type];
-    context.fillStyle = selected ? '#163f87' : colors[type];
+    context.strokeStyle = selected ? '#ffffff' : colors[type];
+    context.fillStyle = selected ? '#ffffff' : colors[type];
     context.lineWidth = selected ? 5 : 3;
     context.lineCap = 'round';
     context.lineJoin = 'round';
@@ -387,10 +416,9 @@ export class ReplayLabGfxAdapter {
     } else {
       context.setLineDash([]);
       context.beginPath();
-      context.moveTo(last.x - 10, last.y - 10);
-      context.lineTo(last.x + 10, last.y + 10);
-      context.moveTo(last.x + 10, last.y - 10);
-      context.lineTo(last.x - 10, last.y + 10);
+      const angle = Math.atan2(last.y - beforeLast.y, last.x - beforeLast.x) + Math.PI / 2;
+      context.moveTo(last.x - 13 * Math.cos(angle), last.y - 13 * Math.sin(angle));
+      context.lineTo(last.x + 13 * Math.cos(angle), last.y + 13 * Math.sin(angle));
       context.stroke();
     }
     context.restore();
@@ -406,12 +434,20 @@ export class ReplayLabGfxAdapter {
     const bound = element.elementBound;
     const [x, y] = bound.center;
     context.save();
-    context.shadowColor = 'rgba(24, 54, 74, 0.16)';
-    context.shadowBlur = 4;
-    context.shadowOffsetY = 2;
-    context.fillStyle = team === 'offense' ? '#c84d16' : '#ffffff';
-    context.strokeStyle = selected ? '#2459a6' : team === 'offense' ? '#ffffff' : '#18364a';
-    context.lineWidth = selected ? 5 : 3;
+    if (selected) {
+      context.beginPath(); context.arc(x, y, 29, 0, Math.PI * 2);
+      context.strokeStyle = '#fff3cf'; context.lineWidth = 2; context.stroke();
+    }
+    context.shadowColor = 'rgba(0, 0, 0, .65)';
+    context.shadowBlur = 9;
+    context.shadowOffsetY = 5;
+    const enamel = context.createRadialGradient(x - 7, y - 11, 1, x, y, 24);
+    enamel.addColorStop(0, team === 'offense' ? '#ffa45a' : '#507a76');
+    enamel.addColorStop(.5, team === 'offense' ? '#f26722' : '#234c4a');
+    enamel.addColorStop(1, team === 'offense' ? '#ae3512' : '#0d2a2b');
+    context.fillStyle = enamel;
+    context.strokeStyle = team === 'offense' ? '#ffcf93' : '#a4d2c8';
+    context.lineWidth = 2;
     context.beginPath();
     if (team === 'offense') {
       context.arc(x, y, bound.w / 2, 0, Math.PI * 2);
@@ -422,10 +458,12 @@ export class ReplayLabGfxAdapter {
     context.fill();
     context.stroke();
     context.shadowColor = 'transparent';
-    context.fillStyle = team === 'offense' ? '#ffffff' : '#18364a';
-    context.font = '800 15px Bahnschrift, Arial Narrow, system-ui';
+    context.fillStyle = '#fff8e8';
+    context.font = '700 21px Bahnschrift, Arial Narrow, system-ui';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
+    context.strokeStyle = '#16312c'; context.lineWidth = 1.4;
+    context.strokeText(String(number), x, y + 0.5);
     context.fillText(String(number), x, y + 0.5);
     context.restore();
   }

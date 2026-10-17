@@ -24,6 +24,9 @@ import { ActionDialog } from './action-dialog';
 import { PlayHome } from './home';
 import { SharePlay } from './share-play';
 import { CourtMiniature, ToolGlyph } from './court-miniature';
+import { Brand, ThemeSwitch } from './brand';
+import { PlayStory } from './play-story';
+import { exampleStepName, PICK_ROLL_IDS } from './pick-roll';
 import { CourtLegend, PracticeGuide } from './practice-guide';
 import { RichCueEditor } from './rich-cue-editor';
 import {
@@ -286,6 +289,9 @@ function CourtStage(props: {
 
   const onPointerDown = (event: ReactPointerEvent<HTMLCanvasElement>) => {
     const pose = toCourtPose(event);
+    // A click during playback first pauses the scene. Starting a drag against
+    // an interpolated pose could otherwise edit the previously selected phase.
+    if (props.playback.playing) { props.playback.pause(); return; }
     props.playback.pause();
     props.playback.goToPhase(props.phaseIndex);
     if (props.activeTool !== 'select') {
@@ -465,6 +471,7 @@ function PhaseTimeline(props: {
   coordinator: InputCoordinator;
   canReorder: boolean;
   canAdd: boolean;
+  playback: ReplayPlaybackController;
 }) {
   const { t, locale } = useI18n();
   const canonicalIds = props.snapshot.phases.map(phase => phase.id);
@@ -474,6 +481,14 @@ function PhaseTimeline(props: {
   const [liftedId, setLiftedId] = useState<string | null>(null);
   const pointerRef = useRef<{ phaseId: string; pointerId: number } | null>(null);
   const displayIds = previewIds ?? canonicalIds;
+  useEffect(() => props.playback.onFrame(frame => {
+    document.querySelectorAll<HTMLButtonElement>('.phase-card').forEach(button => {
+      const active = button.dataset.phaseId === props.snapshot.phases[frame.phaseIndex]?.id;
+      button.classList.toggle('is-active', active);
+      if (active) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    });
+  }), [props.playback, props.snapshot]);
 
   const setPreview = (ids: string[] | null) => {
     previewRef.current = ids;
@@ -526,7 +541,7 @@ function PhaseTimeline(props: {
       <div className="section-heading-row">
         <div>
           <span className="eyebrow">{t('formationSequence')}</span>
-          <h2 id="timeline-heading">{t('phases')}</h2>
+          <h2 id="timeline-heading">{locale === 'ru' ? 'Шаги комбинации' : t('phases')}</h2>
         </div>
         <button
           className="button button-accent"
@@ -550,7 +565,7 @@ function PhaseTimeline(props: {
                 data-phase-index={index}
                 data-phase-id={phase.id}
                 aria-current={phaseId === selectedPhaseId ? 'step' : undefined}
-                aria-label={t('phasePosition', { number: index + 1, position: index + 1, total: displayIds.length, lifted: lifted ? t('liftedSuffix') : '' })}
+                aria-label={`${t('phasePosition', { number: index + 1, position: index + 1, total: displayIds.length, lifted: lifted ? t('liftedSuffix') : '' })}${exampleStepName(phase.id, locale) ? ` · ${exampleStepName(phase.id, locale)}` : ''}`}
                 tabIndex={phaseId === selectedPhaseId ? 0 : -1}
                 onFocus={() => props.coordinator.setContext(lifted ? 'timeline.reordering' : 'timeline.focused')}
                 onClick={() => {
@@ -630,7 +645,7 @@ function PhaseTimeline(props: {
                 }}
             >
               <span className="phase-number">{String(index + 1).padStart(2, '0')}</span>
-              <span>{t('phaseCard', { number: index + 1 })}</span>
+              <span>{exampleStepName(phase.id, locale) ?? t('phaseCard', { number: index + 1 })}</span>
               <CourtMiniature phase={phase} actors={props.snapshot.actors} />
               <small>{phase.possession.value === 'loose' ? t('looseBall') : t('heldBy', { actor: actorLabel(locale, phase.possession.value) })}</small>
               {phaseConflictCount(props.snapshot, phase.id) > 0 ? (
@@ -650,6 +665,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const responsiveMode = useResponsiveMode();
   const revision = useFacadeRevision(facade);
   const snapshot = facade.snapshot;
+  const isExample = snapshot.phases.some(phase => PICK_ROLL_IDS.includes(phase.id as typeof PICK_ROLL_IDS[number]));
   const online = useOnlineState();
   const shellState = useOfflineShellState();
   const { state: storageRetention, requestPersistence } = useStorageRetention();
@@ -663,7 +679,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   const [announcement, setAnnouncement] = useState(() => t('localPlayReady'));
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
   const [activeTool, setActiveTool] = useState<'select' | TacticalActionType>('select');
-  const [nextIntent, setNextIntent] = useState<'move' | 'draw' | 'phase' | 'play' | 'reopen'>('move');
+  const [nextIntent, setNextIntent] = useState<'move' | 'draw' | 'phase' | 'play' | 'extend' | 'reopen'>('move');
   const [actionDialogOpen, setActionDialogOpen] = useState(false);
   const [presenting, setPresenting] = useState(false);
   const actionDialogButtonRef = useRef<HTMLButtonElement>(null);
@@ -676,6 +692,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   });
   const cancelTitleRef = useRef(false);
   const recoveryInputRef = useRef<HTMLInputElement>(null);
+  const [recoveryImportFailed, setRecoveryImportFailed] = useState(false);
   const [saveState, setSaveState] = useState<LocalSaveState>(
     readOnly ? 'memory' : 'saved'
   );
@@ -692,6 +709,15 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
 
 
   useEffect(() => playback.setSnapshot(snapshot), [playback, revision]);
+  useEffect(() => playback.onState(state => {
+    if (state === 'paused') setPhaseIndex(playback.currentFrame.phaseIndex);
+  }), [playback]);
+  useLayoutEffect(() => {
+    // Undo restores the editing selection separately from the playhead. Keep
+    // the paused canvas on that same keyframe, without rewinding an in-phase
+    // scrub position or writing derived playback state to the document.
+    if (!playback.playing && phaseIndex < snapshot.phases.length && playback.currentFrame.phaseIndex !== phaseIndex) playback.goToPhase(phaseIndex);
+  }, [phaseIndex, playback, snapshot.phases.length]);
   useEffect(() => () => playback.destroy(), [playback]);
   useEffect(() => {
     if (responsiveMode !== 'desktop') setActiveTool('select');
@@ -741,15 +767,17 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
   }, [facade, revision, snapshot.actors, snapshot.phases]);
 
   const selectEntity = (entityId: ProjectionEntityId) => {
+    const editingPhase = playback.playing ? facade.snapshot.phases[playback.currentFrame.phaseIndex]! : activePhase;
+    playback.pause();
     setSelectedId(entityId);
     setSelectedActionId(null);
     facade.setSelectionSnapshot({
-      phaseId: activePhase.id,
+      phaseId: editingPhase.id,
       entityId,
       focusTarget: entityId === 'ball' ? 'court' : 'lineup',
     });
     awarenessSource?.publish({
-      selection: { phaseId: activePhase.id, entityId },
+      selection: { phaseId: editingPhase.id, entityId },
     });
   };
 
@@ -798,6 +826,11 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         setAnnouncement(t('mobileReviewBody'));
         return;
       }
+      if (playback.playing) {
+        playback.pause();
+        setAnnouncement(locale === 'ru' ? 'Воспроизведение остановлено. Теперь стрелки перемещают игрока в показанной расстановке.' : 'Playback paused. The arrow keys now move the player in the visible formation.');
+        return;
+      }
       const phase = facade.snapshot.phases[phaseIndex];
       if (!phase) return;
       if (entityId === 'ball') {
@@ -819,22 +852,25 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         () => { facade.setActorPose({ phaseIndex, actorId: entityId, ...next }); setNextIntent('draw'); }
       );
     },
-    [canMoveActors, facade, locale, phaseIndex, runCommand, t]
+    [canMoveActors, facade, locale, phaseIndex, playback, runCommand, t]
   );
 
   const addPhase = useCallback(() => {
     if (!canAuthorStructure) return;
-    const frameId = runCommand(t('phaseAdded'), () =>
-      facade.addPhaseAfter(phaseIndex)
+    const frameId = runCommand(locale === 'ru' ? 'Фаза добавлена в конец. Существующие переходы сохранены.' : 'Phase appended. Existing transitions are preserved.', () =>
+      facade.addPhaseAfter(facade.snapshot.phases.length - 1)
     );
     if (!frameId) return;
-    setNextIntent('play');
+    setNextIntent('extend');
     const index = facade.snapshot.phases.findIndex(phase => phase.id === frameId);
     if (index >= 0) {
-      setPhaseIndex(index);
-      playback.goToPhase(index);
+      // Keep the newly created transition's start selected. Selecting the new
+      // final endpoint would immediately disable drawing and invite an endless
+      // add-another-phase loop instead of a usable next action.
+      setPhaseIndex(Math.max(0, index - 1));
+      playback.goToPhase(Math.max(0, index - 1));
     }
-  }, [canAuthorStructure, facade, phaseIndex, playback, runCommand, t]);
+  }, [canAuthorStructure, facade, phaseIndex, playback, runCommand, locale]);
 
   const reorderPhase = useCallback(
     (phaseId: string, targetIndex: number) => {
@@ -883,6 +919,9 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     selectTool: () => { setActiveTool('select'); setAnnouncement(t('selectToolActive')); },
     actionTool: type => {
       if (!canAuthorStructure) return;
+      const holder = snapshot.phases[playback.currentFrame.phaseIndex]!.possession.value;
+      playback.pause();
+      if ((type === 'pass' || type === 'dribble') && holder !== 'loose') setSelectedId(holder);
       setActiveTool(type);
       setAnnouncement(t('actionToolActive', { action: actionLabel(locale, type) }));
     },
@@ -915,14 +954,20 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
     targetActorId: ActorId | null;
     path: ActionPath;
   }) => {
+    if ((input.type === 'pass' || input.type === 'dribble') && activePhase.possession.value !== input.actorId) {
+      setAnnouncement(locale === 'ru' ? 'Для передачи или ведения выберите игрока с мячом. При свободном мяче сначала назначьте владельца.' : 'Choose the ball holder for a pass or dribble. Assign possession first if the ball is loose.');
+      return false;
+    }
+    const path = input.type === 'pass' && input.targetActorId ? { points: [...input.path.points.slice(0, -1), snapshot.phases[phaseIndex + 1]!.poses[input.targetActorId]] } : input.path;
     const actionId = runCommand(t('actionCreated', { action: actionLabel(locale, input.type) }), () =>
-      facade.createAction({ phaseIndex, ...input })
+      facade.createAction({ phaseIndex, ...input, path, applyEndpoint: true })
     );
-    if (!actionId) return;
+    if (!actionId) return false;
     setNextIntent('phase');
     setSelectedActionId(actionId);
     setSelectedId(input.actorId);
     setActiveTool('select');
+    return true;
   };
 
   const commitCue = (document: RichCueDocument) => {
@@ -996,10 +1041,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
       data-react-render-count={reactRenderCount.current}
     >
       <header className="command-bar">
-        <a className="brand" href="/" aria-label={t('brandHome')}>
-          <span className="brand-mark" aria-hidden="true">RL</span>
-          <span><strong>ReplayLab</strong><small>{t('brandTagline')}</small></span>
-        </a>
+        <Brand />
         <label className="title-field">
           <span className="sr-only">{t('playName')}</span>
           <input
@@ -1033,6 +1075,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             <button type="button" aria-pressed={locale === 'ru'} onClick={() => setLocale('ru')}>{t('languageRu')}</button>
             <button type="button" aria-pressed={locale === 'en'} onClick={() => setLocale('en')}>{t('languageEn')}</button>
           </div>
+          <ThemeSwitch />
         </div>
       </header>
 
@@ -1078,8 +1121,9 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           <span className="status-pill status-review">{t('needsReview', { count: snapshot.conflictCount })}</span>
         ) : null}
         <span className="status-meta">{t('phaseProgress', { current: phaseIndex + 1, total: snapshot.phases.length })}</span>
-        <details className="file-tools" onKeyDown={closeDisclosureOnEscape} open={storageMode.kind !== 'indexeddb' || saveState === 'failed'}><summary aria-label={locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}><span className="file-label">{locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}</span><span className="file-short-label" aria-hidden="true">{locale === 'ru' ? 'Файл' : 'File'}</span></summary><div className="file-tools-body">
+        <details className="file-tools" onKeyDown={closeDisclosureOnEscape} open={storageMode.kind !== 'indexeddb' || saveState === 'failed' || recoveryImportFailed}><summary aria-label={locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}><span className="file-label">{locale === 'ru' ? 'Файл и резервная копия' : 'File & backup'}</span><span className="file-short-label" aria-hidden="true">{locale === 'ru' ? 'Файл' : 'File'}</span></summary><div className="file-tools-body">
         <p>{locale === 'ru' ? 'Изменения сохраняются автоматически. Файл восстановления — полная переносимая копия; JSON — данные для чтения.' : 'Edits save automatically. A recovery file is a full portable copy; JSON is for inspection.'}</p>
+        {recoveryImportFailed && <p className="import-error" role="alert">{locale === 'ru' ? 'Не удалось проверить или открыть файл восстановления. Файл может быть повреждён, его версия не поддерживается или хранилище недоступно. Исходная комбинация не изменена. Сохраните файл и повторите попытку.' : 'Could not verify or open the recovery file. It may be damaged, use an unsupported version, or storage may be unavailable. The original play is unchanged. Keep the file and try again.'}</p>}
         <button className="status-action export-json" type="button" onClick={() => downloadSnapshot(facade)}>
           {t('exportJson')}
         </button>
@@ -1108,12 +1152,14 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           onChange={event => {
             const file = event.currentTarget.files?.[0];
             if (!file) return;
+            event.currentTarget.value = '';
+            setRecoveryImportFailed(false);
             void file.text().then(serialized => ReplayLabEditorFacade.importRecoveryCopy(serialized)).then(result => {
               const next = new URL(`/app/play/${encodeURIComponent(result.playId)}/edit`, location.origin);
               next.searchParams.set('db', result.databaseName);
               location.assign(next);
-            }).catch(error => {
-              setAnnouncement(t('recoveryRejected', { reason: (error as Error).message }));
+            }).catch(() => {
+              setRecoveryImportFailed(true);
             });
           }}
         />
@@ -1169,10 +1215,10 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
         <section className="court-panel" aria-labelledby="court-heading" data-playback-viewport>
           <div className="section-heading-row court-heading-row">
             <div>
-              <span className="eyebrow">{t('basketballHalfCourt')}</span>
-              <h1 id="court-heading">{t('formationBoard')}</h1>
+              <span className="eyebrow">{isExample ? (locale === 'ru' ? 'ВЫСОКИЙ ПИК-Н-РОЛЛ · ПРИМЕР' : 'HIGH PICK & ROLL · EXAMPLE') : t('basketballHalfCourt')}</span>
+              <h1 id="court-heading">{isExample ? (locale === 'ru' ? 'Пик-н-ролл' : 'Pick & roll') : t('formationBoard')}</h1>
             </div>
-            <span className="phase-chip">{t('phaseChip', { number: String(phaseIndex + 1).padStart(2, '0') })}</span>
+            <span className="phase-chip">5 × 5 · {locale === 'ru' ? 'К кольцу →' : 'Attack the rim →'}</span>
           </div>
           <CourtLegend />
           {canAuthorStructure ? <div className="action-tools" role="toolbar" aria-label={t('courtTools')}>
@@ -1184,6 +1230,9 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
                 aria-pressed={activeTool === type}
                 disabled={readOnly || phaseIndex >= snapshot.phases.length - 1 || selectedId === 'ball'}
                 onClick={() => {
+                  const holder = snapshot.phases[playback.currentFrame.phaseIndex]!.possession.value;
+                  playback.pause();
+                  if ((type === 'pass' || type === 'dribble') && holder !== 'loose') setSelectedId(holder);
                   setActiveTool(type);
                   setAnnouncement(t('actionToolDraw', { action: actionLabel(locale, type) }));
                 }}
@@ -1196,6 +1245,12 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               type="button"
               disabled={readOnly || phaseIndex >= snapshot.phases.length - 1 || selectedId === 'ball'}
               onClick={() => {
+                const index = playback.currentFrame.phaseIndex;
+                playback.pause();
+                if (index >= snapshot.phases.length - 1) {
+                  setAnnouncement(locale === 'ru' ? 'Это конечная расстановка. Добавьте фазу, чтобы нарисовать продолжение.' : 'This is the final formation. Add a phase to draw the next movement.');
+                  return;
+                }
                 coordinatorRef.current.setContext('modal');
                 setActionDialogOpen(true);
               }}
@@ -1203,7 +1258,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
               {t('keyboardAction')}
             </button>
           </div> : null}
-          <p className="drawing-help" role="status">{!canMoveActors ? (locale === 'ru' ? 'Смотрите комбинацию: выберите фазу или нажмите «Старт».' : 'Review the play: choose a phase or press Play.') : activeTool !== 'select' ? (activeTool === 'pass' ? (locale === 'ru' ? 'Проведите передачу от игрока с мячом к партнёру. Escape — отмена.' : 'Draw a pass from the ball holder to a teammate. Escape cancels.') : (locale === 'ru' ? `${actionLabel(locale, activeTool)}: проведите линию от игрока и отпустите. Escape — отмена.` : `${actionLabel(locale, activeTool)}: draw from a player and release. Escape cancels.`)) : nextIntent === 'play' ? (locale === 'ru' ? 'Нажмите «Старт», чтобы увидеть комбинацию целиком. Изменения сохраняются автоматически.' : 'Press Play to watch the whole play. Your edits save automatically.') : nextIntent === 'phase' ? (locale === 'ru' ? 'Действие готово. Добавьте фазу внизу — она скопирует текущую расстановку.' : 'Action ready. Add a phase below to copy the current formation.') : phaseIndex >= snapshot.phases.length - 1 ? (locale === 'ru' ? 'Добавьте следующую фазу внизу, чтобы нарисовать переход к ней.' : 'Add the next phase below to draw a transition to it.') : nextIntent === 'draw' && canAuthorStructure ? (locale === 'ru' ? 'Теперь выберите «Рывок» или «Передача» и проведите линию от игрока.' : 'Now choose Cut or Pass and draw a path from a player.') : (locale === 'ru' ? 'Переместите игрока на площадке. В списке справа можно выбрать его и нажать стрелки.' : 'Move a player on the court. Or select one in the lineup and use the arrow keys.')}</p>
+          <p className="drawing-help" role="status">{!canMoveActors ? (locale === 'ru' ? 'Смотрите комбинацию: выберите фазу или нажмите «Старт».' : 'Review the play: choose a phase or press Play.') : activeTool !== 'select' ? (activeTool === 'pass' ? (locale === 'ru' ? 'Проведите передачу от игрока с мячом к партнёру. Escape — отмена.' : 'Draw a pass from the ball holder to a teammate. Escape cancels.') : (locale === 'ru' ? `${actionLabel(locale, activeTool)}: проведите линию от игрока и отпустите. Escape — отмена.` : `${actionLabel(locale, activeTool)}: draw from a player and release. Escape cancels.`)) : nextIntent === 'extend' ? (locale === 'ru' ? 'Новый шаг добавлен в конец. Выберите движение и нарисуйте его отсюда — конечная позиция появится в новом шаге. Или нажмите «Старт».' : 'New step appended. Choose a movement and draw from here: its destination appears in the new step. Or press Play.') : nextIntent === 'play' ? (locale === 'ru' ? 'Нажмите «Старт», чтобы увидеть комбинацию целиком. Изменения сохраняются автоматически.' : 'Press Play to watch the whole play. Your edits save automatically.') : nextIntent === 'phase' ? (locale === 'ru' ? 'Действие готово: следующая расстановка обновлена. Нажмите «Старт» или добавьте фазу в конце.' : 'Action ready: the next formation is updated. Press Play, or append a phase.') : phaseIndex >= snapshot.phases.length - 1 ? (locale === 'ru' ? 'Добавьте следующую фазу внизу, чтобы нарисовать переход к ней.' : 'Add the next phase below to draw a transition to it.') : nextIntent === 'draw' && canAuthorStructure ? (locale === 'ru' ? 'Теперь выберите «Рывок» или «Передача» и проведите линию от игрока.' : 'Now choose Cut or Pass and draw a path from a player.') : (locale === 'ru' ? 'Переместите игрока на площадке. В списке справа можно выбрать его и нажать стрелки.' : 'Move a player on the court. Or select one in the lineup and use the arrow keys.')}</p>
           <CourtStage
             facade={facade}
             snapshot={snapshot}
@@ -1230,7 +1285,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             getCue={index => facade.getCue(index)}
             onPhaseSelected={setPhaseIndex}
             onPresentationChange={setPresenting}
-            restartFromBeginning={nextIntent === 'play'}
+            restartFromBeginning={nextIntent !== 'reopen' && nextIntent !== 'move'}
             onPlaybackStarted={() => setNextIntent('reopen')}
           />
         </section>
@@ -1239,14 +1294,19 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           snapshot={snapshot} phaseIndex={phaseIndex} readOnly={readOnly}
           canReorder={canAuthorStructure} canAdd={canAuthorStructure}
           onSelect={index => {
+            setNextIntent('reopen');
             playback.pause(); playback.goToPhase(index); setPhaseIndex(index);
             setAnnouncement(t('phaseSelected', { number: index + 1 }));
           }}
           onReorder={reorderPhase} onAnnounce={setAnnouncement} onAdd={addPhase}
           coordinator={coordinatorRef.current}
+          playback={playback}
         />
 
         <aside className="semantic-panel" aria-labelledby="lineup-heading">
+          <PlayStory snapshot={snapshot} controller={playback} phaseIndex={phaseIndex} cue={index => facade.getCue(index)} />
+          <details className="player-controls" open={!isExample}>
+          <summary>{locale === 'ru' ? 'Игроки и действия · клавиатура' : 'Players & actions · keyboard'}</summary>
           <div className="section-heading-row">
             <div>
               <span className="eyebrow">{t('semanticCompanion')}</span>
@@ -1367,6 +1427,9 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             </button>
           </section>
 
+          </details>
+          <details className="cue-disclosure" open={!isExample}>
+          <summary>{locale === 'ru' ? `Заметка тренера · шаг ${phaseIndex + 1}` : `Coach’s note · step ${phaseIndex + 1}`}</summary>
           <RichCueEditor
             key={activePhase.id}
             journal={facade.emergencyJournal}
@@ -1378,6 +1441,7 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
             onCommit={commitCue}
             onAnnounce={setAnnouncement}
           />
+          </details>
         </aside>
       </main>
 
@@ -1406,13 +1470,14 @@ export function ReplayLabApp({ facade, storageMode, networkSource, awarenessSour
           onClose={closeActionDialog}
           onCreate={input => {
             const start = snapshot.phases[phaseIndex]!.poses[input.actorId];
-            createTacticalAction({
+            const created = createTacticalAction({
               actorId: input.actorId,
               type: input.type,
               targetActorId: input.targetActorId,
               path: { points: [start, clampPose({ x: input.x, y: input.y })] },
             });
-            closeActionDialog(false);
+            if (created) closeActionDialog(false);
+            return created;
           }}
         />
       ) : null}

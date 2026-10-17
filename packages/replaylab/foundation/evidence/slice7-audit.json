@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T00:05:20.801Z",
+  "generatedAt": "2026-10-17T19:05:38.513Z",
   "verdict": "PASS",
   "scope": "@replaylab/foundation slice7 production runtime",
   "directDependencies": [
@@ -1618,18 +1618,18 @@
   "bundle": {
     "chunks": [
       {
-        "file": "assets/core-pJ9BEhca.js",
+        "file": "assets/core-5ITpvkoe.js",
         "rawBytes": 62539,
-        "gzipBytes": 18684
+        "gzipBytes": 18683
       },
       {
-        "file": "assets/index-DBbxWAZn.js",
-        "rawBytes": 693894,
-        "gzipBytes": 210018
+        "file": "assets/index-3CiVNEpR.js",
+        "rawBytes": 715754,
+        "gzipBytes": 218103
       }
     ],
-    "rawBytes": 756433,
-    "gzipBytes": 228702,
+    "rawBytes": 778293,
+    "gzipBytes": 236786,
     "budgetGzipBytes": 1500000,
     "emittedPackages": [
       "@blocksuite/global",
@@ -1698,7 +1698,7 @@
     "failures": []
   },
   "sourceBoundaryScan": {
-    "filesScanned": 80,
+    "filesScanned": 90,
     "forbidden": [],
     "protocolMarkers": []
   },
@@ -1769,8 +1769,8 @@
     "finalRetainVersusUnpatchedReviewRequiredBeforeRelease": false
   },
   "sourceNotices": {
-    "generatedAt": "2026-10-17T00:05:20.799Z",
-    "repositoryCommit": "5c85f7387304240e4b5651436f59e26458ba7385",
+    "generatedAt": "2026-10-17T19:05:38.510Z",
+    "repositoryCommit": "1db56b11bd7c435dfd34be16f8324309360a27eb",
     "items": [
       {
         "source": "blocksuite/framework/store/src/adapter/base.ts",
@@ -1818,6 +1818,28 @@
       }
     ]
   },
+  "visualAssets": [
+    {
+      "name": "Oswald variable font",
+      "source": "packages/replaylab/foundation/src/assets/Oswald.ttf",
+      "license": "OFL-1.1",
+      "expectedSha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "provenance": "Unmodified googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261/fonts/variable/Oswald[wght].ttf; Copyright 2016 The Oswald Project Authors; full OFL in public/legal/OFL-Oswald.txt",
+      "emittedPrefix": "Oswald-",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "emitted": true
+    },
+    {
+      "name": "Arena hardwood material",
+      "source": "packages/replaylab/foundation/src/assets/arena-floor.jpg",
+      "license": "MIT",
+      "expectedSha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "provenance": "Original imagegen asset generated 2026-10-17; JPEG format optimization only; prompt and original output identity in docs/design/ARENA_PROMPTS.md",
+      "emittedPrefix": "arena-floor-",
+      "sha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "emitted": true
+    }
+  ],
   "explicitBoundaryDecisions": {
     "blocksuiteFrameworkKernel": "GO: global/store/std/sync only through ReplayLab facades/adapters",
     "blocksuiteAffineCandidates": "DENIED: zero direct, transitive, or emitted modules",
@@ -1828,13 +1850,14 @@
     "excalidrawHitTest": "VERIFIED_MIT: exact upstream revision 00c6940851b362da0d86f155269ef27a94d234c5; local adaptation chain and changes recorded",
     "yjsRuntime": "OFFICIAL_UNPATCHED_13_6_21: uint32 client-id generator active; legacy uint53 update interoperability tested",
     "dompurify": "ACCEPT_APACHE_2_OPTION: package is dual-licensed and installed LICENSE is Apache-2.0",
-    "fractionalIndexing": "ACCEPT_CC0_1_0: permissive public-domain dedication; preserve license inventory"
+    "fractionalIndexing": "ACCEPT_CC0_1_0: permissive public-domain dedication; preserve license inventory",
+    "oswaldAsset": "ACCEPT_OFL_1_1_FOR_THIS_UNMODIFIED_FONT_ONLY: self-hosted, exact revision/hash and complete copyright/OFL preserved; no new package or denied-root reuse"
   },
   "failures": [],
   "releaseReview": {
     "status": "BLOCKED",
     "technicalStatus": "GREEN",
-    "allowedUse": "ReplayLab name and current mark authorized by the owner for a noncommercial public portfolio release.",
+    "allowedUse": "Original basketball product and portfolio use; Fifth Tempo / Пятый темп is a working display name. Technical ReplayLab identifiers remain compatible.",
     "blockers": [
       "Independent trademark availability check is not complete.",
       "Manual screen-reader review is not recorded.",

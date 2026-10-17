@@ -31,15 +31,15 @@ test('unknown saved locale falls back to Russian and RU/EN selection persists wi
   await openApp(page, url);
 
   await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
-  await expect(page).toHaveTitle('ReplayLab — редактор баскетбольных комбинаций');
+  await expect(page).toHaveTitle('Пятый темп — баскетбол в движении');
   await expect(page.getByRole('heading', { name: 'Тактическая доска' })).toBeVisible();
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'ReplayLab — локальный редактор баскетбольных комбинаций');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Пятый темп — аниматор баскетбольных комбинаций с работой без сети');
   mkdirSync(evidenceRoot, { recursive: true });
   await page.screenshot({ path: resolve(evidenceRoot, 'slice7-ru.png'), fullPage: true });
 
   await page.getByRole('button', { name: 'EN', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page).toHaveTitle('ReplayLab — basketball play editor');
+  await expect(page).toHaveTitle('Fifth Tempo — basketball in motion');
   await expect(page.getByRole('heading', { name: 'Formation board' })).toBeVisible();
   await page.screenshot({ path: resolve(evidenceRoot, 'slice7-en.png'), fullPage: true });
   await page.reload();
@@ -101,7 +101,7 @@ test('portfolio route retains its runbook and the repeatable guide does not auto
   await page.setViewportSize({ width: 1440, height: 900 });
   await openApp(page, appUrl('demo', true));
 
-  await expect(page.locator('.demo-runbook')).toContainText('ReplayLab in 60 seconds');
+  await expect(page.locator('.demo-runbook')).toContainText('Fifth Tempo in 60 seconds');
   await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Step-by-step guide' })).toHaveCount(0);
   const actor = page.locator('[data-actor-id="offense-1"]');

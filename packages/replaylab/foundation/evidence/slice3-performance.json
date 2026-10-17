@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T00:04:31.502Z",
+  "generatedAt": "2026-10-17T19:04:50.123Z",
   "verdict": "PASS",
   "profile": {
     "id": "replaylab-render-v1",
@@ -26,7 +26,7 @@
     "visibleActions": 30
   },
   "metrics": {
-    "framesPerSecond": 60.004531158376565,
+    "framesPerSecond": 60.0047310782099,
     "frameIntervalP95Ms": 16.700000000004366,
     "gfxRenders": 1801,
     "reactRendersDuringPlayback": 0,

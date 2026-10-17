@@ -5,6 +5,8 @@ import { ReplayAwarenessSource } from './awareness';
 import { DEFAULT_DB_NAME, ReplayLabEditorFacade, RoomUnavailableError } from './facade';
 import { EmergencyJournal } from './emergency-journal';
 import { rememberPlay } from './recent-plays';
+import { pickRollCopy } from './pick-roll';
+import { applyInitialTheme } from './brand';
 import { ReplayNetworkDocSource } from './network-source';
 import { parseCapabilityFragment } from './sync-protocol';
 import { ReplayOpenError } from './recovery';
@@ -24,6 +26,7 @@ const app = document.querySelector<HTMLElement>('#app');
 if (!app) throw new Error('Missing app root');
 const initialLocale = readInitialLocale();
 applyDocumentLocale(initialLocale);
+applyInitialTheme();
 
 const routeMatch = location.pathname.match(/^\/app\/play\/([^/]+)\/edit\/?$/);
 const root = createRoot(app);
@@ -34,6 +37,7 @@ if (!routeMatch) {
 } else {
   const playId = decodeURIComponent(routeMatch[1]!);
   const query = new URLSearchParams(location.search);
+  const example = query.get('lesson') === '1' ? pickRollCopy(initialLocale) : null;
   const dbName = query.get('db') ?? undefined;
   const networkConfig = parseCapabilityFragment(location.hash);
   const networkSource = networkConfig ? new ReplayNetworkDocSource(networkConfig) : undefined;
@@ -56,9 +60,11 @@ if (!routeMatch) {
       readOnly: networkConfig?.access === 'read',
       seedContent: {
         practice: query.get('lesson') === '1',
-        title: query.has('new') ? (initialLocale === 'ru' ? 'Новая комбинация' : 'Untitled play') : query.get('lesson') === '1' ? (initialLocale === 'ru' ? 'Учебная комбинация' : 'Practice play') : translate(initialLocale, 'seededTitle'),
-        cueOne: query.has('new') ? '' : translate(initialLocale, 'seededCueOne'),
-        cueTwo: query.has('new') ? '' : translate(initialLocale, 'seededCueTwo'),
+        spread: query.has('new'),
+        title: query.has('new') ? (initialLocale === 'ru' ? 'Новая комбинация' : 'Untitled play') : example?.title ?? translate(initialLocale, 'seededTitle'),
+        cueOne: query.has('new') ? '' : example?.cues[0] ?? translate(initialLocale, 'seededCueOne'),
+        cueTwo: query.has('new') ? '' : example?.cues[1] ?? translate(initialLocale, 'seededCueTwo'),
+        moreCues: example?.cues.slice(2),
       },
     });
     storageMode = {

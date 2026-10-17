@@ -1,5 +1,14 @@
 # ReplayLab transformation specification
 
+2026-10-17 owner-directed workflow revision: the primary Add phase/F action
+appends a copy of the last formation, preserving existing transitions. Interactive
+cut/dribble/screen drawing also sets the actor's next pose; pass sets next-frame
+possession. These effects are one undo unit. One resolved adjacent path with
+matching canonical pose endpoints supplies playback geometry; stale/ambiguous
+paths defer to full poses. Existing documents and annotation-only facade calls
+are unchanged. See `ARCHITECTURE.md` and `ARENA_REWORK.md` for the decision and
+adversarial validation.
+
 Статус: implemented through Slice 7; public release awaits recorded external/manual gates
 Working title: **ReplayLab**  
 Product type: collaborative local-first basketball tactics animator
@@ -111,7 +120,7 @@ Only one context owns a shortcut. Hover never grants keyboard ownership; explici
 | `C` | cut tool |
 | `D` | dribble tool |
 | `S` | screen tool |
-| `F` | add phase after current |
+| `F` | append a phase copied from the final formation |
 | `Enter` | edit selected actor/action/cue |
 | `Escape` | unwind current interaction one level |
 | Arrow keys | move selected actor by one normalized step |

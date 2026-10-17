@@ -1,5 +1,13 @@
 # ReplayLab source state
 
+2026-10-17 asset provenance: the refresh helper preserves all earlier upstream
+records and explicitly identifies `src/assets/Oswald.ttf` and
+`public/legal/OFL-Oswald.txt` in the product package as `third-party-font-asset`,
+with the exact upstream repository, commit, path and OFL-1.1 license. These are
+not labelled original product code. The boundary audit separately pins the full
+font and notice bytes. The original generated hardwood material and original
+product UI remain product-owned artifacts with their prompt/source records.
+
 The source export is a reviewable starting tree for an owner's repository, not a fabricated commit history. The original checkout and its upstream remote remain unchanged. Commits, remote selection, pushes, hosted Actions and publication require separate owner instructions.
 
 Before adopting an export, run `node packages/replaylab/foundation/scripts/verify-source.mjs` inside it. This verifies the complete snapshot hash, every inventoried file, required documents and the single-workflow policy. CI retains this integrity gate. When intentionally changing source later, prepare a fresh export (also supported from an existing source state), review its file diff and new manifest together, and adopt both as one reviewed change. Do not reuse a stale manifest or remove the verifier to make CI green. Regenerated audit/test evidence also changes the snapshot; keep it with the corresponding reviewed inventory.

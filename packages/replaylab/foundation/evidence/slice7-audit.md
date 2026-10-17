@@ -5,7 +5,7 @@ Verdict: **PASS**
 - Direct runtime dependencies: 11
 - Direct/transitive runtime closure: 78 package instances
 - Emitted runtime packages: 31
-- Production JavaScript: 756433 raw bytes; 228702 gzip bytes; budget 1500000 gzip bytes
+- Production JavaScript: 778293 raw bytes; 236786 gzip bytes; budget 1500000 gzip bytes
 - Forbidden bundle modules: 0
 - Forbidden product markers: 0
 - AFFiNE protocol marker candidates: 0

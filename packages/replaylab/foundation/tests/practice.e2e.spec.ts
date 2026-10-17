@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('isolated practice: move, draw, play, undo, archive, export, reopen and guide focus', async ({ page }, info) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'How to use', exact: true }).click();
-  await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Practice play');
+  await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Pick & roll · create the opening');
   const practiceUrl = page.url();
   const guide = page.getByRole('region', { name: 'Step-by-step guide' });
   await expect(guide).toBeVisible();
@@ -13,14 +13,14 @@ test('isolated practice: move, draw, play, undo, archive, export, reopen and gui
   const actor = page.locator('[data-actor-id="offense-1"]');
   await expect(actor).toBeFocused();
   await actor.press('ArrowRight');
-  await expect(actor).toContainText('x 115');
+  await expect(actor).toContainText('x 285');
   await guide.getByRole('button', { name: 'Next', exact: true }).click();
   await page.getByRole('button', { name: 'Cut C', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Cut C', exact: true })).toHaveAttribute('aria-pressed', 'true');
   const court = page.locator('#court');
   await court.scrollIntoViewIfNeeded();
   const box = (await court.boundingBox())!;
-  await page.mouse.move(box.x + box.width * 115 / 840, box.y + box.height * 125 / 460);
+  await page.mouse.move(box.x + box.width * 285 / 840, box.y + box.height * 230 / 460);
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * 280 / 840, box.y + box.height * 220 / 460, { steps: 5 });
   await page.mouse.up();
@@ -43,21 +43,26 @@ test('isolated practice: move, draw, play, undo, archive, export, reopen and gui
   await guide.getByRole('button', { name: 'Skip', exact: true }).click();
   await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeFocused();
   await page.reload();
+  await page.locator('.player-controls > summary').click();
   await expect(guide).toHaveCount(0);
-  await expect(actor).toContainText('x 115');
-  await page.getByRole('link', { name: 'ReplayLab home' }).click();
-  await page.getByRole('link', { name: /Practice play/ }).click();
-  await expect(actor).toContainText('x 115');
+  await expect(actor).toContainText('x 285');
+  await page.getByRole('link', { name: 'Fifth Tempo home' }).click();
+  await page.getByRole('link', { name: /Pick & roll/ }).click();
+  await page.locator('.player-controls > summary').click();
+  await expect(actor).toContainText('x 285');
   await page.goBack();
   await page.goForward();
-  await expect(actor).toContainText('x 115');
+  if (await page.locator('.player-controls').getAttribute('open') === null) await page.locator('.player-controls > summary').click();
+  await expect(actor).toContainText('x 285');
   await page.locator('input[type="file"]').setInputFiles(file);
   await expect(page).not.toHaveURL(practiceUrl);
-  await expect(actor).toContainText('x 115');
+  await page.locator('.player-controls > summary').click();
+  await expect(actor).toContainText('x 285');
   await expect(page.locator('[data-action-id]')).toHaveCount(2);
   await page.getByRole('button', { name: 'How to use', exact: true }).click();
-  await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Practice play');
-  await expect(actor).toContainText('x 110');
+  await expect(page.getByRole('textbox', { name: 'Play name' })).toHaveValue('Pick & roll · create the opening');
+  await page.locator('.player-controls > summary').click();
+  await expect(actor).toContainText('x 280');
   await page.getByRole('region', { name: 'Step-by-step guide' }).getByRole('heading').press('Escape');
   await expect(page.getByRole('button', { name: 'How to use', exact: true })).toBeFocused();
 });
@@ -74,6 +79,7 @@ test('RU and EN home, editor and guide reflow; mobile review, missing target, re
     }
     await page.getByRole('button', { name: language === 'RU' ? 'Как пользоваться' : 'How to use', exact: true }).click();
     await expect(page.locator('[data-app-ready]')).toBeVisible();
+    await page.locator('.player-controls > summary').click();
     for (const width of widths) {
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `editor ${language} ${width}`).toBe(true);
@@ -103,8 +109,9 @@ test('touch selection disambiguates overlapping players; enlarged text and priva
   try {
     await page.goto('/');
     await page.getByRole('button', { name: 'EN', exact: true }).tap();
-    await page.getByRole('button', { name: 'Open example', exact: true }).tap();
+    await page.getByRole('button', { name: 'Explore the pick & roll', exact: true }).tap();
     await expect(page.locator('[data-app-ready]')).toBeVisible();
+    await page.locator('.player-controls > summary').tap();
     // Isolated synthetic overlap fixture; the UI must offer an unambiguous target.
     await page.evaluate(() => window.replayLabApp!.facade.setActorPose({ actorId: 'defense-1', x: 110, y: 125 }));
     const defender = page.locator('[data-actor-id="defense-1"]');

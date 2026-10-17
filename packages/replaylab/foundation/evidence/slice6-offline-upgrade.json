@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-17T00:04:53.067Z",
+  "generatedAt": "2026-10-17T19:05:11.121Z",
   "verdict": "PASS",
   "browserVersion": "145.0.7632.6",
   "fixedReplayLabPort": 32410,
   "upgrade": {
     "waitingWasHandled": true,
     "cacheNames": [
-      "replaylab-shell-v3",
+      "replaylab-shell-v4",
       "replaylab-shell-v1"
     ],
     "staleAssetRetained": true

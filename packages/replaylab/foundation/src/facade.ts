@@ -186,7 +186,7 @@ export class ReplayLabEditorFacade {
     };
     readOnly?: boolean;
     migrationFault?: 'after-target-write' | 'after-journal-backup';
-    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean };
+    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean; moreCues?: string[]; spread?: boolean };
   } = {}) {
     const openedAt = performance.now();
     const playId = options.playId ?? DEFAULT_PLAY_ID;
@@ -415,7 +415,7 @@ export class ReplayLabEditorFacade {
 
   static createMemory(
     playId = DEFAULT_PLAY_ID,
-    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean }
+    seedContent?: { title: string; cueOne: string; cueTwo: string; practice?: boolean; moreCues?: string[]; spread?: boolean }
   ) {
     return ReplayLabEditorFacade.create(
       new Y.Doc({ guid: playId }),
@@ -457,7 +457,7 @@ export class ReplayLabEditorFacade {
     openedAt: number,
     persistence?: Persistence,
     seedIfEmpty = true,
-    seedContent: { title: string; cueOne: string; cueTwo: string; practice?: boolean } = {
+    seedContent: { title: string; cueOne: string; cueTwo: string; practice?: boolean; moreCues?: string[]; spread?: boolean } = {
       title: 'Horns entry',
       cueOne: 'Start in horns.',
       cueTwo: 'Finish at the rim.',
@@ -471,18 +471,18 @@ export class ReplayLabEditorFacade {
       if (!seedIfEmpty) throw new Error('Encoded replay did not contain a replay root');
       const rootId = store.addBlock('replaylab:page');
       const surfaceId = store.addBlock('replaylab:surface', {}, rootId);
-      const cue1 = store.addBlock('replaylab:cue', { phaseId: 'phase-1' }, rootId);
-      const cue2 = store.addBlock('replaylab:cue', { phaseId: 'phase-2' }, rootId);
+      const cueTexts = [seedContent.cueOne, seedContent.cueTwo, ...(seedContent.practice ? seedContent.moreCues ?? ['', ''] : [])];
+      const cueIds = cueTexts.map((text, index) => {
+        const id = store.addBlock('replaylab:cue', { phaseId: seedContent.practice ? ['pickroll-setup', 'pickroll-screen', 'pickroll-drive', 'pickroll-pass'][index] : `phase-${index + 1}` }, rootId);
+        store.getBlock(id)?.model.text?.insert(text, 0);
+        return id;
+      });
       const rootTitle = store.getBlock(rootId)?.model as unknown as {
         props: { title: MutableText };
       };
       rootTitle.props.title.insert(seedContent.title, 0);
-      const cueOneText = store.getBlock(cue1)?.model.text;
-      const cueTwoText = store.getBlock(cue2)?.model.text;
-      cueOneText?.insert(seedContent.cueOne, 0);
-      cueTwoText?.insert(seedContent.cueTwo, 0);
       rootDoc.transact(
-        () => seedReplayRoot(replayRoot, [cue1, cue2], seedContent.practice),
+        () => seedReplayRoot(replayRoot, cueIds, seedContent.practice, seedContent.spread),
         'replaylab:seed'
       );
       if (!store.getBlock(surfaceId)?.model) {
@@ -719,6 +719,7 @@ export class ReplayLabEditorFacade {
     type: TacticalActionType;
     targetActorId?: ActorId | null;
     path: ActionPath;
+    applyEndpoint?: boolean;
   }) {
     const phaseIndex = input.phaseIndex ?? 0;
     assertActionActors(input);
@@ -728,6 +729,9 @@ export class ReplayLabEditorFacade {
     const toFrame = snapshot.phases[phaseIndex + 1];
     if (!fromFrame || !toFrame) {
       throw new Error('Actions require an adjacent next phase');
+    }
+    if (input.applyEndpoint && (input.type === 'pass' || input.type === 'dribble') && fromFrame.possession.value !== input.actorId) {
+      throw new Error('Only the ball holder can author a pass or dribble');
     }
     const transitionCount = snapshot.actions.filter(
       action =>
@@ -754,8 +758,36 @@ export class ReplayLabEditorFacade {
       },
       { actorId: this.authorId, commandId }
     );
+    // The direct API retains annotation-only semantics for old clients/tools.
+    // Interactive authoring opts in: action + destination are one local intent.
+    // Draft every fallible register update BEFORE the non-throwing transaction.
+    let endpointDraft: RegisterDraft | null = null;
+    let possessionDraft: RegisterDraft | null = null;
+    let destinationFrame: Y.Map<unknown> | null = null;
+    if (input.applyEndpoint) {
+      destinationFrame = getFrameMap(this.replayRoot, toFrame).frameMap;
+      if (input.type === 'pass') {
+        const register = destinationFrame.get('possession');
+        if (!(register instanceof Y.Map)) throw new Error('Missing possession register');
+        possessionDraft = this.buildRegisterDraft(register, input.targetActorId!, 'action-possession');
+      } else {
+        const poses = destinationFrame.get('poses');
+        const register = poses instanceof Y.Map ? poses.get(input.actorId) : null;
+        if (!(register instanceof Y.Map)) throw new Error('Missing pose register');
+        endpointDraft = this.buildRegisterDraft(register, input.path.points.at(-1)!, 'action-endpoint');
+        if (input.type === 'dribble') {
+          const possession = destinationFrame.get('possession');
+          if (!(possession instanceof Y.Map)) throw new Error('Missing possession register');
+          possessionDraft = this.buildRegisterDraft(possession, input.actorId, 'action-possession');
+        }
+      }
+    }
     this.commit(
-      () => (actions as Y.Map<Y.Map<unknown>>).set(actionId, action),
+      () => {
+        (actions as Y.Map<Y.Map<unknown>>).set(actionId, action);
+        if (endpointDraft) this.applyRegisterDraft(endpointDraft);
+        if (possessionDraft) { this.applyRegisterDraft(possessionDraft); destinationFrame!.delete('looseBallPose'); }
+      },
       {
         phaseId: fromFrame.id,
         entityId: actionId,

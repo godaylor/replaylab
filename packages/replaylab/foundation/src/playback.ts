@@ -1,9 +1,11 @@
 import {
   ACTOR_IDS,
+  deriveBallPose,
   type ActorId,
   type Pose,
   type ReplaySnapshot,
 } from './domain';
+import { pointOnPath } from './trajectory';
 
 export type PlaybackFrame = {
   playheadMs: number;
@@ -30,6 +32,21 @@ function interpolatePose(left: Pose, right: Pose, progress: number): Pose {
     x: left.x + (right.x - left.x) * progress,
     y: left.y + (right.y - left.y) * progress,
   };
+}
+
+function movementPose(snapshot: ReplaySnapshot, from: ReplaySnapshot['phases'][number], to: ReplaySnapshot['phases'][number], actorId: ActorId, progress: number) {
+  const movements = snapshot.actions.filter(action => !action.archived && action.adjacency === 'valid' && action.fromFrameId === from.id && action.toFrameId === to.id && action.actorId === actorId && action.type !== 'pass');
+  // Never silently choose between competing actions or unresolved paths. Full
+  // canonical poses remain authoritative when an annotation has become stale.
+  if (movements.length === 1 && movements[0]!.path.candidates.length === 1) {
+    const points = movements[0]!.path.value.points;
+    const start = points[0]!;
+    const end = points.at(-1)!;
+    const a = from.poses[actorId];
+    const b = to.poses[actorId];
+    if (start.x === a.x && start.y === a.y && end.x === b.x && end.y === b.y) return pointOnPath(points, progress);
+  }
+  return interpolatePose(from.poses[actorId], to.poses[actorId], progress);
 }
 
 export function playbackPhaseStarts(snapshot: ReplaySnapshot) {
@@ -87,15 +104,13 @@ export function projectPlayback(
   const poses = Object.create(null) as Record<ActorId, Pose>;
   for (const actorId of ACTOR_IDS) {
     poses[actorId] = next
-      ? interpolatePose(
-          phase.poses[actorId],
-          next.poses[actorId],
-          transitionProgress
-        )
+      ? movementPose(snapshot, phase, next, actorId, transitionProgress)
       : phase.poses[actorId];
   }
   const ballPose = next
-    ? interpolatePose(phase.ballPose, next.ballPose, transitionProgress)
+    ? phase.possession.value !== 'loose' && phase.possession.value === next.possession.value
+      ? deriveBallPose(poses, phase.possession.value, null)
+      : interpolatePose(phase.ballPose, next.ballPose, transitionProgress)
     : phase.ballPose;
 
   return {

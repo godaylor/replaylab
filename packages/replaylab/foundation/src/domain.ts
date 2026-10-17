@@ -1,5 +1,6 @@
 import { generateKeyBetween, generateNKeysBetween } from 'fractional-indexing';
 import * as Y from 'yjs';
+import { PICK_ROLL_IDS, PICK_ROLL_POSES, PICK_ROLL_ACTIONS } from './pick-roll';
 
 export const REPLAY_SCHEMA_VERSION = 1 as const;
 export const MIN_PHASES = 2;
@@ -602,46 +603,45 @@ export function createFrame(
 
 export function seedReplayRoot(
   replay: Y.Map<unknown>,
-  cueBlockIds: [string, string],
-  practice = false
+  cueBlockIds: string[],
+  practice = false,
+  spread = false
 ) {
-  const ranks = generateNKeysBetween(null, null, MIN_PHASES);
+  const count = practice ? PICK_ROLL_IDS.length : MIN_PHASES;
+  const ranks = generateNKeysBetween(null, null, count);
   const frames = new Y.Map<Y.Map<unknown>>();
-  for (let phaseIndex = 0; phaseIndex < MIN_PHASES; phaseIndex += 1) {
+  for (let phaseIndex = 0; phaseIndex < count; phaseIndex += 1) {
     const poses = Object.create(null) as Record<ActorId, Pose>;
     ACTOR_IDS.forEach((actorId, actorIndex) => {
       const row = actorIndex < 5 ? 0 : 1;
       const column = actorIndex % 5;
-      poses[actorId] = {
+      poses[actorId] = practice || spread ? PICK_ROLL_POSES[practice ? phaseIndex : 0]![actorId] : {
         x: 110 + column * 135 + phaseIndex * (row === 0 ? 20 : -10),
         y: 125 + row * 185 + (column % 2) * 25,
       };
     });
-    const id = `phase-${phaseIndex + 1}`;
-    frames.set(
-      id,
-      createFrame(
+    const id = practice ? PICK_ROLL_IDS[phaseIndex]! : `phase-${phaseIndex + 1}`;
+    const frame = createFrame(
         id,
         ranks[phaseIndex]!,
         cueBlockIds[phaseIndex]!,
         poses,
-        'offense-1',
+        practice && phaseIndex === 3 ? 'offense-5' : 'offense-1',
         null,
         { actorId: 'seed', commandId: `seed-${phaseIndex + 1}` }
-      )
-    );
+      );
+    if (practice) {
+      frame.set('durationMs', 1800);
+      frame.set('holdMs', 700);
+    }
+    frames.set(id, frame);
   }
   replay.set('schemaVersion', REPLAY_SCHEMA_VERSION);
   replay.set('actors', seedActors());
   replay.set('frames', frames);
   const actions = new Y.Map<Y.Map<unknown>>();
   if (practice) {
-    actions.set('practice-pass', createActionRecord({
-      id: 'practice-pass', fromFrameId: 'phase-1', toFrameId: 'phase-2',
-      actorId: 'offense-1', type: 'pass', targetActorId: 'offense-2',
-      path: { points: [{ x: 110, y: 125 }, { x: 265, y: 150 }] },
-    }, { actorId: 'seed', commandId: 'practice-pass' }));
-    frames.get('phase-2')!.set('possession', createRegister('practice-possession', 'offense-2', 'seed', 'practice-possession'));
+    for (const action of PICK_ROLL_ACTIONS) actions.set(action.id, createActionRecord(action, { actorId: 'seed', commandId: action.id }));
   }
   replay.set('actions', actions);
 }

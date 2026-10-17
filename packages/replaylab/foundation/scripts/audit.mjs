@@ -489,7 +489,7 @@ function cyclonedxSbom(report) {
         { name: 'replaylab:repository-commit', value: report.sourceNotices.repositoryCommit },
       ],
     },
-    components: report.dependencyClosure.map(record => ({
+    components: [...report.dependencyClosure.map(record => ({
       type: 'library',
       name: record.name,
       version: record.version,
@@ -500,9 +500,14 @@ function cyclonedxSbom(report) {
         { name: 'replaylab:emitted-in-browser-bundle', value: String(report.bundle.emittedPackages.includes(record.name)) },
         { name: 'replaylab:manifest', value: record.manifest },
       ],
-    })),
+    })), ...report.visualAssets.map(asset => ({
+      type: 'file', name: asset.name, 'bom-ref': asset.source,
+      licenses: [{ license: { id: asset.license } }],
+      hashes: [{ alg: 'SHA-256', content: asset.sha256 }],
+      properties: [{ name: 'replaylab:provenance', value: asset.provenance }],
+    }))],
     dependencies: [
-      { ref: 'ReplayLab', dependsOn: report.dependencyClosure.filter(record => report.directDependencies.includes(record.name)).map(componentRef) },
+      { ref: 'ReplayLab', dependsOn: [...report.dependencyClosure.filter(record => report.directDependencies.includes(record.name)).map(componentRef), ...report.visualAssets.map(asset => asset.source)] },
       ...report.dependencyClosure.map(record => ({ ref: componentRef(record), dependsOn: [] })),
     ],
   };
@@ -525,6 +530,11 @@ const notices = inspectNotices();
 const inlineProvenance = inspectInlineProvenance();
 const yjsCompatibility = inspectYjsCompatibility();
 const sourceNotices = sourceNoticeReport(bundle);
+const fontNotice = join(packageRoot, 'public/legal/OFL-Oswald.txt');
+const visualAssets = [
+  { name: 'Oswald variable font', source: 'packages/replaylab/foundation/src/assets/Oswald.ttf', license: 'OFL-1.1', expectedSha256: '5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817', provenance: 'Unmodified googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261/fonts/variable/Oswald[wght].ttf; Copyright 2016 The Oswald Project Authors; full OFL in public/legal/OFL-Oswald.txt', emittedPrefix: 'Oswald-' },
+  { name: 'Arena hardwood material', source: 'packages/replaylab/foundation/src/assets/arena-floor.jpg', license: 'MIT', expectedSha256: '6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160', provenance: 'Original imagegen asset generated 2026-10-17; JPEG format optimization only; prompt and original output identity in docs/design/ARENA_PROMPTS.md', emittedPrefix: 'arena-floor-' },
+].map(asset => ({ ...asset, sha256: sha256(join(repoRoot, asset.source)), emitted: readdirSync(join(distRoot, 'assets')).filter(name => name.startsWith(asset.emittedPrefix)).some(name => sha256(join(distRoot, 'assets', name)) === asset.expectedSha256) }));
 
 const closureNames = new Set(dependencies.records.map(record => record.name));
 const emittedOutsideClosure = bundle.emittedPackages.filter(name => !closureNames.has(name));
@@ -533,6 +543,8 @@ const deniedPackages = dependencies.records.filter(record =>
 );
 const rejectedLicenses = dependencies.records.filter(record => !acceptedLicenses.has(record.license));
 const failures = [
+  ...visualAssets.filter(asset => asset.sha256 !== asset.expectedSha256 || !asset.emitted).map(asset => `Visual asset provenance or emitted copy mismatch: ${asset.name}`),
+  ...(!existsSync(fontNotice) || sha256(fontNotice) !== '0fd731a904b729a4e02eaf5e8ebd06783edd9abe400e8882760160230675b652' ? ['Oswald copyright/OFL notice is missing or differs from the exact upstream copy'] : []),
   ...serverFailures,
   ...(readFileSync(join(distRoot, 'bundle-closure.json'), 'utf8').includes('05-affine-transform') ? ['Stale renamed-root paths in client closure'] : []),
   ...(dependencies.missing.length ? [`Missing dependencies: ${dependencies.missing.map(item => item.name).join(', ')}`] : []),
@@ -574,6 +586,7 @@ const report = {
   inlineProvenance,
   yjsCompatibility,
   sourceNotices,
+  visualAssets,
   explicitBoundaryDecisions: {
     blocksuiteFrameworkKernel: 'GO: global/store/std/sync only through ReplayLab facades/adapters',
     blocksuiteAffineCandidates: 'DENIED: zero direct, transitive, or emitted modules',
@@ -585,12 +598,13 @@ const report = {
     yjsRuntime: 'OFFICIAL_UNPATCHED_13_6_21: uint32 client-id generator active; legacy uint53 update interoperability tested',
     dompurify: 'ACCEPT_APACHE_2_OPTION: package is dual-licensed and installed LICENSE is Apache-2.0',
     fractionalIndexing: 'ACCEPT_CC0_1_0: permissive public-domain dedication; preserve license inventory',
+    oswaldAsset: 'ACCEPT_OFL_1_1_FOR_THIS_UNMODIFIED_FONT_ONLY: self-hosted, exact revision/hash and complete copyright/OFL preserved; no new package or denied-root reuse',
   },
   failures,
   releaseReview: {
     status: 'BLOCKED',
     technicalStatus: failures.length || releaseTestBlockers.length ? 'BLOCKED' : 'GREEN',
-    allowedUse: 'ReplayLab name and current mark authorized by the owner for a noncommercial public portfolio release.',
+    allowedUse: 'Original basketball product and portfolio use; Fifth Tempo / Пятый темп is a working display name. Technical ReplayLab identifiers remain compatible.',
     blockers: [
       ...releaseTestBlockers,
       'Independent trademark availability check is not complete.',
@@ -612,10 +626,12 @@ writeFileSync(join(evidenceRoot, `${auditSlice}-license-inventory.json`), `${JSO
     emittedInBrowserBundle: bundle.emittedPackages.includes(record.name),
   })),
   rejectedLicenses,
+  visualAssets,
 }, null, 2)}\n`);
 writeFileSync(join(evidenceRoot, `${auditSlice}-source-notices.json`), `${JSON.stringify(sourceNotices, null, 2)}\n`);
 writeFileSync(join(evidenceRoot, `${auditSlice}-sbom.cdx.json`), `${JSON.stringify(cyclonedxSbom(report), null, 2)}\n`);
 const thirdPartyNotices = `# ReplayLab third-party notices\n\n` +
+  `## Oswald font (OFL-1.1)\n\nUnmodified, self-hosted font from googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261.\n\n${readFileSync(fontNotice, 'utf8').replace(/\r\n/g, '\n').replace(/[ \t]+\n/g, '\n')}\n\n` +
   `Generated for repository commit \`${sourceNotices.repositoryCommit}\`. This inventory supplements and does not replace the preserved root and nested license files.\n\n` +
   `## Runtime dependencies\n\n` +
   report.dependencyClosure.map(record => {

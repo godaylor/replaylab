@@ -21,7 +21,7 @@ const supabase = {
 const externalStorage = Boolean(supabase.url && supabase.secretKey);
 let collaboration: 'loading' | 'ready' | 'unavailable' = 'loading';
 if (!externalStorage && (supabase.url || supabase.secretKey)) throw new Error('External storage configuration is incomplete');
-const types: Record<string, string> = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
+const types: Record<string, string> = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.ttf': 'font/ttf' };
 const http = createServer((request, response) => {
   response.setHeader('X-Content-Type-Options', 'nosniff');
   response.setHeader('Referrer-Policy', 'no-referrer');
@@ -46,7 +46,7 @@ const http = createServer((request, response) => {
     response.end(request.method === 'HEAD' ? undefined : JSON.stringify({ status: 'ok', product: 'ReplayLab', collaboration, storage: externalStorage ? 'supabase-postgres' : 'filesystem' })); return;
   }
   const appRoute = pathname === '/' || /^\/app\/play\/[^/]+\/edit\/?$/.test(pathname);
-  const permitted = appRoute || pathname === '/index.html' || pathname === '/sw.js' || /^\/assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(pathname) || /^\/legal\/[a-zA-Z0-9_.-]+$/.test(pathname);
+  const permitted = appRoute || pathname === '/index.html' || pathname === '/sw.js' || /^\/assets\/[a-zA-Z0-9_-]+\.(js|css|jpg|ttf)$/.test(pathname) || /^\/legal\/[a-zA-Z0-9_.-]+$/.test(pathname);
   const target = resolve(dist, appRoute ? 'index.html' : '.' + pathname);
   if (!permitted || !target.startsWith(dist + sep) || !existsSync(target) || !statSync(target).isFile()) { response.writeHead(404); response.end(); return; }
   if (pathname.startsWith('/assets/')) response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

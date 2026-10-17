@@ -1,24 +1,31 @@
-# ReplayLab
+# Пятый темп · Fifth Tempo
+
+ReplayLab is the repository/protocol name. **Пятый темп / Fifth Tempo** is the new
+working product name; independent name/mark clearance remains open.
 
 [![Release checks](https://github.com/godaylor/replaylab/actions/workflows/replaylab.yml/badge.svg)](https://github.com/godaylor/replaylab/actions/workflows/replaylab.yml)
 
-**[Open ReplayLab](https://replaylab-godaylor.onrender.com)** · [Architecture](docs/ARCHITECTURE.md) · [Deployment](docs/RELEASE.md) · [Portfolio handoff](PORTFOLIO_HANDOFF.md)
+**[Existing Render deployment](https://replaylab-godaylor.onrender.com)** · [Architecture](docs/ARCHITECTURE.md) · [Deployment](docs/RELEASE.md) · [Portfolio handoff](PORTFOLIO_HANDOFF.md)
 
-Локальный редактор баскетбольных комбинаций: расставьте игроков, добавьте фазы, нарисуйте передачу или движение и проиграйте результат. Два тренера могут редактировать одну комбинацию, продолжать работу офлайн и после подключения явно разрешать конфликты.
+The Arena revision is currently prepared locally. Its publication and the
+public service's remaining availability limits are recorded in
+[current verification](docs/PRODUCTION_VERIFICATION.md).
+
+Баскетбольный замысел в движении: разберите готовый пик-н-ролл, измените расстановку, нарисуйте действие и покажите команде. Два тренера могут редактировать одну комбинацию, продолжать работу офлайн и после подключения явно разрешать конфликты.
 
 Local-first multiplayer editor for animated basketball plays. RU is the default; EN is available in the app. One half-court, ten players, a derived ball, 2–12 phases, four tactical actions, rich coaching cues and local-only undo.
 
 Desktop supports full authoring. Tablet supports playback, player movement and cue editing. Mobile supports playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
 
-![ReplayLab — daylight coaching court](docs/design/after-desktop-en.png)
+![Fifth Tempo — actual Arena editor](docs/design/arena-dark-desktop-en.png)
 
-[Design concepts, mobile screens and before/after](docs/design/REVIEW.md) · [Current availability and verification](docs/PRODUCTION_VERIFICATION.md)
+[Three concepts, dark/light screens, mobile and before/after](docs/design/ARENA_REVIEW.md) · [30 seconds of the real application](docs/design/arena-motion.webm) · [Availability and verification](docs/PRODUCTION_VERIFICATION.md)
 
 ## Make a play
 
-1. Choose **Open example** to try a separate practice play, or **Create a play** for your own combination.
-2. Select a phase, draw a cut, dribble, pass or screen, and add the next phase.
-3. Add a coaching cue, scrub the timeline, then press Play.
+1. Choose **Explore the pick & roll** for a separate four-step example, or **Create a play** for a blank spread formation.
+2. Watch spacing → screen → drive → pass. Choose a step and move a player.
+3. Draw a cut, dribble or screen to set the next pose; draw a pass to transfer possession. A single Undo restores the whole action. Add a phase to append a copy of the final formation. Scrub or press Play.
 4. Edits save automatically in this browser. Return home to reopen recent work. **File & backup → Recovery file** downloads a complete portable copy.
 5. Choose **Invite → Create collaborative room** to create a private shared copy.
    Open that room yourself, then send the edit or view link to a collaborator.
@@ -27,23 +34,23 @@ Desktop supports full authoring. Tablet supports playback, player movement and c
 ## What works
 
 - Original canvas court with pointer and keyboard authoring, 2–12 phases and four tactical actions.
-- Deterministic animation, scrubbing, presenter/follow mode and reduced-motion playback.
+- Deterministic path-based animation, scrubbing, presenter/follow mode and reduced-motion playback.
 - Rich per-phase coaching cues and one local undo history across text and court edits.
 - Automatic local persistence, cold offline launch, crash journal and recoverable exports.
 - Private collaborative rooms, separate edit/view capabilities, presence and remote updates.
 - Explicit review of concurrent pose/path/possession intentions after reconnection.
-- RU/EN interface, responsive review surfaces and a semantic canvas companion.
+- RU/EN interface, persistent dark/light themes, responsive review surfaces and a semantic canvas companion.
 
 ## Как начать
 
-Откройте [ReplayLab](https://replaylab-godaylor.onrender.com/) и выберите
-**Открыть пример** или **Создать комбинацию**. **Как пользоваться** запускает
+Откройте приложение и выберите **Разобрать пик-н-ролл** или
+**Создать комбинацию**. **Как пользоваться** запускает
 знакомство на отдельной учебной копии: обозначения → перемещение → движение →
 воспроизведение → отмена → экспорт → повторное открытие. Новый пример не меняет
 старые комбинации; изменения учебной копии сохраняются в «Недавних».
 
-Красные круглые O1–O5 — атака, голубые квадратные D1–D5 — защита, жёлтый кружок —
-мяч. Пунктир обозначает передачу; стрелка — движение, крестик — заслон.
+Оранжевые круглые O1–O5 — атака, зелёные квадратные D1–D5 — защита, жёлтый кружок —
+мяч. Пунктир обозначает передачу; стрелка — движение, поперечная черта — заслон.
 Отпустите указатель, чтобы завершить рисование; Escape отменяет черновик.
 Если игроки рядом, выбирайте точного игрока в списке «Расстановка».
 Удалённое действие можно вернуть через «Отменить».

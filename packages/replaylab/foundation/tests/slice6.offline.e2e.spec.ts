@@ -63,7 +63,7 @@ test('stale client shell upgrade retains compatibility cache and cold-offline au
         staleAssetRetained: Boolean(await caches.match('/assets/stale-client.js')),
       };
     });
-    expect(upgrade.cacheNames).toContain('replaylab-shell-v3');
+    expect(upgrade.cacheNames).toContain('replaylab-shell-v4');
     expect(upgrade.cacheNames).toContain('replaylab-shell-v1');
     expect(upgrade.staleAssetRetained).toBe(true);
 

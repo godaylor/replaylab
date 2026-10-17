@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T00:05:20.801Z",
+  "generatedAt": "2026-10-17T19:05:38.513Z",
   "scope": "@replaylab/foundation slice7 production runtime",
   "acceptedLicenses": [
     "(MPL-2.0 OR Apache-2.0)",
@@ -1690,5 +1690,27 @@
       "emittedInBrowserBundle": true
     }
   ],
-  "rejectedLicenses": []
+  "rejectedLicenses": [],
+  "visualAssets": [
+    {
+      "name": "Oswald variable font",
+      "source": "packages/replaylab/foundation/src/assets/Oswald.ttf",
+      "license": "OFL-1.1",
+      "expectedSha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "provenance": "Unmodified googlefonts/OswaldFont@89795261ac9eeb9aa8cd99f43982c4e4b0e53261/fonts/variable/Oswald[wght].ttf; Copyright 2016 The Oswald Project Authors; full OFL in public/legal/OFL-Oswald.txt",
+      "emittedPrefix": "Oswald-",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "emitted": true
+    },
+    {
+      "name": "Arena hardwood material",
+      "source": "packages/replaylab/foundation/src/assets/arena-floor.jpg",
+      "license": "MIT",
+      "expectedSha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "provenance": "Original imagegen asset generated 2026-10-17; JPEG format optimization only; prompt and original output identity in docs/design/ARENA_PROMPTS.md",
+      "emittedPrefix": "arena-floor-",
+      "sha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "emitted": true
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "a417ff3e2acd17e97795fd67fa13723c9dae178013b6808532e51d6df262f681",
+  "snapshotSha256": "faabb4f6225e6cf741a897d44d02b9fa0483065936ff4736ad1c6d79e500c4f6",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -60,7 +60,7 @@
     },
     {
       "path": "FINAL_AUDIT.md",
-      "sha256": "0cbd91a1be18d85cc483edbaa21813a045a1103946de968fa8f2ac797df7fffb",
+      "sha256": "7c9c1e56c7ab69dce8f64bb1c4406b467995797dc8d6380142146fb4ae7f380e",
       "origin": "working-tree-copy"
     },
     {
@@ -75,17 +75,17 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "873d4956d89176c1a9330785e333dd7942f6f1f1b90286ae7fa18a9624085d74",
+      "sha256": "071b590b299fcf889b11a5c435bde991ccb1dc5b339bf56e8e7bdd7d9849e453",
       "origin": "working-tree-copy"
     },
     {
       "path": "PORTFOLIO_HANDOFF.md",
-      "sha256": "7c79b07cac8f84305e38f76a073f765c36ed944b29f374d30e5f099403ea4f67",
+      "sha256": "9d1c9e9758d058760b4c847a4f3dfbe50ea4c53f61ccc952b067c4f789bf2d13",
       "origin": "original-replaylab"
     },
     {
       "path": "README.md",
-      "sha256": "4e9d01f1ff904b747a8c8e6c57dda4ba50dbe7876fb8a7dd3b33e4730a0bfb49",
+      "sha256": "10ed45012301a6523b9456d150726a9d53700d7ea0cb5f30055e2c14120a1866",
       "origin": "working-tree-copy"
     },
     {
@@ -2256,8 +2256,13 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "d9381106c8c060b460d4007540d7ccca74d3ef9961f57b22188e510cff89d098",
+      "sha256": "c703cca39c7d7127c4eb1864c5b465427354bbffe8cc8f3fc6bc282b9f9981c3",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "docs/ARENA_REWORK.md",
+      "sha256": "8403cfca3e55b218a78c713c601e30d88f731d8966efdd02f6b19f77d8a30d2c",
+      "origin": "original-replaylab"
     },
     {
       "path": "docs/BASELINE_AUDIT.md",
@@ -2271,12 +2276,12 @@
     },
     {
       "path": "docs/LICENSE_BOUNDARIES.md",
-      "sha256": "bb6a8ee4a3886e8b88d8cbc265434f2ece69942948648304901da459ee48bb36",
+      "sha256": "4958419f3659850c9246ae90e758839988c6cdb2261480f107bf667766a4b75c",
       "origin": "working-tree-copy"
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "92b2f4ff79a5d724ab25af6b3103d5d422e0f199e5430805569fec39848e0507",
+      "sha256": "7d00d7be0f68899d21062898fac0bf992cf12e64e6aea6e6e7f555442c4be63a",
       "origin": "original-replaylab"
     },
     {
@@ -2306,13 +2311,23 @@
     },
     {
       "path": "docs/SOURCE_STATE.md",
-      "sha256": "1e579e8e60f780a0f87cfd072f548e1659e2915508a9f64cf0b3bc88a9f985d2",
+      "sha256": "c1f5e101d8ece9e87a7029e260a65e1149c305ae7de7813ebd60360cabc6c33d",
       "origin": "working-tree-copy"
     },
     {
       "path": "docs/TRANSFORMATION_SPEC.md",
-      "sha256": "5556a380dd0facf9700d0dd7544f0822e3fa92bce8d441d974f9170d7e29258f",
+      "sha256": "375e0c005758e1ca58f9d730c31245a57f47ae10849af513fbb409a3687e9084",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "docs/design/ARENA_PROMPTS.md",
+      "sha256": "5a642657ab59e45a158a95d88be127eda9c277dc7aedb92f1946bc89cd4eb859",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/ARENA_REVIEW.md",
+      "sha256": "9d5697e22bb99c869c3636e9646a063c6935e4ce30cf2573b38d42b463c859b9",
+      "origin": "original-replaylab"
     },
     {
       "path": "docs/design/PROMPTS.md",
@@ -2321,7 +2336,7 @@
     },
     {
       "path": "docs/design/REVIEW.md",
-      "sha256": "508fd038fa3cb4e536a32ce9ec1d7051704d6a4de3395bc5adbd64cd850ffc44",
+      "sha256": "ce7681f199f8394757f9860d27f9a2cc1aa8a75d1097b72bb0fcd8135ebc4ade",
       "origin": "original-replaylab"
     },
     {
@@ -2395,6 +2410,171 @@
       "origin": "original-replaylab"
     },
     {
+      "path": "docs/design/arena-browser-check.json",
+      "sha256": "930c6ba64256d9f036384472b68f403c39a31bf3e9038f92376d9a10a07d5edf",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-chrome-proof.png",
+      "sha256": "2cb2bffc7a8161853120362d5176c9dd71d98bd0181f89960f46c3abf45fb174",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-concepts.png",
+      "sha256": "7590d171e5e51594be2c9041fe14430794b62a00e7cf8a9fd43df8127cb24ee8",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-desktop-en-geometry.json",
+      "sha256": "076355da73e8ce40a5f9ff380c1f8e8bed2e16d820eebefcd2b8721954a42c5c",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-desktop-en.png",
+      "sha256": "59cd25a9ba57b8987f1c632a126efc0358300cfbdcd5f3df81391ff1ba4cba8b",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-desktop-ru-geometry.json",
+      "sha256": "076355da73e8ce40a5f9ff380c1f8e8bed2e16d820eebefcd2b8721954a42c5c",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-desktop-ru.png",
+      "sha256": "ef9f08dcac1c219bc9a12dbff3bffe9ccd84b2b3c67a02896eb6f58c130315f5",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-home-en.png",
+      "sha256": "8b7f2aebba8be03305ad3ab5c39f22234ad2731b6fb0f9431f803719112c042b",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-home-ru.png",
+      "sha256": "a8385e5fdb0cb882e966a6c234e8721b1a3b3d52d4b63a36baddeb1393e1bf98",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-en-geometry.json",
+      "sha256": "6fb567e5643e02f7c8f6d1c344a49c6c04f83c224fa2e56a963cb1099cf9a51d",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-en.png",
+      "sha256": "e0435ff33f69fbfe164de8562c5e704aca33bd8c4d49f3a97b8d956432acc3c6",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-narrow-en-geometry.json",
+      "sha256": "bf118224a1c98e882817c62757872cec01ff98a22abee9ca8b17d937789a0b02",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-narrow-en.png",
+      "sha256": "20ba14dd1cdc47f75bcae30b2e1f598d908027a8718fa144c336e841171b390a",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-narrow-ru-geometry.json",
+      "sha256": "7bd29f0ff7419368271053ae40fcf1f2936aa9b9310c4550c9c9d768ef547451",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-narrow-ru.png",
+      "sha256": "dff33cbdee4590eddadefe8ec9e2d98471ebc53a7143267778b149d2de19d403",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-ru-geometry.json",
+      "sha256": "95d6768adb695d29b517848fc14204ed3aad1ed9d2c65e1aa237d3b312dfdc40",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-dark-mobile-ru.png",
+      "sha256": "7a18c829d262c1162b2d5b0f6d96dc4050d5f50f72175a6b5e5cb2f993730035",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-key-screens.png",
+      "sha256": "4357c50f41d59982955447273a923f475ea16b7159dbf3dd8dcd859d8c3de490",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-desktop-en-geometry.json",
+      "sha256": "076355da73e8ce40a5f9ff380c1f8e8bed2e16d820eebefcd2b8721954a42c5c",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-desktop-en.png",
+      "sha256": "06047bd85605c7c41ae113d15d134b9eb10baa47c744a8adb2e345ddcf779a4a",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-desktop-ru-geometry.json",
+      "sha256": "076355da73e8ce40a5f9ff380c1f8e8bed2e16d820eebefcd2b8721954a42c5c",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-desktop-ru.png",
+      "sha256": "d22b3a543e51e2507651b9716a5dadc762c2d0d6e229e94a1773d41151ce8ab5",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-home-en.png",
+      "sha256": "2f18387c68dd8ffddb9fc695c3e08ac147d7f48610134749d0cda562abceb228",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-home-ru.png",
+      "sha256": "0509fac43ce21d55437af855ea148dccee9ed31f247ceb3dda4c63dd8201468b",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-en-geometry.json",
+      "sha256": "6fb567e5643e02f7c8f6d1c344a49c6c04f83c224fa2e56a963cb1099cf9a51d",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-en.png",
+      "sha256": "480f3b844a01857be8c665f4cc327fc97c90f356d5ccfa79cd38345e2b81c7b3",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-narrow-en-geometry.json",
+      "sha256": "bf118224a1c98e882817c62757872cec01ff98a22abee9ca8b17d937789a0b02",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-narrow-en.png",
+      "sha256": "1c3893d7796daf00a0b6539491516ff0aa54210baf51547a8b3da8e08e098aff",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-narrow-ru-geometry.json",
+      "sha256": "7bd29f0ff7419368271053ae40fcf1f2936aa9b9310c4550c9c9d768ef547451",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-narrow-ru.png",
+      "sha256": "44a79c3a44d386b431472347f2e7ac0f654426a8e52b4bad44e96e472a8cc147",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-ru-geometry.json",
+      "sha256": "95d6768adb695d29b517848fc14204ed3aad1ed9d2c65e1aa237d3b312dfdc40",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-light-mobile-ru.png",
+      "sha256": "c748cacde89ca25b8118329b1676894408b9d89d5cff597a74c95b90a82c9767",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/arena-motion.webm",
+      "sha256": "9256cffb1f39ea9ee26963b1f5a88a98727d4a2abdde4ceb63241dafe45562d7",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "docs/design/before-desktop-en.png",
       "sha256": "2807fb0a3a449f448ec87bdf70aa13e192bfa037d77997731a5fae559adcefbc",
       "origin": "original-replaylab"
@@ -2451,12 +2631,47 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "bf6446e71baab545f8bb14698be1e84754a3e08a67b9593e3dd175140d95ef01",
+      "sha256": "fb16a7fcb54794aef395b097e208e4c80af78d2afba42310c8e7dec7eaf9a07e",
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/evidence/arena-authoring-focused.json",
+      "sha256": "4672d3a93907762dc8e13bf13da3b0451b4870fd7d9b898da034748070356d60",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-final-focused.json",
+      "sha256": "1941e00d3cae2f77a707f7a4853e1a85fb1926e5e79741bbdfc278d1c5cdd630",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-firefox.json",
+      "sha256": "e1472e7c6d2012dc18261f6ef9c7390db8ea8e3c630ebb9a114b81bc12e469ad",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-focused.json",
+      "sha256": "ec409c32d0c5eba675d079a5b3cec2cf2be97a39321cc7574af22d1f6fe903f3",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-layout-offline.json",
+      "sha256": "b3914b253a698dd3188e854f9f45813642e860137518ca0b7fe1555831884c2f",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-pause-undo.json",
+      "sha256": "835f90f98a3ebb2420a7cd02501399c60bca0a2d235ddd4a3e1cb1c8071ffbcc",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/arena-webkit.json",
+      "sha256": "c293251c63d8b75877ebda9b0e9c400f56ef25a47b9cedc37515131aa807caba",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/evidence/availability.json",
-      "sha256": "3683d2825b5bf3f7d6602c832d256a571a4ba42a4a3788ce5043768e61539902",
+      "sha256": "c05b9b28d2821564597d1eeba59edd44b6a8c623893a37a18640c9d6d80a1d49",
       "origin": "original-replaylab"
     },
     {
@@ -2526,7 +2741,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/emergency-crash.json",
-      "sha256": "ce8bd5e736060fa61463389ace329dd5c8360bc2140883bc140d9012cd80b2f6",
+      "sha256": "6790e51612ef75f35f8c0dacff90bb3a81ab25103e5c4fabb4c9bdf694cd3a23",
       "origin": "working-tree-copy"
     },
     {
@@ -2551,12 +2766,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/home-desktop.png",
-      "sha256": "3bfed62830ad9a3c5bbe1d63d9461afc56eccbc8e2cd96090a5ba0f9a7680fd6",
+      "sha256": "4d2aa8ba72540b682b54158abde2cbafb2f4b61df8049a99a4e1d17c5beca8d8",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/home-mobile.png",
-      "sha256": "347fece7db5392904dcac71bac663d323997eb045b0fd82bc3c8737aa4d68a42",
+      "sha256": "773841455fb5f1d33e8835c05015c022f76b266b7aee2799394419d258ff374a",
       "origin": "original-replaylab"
     },
     {
@@ -2606,32 +2821,32 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-durability.json",
-      "sha256": "291e74dd61ea80daa2014802910f597be705e98940ad574787986f3ee55eb86d",
+      "sha256": "15eb6a6d6180b2bf59ed1c09b0ce536ef14b1fea64ac8a374b89e0d7e3982738",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-server.json",
-      "sha256": "187c64cd46063384fba3c60ce331e5a298694a7e4f6cefa45322f053d3d37f8e",
+      "sha256": "f5d63baf8daff9e33884719a3b0e0235934e2eb5c50b8b1c0201e809061291de",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-smoke-docker.json",
-      "sha256": "194a3bf228f120ef8ae1caf002c893fd24e6c2e9c43955c2c3f2d80f96500792",
+      "sha256": "e47eec04b6d7fc69ae11fade94b0153fd2ed18c5d91bb9454e4e91bfd96be4ec",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-smoke-node.json",
-      "sha256": "9653e121ee13fc5c60766c132877cdc9242f17c5cea2af14e72d73e697bb5062",
+      "sha256": "1b76320a947b22353b43b2a987050535aa562469202ec58ea8f03cc8ab2a9877",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-tests.json",
-      "sha256": "cc67499eb536cbfddedd8143c6f700f65d8938d5dfd1fb02368e04b3be5dacfd",
+      "sha256": "e81fd93a355e064847c5283e3a553616cc73c6cbf63476671c21231e81efe287",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/release-verification.json",
-      "sha256": "05881d65f481168348f44e097b8f6c7c2fb01d2a0324345c3aa4840c9a13ab96",
+      "sha256": "beee5cd3aa79209f1b0b6717e873fe6962ddc3f9340c7d8b366ff1f3b8eb68da",
       "origin": "working-tree-copy"
     },
     {
@@ -2656,7 +2871,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-accessibility.json",
-      "sha256": "8cef658f708abb3d5eeee050b77c8eb4209d2467d962f4ec6e0a1d90058a7117",
+      "sha256": "b787b916b759ee32d66a9a7338aa9b6569e630d9db793574c6b18aa26f9cd4ee",
       "origin": "working-tree-copy"
     },
     {
@@ -2666,17 +2881,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1a-ui.png",
-      "sha256": "c4b5efbcb57023506e62daf393fa3c31a2cc716346dedd8deacd0ff3d28f4ba6",
+      "sha256": "71a4eed53b77500575d08962a6fcff6b7a18d78a0873a045dfd701e42b46db7e",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice1b-offline.json",
-      "sha256": "1cfcd6acba7bcd436a7035d35657b8e82da943b79d1a7a002ed83e9b794be307",
+      "sha256": "47b8a2d55eda3ba896879c140737ed312c49d8ee797235161b9e7e7fbc040044",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-accessibility.json",
-      "sha256": "ec6cf6687ee77aba1cbbb33ff79b58a003fc05f1dad6849795baaa879e17755a",
+      "sha256": "050385e91bc8b431bf71e7ea7e0f1fd8a38ba27503a2d39fa3ff25a32770080d",
       "origin": "working-tree-copy"
     },
     {
@@ -2691,7 +2906,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice2a-performance.json",
-      "sha256": "ea7679cf233e0bded3fc5794cf5b508e48de61e5c3c364023b0146e08abb7404",
+      "sha256": "36d57ab1909b5ecd7dab02afe526b33aafc03993f57106b14d2e9a90ddf5f953",
       "origin": "working-tree-copy"
     },
     {
@@ -2721,17 +2936,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-high-contrast.png",
-      "sha256": "59129e2ee78e8eca41e06a69b7bdfeb81ea60f900fda38921f0380308db3463d",
+      "sha256": "015179045caaf3943f21f594832e12e02c92d7882d742417dab93e892be28070",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice3-performance.json",
-      "sha256": "2b1a526331f2d818faa0a70f7ef6ddbe06c495237aaf3e83d64d47611279661a",
+      "sha256": "ad15b172d19d84f26d27e0a92c143abbcb1c5d482009e1ffa8ba9fb4b2017975",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-accessibility.json",
-      "sha256": "3934b27849f6568d493cba5b66009b7fd8eeb71bdd2b98657b6530122d217fc5",
+      "sha256": "e3c32e21da6a2f97d12aaf744dab2d38bbfef3e5da6ef9304c3e7dd114e7d26a",
       "origin": "working-tree-copy"
     },
     {
@@ -2746,7 +2961,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice4-high-contrast.png",
-      "sha256": "1e0f31a0bd2d826d6c435e7c042728fb20485d1fff71a9e2e0b242067b50c6ea",
+      "sha256": "5c47c483147143264333b3782f474580dc0f4d9b384df9f8137c263d0a4d6668",
       "origin": "working-tree-copy"
     },
     {
@@ -2771,7 +2986,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5a-terminal.json",
-      "sha256": "7c333a8dff92b1f0de1c7bd987b2928db2e5ca9d77ac3e1331abb073aff8d90a",
+      "sha256": "1833052db3d0d8b93d4c9ba11a37e345da163a125215b134240370a09adb6d8a",
       "origin": "working-tree-copy"
     },
     {
@@ -2791,12 +3006,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-partition.json",
-      "sha256": "c8ada0014d1dccc3e765e6e6acd086fbe3edcbba57448f71f7d225382797d2a3",
+      "sha256": "a5828d3abd594746385c341cca6b73ffd35b2e35b7611d6f5d1e8260877817f7",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice5b-performance.json",
-      "sha256": "41893116edf723cf9b663d5278ed316eef77d616332846c33684439a00a3da8e",
+      "sha256": "397831518124e630e04973b1465f6162b70b422c4250288defb4a73534051d10",
       "origin": "working-tree-copy"
     },
     {
@@ -2816,7 +3031,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice6-offline-upgrade.json",
-      "sha256": "eeee1d6271f83cd611adc9bf6a5b4fa09e1824d6f7c3ae2f369d1d30cf03fd8f",
+      "sha256": "2b5f841e7617a200835e770950119e3f12e7175ebc4df515ba0dc4e100bcfd6d",
       "origin": "working-tree-copy"
     },
     {
@@ -2826,32 +3041,32 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "7826106526714631dfaabb28e02eca8ef3700c5035812c8040610bbbf16743cf",
+      "sha256": "6af8306c84408d5a7f8c2fcd7204e317f536390a8a54070559f0fc9989cead50",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.md",
-      "sha256": "45a6e81d179706e3725c2820dd657bce3190d8f86e9bf256c1fd64209dcf121b",
+      "sha256": "5ac22757d0e90935045b177d9161548c81fe122c7f50e160e3a3a1dc6dde2a61",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-en.png",
-      "sha256": "a4a19ce66dd0e4d020830311ce1f67521e03d2c52e1e68e54bd83e533f2cd8e8",
+      "sha256": "e91463c80d68873575ce532248e84df1512476bb426e5701601aab73a18b0e05",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "7473ca8f4564e82f1ff59db930722562da4fd5b3920e98d9bedd70731d7e6abd",
+      "sha256": "46d4348a26d1a280e8de2bfc89651b480b9c512a894079bfced0f9535f121967",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-en.png",
-      "sha256": "44fffd0162d37bfe5177e05376e5544c563cb3295c9234b4d09e1badc437f90b",
+      "sha256": "5353920e1a4a79ae10abcc4cecbb4a6c7a7be1e59b7eb84c6ca0aaf4185e6704",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-ru.png",
-      "sha256": "4402ee22ea4fc0bc652280c28e6ae6675e9c76909759c2ddc72fff9415468454",
+      "sha256": "3c6bd42c94b96439f01b859aae2528bb0acade44e96dbe485da93c303f5ceff1",
       "origin": "working-tree-copy"
     },
     {
@@ -2871,17 +3086,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-ru.png",
-      "sha256": "7c6eabb0b44a09eeafb600460bb0799e949de035f6c4842c4b7b9f5bd7fa9e7e",
+      "sha256": "3dc5e00153af179ac609495f67cfd6dfd50d18c23884714c22fe7b78b08929c7",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "cfd6ddddbdd42610edf2b788fe4ca45f0ba0c411297289d5689e4dfd3f958188",
+      "sha256": "4e8bfd7eb463fc2a0fac2dae1ae64e78aa34ed6ccf3915b56d91d87d3a6bd187",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "18f4a179f5e2b2392db351a097fc53a6cead105a81911765f8eaeb854e4775d3",
+      "sha256": "dfbcce46e75cec67513e7fefd122316b524d98a9b4e3c767ee32cd157cab8808",
       "origin": "working-tree-copy"
     },
     {
@@ -2896,12 +3111,12 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/v3-guide-desktop.png",
-      "sha256": "8c0e83a3f2a2b949e382a6f0aad847696aeecbee6c4dda4a9ff4a619e68d9780",
+      "sha256": "dacf545f75e0ce6e334d2a0f67f2f4f02b39b8c3f63856d76aa51163a51a89f0",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/v3-mobile-review.png",
-      "sha256": "2c635f3469a04272d98a9505ebc5d388116e75ea4e305f5dc716bed7bee30400",
+      "sha256": "d99e4e782bb229a8f347ba57c44514f1c68ad59b32e54d9ca52ef390b417da86",
       "origin": "original-replaylab"
     },
     {
@@ -2911,7 +3126,7 @@
     },
     {
       "path": "packages/replaylab/foundation/index.html",
-      "sha256": "81afc5c3006296e472ac8198776300547562fa6eb3a929df63eca3f795724a71",
+      "sha256": "17e60cf87ba89a2b0d3575ab63605ab05b540bddbd2f1356901c5a1c0a0bbdf3",
       "origin": "working-tree-copy"
     },
     {
@@ -2930,18 +3145,32 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/public/legal/OFL-Oswald.txt",
+      "sha256": "0fd731a904b729a4e02eaf5e8ebd06783edd9abe400e8882760160230675b652",
+      "origin": "third-party-font-asset",
+      "upstreamRepository": "https://github.com/googlefonts/OswaldFont",
+      "upstreamCommit": "89795261ac9eeb9aa8cd99f43982c4e4b0e53261",
+      "upstreamPath": "OFL.txt",
+      "license": "OFL-1.1"
+    },
+    {
       "path": "packages/replaylab/foundation/public/sw.js",
-      "sha256": "931db20ed2391a37cb43be7b09fde2af8595480f672b222dfab769054b9ebf80",
+      "sha256": "dac932d495c1dc5723ddfab2e5cf41e34bc2cbf173571506fbdb46947546296d",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/scripts/audit.mjs",
-      "sha256": "3c35e8be768f5d12c1e11eaa0809646f2e9107340a93a299bc02cde15b92a708",
+      "sha256": "7c9f5cbf00dbc1c452d006751f357a4a10c9e8f7623669d7a71fee193a2ddda3",
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/scripts/capture-arena-motion.mjs",
+      "sha256": "9ab571b722777c6ac56e80f7411f64e0c7ee1e9d57d5f98cde8ebf2cbdb8174e",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/scripts/capture-design.mjs",
-      "sha256": "2c868e73f3fa59c0b832c833ccc4d951d1e4fabe9295bf8846c6c0c7d18c0247",
+      "sha256": "86fd48cb60c1547c5207c2e169f563f8ea1e05472d631f9fcbebd54807dfe56d",
       "origin": "original-replaylab"
     },
     {
@@ -2961,7 +3190,7 @@
     },
     {
       "path": "packages/replaylab/foundation/scripts/refresh-source-state.mjs",
-      "sha256": "cb9a6e10297318927142593b19ccf54faaebcf1faebe51c8d862fe9e75cd5ebc",
+      "sha256": "8bec56a78a3a0faf32e2e7a3d79ced46482927b432a5343b31ccb49362c151a5",
       "origin": "original-replaylab"
     },
     {
@@ -2981,13 +3210,27 @@
     },
     {
       "path": "packages/replaylab/foundation/src/action-dialog.tsx",
-      "sha256": "dd58e03cc53091f1a789c434fdcd195d86337e1644c396e48f66cc614f98b9ff",
+      "sha256": "a649cf49178b985f4a090fee7b971570bcb1734dfdb6859b27c187c8918e3d71",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/app.tsx",
-      "sha256": "f504e9fb015fec8ce802c1dbaea6ae78b6980578f35b96785568dea6221c1eb1",
+      "sha256": "724e16f648f1c0e7e9d361f118b0244dac269c956f4a1650a0fdffad5d716319",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/assets/Oswald.ttf",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "origin": "third-party-font-asset",
+      "upstreamRepository": "https://github.com/googlefonts/OswaldFont",
+      "upstreamCommit": "89795261ac9eeb9aa8cd99f43982c4e4b0e53261",
+      "upstreamPath": "fonts/variable/Oswald[wght].ttf",
+      "license": "OFL-1.1"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/assets/arena-floor.jpg",
+      "sha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/src/awareness.ts",
@@ -2995,8 +3238,13 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/brand.tsx",
+      "sha256": "7032a6a0f789fb81f3820cf0ba1c55e3a6faed44a9aca23c153fa62a356c98e7",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/coach.css",
-      "sha256": "22280b0b5822093337960812355f2e6e3b741f300fd2e23d29130c0158bd2400",
+      "sha256": "d76fcaffd5cdebea6ca4f973abc0064447db4e13fa5baf577e83cb03d4a130f9",
       "origin": "original-replaylab"
     },
     {
@@ -3021,7 +3269,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/court-miniature.tsx",
-      "sha256": "0537150b2e03e03623f88aa6e92b79fc382d5efdcffb6578c797c83fd054567b",
+      "sha256": "aa2e3963dfab0d21016821aca3463e8b19ba81f1e03a77622069dd6d2c739f5f",
       "origin": "original-replaylab"
     },
     {
@@ -3031,7 +3279,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/domain.ts",
-      "sha256": "ea578e14e156d2489ac43153fdb7c984e79a19c2ee639ba683a45da849981bbe",
+      "sha256": "67c9be3c0d1c70ef975f3f34356f1f6c77d134c7dc761284b0d26413c4bffd6c",
       "origin": "working-tree-copy"
     },
     {
@@ -3041,22 +3289,22 @@
     },
     {
       "path": "packages/replaylab/foundation/src/facade.ts",
-      "sha256": "973ea5759aa90d92e07fe9e5e868333e0aba7767178a0097d46bfbca718a11fb",
+      "sha256": "cb82e198ccc1a647f6d074d47707c9fc14c3d7d3f4213d1e447cae118c969d4a",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/gfx.ts",
-      "sha256": "0c865600ffe38aef8bf66b593d15832bfe6ef42f08ac57a157bbb60f87463199",
+      "sha256": "7452cb49c7b4a6c04aa8d938c7fa546170fd70355bc9fc56d7b44fd2a864930d",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/home.tsx",
-      "sha256": "58be914d0eef3232364facc2796c1df79a92f35b76b49df71f225179e3dabb5c",
+      "sha256": "0098f9973f41ffafc0afb50494952f929de54baf27c84fb7c9402c66918b7427",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/src/i18n.tsx",
-      "sha256": "017fe3ea64e89c7df7474b9361ceb64768b9d02d3fe347af72a32eb38cf903e1",
+      "sha256": "80a3db83b580e4f25c24a089f098f20f47e9faeac7d457bb113e661b765a410d",
       "origin": "working-tree-copy"
     },
     {
@@ -3071,7 +3319,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/main.tsx",
-      "sha256": "b0b5f3b995b3e890def75f0f6a3569854e61d2f3449411185f3af881a88cca79",
+      "sha256": "8d95a6084d99d4ab0ffdf677fef4f5b8e617445ee494afaadeacc6120268e7ff",
       "origin": "working-tree-copy"
     },
     {
@@ -3090,8 +3338,23 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/pick-roll.ts",
+      "sha256": "ce5079c03e515a7cea2445f445b2c857aa586f95672af69ef4d816a508369b9e",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/play-showcase.tsx",
+      "sha256": "fa6bb1bc52270133d363255236833c2febdcb121972409cbdc66138a471eea66",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/play-story.tsx",
+      "sha256": "3eced13a91df5c2f8935aa3f98debc74a3662fcb6a730a5bc8a4a403ad13de14",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/playback-controls.tsx",
-      "sha256": "90ac4b9a3328bc1150e3a3a54c1f934b21bfa33d23f031448d55ed18fbbd89be",
+      "sha256": "bc9fa724bebc5f42a13e7cf22d908a8c39e1ad132f0c94fc3c272c58e848dbf9",
       "origin": "working-tree-copy"
     },
     {
@@ -3101,12 +3364,12 @@
     },
     {
       "path": "packages/replaylab/foundation/src/playback.ts",
-      "sha256": "0eebe098043da4d4a250b466dc984e7d368d8a24282194fb31f07da3f5b9f09d",
+      "sha256": "457ce59fab8d862e6b9253244ef7541980a77e424d29b1fb3b613e4c00c20221",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/src/practice-guide.tsx",
-      "sha256": "d0fa804766fd285c16c4ca44649e201f96f7b4d3ffb4a67159cf6ec22f2eb91d",
+      "sha256": "ca886d951bb433b88c4e7490921a632a78d8905e07880674141515d79d212a41",
       "origin": "original-replaylab"
     },
     {
@@ -3156,7 +3419,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/server-entry.ts",
-      "sha256": "a0961e3de31c711ddf81e6cdeecbd1414b7f1f7a5df1f6e82ed0a47ee8a8d72f",
+      "sha256": "f1feb4ff0e91a4acaf317577cfe9f039c67686ce712a31f431f2de43b9feed5d",
       "origin": "working-tree-copy"
     },
     {
@@ -3190,6 +3453,11 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/src/trajectory.ts",
+      "sha256": "35a2616d4aad110797172e4af2dcddbaff4d170b2267472f95d6c504c51dc14d",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/src/types.d.ts",
       "sha256": "720ae997d3334af01c16a25645d3523c575e26a6bfb2de0de1b74c97e2499105",
       "origin": "working-tree-copy"
@@ -3205,18 +3473,28 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/tests/arena-authoring.pw.spec.ts",
+      "sha256": "d81b2624c52e2499f6b2f8a49becf55111a8b72ef0b09a5a54d26a7d0cfef4ed",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/tests/arena.e2e.spec.ts",
+      "sha256": "9a9aed76073ebc30389dde7c4fadea683973c4efab60e95f1063e43176eefcb4",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/tests/authoring.e2e.spec.ts",
       "sha256": "55d4663bbacb36ddfdd858adc0d9b79b00fa8efb54b43f04b9b93a569104ec0d",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/tests/availability.e2e.spec.ts",
-      "sha256": "b17ef023c81e057e0fb7308558eddb7ba8ab6efaa9c452673cf2c4e4714c9591",
+      "sha256": "78cb66d151f34cdf03e89dcb663b2473c4083e57b01e46b6426bee81c340f2a4",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/tests/coach-journey.e2e.spec.ts",
-      "sha256": "ac95109460c2d8499ef308a093a2cd1f719b0de9d6baed842b7cf7000526350e",
+      "sha256": "73210b36f3c9f3dc35a86268b34b95ddc70813b91e8958897d861323a598abbd",
       "origin": "original-replaylab"
     },
     {
@@ -3241,7 +3519,7 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/offline.e2e.spec.ts",
-      "sha256": "a7a6133bf56e7112adcd0bd96032416134be9e85fc77ac285efa3b59038808fa",
+      "sha256": "aba9029ffb66f0d03e897f7d29b8a9b6f2b98b6ff8ea03b66a5ca7838f9b753f",
       "origin": "working-tree-copy"
     },
     {
@@ -3251,12 +3529,12 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/practice.e2e.spec.ts",
-      "sha256": "32da9601632a7ca3fd5de505ebc6403c670a90b3b65ba4849b21a19ff0ff0063",
+      "sha256": "ef98a1566f3b42ec907d47f2bc3157aaf20e5911eb32748d8d1e68754efa7998",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/tests/product-flow.e2e.spec.ts",
-      "sha256": "4e20b4e8364970678c6d7500854b78014491aeb27eef3e87e41cae8d016d3968",
+      "sha256": "2d50e3a12c671974a2c0fed12b88b54beea543c7071de7cb0a11f9325e36541b",
       "origin": "original-replaylab"
     },
     {
@@ -3341,12 +3619,12 @@
     },
     {
       "path": "packages/replaylab/foundation/tests/slice6.offline.e2e.spec.ts",
-      "sha256": "b5bf7533fc59c04f1a49acadd836b17fbf6c989648164f154a78722a1664c985",
+      "sha256": "ebfbfb8cd0a7b09a0d2e9423e4fa9a93d032193700fff0efed220baa106af5ff",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/tests/slice7.e2e.spec.ts",
-      "sha256": "91d152e3da2e88fec10fadb0ff1926057bca487899b45347afd4925f197c4050",
+      "sha256": "3aac56ad4d8e51dcef07d6155e01aa9cba1792248e2dc7a22c45abef685fbaec",
       "origin": "working-tree-copy"
     },
     {
