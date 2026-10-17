@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-17T21:33:15.651Z",
+  "files": 946,
+  "changedFromVerifiedPackage": [
+    "dist/index.html"
+  ],
+  "localIndexMatches": true,
+  "verdict": "PASS"
+}

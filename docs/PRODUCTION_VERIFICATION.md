@@ -1,6 +1,6 @@
 # Verification and deployment
 
-## Current candidate: Coach workbench / 3D · 2026-10-18
+## Published: Coach workbench / 3D · 2026-10-18
 
 The coach-facing revision replaces the previous Arena workflow. Home opens a
 concrete pick-and-roll in **Watch · 3D**; **Edit play** switches to the accurate
@@ -13,10 +13,68 @@ No dependency, canonical schema, protocol, stored cue or existing record changed
 · [Product decisions and practical exercise](COACH_WORKBENCH.md).
 This is a simulated coach task, not a field study with a coach.
 
-Local release and packaged runtime checks passed. Public deployment of this
-candidate is pending; the old Arena publication below is historical evidence.
+Local release, packaged runtime and hosted CI checks passed. The new workbench
+is published on the existing service; the old Arena section below is historical.
 The owner's existing commit/push/Render authorization is retained; service,
 tariff, data and credentials are unchanged.
+
+Application source: `cd6fd3a6d00cbe6f7f639b49afade9e3578382f9`.
+[Hosted CI 39071486059](https://github.com/godaylor/replaylab/actions/runs/39071486059)
+completed **success** at 21:40:10 UTC on 2026-10-17 (18 October in Moscow).
+It includes exact source inventory, immutable install, complete release suite,
+durability, lint, technical audit, package, Node smoke, Docker build and container
+backup/restore smoke. The preceding workbench commit `6617a96` also passed
+[CI 39070455588](https://github.com/godaylor/replaylab/actions/runs/39070455588).
+
+Existing Frankfurt Free service `srv-dah9cq1t0dsc73f4ou50` reports
+**Deploy succeeded | Live**, duration **55.2 seconds**, for
+[deploy dep-db9umtfbtjjs73d4ffvg](https://dashboard.render.com/web/srv-dah9cq1t0dsc73f4ou50/deploys/dep-db9umtfbtjjs73d4ffvg).
+Logs show HTTP/local editor listening at **21:42:00 UTC**, then collaboration
+ready with **five restored rooms** at **21:42:03 UTC**, live at 21:42:05 UTC.
+Four rooms preceded this iteration; the first public exercise added one synthetic
+private room. No room reset, deletion, schema, credential or tariff change was made.
+Auto-deploy did not start after CI; the already-authorized manual deploy was used.
+[Final Render receipt](design/public-coach3d-render-final.png).
+
+Public HTML (including the icon), entry JavaScript and CSS hashes match the
+verified final local package. `/healthz` and `/readyz` both return HTTP 200,
+`collaboration: ready`, `storage: supabase-postgres`.
+`public-coach3d-receipt.json` and `coach-ci.json` record exact identities.
+
+**Final public browser checks: PASS**, installed Chrome **155.0.8059.80**, fresh
+independent contexts on this Windows host, starting 21:42:29 UTC. Both reports
+carry the verified source/deploy identity:
+
+- `public-coach3d-smoke.json`: RU/EN home → 3D playback without canonical mutation
+  → Edit → keyboard movement → draw from player 5 while player 1 is selected →
+  one-unit Undo/Redo → append → complete playback → reload → recent reopen.
+  Language/theme choice is made through real controls and survives reload.
+  Closing the tab then opening a new tab offline in the same prepared context
+  preserves the play and font. This is not a first-ever uncached offline visit
+  or a full browser-process restart.
+- Two writers exchange edits; one goes offline and edits while the other makes
+  concurrent changes; reconnect converges. The reconnected writer undoes/redoes
+  its offline edit while retaining the other writer's change. The other writer
+  then undoes its own edit while retaining the reconnected writer's change.
+  A fresh context restores hosted values; a view-capability context cannot edit
+  title, steps or actors through keyboard. This final repetition adds one more
+  synthetic private room; capabilities remain only in memory.
+- `public-coach3d-mobile.json`: RU and EN at 390 × 844 with coarse touch, actual
+  play/pause, step taps, immutable document, no authoring controls, readonly
+  title/Add step, no horizontal overflow, locale retained after reload. Both
+  viewport screenshots retain the coarse-pointer/mobile capability state.
+  **Zero captured console/page errors or failed asset responses** after the icon
+  fix. Desktop captures zero page errors and failed asset responses; its logger
+  does not claim to capture every console or deliberately offline network event.
+
+[Public homepage](design/public-coach3d-home.png) ·
+[3D review](design/public-coach3d-watch.png) ·
+[Edited play](design/public-coach3d-editor.png) ·
+[RU phone](design/public-coach3d-mobile-ru.png) ·
+[EN phone](design/public-coach3d-mobile-en.png).
+These are actual final-site screenshots, not mockups. Available IAB checks also
+show the new homepage and retained older local records. All browser contexts
+share the available host network; no VPN/Russian-route claim follows from this.
 
 | Current revision check | Actual result |
 | --- | --- |
@@ -32,6 +90,9 @@ tariff, data and credentials are unchanged.
 | Packaged Node smoke | PASS: four static/room/offline/convergence/undo/backup-restore checks, isolated port **32421** |
 | Non-root Docker smoke | PASS: same four checks, read-only filesystem and dropped capabilities, isolated port **32421** |
 | Runtime inventory and archive | **946** files hash-verified; **988** safe relative archive entries, no room data |
+| Final hosted release CI | **PASS**, run 39071486059, application commit `cd6fd3a` |
+| Final public desktop and two-session collaboration | **PASS**, RU/EN, closed-tab offline, reconnect and both users' local undo |
+| Final public phone emulation | **PASS**, RU/EN, no captured console/page errors or failed asset responses |
 
 The complete suite includes the practical RU/EN coach path, Watch/Edit state,
 unchanged canonical bytes during 3D playback, action origin and one-unit undo,
@@ -62,14 +123,23 @@ identified task-owned preview process was stopped so the pipeline could finish.
 No running application or unrelated process was stopped by test cleanup.
 
 Local working package: `http://127.0.0.1:32400/`, from
-`tmp/replaylab-coach3d-delivery-20261018`, with the previous local data directory
+`tmp/replaylab-coach3d-icon-delivery-20261018`, with the previous local data directory
 retained. HTTP `/`, `/healthz` and `/readyz` return 200; local storage backend is
 filesystem. This is independent of hosted Supabase readiness.
 
 Archive SHA-256:
-`8aa0a040d7ad2869a9bfc3a9f4cf06ab985dcb1ff37d39b777a68b122c1852bc`.
-Docker `replaylab:coach3d-20261018` image identity:
-`sha256:01ced8780a9ddbaab671e2647b338fbdf051a2c31cd3e90b97f9a8856663f5e5`.
+`3944ed7e72a1db899b83f9b73ce5a60921757aa3a08edfc4daee38fdd43a400d`.
+Docker `replaylab:coach3d-icon-20261018` image identity:
+`sha256:aa13d6a0f6e108494785716570bcb1a219920305f3b0293496976999f79975f7`.
+The final public mobile check found a missing `/favicon.ico`. The page now
+declares the original brand mark as an inline SVG icon. Only `dist/index.html`
+differs from the full-suite package; all six frontend files in the final image
+match the final package. Fresh local RU/EN mobile checks, Node and Docker smoke,
+and all 946 source/extracted archive hashes passed again. Reports:
+`coach-icon-package.json`, `coach-icon-local-mobile.json`,
+`coach-icon-artifact.json`. The initial public failure and its exact favicon
+diagnosis are retained as `public-coach3d-mobile-before-icon.json` and
+`public-coach3d-mobile-diagnostic.json`; no console assertion was suppressed.
 Existing Yarn peer/optional TypeScript-patch warnings and Vite's chunk-size
 warning remain visible; builds, audit and measured gzip budget pass.
 

@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-10-17T21:29:05.487Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "scope": "Installed Chrome touch/mobile emulation on this Windows host. Not a physical phone, a verified Russian mobile route or a controlled VPN pair.",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "checks": [
+    "ru: 390×844 coarse touch → home Watch example → actual playback/pause → step taps → immutable document; no Edit/tools; readonly title/add; no overflow; viewport screenshot retains mobile capabilities; chosen language survives reload",
+    "en: 390×844 coarse touch → home Watch example → actual playback/pause → step taps → immutable document; no Edit/tools; readonly title/add; no overflow; viewport screenshot retains mobile capabilities; chosen language survives reload"
+  ],
+  "httpFailures": [],
+  "browserErrors": [
+    {
+      "locale": "ru",
+      "kind": "console",
+      "message": "Failed to load resource: the server responded with a status of 404 ()"
+    }
+  ],
+  "verdict": "FAIL",
+  "browser": "155.0.8059.80",
+  "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     kind: 'console',\n+     locale: 'ru',\n+     message: 'Failed to load resource: the server responded with a status of 404 ()'\n+   }\n+ ]\n- []\n"
+}

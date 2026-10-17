@@ -16,7 +16,11 @@ authorization remains in force. [Decisions](docs/COACH_WORKBENCH.md) and
   mobile screenshots compared, mobile chrome reduced and all four steps visible.
 - [x] Final full release: 111/111 + 10/10; technical license/bundle audit,
   946-file runtime inventory, Node and non-root Docker smoke on isolated 32421.
-- [ ] Existing-service publication, hosted CI and public browser/collaboration proof.
+- [x] Existing-service publication: `cd6fd3a`, hosted CI `39071486059` PASS;
+  Render `dep-db9umtfbtjjs73d4ffvg` live. Exact public HTML/JS/CSS match;
+  final desktop RU/EN, phone RU/EN, offline reopen, two-session reconnect,
+  both users' local Undo/Redo and view-only checks PASS. See
+  [Russian delivery report](docs/COACH_DELIVERY_RU.md).
 - [ ] Independent coach field study, physical touch/screen reader/IME review,
   controlled VPN on/off and verified Russian network access; name/mark clearance.
 

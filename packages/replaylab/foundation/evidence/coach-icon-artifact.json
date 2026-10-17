@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-17T21:36:37.731Z",
+  "verdict": "PASS",
+  "sourceCommit": "cd6fd3a6d00cbe6f7f639b49afade9e3578382f9",
+  "artifact": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-icon-delivery-20261018",
+  "files": 946,
+  "manifestSha256": "0f30fc8b630581008e0a1519f8791b8f1d25cd2b019a7a87c9abf144f7a981f1",
+  "archive": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach3d-icon-delivery-20261018.tar.gz",
+  "archiveSha256": "3944ed7e72a1db899b83f9b73ce5a60921757aa3a08edfc4daee38fdd43a400d",
+  "archiveBytes": 1677090,
+  "entries": 988,
+  "extracted": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-coach-icon-archive-check-sGNpKK",
+  "sourceAndExtractedManifestHashesVerified": true,
+  "safeArchiveEntries": true,
+  "image": "replaylab:coach3d-icon-20261018",
+  "commands": [
+    "node tmp/verify-coach-icon-artifact.mjs",
+    "docker build --progress plain -t replaylab:coach3d-icon-20261018 -f deploy/replaylab/Dockerfile .",
+    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-coach3d-icon-delivery-20261018 REPLAYLAB_SMOKE_PORT=32421 node packages/replaylab/foundation/scripts/release-smoke.mjs",
+    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-coach3d-icon-delivery-20261018 REPLAYLAB_SMOKE_PORT=32421 REPLAYLAB_IMAGE=replaylab:coach3d-icon-20261018 node packages/replaylab/foundation/scripts/release-smoke.mjs --docker",
+    "node tmp/verify-coach-icon-artifact.mjs --finalize",
+    "docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges replaylab:coach3d-icon-20261018 node -e <read-only SHA256 comparison of all packaged frontend assets>"
+  ],
+  "nodeSmoke": {
+    "evidence": "packages/replaylab/foundation/evidence/release-smoke-node.json",
+    "evidenceSha256": "d3d0fda48a37fcd373eff730a99f3c7bf1d659b69f22d4540ac33dc9feda3ffc",
+    "generatedAt": "2026-10-17T21:37:00.318Z",
+    "mode": "packaged-node",
+    "port": 32421,
+    "verdict": "PASS",
+    "checks": [
+      "health/legal/static boundary",
+      "two independent writers; pose and cue",
+      "offline concurrent intentions; resolve; local undo",
+      "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
+    ],
+    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-PDU0DK"
+  },
+  "dockerSmoke": {
+    "evidence": "packages/replaylab/foundation/evidence/release-smoke-docker.json",
+    "evidenceSha256": "4ce182c63e32d04d1bcf92d8de1c3532908b537dda74b4704bd2935132be8044",
+    "generatedAt": "2026-10-17T21:37:40.253Z",
+    "mode": "docker",
+    "port": 32421,
+    "verdict": "PASS",
+    "checks": [
+      "health/legal/static boundary",
+      "two independent writers; pose and cue",
+      "offline concurrent intentions; resolve; local undo",
+      "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
+    ],
+    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-xe1qgr",
+    "imageId": "sha256:aa13d6a0f6e108494785716570bcb1a219920305f3b0293496976999f79975f7",
+    "runtimeUser": "node"
+  },
+  "imageId": "sha256:aa13d6a0f6e108494785716570bcb1a219920305f3b0293496976999f79975f7",
+  "runtimeUser": "node",
+  "imageFrontendFilesMatchingPackage": 6,
+  "imageIndexSha256": "90110312e00e6e8c790e8f086efe30288724375118b4fbb60357ca97a1486b29",
+  "completedAt": "2026-10-17T21:38:21.614Z"
+}

@@ -6,6 +6,13 @@ the after captures. Every application screenshot below is actual browser output.
 Publication and release checks are recorded separately in
 [Production verification](../PRODUCTION_VERIFICATION.md).
 
+The final version is also published and independently recaptured on 18 October:
+[homepage](public-coach3d-home.png), [3D review](public-coach3d-watch.png),
+[edited play](public-coach3d-editor.png), [RU phone](public-coach3d-mobile-ru.png),
+[EN phone](public-coach3d-mobile-en.png). Public RU/EN desktop, phone emulation,
+closed-tab offline, two-writer reconnect and both users' local undo checks pass.
+Exact application commit `cd6fd3a`, CI and Render receipts are in the linked report.
+
 [Actual 32-second motion recording](coach3d-motion.webm) shows the verified
 package on `127.0.0.1:32400`: live homepage → Watch → playback/pause → Edit →
 Watch. It is captured in installed Chrome 155 at 1440 × 900, not generated video.

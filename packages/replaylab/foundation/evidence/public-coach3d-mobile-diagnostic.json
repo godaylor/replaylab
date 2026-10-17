@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-17T21:30:21.800Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "scope": "Fresh isolated installed Chrome mobile emulation; local example only, no room creation",
+  "responses": [],
+  "console": [
+    {
+      "locale": "ru",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://replaylab-godaylor.onrender.com/favicon.ico",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "requestFailed": [],
+  "pageErrors": [],
+  "cdpFailures": [
+    {
+      "locale": "ru",
+      "url": "https://replaylab-godaylor.onrender.com/favicon.ico",
+      "status": 404,
+      "type": "Other"
+    }
+  ],
+  "steps": [
+    {
+      "locale": "ru",
+      "step": "home",
+      "icons": []
+    },
+    {
+      "locale": "ru",
+      "step": "play/pause/step taps/reload complete"
+    },
+    {
+      "locale": "en",
+      "step": "home",
+      "icons": []
+    },
+    {
+      "locale": "en",
+      "step": "play/pause/step taps/reload complete"
+    }
+  ],
+  "browser": "155.0.8059.80"
+}

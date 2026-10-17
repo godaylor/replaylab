@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-10-17T21:42:29.752Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "scope": "Installed Chrome touch/mobile emulation on this Windows host. Not a physical phone, a verified Russian mobile route or a controlled VPN pair.",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "checks": [
+    "ru: 390×844 coarse touch → home Watch example → actual playback/pause → step taps → immutable document; no Edit/tools; readonly title/add; no overflow; viewport screenshot retains mobile capabilities; chosen language survives reload",
+    "en: 390×844 coarse touch → home Watch example → actual playback/pause → step taps → immutable document; no Edit/tools; readonly title/add; no overflow; viewport screenshot retains mobile capabilities; chosen language survives reload"
+  ],
+  "httpFailures": [],
+  "browserErrors": [],
+  "verdict": "PASS",
+  "sourceCommit": "cd6fd3a6d00cbe6f7f639b49afade9e3578382f9",
+  "renderDeploy": "dep-db9umtfbtjjs73d4ffvg",
+  "receiptVerifiedAt": "2026-10-17T21:42:20.804Z",
+  "browser": "155.0.8059.80"
+}

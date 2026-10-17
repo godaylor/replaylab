@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T21:17:51.338Z",
+  "generatedAt": "2026-10-17T21:37:00.318Z",
   "mode": "packaged-node",
   "port": 32421,
   "verdict": "PASS",
@@ -9,5 +9,5 @@
     "offline concurrent intentions; resolve; local undo",
     "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
   ],
-  "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-cwM0mW"
+  "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-PDU0DK"
 }

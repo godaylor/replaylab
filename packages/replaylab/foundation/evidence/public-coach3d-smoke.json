@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-17T21:42:29.752Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "networkScope": "This Windows host; fresh installed Chrome contexts. No verified Russian residential/mobile route or controlled VPN pair.",
+  "verdict": "PASS",
+  "collaboration": "PASS",
+  "checks": [
+    "ru: 3D watch advances without document mutation → edit → keyboard move → draw directly from 5 while 1 selected → one undo/redo → append → complete playback → reload → recent reopen; real language/theme choice retained; closed-tab offline launch and local data/font",
+    "en: 3D watch advances without document mutation → edit → keyboard move → draw directly from 5 while 1 selected → one undo/redo → append → complete playback → reload → recent reopen; real language/theme choice retained; closed-tab offline launch and local data/font",
+    "One synthetic private room: two independent writers, bidirectional edits, offline local + concurrent remote edits, reconnect convergence; the reconnected writer undoes/redoes its offline edit while preserving the other writer’s concurrent edit, then the online writer undoes its own edit while preserving the reconnected writer’s edit",
+    "Fresh context restores hosted edits; separate view capability stays read-only; no existing room changed, no reset/deletion/schema/tariff changes; capabilities kept only in memory"
+  ],
+  "httpFailures": [],
+  "errors": [],
+  "sourceCommit": "cd6fd3a6d00cbe6f7f639b49afade9e3578382f9",
+  "renderDeploy": "dep-db9umtfbtjjs73d4ffvg",
+  "receiptVerifiedAt": "2026-10-17T21:42:20.804Z",
+  "browser": "155.0.8059.80",
+  "/healthz": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "product": "ReplayLab",
+      "collaboration": "ready",
+      "storage": "supabase-postgres"
+    }
+  },
+  "/readyz": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "product": "ReplayLab",
+      "collaboration": "ready",
+      "storage": "supabase-postgres"
+    }
+  }
+}

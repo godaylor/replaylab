@@ -10,6 +10,7 @@ working product name; independent name/mark clearance remains open.
 The coach workbench adds a shared procedural 3D court to the homepage and play
 review. Exact publication state, completed checks and remaining availability
 limits are recorded in [current verification](docs/PRODUCTION_VERIFICATION.md).
+[Результат по-русски: экраны, сценарий, проверки и ограничения](docs/COACH_DELIVERY_RU.md).
 
 Баскетбольный замысел в движении: разберите готовый пик-н-ролл, измените расстановку, нарисуйте действие и покажите команде. Два тренера могут редактировать одну комбинацию, продолжать работу офлайн и после подключения явно разрешать конфликты.
 
