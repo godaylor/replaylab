@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T23:47:24.898Z",
+  "generatedAt": "2026-10-18T00:12:32.449Z",
   "origin": "https://replaylab-godaylor.onrender.com",
   "scope": "Installed Chrome touch/mobile emulation on this Windows host. Not a physical phone, a verified Russian mobile route or a controlled VPN pair.",
   "viewport": {
@@ -13,8 +13,8 @@
   "httpFailures": [],
   "browserErrors": [],
   "verdict": "PASS",
-  "sourceCommit": "ccdf20978138c941b84f83f609601a004e786d64",
-  "renderDeploy": "dep-dba0gimq1p3s739rtpag",
-  "receiptVerifiedAt": "2026-10-17T23:45:32.090Z",
+  "sourceCommit": "7fbb35b2ceb2cad59884e67a96b9f7338797b1c4",
+  "renderDeploy": "dep-dba0ta7btjjs73dc1kc0",
+  "receiptVerifiedAt": "2026-10-18T00:12:19.543Z",
   "browser": "155.0.8059.80"
 }

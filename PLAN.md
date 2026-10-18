@@ -12,8 +12,13 @@ See [interaction decision](docs/DIRECT_3D_WORKBENCH.md).
 - [x] RU/EN practical exercise, high contrast, resize, offline and regression gates:
   Chromium 126/126, durability 10/10, direct-3D WebKit 12/12; lint and technical
   boundary audit PASS, 246,441 gzip JS bytes, zero forbidden modules. Includes
-  the public cut/dribble-over-body regression; final correction publication pending.
-- [ ] Publish existing service and demonstrate move → action → step → play → reopen.
+  the public cut/dribble-over-body regression.
+- [x] Publish existing service and demonstrate move → action → step → play → reopen:
+  source `7fbb35b`, CI `39081324660` PASS, Render `dep-dba0ta7btjjs73dc1kc0` live;
+  final public RU/EN desktop/mobile, closed-tab offline reopening, two writers,
+  reconnect/local undo and view-role checks PASS. Final actual UI video: 37.72s.
+  Fidelity, physical-device/manual review and Russia/VPN limits remain explicit
+  in `docs/PRODUCTION_VERIFICATION.md`; no claim of complete manual release review.
 
 ## Current coach workbench checkpoint — 2026-10-18
 

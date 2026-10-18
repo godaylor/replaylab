@@ -1,15 +1,16 @@
 # Verification and deployment
 
-## Direct 3D authoring — local verification passed, publication pending, 2026-10-18
+## Published: direct 3D authoring · 2026-10-18
 
 First public iteration `ccdf209` passed CI `39079695617` and deployed as
 `dep-dba0gimq1p3s739rtpag` (56.9 seconds; six existing rooms restored). The public
 player-4 exercise, 37.72-second video and mobile RU/EN checks passed. Extended
 desktop QA then found a real cut/dribble target-type rejection when release hit
-a defender. That case is fixed and passes the new regression in Chromium/WebKit;
-the complete final public desktop and collaboration check is **not yet PASS**.
-The counts below describe the corrected final local build. No existing room or
-document was reset.
+a defender. That case is fixed and passes the new regression in Chromium/WebKit.
+The corrected application is now published as
+`7fbb35b2ceb2cad59884e67a96b9f7338797b1c4` after
+[CI 39081324660 passed](https://github.com/godaylor/replaylab/actions/runs/39081324660).
+The counts below describe this corrected build. No existing room or document was reset.
 
 The current source removes the forced overhead editing view. It adds body drag,
 projected action drawing, independent view/mode choice, a larger court and a
@@ -35,10 +36,54 @@ All 126 test bodies and then all ten durability repetitions passed before their
 own Vite preview processes were stopped by exact PID/command identity to finish
 Windows teardown. Both runners then exited zero; no test was skipped or weakened.
 
-Publication and public checks for this revision are pending; the deployed receipt
-below belongs to the preceding workbench and remains historical.
+Existing Free service reports **Deploy succeeded | Live**, **57.5 seconds**, for
+[dep-dba0ta7btjjs73dc1kc0](https://dashboard.render.com/web/srv-dah9cq1t0dsc73f4ou50/deploys/dep-dba0ta7btjjs73dc1kc0).
+Logs show HTTP/local editor ready at **00:12:13 UTC**, collaboration ready with
+**six restored rooms** at **00:12:16 UTC**, live at **00:12:18 UTC**.
+Public HTML, entry JavaScript and CSS match the final verified local package;
+health/readiness return 200 with Supabase collaboration ready. See
+`evidence/public-direct3d-receipt.json` under the foundation package.
 
-## Published: Coach workbench / 3D · 2026-10-18
+The existing IAB play created on the first iteration survived this update: title,
+five steps, player 1 at UI-rounded x204/y256, cut by player 4 and screen by player 5.
+Full playback and home/recent reopening were repeated on the final assets.
+Final mobile RU/EN at 390×844 passes playback/pause, step selection, immutable
+document, read-only authoring controls, language persistence and no overflow/errors.
+**Final public desktop/collaboration checks: PASS**, installed Chrome
+155.0.8059.80, independent fresh contexts on this Windows host:
+
+- RU and EN: watch → edit on the same 3D court → torso drag of player 1 → draw
+  player 5's cut over a defender → one Undo/Redo → append → full playback →
+  reload → recent reopening. The complete action/path and next-step player 5
+  pose are compared exactly after redo, reload, recent and offline reopening.
+- Close the tab, disconnect and open a new tab: cached editor, play and font
+  load; language/theme persist. This is a prepared offline context, not a
+  first-ever uncached visit or a public full-browser-process restart.
+- Two independent writers: online edits → offline local and concurrent remote
+  edits → reconnect → convergence → each writer's local undo retains the other
+  writer's work. A fresh writer restores hosted values; a separate view link
+  cannot edit. One synthetic private room was added; existing rooms were preserved.
+- Zero captured console/page errors or failed asset responses. Exact-source
+  reports: `public-direct3d-smoke.json`, `public-direct3d-mobile.json`,
+  `public-direct3d-receipt.json` and `direct3d-ci.json` in foundation evidence.
+
+The final 37.72-second, 1440×900 recording performs the entire UI exercise on
+this published source and checks the exact saved document after reopening and
+reload. [Video](design/direct3d-coach-demo.webm) and adjacent JSON record its
+timestamps, source identity, final state and zero browser errors.
+
+Limits: the scene is stylized and does not equal the generated reference's
+photorealistic models/light. A 1265×712 window needs vertical scrolling; the
+1440×900 capture shows the court and five steps together. Mobile is emulated;
+real devices, manual screen reader/IME and a coach field study remain open.
+Firefox's environment failure precedes application execution and is not PASS.
+There is no controlled VPN/non-VPN pair or verified Russian access route.
+Render Free cold-start latency (50 seconds or more) remains unchanged.
+
+[Actual screens, recording and comparison](design/DIRECT_3D_REVIEW.md).
+The following workbench and Arena receipts are historical.
+
+## Historical: Coach workbench / 3D · 2026-10-18
 
 The coach-facing revision replaces the previous Arena workflow. Home opens a
 concrete pick-and-roll in **Watch · 3D**; **Edit play** switches to the accurate

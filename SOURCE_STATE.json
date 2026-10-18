@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "27b28430febc9d5c6f4e35306deb9756af654a3e8bfb7bf200468d76df82264d",
+  "snapshotSha256": "76812467fc1a439140c9ac3a92a4a80acf1d55f8f815de1d4d0945fa7e9a1515",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -60,7 +60,7 @@
     },
     {
       "path": "FINAL_AUDIT.md",
-      "sha256": "0b503db1e0e83872a4425c09f8a7eec8e6cb330189fc90bbe2fde084df1bb0ac",
+      "sha256": "e63b2fc14f851591a81eaf139820533681725d21f24ae19a7eeb27e9e4216f59",
       "origin": "working-tree-copy"
     },
     {
@@ -75,17 +75,17 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "419d6013ca586c6fbfbf50e215bb80996bff8e53e91d94446ff7345dbbf94229",
+      "sha256": "b76c630b55827345c7d9e4512817dec2c2788804bbe84ad8c428fbd5cfc7e80f",
       "origin": "working-tree-copy"
     },
     {
       "path": "PORTFOLIO_HANDOFF.md",
-      "sha256": "11609e83fd856186b13ce022ced619954f037e69d8c586d1ab0a75cbd41673db",
+      "sha256": "b49c2044e7caf96bfd6d6a22fc495aaa17c775f9827d04c5969b4081d1c1c6ff",
       "origin": "original-replaylab"
     },
     {
       "path": "README.md",
-      "sha256": "acf0880b0d9b6f427b63ffe4c8883283e1a0fc9f5abc6d8739390bb20c423788",
+      "sha256": "3d7717d45320b08676b705978b18d9ee8ca02c968a5a39c99d0de2af4d62abe0",
       "origin": "working-tree-copy"
     },
     {
@@ -2271,7 +2271,7 @@
     },
     {
       "path": "docs/COACH_DELIVERY_RU.md",
-      "sha256": "30a31fb52a6070cdc7253b5fb6ecefb456d69a0744a408574f5b254be9749598",
+      "sha256": "9f93e77caeed4d39613b8015d195b02346fdf232d823a91d1898821e2814c2bb",
       "origin": "original-replaylab"
     },
     {
@@ -2296,7 +2296,7 @@
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "307bb424c39627d2cf8338d49e4096b5a85c42cb87f93edc1c5e9f5d22c8c7e9",
+      "sha256": "2c1874cddc4e7f48468380af223ab269a1d977941a8c1a756688a9d6fc060c47",
       "origin": "original-replaylab"
     },
     {
@@ -2356,7 +2356,7 @@
     },
     {
       "path": "docs/design/DIRECT_3D_REVIEW.md",
-      "sha256": "a7fc8567e95ecca3aad8d324c33be7654a020b499579e7b6d13ed749459fe556",
+      "sha256": "018c2de3bcb24c0edbdd2f4d3e89e53ed4163645bee6e5c8b0206fae6850c2b1",
       "origin": "original-replaylab"
     },
     {
@@ -2746,12 +2746,12 @@
     },
     {
       "path": "docs/design/direct3d-coach-demo.json",
-      "sha256": "8a8e31ba8fb88ddaa98d3764533cf625babe8c5d4fda316b7a85cab9c37e8fed",
+      "sha256": "4a9f0b07b5d2bb5d6a25addb1b11033f07dc7358950c763e3fedbed0e3187b78",
       "origin": "original-replaylab"
     },
     {
       "path": "docs/design/direct3d-coach-demo.webm",
-      "sha256": "b49b14337cf017ed961daac12f1197c3d8cc66f4fc4e90e65c7be531811df2d8",
+      "sha256": "b9a4f053a33a0d693bbd3d446b3b5f954d19e2b117fec7807fd72d7f946aac86",
       "origin": "original-replaylab"
     },
     {
@@ -2761,7 +2761,7 @@
     },
     {
       "path": "docs/design/direct3d-final-home.png",
-      "sha256": "12c91550bf5359ce53ff061320e1f1a4e84b301baa5e1d45b2a7d1fcb30830d2",
+      "sha256": "3510de2f363ffd9fc286e37c688e29abc6bd548d8d3d46ac3a56cf2ce2b6cbb7",
       "origin": "original-replaylab"
     },
     {
@@ -2836,7 +2836,7 @@
     },
     {
       "path": "docs/design/public-direct3d-iab-after.png",
-      "sha256": "8996ae8f303563fc995447b96526f0886a263b7f5eaf495e51be0cb506104734",
+      "sha256": "232225c14d89093637a464e84dd07135fb90747df53232148c949085f07b6719",
       "origin": "original-replaylab"
     },
     {
@@ -2851,7 +2851,7 @@
     },
     {
       "path": "docs/design/public-direct3d-render.png",
-      "sha256": "44cde64b39162a9a90ec22d8f01922c91e9d9cbf709c1750fb084d22de51ad2a",
+      "sha256": "6ce86a6f4a66ca15f5e342b787e3745fe76bf905d32bd474161980135308b957",
       "origin": "original-replaylab"
     },
     {
@@ -3046,7 +3046,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/direct3d-ci.json",
-      "sha256": "d955c7520d0d03bc0cf7c1e87356fd470efa43e25c40fbdd2d86f2c1dc6b56a9",
+      "sha256": "d337213d9de5af92a9e2190a5ea4f761e2910c046e072ae5704e5b39844f5670",
       "origin": "original-replaylab"
     },
     {
@@ -3171,12 +3171,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/public-direct3d-mobile.json",
-      "sha256": "0e76455f8b16fa5e8c3fd9b8688744ad4009794be923f80de6084a903eaf5ccb",
+      "sha256": "1b403309a6f623242ccd23e56ef3715fae23823f6e2436cbac54414d3db9d305",
       "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/evidence/public-direct3d-receipt.json",
-      "sha256": "9f328eb3c3f146bca001239aa18f3cc89e8ff3867b7d69443b05dfd38d00ce9a",
+      "sha256": "afea3edefd49297a1b9c49e83a03fab50b514a279f04b359f7b7f7487204b14f",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/public-direct3d-smoke.json",
+      "sha256": "ec9de7f3e908650e14440430386fc30ee7efd3d700a471d495d102fdd972983a",
       "origin": "original-replaylab"
     },
     {

@@ -18,9 +18,9 @@ Local-first multiplayer editor for animated basketball plays. RU is the default;
 
 Desktop supports full authoring, including compact windows with a mouse or trackpad. Touch tablets support playback, player movement and cue editing. Phones support playback and semantic review. IndexedDB is authoritative; the server stores a recoverable network copy.
 
-![Fifth Tempo — actual 3D play review](docs/design/coach-3d-watch-ru.png)
+![Fifth Tempo — direct player and action editing in 3D](docs/design/direct3d-final-editor.png)
 
-[3D reference, real screens, mobile and before/after](docs/design/COACH_WORKBENCH_REVIEW.md) · [Prior three concepts](docs/design/ARENA_REVIEW.md) · [Availability and verification](docs/PRODUCTION_VERIFICATION.md)
+[3D reference, real screens, mobile and before/after](docs/design/DIRECT_3D_REVIEW.md) · [Recorded coaching exercise](docs/design/direct3d-coach-demo.webm) · [Prior three concepts](docs/design/ARENA_REVIEW.md) · [Availability and verification](docs/PRODUCTION_VERIFICATION.md)
 
 ## Make a play
 
