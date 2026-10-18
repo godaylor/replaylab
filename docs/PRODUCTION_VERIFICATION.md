@@ -2,15 +2,24 @@
 
 ## Direct 3D authoring — local verification passed, publication pending, 2026-10-18
 
+First public iteration `ccdf209` passed CI `39079695617` and deployed as
+`dep-dba0gimq1p3s739rtpag` (56.9 seconds; six existing rooms restored). The public
+player-4 exercise, 37.72-second video and mobile RU/EN checks passed. Extended
+desktop QA then found a real cut/dribble target-type rejection when release hit
+a defender. That case is fixed and passes the new regression in Chromium/WebKit;
+the complete final public desktop and collaboration check is **not yet PASS**.
+The counts below describe the corrected final local build. No existing room or
+document was reset.
+
 The current source removes the forced overhead editing view. It adds body drag,
 projected action drawing, independent view/mode choice, a larger court and a
 playback/step rail. [Decision and scope](DIRECT_3D_WORKBENCH.md).
-Local release gates passed: **125/125 Chromium**, **10/10 durability**, typecheck,
-builds, audit and 946-file packaging. Lint also passes. Direct-3D **WebKit 11/11**
+Local release gates passed: **126/126 Chromium**, **10/10 durability**, typecheck,
+builds, audit and 946-file packaging. Lint also passes. Direct-3D **WebKit 12/12**
 passes against the same production build, with no skips or flaky retries.
 The maximum 3D fixture runs at 60.01 FPS, p95 frame 16.7 ms, p95 input-to-paint
-3.3 ms, local open 51.1 ms, zero long tasks and zero playback React renders on
-this Windows host. Gzip JavaScript is **246,424 bytes**; 78 dependency instances,
+3.2 ms, local open 29.6 ms, zero long tasks and zero playback React renders on
+this Windows host. Gzip JavaScript is **246,441 bytes**; 78 dependency instances,
 31 emitted packages and zero forbidden modules. Technical status is green;
 the independent mark, screen-reader and human video reviews remain open.
 
@@ -19,10 +28,10 @@ including two writers, offline reconciliation, backup/restore and read-only
 offline reopening. Tests use isolated port 32421 and synthetic data. All six
 frontend files match between the 946-file package and the image. The tar archive
 round-trip preserves exact inventory and hashes; SHA256:
-`0ffbe80950a06613051bffa33aecdcb62cb61bb3c2a481e133588fa90571cdc6`.
+`a8e44ecd339da3fd3c8bfc0ec016697194d00542442acfd5c2799d5ebadd8920`.
 Receipt: `packages/replaylab/foundation/evidence/direct3d-artifact.json`.
 
-All 125 test bodies and then all ten durability repetitions passed before their
+All 126 test bodies and then all ten durability repetitions passed before their
 own Vite preview processes were stopped by exact PID/command identity to finish
 Windows teardown. Both runners then exited zero; no test was skipped or weakened.
 

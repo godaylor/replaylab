@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T23:34:20.556Z",
+  "generatedAt": "2026-10-18T00:00:40.850Z",
   "verdict": "PASS",
   "scope": "@replaylab/foundation slice7 production runtime",
   "directDependencies": [
@@ -1618,18 +1618,18 @@
   "bundle": {
     "chunks": [
       {
-        "file": "assets/core-CSerprf1.js",
+        "file": "assets/core-CvsNqMSS.js",
         "rawBytes": 62539,
-        "gzipBytes": 18683
+        "gzipBytes": 18685
       },
       {
-        "file": "assets/index-BhkgPQEb.js",
-        "rawBytes": 740494,
-        "gzipBytes": 227741
+        "file": "assets/index-z8z9-G5i.js",
+        "rawBytes": 740536,
+        "gzipBytes": 227756
       }
     ],
-    "rawBytes": 803033,
-    "gzipBytes": 246424,
+    "rawBytes": 803075,
+    "gzipBytes": 246441,
     "budgetGzipBytes": 1500000,
     "emittedPackages": [
       "@blocksuite/global",
@@ -1769,8 +1769,8 @@
     "finalRetainVersusUnpatchedReviewRequiredBeforeRelease": false
   },
   "sourceNotices": {
-    "generatedAt": "2026-10-17T23:34:20.552Z",
-    "repositoryCommit": "6583f86a9ecc2f985a63695755effe11fa1d7ddb",
+    "generatedAt": "2026-10-18T00:00:40.846Z",
+    "repositoryCommit": "ccdf20978138c941b84f83f609601a004e786d64",
     "items": [
       {
         "source": "blocksuite/framework/store/src/adapter/base.ts",

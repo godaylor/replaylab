@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 9454,
+                  "duration": 10703,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:26:22.939Z",
+                  "startTime": "2026-10-17T23:52:18.372Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 9706,
+                  "duration": 10124,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:26:32.443Z",
+                  "startTime": "2026-10-17T23:52:29.175Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -154,12 +154,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4541,
+                  "duration": 4594,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:26:42.155Z",
+                  "startTime": "2026-10-17T23:52:39.307Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -170,6 +170,40 @@
           "id": "95790b92f7439190fde9-ffea3b8940d56a4056e7",
           "file": "direct-3d.e2e.spec.ts",
           "line": 142,
+          "column": 1
+        },
+        {
+          "title": "3D cut and dribble can finish over another visible body without acquiring a target or snapping to it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4832,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-17T23:52:43.910Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "95790b92f7439190fde9-4e2b6e8c8412c1157183",
+          "file": "direct-3d.e2e.spec.ts",
+          "line": 168,
           "column": 1
         },
         {
@@ -188,12 +222,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 12458,
+                  "duration": 12716,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:26:46.704Z",
+                  "startTime": "2026-10-17T23:52:48.748Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -203,7 +237,7 @@
           ],
           "id": "95790b92f7439190fde9-99535a610d6c611ab3d7",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 168,
+          "line": 208,
           "column": 1
         },
         {
@@ -222,12 +256,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4271,
+                  "duration": 4325,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:26:59.171Z",
+                  "startTime": "2026-10-17T23:53:01.472Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -237,7 +271,7 @@
           ],
           "id": "95790b92f7439190fde9-a3e59577405d7abb2d5f",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 205,
+          "line": 245,
           "column": 1
         },
         {
@@ -256,12 +290,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6159,
+                  "duration": 6151,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:03.451Z",
+                  "startTime": "2026-10-17T23:53:05.805Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -271,7 +305,7 @@
           ],
           "id": "95790b92f7439190fde9-4c1ba532dd8795679f45",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 225,
+          "line": 265,
           "column": 1
         },
         {
@@ -290,12 +324,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4355,
+                  "duration": 4294,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:09.619Z",
+                  "startTime": "2026-10-17T23:53:11.965Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -305,7 +339,7 @@
           ],
           "id": "95790b92f7439190fde9-e97b4332d1b055750181",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 249,
+          "line": 289,
           "column": 1
         },
         {
@@ -324,12 +358,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5002,
+                  "duration": 4927,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:13.980Z",
+                  "startTime": "2026-10-17T23:53:16.266Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -339,7 +373,7 @@
           ],
           "id": "95790b92f7439190fde9-cd49c66765ed05601241",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 285,
+          "line": 325,
           "column": 1
         },
         {
@@ -358,12 +392,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3896,
+                  "duration": 3972,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:18.991Z",
+                  "startTime": "2026-10-17T23:53:21.203Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -373,7 +407,7 @@
           ],
           "id": "95790b92f7439190fde9-bbcc0bbc168b8c62e500",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 309,
+          "line": 349,
           "column": 1
         },
         {
@@ -392,12 +426,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3871,
+                  "duration": 3875,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:22.895Z",
+                  "startTime": "2026-10-17T23:53:25.185Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -407,7 +441,7 @@
           ],
           "id": "95790b92f7439190fde9-f573bbbe26b6f21bad83",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 328,
+          "line": 368,
           "column": 1
         },
         {
@@ -426,12 +460,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 8098,
+                  "duration": 8318,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-17T23:27:26.773Z",
+                  "startTime": "2026-10-17T23:53:29.070Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -441,7 +475,7 @@
           ],
           "id": "95790b92f7439190fde9-ece9d8e442d3d9abb93a",
           "file": "direct-3d.e2e.spec.ts",
-          "line": 347,
+          "line": 387,
           "column": 1
         }
       ]
@@ -449,9 +483,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-17T23:26:21.587Z",
-    "duration": 85743.55900000001,
-    "expected": 11,
+    "startTime": "2026-10-17T23:52:15.843Z",
+    "duration": 107514.11300000001,
+    "expected": 12,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

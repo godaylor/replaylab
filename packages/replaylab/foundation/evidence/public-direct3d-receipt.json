@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-10-17T23:45:32.090Z",
+  "sourceCommit": "ccdf20978138c941b84f83f609601a004e786d64",
+  "ci": {
+    "checkedAt": "2026-10-17T23:44:26.379Z",
+    "sha": "ccdf20978138c941b84f83f609601a004e786d64",
+    "id": 39079695617,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/godaylor/replaylab/actions/runs/39079695617",
+    "updatedAt": "2026-10-17T23:43:36Z"
+  },
+  "renderDeploy": "dep-dba0gimq1p3s739rtpag",
+  "assets": [
+    {
+      "path": "/assets/index-BhkgPQEb.js",
+      "sha256": "b617f72438a197b35dddcd83da30a686cc1d5321b4a4e2e509f2efea24ba4756",
+      "sameAsVerifiedLocalPackage": true
+    },
+    {
+      "path": "/assets/index-DdiNb2Kw.css",
+      "sha256": "70472ecb80ce0c244fc6ac34330d94f4645b8e1ee12008349f2616710c02584b",
+      "sameAsVerifiedLocalPackage": true
+    }
+  ],
+  "verdict": "PASS",
+  "index": {
+    "sha256": "cf16172db5973398e6ee0593d03df585c3fcd6a60131f6dbcd43915fe849ff0f",
+    "sameAsVerifiedLocalPackage": true,
+    "brandIcon": true
+  },
+  "/healthz": {
+    "status": "ok",
+    "product": "ReplayLab",
+    "collaboration": "ready",
+    "storage": "supabase-postgres"
+  },
+  "/readyz": {
+    "status": "ok",
+    "product": "ReplayLab",
+    "collaboration": "ready",
+    "storage": "supabase-postgres"
+  }
+}

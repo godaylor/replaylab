@@ -10,8 +10,9 @@ See [interaction decision](docs/DIRECT_3D_WORKBENCH.md).
 - [x] Shared 3D drag/draw, independent optional plan view, cancellation and undo.
 - [x] Larger court and compact step sequence; compare actual/reference screens.
 - [x] RU/EN practical exercise, high contrast, resize, offline and regression gates:
-  Chromium 125/125, durability 10/10, direct-3D WebKit 11/11; lint and technical
-  boundary audit PASS, 246,424 gzip JS bytes, zero forbidden modules.
+  Chromium 126/126, durability 10/10, direct-3D WebKit 12/12; lint and technical
+  boundary audit PASS, 246,441 gzip JS bytes, zero forbidden modules. Includes
+  the public cut/dribble-over-body regression; final correction publication pending.
 - [ ] Publish existing service and demonstrate move → action → step → play → reopen.
 
 ## Current coach workbench checkpoint — 2026-10-18

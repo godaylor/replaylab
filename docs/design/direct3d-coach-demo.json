@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-17T23:45:43.587Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "locale": "ru",
+  "theme": "dark",
+  "scope": "Actual published UI in a fresh installed Chrome context. One new synthetic local example; no existing document, collaboration room, capability, or server mutation. This recording is not a coach field study or a Russia/VPN availability test.",
+  "sequence": [
+    {
+      "seconds": 1.85,
+      "action": "Главная: живая 3D-комбинация"
+    },
+    {
+      "seconds": 4.72,
+      "action": "Открыть готовую комбинацию: четыре шага, 3D"
+    },
+    {
+      "seconds": 6.46,
+      "action": "Редактировать: та же объёмная площадка"
+    },
+    {
+      "seconds": 7.64,
+      "action": "Название: Тренировка · рывок №4"
+    },
+    {
+      "seconds": 10.86,
+      "action": "Переместить игрока №1 за фигуру в 3D"
+    },
+    {
+      "seconds": 15.23,
+      "action": "Нарисовать рывок от игрока №4 к следующему шагу"
+    },
+    {
+      "seconds": 16.91,
+      "action": "Добавить пятый шаг"
+    },
+    {
+      "seconds": 18.28,
+      "action": "Воспроизвести комбинацию целиком с начала"
+    },
+    {
+      "seconds": 28.77,
+      "action": "Воспроизведение завершено: все пять шагов"
+    },
+    {
+      "seconds": 30.14,
+      "action": "Главная: комбинация появилась в недавних"
+    },
+    {
+      "seconds": 32.19,
+      "action": "Открыть свою комбинацию снова"
+    },
+    {
+      "seconds": 34.41,
+      "action": "Перезагрузить: название, пять шагов и движение сохранены"
+    },
+    {
+      "seconds": 38.01,
+      "action": "Запись завершена"
+    }
+  ],
+  "checks": [
+    "Public HTML and emitted assets still match the PASS deployment receipt immediately before recording",
+    "Torso drag moves offense-1 to x230/y255 without a coordinate jump; draft does not mutate canonical state",
+    "Cut starts on visible player4 while player1 was selected, begins at player4 ground pose, updates the next step to x555/y160 and preserves the current formation",
+    "Five-step playback advances and reaches the final step; canonical bytes remain unchanged",
+    "Home recent-play reopen and reload restore the exact saved semantic document, title, poses, complete action path, five steps and RU preference"
+  ],
+  "errors": [],
+  "assetFailures": [],
+  "failedRequests": [],
+  "verdict": "PASS",
+  "sourceCommit": "ccdf20978138c941b84f83f609601a004e786d64",
+  "renderDeploy": "dep-dba0gimq1p3s739rtpag",
+  "publicReceipt": {
+    "path": "tmp/public-direct3d-receipt.json",
+    "generatedAt": "2026-10-17T23:45:32.090Z",
+    "sha256": "9f328eb3c3f146bca001239aa18f3cc89e8ff3867b7d69443b05dfd38d00ce9a"
+  },
+  "projectionSourceSha256": "ae500ef401f76cea83ccef001cc34f9c0e7f5f5b4be245c3b141247b4fa08baf",
+  "browser": "155.0.8059.80",
+  "localDocument": "/app/play/practice-d183d893-60c3-4f45-90a4-0cab81ccd8e9/edit",
+  "cut": {
+    "actor": "offense-4",
+    "start": {
+      "x": 430,
+      "y": 80
+    },
+    "target": {
+      "x": 555,
+      "y": 160
+    },
+    "points": 3
+  },
+  "finalScreenshot": "docs/design/direct3d-final-editor.png",
+  "finalState": {
+    "title": "Тренировка · рывок №4",
+    "phaseCount": 5,
+    "movedPlayer1": {
+      "x": 229.99998775194103,
+      "y": 255.00000653427287
+    },
+    "nextStepPlayer4": {
+      "x": 554.9999756702396,
+      "y": 159.99997969349022
+    }
+  },
+  "workflow": "PASS",
+  "wallDurationSeconds": 38.01,
+  "file": "docs/design/direct3d-coach-demo.webm",
+  "bytes": 3667501,
+  "sha256": "b49b14337cf017ed961daac12f1197c3d8cc66f4fc4e90e65c7be531811df2d8",
+  "videoMetadata": {
+    "durationSeconds": 37.72,
+    "width": 1440,
+    "height": 900,
+    "error": null
+  }
+}

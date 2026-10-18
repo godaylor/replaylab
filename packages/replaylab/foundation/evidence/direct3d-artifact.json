@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-10-17T23:34:30.680Z",
+  "generatedAt": "2026-10-18T00:00:50.002Z",
   "verdict": "PASS",
   "sourceCommit": null,
-  "artifact": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-delivery-20261018",
+  "artifact": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-final-20261018",
   "files": 946,
-  "manifestSha256": "9a706805dec53627156bef2e5a6babdc62679791d4d3baa283c66d6eac93c9f1",
-  "archive": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-delivery-20261018.tar.gz",
-  "archiveSha256": "0ffbe80950a06613051bffa33aecdcb62cb61bb3c2a481e133588fa90571cdc6",
-  "archiveBytes": 1680342,
+  "manifestSha256": "fdc523dd7f2a4d26014f6fb198de1697c073f5ce00224bb1b7a46b495a27a76d",
+  "archive": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-final-20261018.tar.gz",
+  "archiveSha256": "a8e44ecd339da3fd3c8bfc0ec016697194d00542442acfd5c2799d5ebadd8920",
+  "archiveBytes": 1680477,
   "entries": 988,
-  "extracted": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-archive-check-NY3q9N",
+  "extracted": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-direct3d-archive-check-IOxsGY",
   "sourceAndExtractedManifestHashesVerified": true,
   "safeArchiveEntries": true,
-  "image": "replaylab:direct3d-20261018",
+  "image": "replaylab:direct3d-final-20261018",
   "commands": [
     "node tmp/verify-direct3d-artifact.mjs",
-    "docker build --progress plain -t replaylab:direct3d-20261018 -f deploy/replaylab/Dockerfile .",
-    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-direct3d-delivery-20261018 REPLAYLAB_SMOKE_PORT=32421 node packages/replaylab/foundation/scripts/release-smoke.mjs",
-    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-direct3d-delivery-20261018 REPLAYLAB_SMOKE_PORT=32421 REPLAYLAB_IMAGE=replaylab:direct3d-20261018 node packages/replaylab/foundation/scripts/release-smoke.mjs --docker",
+    "docker build --progress plain -t replaylab:direct3d-final-20261018 -f deploy/replaylab/Dockerfile .",
+    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-direct3d-final-20261018 REPLAYLAB_SMOKE_PORT=32421 node packages/replaylab/foundation/scripts/release-smoke.mjs",
+    "REPLAYLAB_RELEASE_DIR=tmp/replaylab-direct3d-final-20261018 REPLAYLAB_SMOKE_PORT=32421 REPLAYLAB_IMAGE=replaylab:direct3d-final-20261018 node packages/replaylab/foundation/scripts/release-smoke.mjs --docker",
     "node tmp/verify-direct3d-artifact.mjs --finalize",
-    "docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges replaylab:direct3d-20261018 node -e <read-only SHA256 comparison of all packaged frontend assets>"
+    "docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges replaylab:direct3d-final-20261018 node -e <read-only SHA256 comparison of all packaged frontend assets>"
   ],
   "nodeSmoke": {
     "evidence": "packages/replaylab/foundation/evidence/release-smoke-node.json",
-    "evidenceSha256": "e38c20b4de4728bf2f5089e48cd25a747e7d23269b23d4a0657f936e23515c4b",
-    "generatedAt": "2026-10-17T23:34:36.075Z",
+    "evidenceSha256": "56815b955bf719a2eabd834f4a60ab61725ca3a7a3af812378700b8a4a380eea",
+    "generatedAt": "2026-10-18T00:01:05.119Z",
     "mode": "packaged-node",
     "port": 32421,
     "verdict": "PASS",
@@ -34,12 +34,12 @@
       "offline concurrent intentions; resolve; local undo",
       "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
     ],
-    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-2d30pY"
+    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-09F9UW"
   },
   "dockerSmoke": {
     "evidence": "packages/replaylab/foundation/evidence/release-smoke-docker.json",
-    "evidenceSha256": "713edb1066391756906d6f916c1c239c6a4239efc6e05202e66c4d79326cd8e0",
-    "generatedAt": "2026-10-17T23:35:35.180Z",
+    "evidenceSha256": "3fce542d9cc6005b71a89d8045d0dd5b406727a775a553ced1ec06bf2878c9f1",
+    "generatedAt": "2026-10-18T00:01:39.952Z",
     "mode": "docker",
     "port": 32421,
     "verdict": "PASS",
@@ -49,13 +49,13 @@
       "offline concurrent intentions; resolve; local undo",
       "stopped-server backup -> separate restored data directory -> new read-only client -> offline reload"
     ],
-    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-RUQOJW",
-    "imageId": "sha256:c0d0fe5cf9f78ec994e4a318a4ba0d1b81c98267fb41ab1943443dfb9ceace3e",
+    "work": "E:\\Projects\\PetProjects\\05-replaylab\\standalone\\tmp\\replaylab-runtime-smoke-SZuVGn",
+    "imageId": "sha256:1067b6a3f524fb842ebd098beaef26bd21a4193140f0c3db276d26a891222222",
     "runtimeUser": "node"
   },
-  "imageId": "sha256:c0d0fe5cf9f78ec994e4a318a4ba0d1b81c98267fb41ab1943443dfb9ceace3e",
+  "imageId": "sha256:1067b6a3f524fb842ebd098beaef26bd21a4193140f0c3db276d26a891222222",
   "runtimeUser": "node",
   "imageFrontendFilesMatchingPackage": 6,
-  "imageIndexSha256": "cf16172db5973398e6ee0593d03df585c3fcd6a60131f6dbcd43915fe849ff0f",
-  "completedAt": "2026-10-17T23:35:58.987Z"
+  "imageIndexSha256": "10ed375a8bf740f49e2a07d2f1a65f8821149d58628576b039862c90075e0caf",
+  "completedAt": "2026-10-18T00:02:13.635Z"
 }

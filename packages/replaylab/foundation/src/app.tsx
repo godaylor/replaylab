@@ -457,10 +457,11 @@ function CourtStage(props: {
         const hit = gfxRef.current?.hitTestPresentation(screen.x, screen.y);
         const phase = snapshotRef.current.phases[phaseIndexRef.current]!;
         const target = hit === 'ball' && phase.possession.value !== 'loose' ? phase.possession.value : hit;
+        const targetsPlayer = action.type === 'pass' || action.type === 'screen';
         props.onCreateAction({
           actorId: action.actorId,
           type: action.type,
-          targetActorId: target && target !== 'ball' && target !== action.actorId ? target : null,
+          targetActorId: targetsPlayer && target && target !== 'ball' && target !== action.actorId ? target : null,
           path: action.path,
         });
       } else {

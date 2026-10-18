@@ -36,3 +36,10 @@ behind the synchronous preview ref. WebKit production checks reproduce the last
 case; a dev-server-only pass was insufficient. Gesture endpoint assertions allow
 one projected CSS pixel of browser input quantization, while the committed path
 endpoint and destination pose must still match exactly.
+
+The first hosted exercise also exposed a target-type bug: dropping a cut over a
+visible defender supplied a targetActorId, which the domain correctly rejects.
+Only pass/screen gestures may supply a target player. Cut/dribble retain their
+floor endpoint even when a body is hit on release. The regression deliberately
+uses the same public endpoint (560, 330), verifies that it hits defense-5, and
+checks both action types, draft immutability and one-unit undo.

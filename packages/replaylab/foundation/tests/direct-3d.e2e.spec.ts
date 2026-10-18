@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-import { projectCourtPoint3D } from '../src/court-scene-3d';
+import { hitTestCourtScene3D, projectCourtPoint3D } from '../src/court-scene-3d';
 import type { ActorId, Pose } from '../src/domain';
 
 function playUrl(label: string, query = '') {
@@ -162,6 +162,46 @@ test('3D pass and screen resolve the visible target torso, and one undo restores
     }
     await page.getByRole('button', { name: 'Undo', exact: true }).click();
     expect(await domain(page)).toEqual(before);
+  }
+});
+
+test('3D cut and dribble can finish over another visible body without acquiring a target or snapping to it', async ({ page }) => {
+  await page.goto(playUrl('movement-over-body', '&lesson=1'));
+  await ready(page);
+  const before = await domain(page);
+  // Reproduce the public coach exercise: the floor point (560, 330) overlaps the
+  // visible body of defender 5 in perspective, despite being a different pose.
+  const destination = { x: 560, y: 330 };
+  const geometry = await courtGeometry(page);
+  const dimensions = await geometry.canvas.evaluate(element => ({ width: (element as HTMLCanvasElement).width, height: (element as HTMLCanvasElement).height }));
+  const snapshot = await page.evaluate(() => window.replayLabApp!.facade.snapshot);
+  const projected = geometry.screen(destination);
+  expect(hitTestCourtScene3D(dimensions.width, dimensions.height, { snapshot, phaseIndex: 0 }, projected.x, projected.y)).toBe('defense-5');
+  expect(destination).not.toEqual(before.poses[0]!['defense-5']);
+  for (const operation of [
+    { name: 'Cut C', type: 'cut', actor: 'offense-5' },
+    { name: 'Dribble D', type: 'dribble', actor: 'offense-1' },
+  ] as const) {
+    await page.getByRole('button', { name: operation.name, exact: true }).click();
+    const beforeDraft = await bytes(page);
+    const drawing = await drawFromTorso(page, operation.actor, destination);
+    expect(await bytes(page)).toEqual(beforeDraft);
+    await page.mouse.up();
+    await expect.poll(() => page.evaluate(() => window.replayLabApp!.facade.snapshot.actions.length)).toBe(before.actions.length + 1);
+    const after = await domain(page);
+    const action = after.actions.find(item => !before.actions.some(previous => previous.id === item.id))!;
+    expect(action.type).toBe(operation.type);
+    expect(action.actorId).toBe(operation.actor);
+    expect(action.targetActorId).toBeNull();
+    expect(action.path.value.points[0]).toEqual(before.poses[0]![operation.actor]);
+    expect(after.poses[1]![operation.actor]).toEqual(action.path.value.points.at(-1));
+    const actualEnd = drawing.client(drawing.screen(after.poses[1]![operation.actor]));
+    const intendedEnd = drawing.client(drawing.screen(destination));
+    expect(Math.hypot(actualEnd.x - intendedEnd.x, actualEnd.y - intendedEnd.y)).toBeLessThanOrEqual(1);
+    expect(after.poses[0]).toEqual(before.poses[0]);
+    expect(after.poses[1]!['defense-5']).toEqual(before.poses[1]!['defense-5']);
+    await page.getByRole('button', { name: 'Undo', exact: true }).click();
+    expect(await domain(page), `${operation.type}: one undo restores action and destination`).toEqual(before);
   }
 });
 
