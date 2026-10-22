@@ -1,0 +1,453 @@
+{
+  "generatedAt": "2026-10-22T21:06:30.793Z",
+  "origin": "http://127.0.0.1:32421",
+  "verdict": "PASS",
+  "matrix": [
+    {
+      "id": "desktop-ru-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pointer": "fine",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "empty-library",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "workbench",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 1440,
+          "document": 1440
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-desktop-ru-dark-home.png",
+        "docs/design/polish-library-empty.png",
+        "docs/design/polish-desktop-ru-dark-editor.png",
+        "docs/design/polish-library-recent.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Edit and selected Cut tool remain usable and visibly selected"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-b8cbb266-f516-4396-b0a3-7a2c32522dde/edit"
+    },
+    {
+      "id": "desktop-ru-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pointer": "fine",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "empty-library",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "workbench",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 1440,
+          "document": 1440
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-desktop-ru-light-home.png",
+        "docs/design/polish-desktop-ru-light-editor.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Edit and selected Cut tool remain usable and visibly selected",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-77bfa9b9-30aa-4a2a-ac10-bea5b80b8f97/edit"
+    },
+    {
+      "id": "desktop-en-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pointer": "fine",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "empty-library",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "workbench",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 1440,
+          "document": 1440
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-desktop-en-dark-home.png",
+        "docs/design/polish-desktop-en-dark-editor.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Edit and selected Cut tool remain usable and visibly selected",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-89b8e782-effe-48e3-ae37-07ef1db9b0ce/edit"
+    },
+    {
+      "id": "desktop-en-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pointer": "fine",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "empty-library",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "workbench",
+          "viewport": 1440,
+          "document": 1440
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 1440,
+          "document": 1440
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-desktop-en-light-home.png",
+        "docs/design/polish-desktop-en-light-editor.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Edit and selected Cut tool remain usable and visibly selected",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-15df0d14-0e47-4117-b8a9-8a3cfc124f5e/edit"
+    },
+    {
+      "id": "mobile-ru-dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pointer": "coarse emulation",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "empty-library",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "workbench",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 390,
+          "document": 390
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-mobile-ru-dark-home.png",
+        "docs/design/polish-mobile-ru-dark-watch.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-c4e7f893-b2b0-4597-91fe-2eb2cd5d3858/edit",
+      "input": {
+        "coarse": true,
+        "touch": 1
+      }
+    },
+    {
+      "id": "mobile-ru-light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pointer": "coarse emulation",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "empty-library",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "workbench",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 390,
+          "document": 390
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-mobile-ru-light-home.png",
+        "docs/design/polish-mobile-ru-light-watch.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-64ca6b0d-a66a-4da0-8e7e-68f7313a1a0e/edit",
+      "input": {
+        "coarse": true,
+        "touch": 1
+      }
+    },
+    {
+      "id": "mobile-en-dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pointer": "coarse emulation",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "empty-library",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "workbench",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 390,
+          "document": 390
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-mobile-en-dark-home.png",
+        "docs/design/polish-mobile-en-dark-watch.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-1142e44a-4db9-46c2-9b65-1929f3691bf0/edit",
+      "input": {
+        "coarse": true,
+        "touch": 1
+      }
+    },
+    {
+      "id": "mobile-en-light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pointer": "coarse emulation",
+      "reflow": [
+        {
+          "state": "home",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "empty-library",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "workbench",
+          "viewport": 390,
+          "document": 390
+        },
+        {
+          "state": "home-with-recent",
+          "viewport": 390,
+          "document": 390
+        }
+      ],
+      "screenshots": [
+        "docs/design/polish-mobile-en-light-home.png",
+        "docs/design/polish-mobile-en-light-watch.png"
+      ],
+      "checks": [
+        "Fresh local example with four steps; direct 3D stays selected",
+        "Step selection does not mutate the canonical document",
+        "Language/theme and recent local example survive reload"
+      ],
+      "verdict": "PASS",
+      "localDocument": "/app/play/practice-89384949-b34d-4213-95c6-aced119d424e/edit",
+      "input": {
+        "coarse": true,
+        "touch": 1
+      }
+    }
+  ],
+  "scope": "Fresh installed Chrome contexts, one synthetic local example per visual variant. Desktop 1440x900 and touch-phone emulation 390x844, RU/EN, dark/light. Local build only, not publication verification, a physical-device test, or Russia/VPN access evidence.",
+  "sequence": [
+    {
+      "seconds": 3.05,
+      "action": "Главная: компактная сцена и ясные действия"
+    },
+    {
+      "seconds": 5.99,
+      "action": "Пустая библиотека: начать с примера"
+    },
+    {
+      "seconds": 7.73,
+      "action": "Готовый пример: четырёхшаговая комбинация в 3D"
+    },
+    {
+      "seconds": 9.6,
+      "action": "Редактировать: та же 3D-площадка"
+    },
+    {
+      "seconds": 11.55,
+      "action": "Выбрать рывок: активный инструмент выделен"
+    },
+    {
+      "seconds": 13.33,
+      "action": "Выбрать второй шаг: видна текущая ситуация"
+    },
+    {
+      "seconds": 18,
+      "action": "Главная: пример уже в недавних комбинациях"
+    },
+    {
+      "seconds": 21.01,
+      "action": "Визуальный обзор завершён"
+    }
+  ],
+  "errors": [],
+  "assetFailures": [],
+  "failedRequests": [],
+  "networkWrites": [],
+  "servedBuild": {
+    "htmlSha256": "580cdd2e6f5478a0360654b4613bede41da5c86e1f847bd9cd34afe1ef74b34d",
+    "assets": [
+      {
+        "path": "/assets/index-Cx_L_Rqg.js",
+        "sha256": "47cd8eb278d1db0ec4f9af72bdb594abfe24351cb38af06e04ba1061c4d5500d"
+      },
+      {
+        "path": "/assets/index-4GjOynfy.css",
+        "sha256": "5112c80819464633aa4480a464bba3a5375c727080e9a8098d3691bc8bfa69ac"
+      }
+    ]
+  },
+  "sourceFiles": [
+    {
+      "path": "packages/replaylab/foundation/src/coach.css",
+      "sha256": "2a884fc12eaf0b1543a6c2e10ba9cd68ed12c1496df04aa2045f2fe29aac774d"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/home.tsx",
+      "sha256": "8cc6024d7c07fa258d3b2d314da02e45830589316c8630956690c8c8028e8649"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/motion.css",
+      "sha256": "cd74ca93f0ec4c89f4503153f07ac99d35986d4fb52c4984a1f1f87a3716fa1b"
+    }
+  ],
+  "browser": "155.0.8059.85",
+  "recordedWorkflowWallSeconds": 21.01,
+  "reducedMotion": {
+    "scrollBehavior": "auto",
+    "animations": [
+      {
+        "selector": ".home-story",
+        "animation": "none",
+        "transform": "none"
+      },
+      {
+        "selector": ".play-showcase",
+        "animation": "none",
+        "transform": "none"
+      },
+      {
+        "selector": ".home-work",
+        "animation": "none",
+        "transform": "none"
+      }
+    ],
+    "running": 0
+  },
+  "video": {
+    "path": "docs/design/polish-walkthrough.webm",
+    "durationSeconds": 21.48,
+    "width": 1440,
+    "height": 900,
+    "bytes": 2152747,
+    "sha256": "7bd2b4081a4c7f7cb59cf7c15b7f9e6119681a881078ef40e21e2e34f4f56eea"
+  }
+}

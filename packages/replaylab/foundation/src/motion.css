@@ -1,0 +1,150 @@
+/* Progressive page motion. Court geometry and draggable steps stay untouched. */
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-group(root) {
+    animation-duration: 200ms;
+  }
+
+  ::view-transition-old(root) {
+    animation: 200ms ease-out both page-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 200ms ease-out both page-fade-in;
+  }
+
+  .home-story {
+    animation: home-arrive 420ms ease-out both;
+  }
+
+  .play-showcase {
+    animation: home-arrive 460ms 60ms ease-out both;
+  }
+
+  .play-story h2 {
+    animation: step-title-arrive 180ms ease-out both;
+  }
+
+  .share-dialog[open],
+  .action-dialog,
+  .storage-details[open] > .storage-details-body,
+  .file-tools[open] > .file-tools-body,
+  .player-controls[open] > :not(summary),
+  .cue-disclosure[open] > :not(summary) {
+    animation: panel-arrive 180ms ease-out both;
+  }
+
+  .home-actions .button,
+  .home-empty-action {
+    transition: transform 140ms ease-out, background-color 180ms, border-color 180ms, color 180ms;
+  }
+
+  .home-actions .button:active:not(:disabled),
+  .home-empty-action:active:not(:disabled) {
+    transform: translateY(1px) scale(.99);
+  }
+
+  .home-primary > span[aria-hidden],
+  .recent-arrow {
+    display: inline-block;
+    transition: transform 180ms ease-out;
+  }
+
+  .home-primary:focus-visible > span[aria-hidden],
+  .recent-plays a:focus-visible .recent-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .home-primary:hover > span[aria-hidden],
+    .recent-plays a:hover .recent-arrow {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @supports (animation-timeline: view()) and (animation-range: entry 0% entry 80%) {
+    .home-work,
+    .home-footer {
+      animation: section-arrive 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+
+    .home-work:focus-within,
+    .home-work:target,
+    .home-footer:focus-within {
+      animation: none;
+    }
+  }
+}
+
+@keyframes page-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes page-fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes section-arrive {
+  from { opacity: .65; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes home-arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes step-title-arrive {
+  from { opacity: .6; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes panel-arrive {
+  from { opacity: .5; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  @view-transition {
+    navigation: none;
+  }
+
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  .share-dialog[open],
+  .action-dialog,
+  .storage-details[open] > .storage-details-body,
+  .file-tools[open] > .file-tools-body,
+  .player-controls[open] > :not(summary),
+  .cue-disclosure[open] > :not(summary) {
+    animation: none !important;
+  }
+
+  .home-story,
+  .play-showcase,
+  .play-story h2,
+  .home-work,
+  .home-footer,
+  .home-actions .button,
+  .home-empty-action,
+  .home-primary > span[aria-hidden],
+  .recent-arrow {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

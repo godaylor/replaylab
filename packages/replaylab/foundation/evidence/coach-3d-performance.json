@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T23:57:50.846Z",
+  "generatedAt": "2026-10-22T21:01:33.017Z",
   "verdict": "PASS",
   "profile": {
     "id": "replaylab-render-v1",
@@ -33,20 +33,20 @@
     "note": "Watch 3D maximum path projection fixture for one visible transition."
   },
   "metrics": {
-    "frames": 1801,
-    "elapsedMs": 30011.400000002977,
-    "framesPerSecond": 60.01052933218115,
-    "frameIntervalP95Ms": 16.700000000004366,
-    "inputSamples": 1801,
-    "inputToPaintP95Ms": 3.2000000029802322,
-    "localOpenMs": 29.599999994039536,
+    "frames": 1800,
+    "elapsedMs": 30012.200000011922,
+    "framesPerSecond": 59.975609918609265,
+    "frameIntervalP95Ms": 16.799999999999272,
+    "inputSamples": 1800,
+    "inputToPaintP95Ms": 4.5999999940395355,
+    "localOpenMs": 31.200000002980232,
     "longTaskCount": 0,
     "longestTaskMs": 0,
-    "gfxRenders": 1801,
+    "gfxRenders": 1800,
     "reactRendersDuringPointerMoves": null,
     "reactRendersDuringPlayback": 0,
-    "heapBeforeBytes": 14300000,
-    "heapAfterBytes": 14300000,
+    "heapBeforeBytes": 11900000,
+    "heapAfterBytes": 11900000,
     "heapDeltaBytes": 0
   },
   "budgets": {

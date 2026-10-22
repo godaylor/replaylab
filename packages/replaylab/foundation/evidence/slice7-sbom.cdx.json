@@ -3,7 +3,7 @@
   "specVersion": "1.5",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-10-18T00:00:40.850Z",
+    "timestamp": "2026-10-22T21:08:43.839Z",
     "component": {
       "type": "application",
       "name": "ReplayLab",
@@ -13,11 +13,11 @@
     "properties": [
       {
         "name": "replaylab:production-bundle-gzip-bytes",
-        "value": "246441"
+        "value": "246822"
       },
       {
         "name": "replaylab:repository-commit",
-        "value": "ccdf20978138c941b84f83f609601a004e786d64"
+        "value": "fbd4c0a379907b40e68d112b70d9a53644840c30"
       }
     ]
   },

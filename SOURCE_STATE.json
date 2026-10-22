@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "76812467fc1a439140c9ac3a92a4a80acf1d55f8f815de1d4d0945fa7e9a1515",
+  "snapshotSha256": "91099ea59e2f93d921ab112c386dec37ac4bac4a8006231b0fd796c0c5708815",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -75,7 +75,7 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "b76c630b55827345c7d9e4512817dec2c2788804bbe84ad8c428fbd5cfc7e80f",
+      "sha256": "10e8b4eff428a28c26648ce54b340bd6cab8eb85400800b770c02d3adf962157",
       "origin": "working-tree-copy"
     },
     {
@@ -2296,7 +2296,7 @@
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "2c1874cddc4e7f48468380af223ab269a1d977941a8c1a756688a9d6fc060c47",
+      "sha256": "4107405930dd4a65adc97b2c9374f1a3910486cddce6a1a98517a41798bf7402",
       "origin": "original-replaylab"
     },
     {
@@ -2333,6 +2333,11 @@
       "path": "docs/TRANSFORMATION_SPEC.md",
       "sha256": "375e0c005758e1ca58f9d730c31245a57f47ae10849af513fbb409a3687e9084",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "docs/VISUAL_POLISH.md",
+      "sha256": "9770fd7d653589d5df7b8079c0766505379127e73f209bc3071d8e9b2a743a43",
+      "origin": "original-replaylab"
     },
     {
       "path": "docs/design/ARENA_PROMPTS.md",
@@ -2785,6 +2790,121 @@
       "origin": "original-replaylab"
     },
     {
+      "path": "docs/design/polish-desktop-en-dark-editor.png",
+      "sha256": "62aaa6741ffa842ee28c117ec5d64f70d0c56463f7f5dd5f2025ec39cedfabc8",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-en-dark-home.png",
+      "sha256": "929aaf7b93c11c0ead93b44c1f2a9b75ec5bca572cd9ede5a2bc18100aac2686",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-en-light-editor.png",
+      "sha256": "3109630fd6d574702c8b37e5fb3e985983f9ac1512149d8bbdf332cb9960794f",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-en-light-home.png",
+      "sha256": "5308d5576c17bba6d9b089e0e89257715cd2783b1d2ed85a3c3c3e05fa0d5475",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-ru-dark-editor.png",
+      "sha256": "bf76529c4693928a9da404fd2e4cd72759d7467056606b2b166d75e2f23c0685",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-ru-dark-home.png",
+      "sha256": "183ba2f1c888d6fdf291495897310e39407692f997bdb2a4764107c896eb8367",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-ru-light-editor.png",
+      "sha256": "210518706ef49f39d4f5101f3177319acedf654a62d1e2456c668197fb592f23",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-desktop-ru-light-home.png",
+      "sha256": "118c3f20b5ac5ef35e749f6d529da1b80d044ab1c77dbe5a0f77302f18fe00be",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-library-empty.png",
+      "sha256": "b6582efa18f88641824a991e68ff200b91f2b7008ab9a8ed503baf73c6213c64",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-library-recent.png",
+      "sha256": "737780b49793a9bc48a0aac7bd17de96f59d9ced90a58e8362435f86432e1558",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-en-dark-home.png",
+      "sha256": "398d4630d281f64b1398ce2ae9bae557eb461a50fb8e9d06d11dc7121a64102a",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-en-dark-watch.png",
+      "sha256": "95e38dcead40ea6351eec078509d138fc053ceaeed941d00231bdd6c6d39f9cb",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-en-light-home.png",
+      "sha256": "06d6f929486374e5bfc7afbb00e48b3523cd1f1c493fedd0dcf00451bc018e1d",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-en-light-watch.png",
+      "sha256": "3378e9c231081d0fc99d06affe4d67a923cb6c8191d4234e27f7230563ffea17",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-ru-dark-home.png",
+      "sha256": "41bd16fc456cdd8babdb2f8937c3cf26bdb6d6d67b54a29ed1f23342c471364e",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-ru-dark-watch.png",
+      "sha256": "20410b4f1f04decb217037ebf1dcf1c9e58048758636e0d4099f8289fd83db96",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-ru-light-home.png",
+      "sha256": "d9f5348b10be5ec3f30dd11af1e39a914c2cc74c121a0221187bfa9b2ac36e79",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-mobile-ru-light-watch.png",
+      "sha256": "c20be26e364bc0612af313fc5c59ccad53e773df0a56de6d686ba74770c1f183",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-review.json",
+      "sha256": "b2652efb6c6b467e2a78a99b7d16a58a5a9a89c49679ac8ced0370bf23bb801e",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-stills-review.json",
+      "sha256": "3e72e2d36facf2bbc04835a894af523944cce6374e28b4f06fc7a86d644b514a",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-video-edit.png",
+      "sha256": "c74f896d52ba7f528d189dcba388fc1cda4c884230ba7e61240536b7d0cb5c35",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-video-recent.png",
+      "sha256": "2254beba1ea64a543b66b717252bb18ae12d5417cc1ccd0d5bedce7549bd6c37",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-walkthrough.webm",
+      "sha256": "7bd2b4081a4c7f7cb59cf7c15b7f9e6119681a881078ef40e21e2e34f4f56eea",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "docs/design/public-arena-editor.png",
       "sha256": "d7a7f7e82b26cf3bca004804bac28fec4e3fbc364b94086d0f8ea16e514ad5fc",
       "origin": "original-replaylab"
@@ -2861,7 +2981,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/THIRD_PARTY_NOTICES.md",
-      "sha256": "adb0b4223f21263b651d6dd98d91c23d8aac0ff2ce05564a89ea361ab6ef5f17",
+      "sha256": "1202db92609abcbfda35d76fa3a9321f1ba53536f97c8eaa0b97567afdd7941e",
       "origin": "working-tree-copy"
     },
     {
@@ -2906,7 +3026,7 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/coach-3d-performance.json",
-      "sha256": "af0b5ed269ae1304ce76da94d0f2432cc96f7ac5ca36d9da03971457c4711fd4",
+      "sha256": "9ab60aded02a342ca31df8c5a902af199d25b0181a4351c6d4f7be7803eb6085",
       "origin": "original-replaylab"
     },
     {
@@ -3406,32 +3526,32 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.json",
-      "sha256": "49adf9d2529e889bbc118490cb752b04ca63d7238e7be8694bb5a74d24a09a54",
+      "sha256": "33bf7055a26008c8294af32f5cac0b97efe0d5cbbab276689e29ee2816e631dd",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-audit.md",
-      "sha256": "09ab15083b8a55e1ed2b46ea90d8c5f337d31c1a325a68be20f463383230cf8e",
+      "sha256": "70b3823323e42ebd833db9d64d123ae24057f8d1bd0ee1c520b4d19af23b6b4f",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-en.png",
-      "sha256": "3957be9e52715ad6e665b4d6e20dcd2024a55b7b453c030d5bd754e38311208f",
+      "sha256": "b64f20073648a95029226aef4b23250b5b745efda735c5418e40cf91d9df0adb",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-license-inventory.json",
-      "sha256": "32711818c90fe8f57cbdfbe85070d86bad1c7c7b84a3659f5d7a99ee3b8f7019",
+      "sha256": "ee4b0c754196019901a4ae858c245d03602844b220389a2ef7ae4637ef238542",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-en.png",
-      "sha256": "b8a2fb47a921bb469d3ec5a1111e5bf9fc593e33cc357e8bff474b1ef22309ac",
+      "sha256": "d573d32a75138228ba3de7991034ec51ffd0885b4f8e6885a835e041a844a925",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-mobile-ru.png",
-      "sha256": "d73c3c60805db7fa28d2045f67e1840ae625a72b55a3ddd0689f6b7a5958f106",
+      "sha256": "4154846aa3dec2f512b96b1dd41cb8d8b9b7e6b1959103f5f0aaedac92b2303f",
       "origin": "working-tree-copy"
     },
     {
@@ -3451,17 +3571,17 @@
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-ru.png",
-      "sha256": "9a4b5bfa600868a706ca250c3c9ac81a39e5ee5e220b789798ba977883cdf05b",
+      "sha256": "eef009b6bb0e081d424efbdbdb5cb483bdb44de4059185ab4994f641044bcf02",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-sbom.cdx.json",
-      "sha256": "b6ba55d552f277435b6b165f212cd5cd6671b9831c99d70a0743a01625b80430",
+      "sha256": "904f203904837274ba28fae5a8ed796c7602d40f8079d79e13237f531bc3f3a2",
       "origin": "working-tree-copy"
     },
     {
       "path": "packages/replaylab/foundation/evidence/slice7-source-notices.json",
-      "sha256": "22939b4c5986227d709e6c7272b8943b89ab2c4940e7556aacac72065fcc8c38",
+      "sha256": "469e942950be3bcd0053c024c8a4e64241dab9a524375165106e039d9b00acfb",
       "origin": "working-tree-copy"
     },
     {
@@ -3487,6 +3607,16 @@
     {
       "path": "packages/replaylab/foundation/evidence/v3-webkit.json",
       "sha256": "b76973c6092e7f199d7e09119f41fba58058ebb6e7f8139df0c32b17b53cd18b",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/visual-polish-final.json",
+      "sha256": "7e75ddf1cbd444562baf011c24771276d09ca754f9967ecce4ff4d6514eed9a3",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/visual-polish-tests.json",
+      "sha256": "4d4df2b1f8f69a3232554544016f1eb9b7478680849ddc08a7a9e643e3f0eba7",
       "origin": "original-replaylab"
     },
     {
@@ -3614,7 +3744,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/coach.css",
-      "sha256": "077e89ba74e272fe0717d8f9d08087e35688d2819ad3b07b29f76634ffd507b9",
+      "sha256": "2a884fc12eaf0b1543a6c2e10ba9cd68ed12c1496df04aa2045f2fe29aac774d",
       "origin": "original-replaylab"
     },
     {
@@ -3674,7 +3804,7 @@
     },
     {
       "path": "packages/replaylab/foundation/src/home.tsx",
-      "sha256": "bfa36575cbf600afbdd5025082f4d5e4ea0172bf3692128a0ea50078a5f44f30",
+      "sha256": "da0fe65c195c69a1c63e9fd216194b744351ceb7b7d9b3ed9859e58f2c7915c4",
       "origin": "original-replaylab"
     },
     {
@@ -3694,8 +3824,13 @@
     },
     {
       "path": "packages/replaylab/foundation/src/main.tsx",
-      "sha256": "8d95a6084d99d4ab0ffdf677fef4f5b8e617445ee494afaadeacc6120268e7ff",
+      "sha256": "77b894a2490659742ad6c12f6a496fe2cbfa484dcd58cf7f8022341c2f5cf978",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/src/motion.css",
+      "sha256": "cd74ca93f0ec4c89f4503153f07ac99d35986d4fb52c4984a1f1f87a3716fa1b",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/src/network-source.ts",
@@ -4026,6 +4161,11 @@
       "path": "packages/replaylab/foundation/tests/supabase-room-storage.pw.spec.ts",
       "sha256": "e216cb41b0c0c88c7b16076454b318c5e8addaac60f8b5dc51707eb92327d319",
       "origin": "working-tree-copy"
+    },
+    {
+      "path": "packages/replaylab/foundation/tests/visual-polish.e2e.spec.ts",
+      "sha256": "360d47b7bd923d9c345b76897bf641cb4d35bb42fddee391d8a5e76ca6e30f87",
+      "origin": "original-replaylab"
     },
     {
       "path": "packages/replaylab/foundation/tsconfig.json",

@@ -1,5 +1,18 @@
 # ReplayLab transformation plan
 
+## Visual polish checkpoint — 2026-10-22/23
+
+Owner requested a fast motion, design and layout refinement of this application;
+other-site references were explicitly withdrawn. Existing publication permission
+and data-preservation requirements remain. [Scope](docs/VISUAL_POLISH.md).
+
+- [x] Clearer home/library/form, selected-tool/step feedback and playback hierarchy.
+- [x] Progressive native motion with reduced-motion/forced-color fallbacks.
+- [x] Verify fresh responsive, keyboard, direct 3D and maximum-scene behavior:
+  26/26 focused checks and 4/4 against final motion/ARIA changes; typecheck,
+  build, lint and technical provenance audit pass. Manual reviews remain open.
+- [ ] Publish the checked revision to the existing service and capture real screens.
+
 ## Direct 3D authoring checkpoint — 2026-10-18
 
 Owner rejected the forced switch to a plan for editing and requested the full

@@ -21,6 +21,7 @@ import './playback.css';
 import './conflicts.css';
 import './presence.css';
 import './coach.css';
+import './motion.css';
 
 const app = document.querySelector<HTMLElement>('#app');
 if (!app) throw new Error('Missing app root');

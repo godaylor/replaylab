@@ -1,5 +1,14 @@
 # Verification and deployment
 
+## Visual polish candidate · 2026-10-22/23
+
+Home/library/form refinement, stronger active-step/tool feedback and progressive
+motion are locally verified: 26/26 focused checks, then 4/4 final motion/ARIA checks;
+typecheck, build, lint and technical provenance audit pass. No schema, protocol,
+dependency or hosted-data changes. Publication is pending. This section will
+record the exact deployed revision and fresh public results; the 18 October
+receipts below are historical. [Scope and checks](VISUAL_POLISH.md).
+
 ## Published: direct 3D authoring · 2026-10-18
 
 First public iteration `ccdf209` passed CI `39079695617` and deployed as
