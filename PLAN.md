@@ -11,7 +11,11 @@ and data-preservation requirements remain. [Scope](docs/VISUAL_POLISH.md).
 - [x] Verify fresh responsive, keyboard, direct 3D and maximum-scene behavior:
   26/26 focused checks and 4/4 against final motion/ARIA changes; typecheck,
   build, lint and technical provenance audit pass. Manual reviews remain open.
-- [ ] Publish the checked revision to the existing service and capture real screens.
+- [x] Publish `8decfd7`: CI `39855161163` PASS (129/129 + 10/10 and runtime/
+  Docker smoke), Render `dep-dbd7rkm7bikc73fdqc60` Live, seven rooms restored.
+  Exact public assets match; 4/4 fresh RU/EN desktop/mobile checks pass including
+  reload/recent/offline reopening. Actual before/after screens and 21.48s motion
+  capture recorded. Free-host cold start and manual/network limits remain open.
 
 ## Direct 3D authoring checkpoint — 2026-10-18
 

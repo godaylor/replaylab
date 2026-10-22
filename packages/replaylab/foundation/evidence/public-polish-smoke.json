@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-22T21:20:55.568Z",
+  "origin": "https://replaylab-godaylor.onrender.com",
+  "sourceCommit": "8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2",
+  "renderDeploy": "dep-dbd7rkm7bikc73fdqc60",
+  "scope": "Fresh installed Chrome contexts on this Windows host; synthetic local plays only. Mobile is 390×844 touch emulation, not a physical device. No verified Russian access route or controlled VPN pair. Shared rooms are not tested or created.",
+  "verdict": "PASS",
+  "assets": [
+    {
+      "path": "/assets/index-JkbAE9zE.js",
+      "sha256": "38aaab383855bee854573b4875e5d7a60ca0d0e627016cc420be973adf9e7df1",
+      "sameAsVerifiedLocalBuild": true
+    },
+    {
+      "path": "/assets/index-4GjOynfy.css",
+      "sha256": "5112c80819464633aa4480a464bba3a5375c727080e9a8098d3691bc8bfa69ac",
+      "sameAsVerifiedLocalBuild": true
+    }
+  ],
+  "checks": [
+    {
+      "locale": "ru",
+      "device": "desktop",
+      "verdict": "PASS",
+      "actions": "Updated home → light theme → 3D watch → playback/pause → same 3D edit → rename → add/undo/redo",
+      "persistence": "Exact title, phase IDs, poses, possession and action paths survive reload, recent-play reopen and closed-tab offline reopen; locale/theme retained; no horizontal overflow"
+    },
+    {
+      "locale": "en",
+      "device": "desktop",
+      "verdict": "PASS",
+      "actions": "Updated home → light theme → 3D watch → playback/pause → same 3D edit → rename → add/undo/redo",
+      "persistence": "Exact title, phase IDs, poses, possession and action paths survive reload, recent-play reopen and closed-tab offline reopen; locale/theme retained; no horizontal overflow"
+    },
+    {
+      "locale": "ru",
+      "device": "mobile",
+      "verdict": "PASS",
+      "actions": "Updated home → light theme → 3D watch → playback/pause → step taps; no edit/tools, readonly title/add; canonical document unchanged",
+      "persistence": "Exact title, phase IDs, poses, possession and action paths survive reload, recent-play reopen and closed-tab offline reopen; locale/theme retained; no horizontal overflow"
+    },
+    {
+      "locale": "en",
+      "device": "mobile",
+      "verdict": "PASS",
+      "actions": "Updated home → light theme → 3D watch → playback/pause → step taps; no edit/tools, readonly title/add; canonical document unchanged",
+      "persistence": "Exact title, phase IDs, poses, possession and action paths survive reload, recent-play reopen and closed-tab offline reopen; locale/theme retained; no horizontal overflow"
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [],
+  "httpFailures": [],
+  "roomRequests": [],
+  "index": {
+    "sha256": "e36cb7895f13608d4a00a6a660287ff366904f9f6cddd8c992c643164f6ddf7b",
+    "sameAsVerifiedLocalBuild": true
+  },
+  "browser": "155.0.8059.85",
+  "completedAt": "2026-10-22T21:21:36.170Z"
+}

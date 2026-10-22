@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-10-22T21:20:52.002Z",
+  "sourceCommit": "8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2",
+  "ci": {
+    "checkedAt": "2026-10-22T21:19:26.147Z",
+    "sha": "8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2",
+    "id": 39855161163,
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/godaylor/replaylab/actions/runs/39855161163",
+    "updatedAt": "2026-10-22T21:18:35Z"
+  },
+  "renderDeploy": "dep-dbd7rkm7bikc73fdqc60",
+  "assets": [
+    {
+      "path": "/index.html",
+      "sha256": "e36cb7895f13608d4a00a6a660287ff366904f9f6cddd8c992c643164f6ddf7b",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/assets/arena-floor-Cix7vP1Y.jpg",
+      "sha256": "6c4404d7097668a86ed3f02d2abade589e9a65315059cde194bdff60dbbc4160",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/assets/core-D3PiELKk.js",
+      "sha256": "2757bc7d14de3117e5f14d87429773034bf6f85749754e34cc3c05a66a266157",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/assets/index-4GjOynfy.css",
+      "sha256": "5112c80819464633aa4480a464bba3a5375c727080e9a8098d3691bc8bfa69ac",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/assets/index-JkbAE9zE.js",
+      "sha256": "38aaab383855bee854573b4875e5d7a60ca0d0e627016cc420be973adf9e7df1",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/assets/Oswald-Btv4ouYq.ttf",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "sameAsVerifiedBuild": true
+    },
+    {
+      "path": "/sw.js",
+      "sha256": "dac932d495c1dc5723ddfab2e5cf41e34bc2cbf173571506fbdb46947546296d",
+      "sameAsVerifiedBuild": true
+    }
+  ],
+  "verdict": "PASS",
+  "/healthz": {
+    "status": "ok",
+    "product": "ReplayLab",
+    "collaboration": "ready",
+    "storage": "supabase-postgres"
+  },
+  "/readyz": {
+    "status": "ok",
+    "product": "ReplayLab",
+    "collaboration": "ready",
+    "storage": "supabase-postgres"
+  }
+}

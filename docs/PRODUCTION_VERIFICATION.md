@@ -1,13 +1,37 @@
 # Verification and deployment
 
-## Visual polish candidate · 2026-10-22/23
+## Published: visual polish · 2026-10-22/23
 
 Home/library/form refinement, stronger active-step/tool feedback and progressive
 motion are locally verified: 26/26 focused checks, then 4/4 final motion/ARIA checks;
 typecheck, build, lint and technical provenance audit pass. No schema, protocol,
-dependency or hosted-data changes. Publication is pending. This section will
-record the exact deployed revision and fresh public results; the 18 October
-receipts below are historical. [Scope and checks](VISUAL_POLISH.md).
+dependency or hosted-data changes. Application source
+`8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2` passes
+[CI 39855161163](https://github.com/godaylor/replaylab/actions/runs/39855161163):
+129/129 release tests, 10/10 durability repetitions, builds, lint, technical
+provenance audit, packaging and Node/non-root Docker smoke.
+
+Render [dep-dbd7rkm7bikc73fdqc60](https://dashboard.render.com/web/srv-dah9cq1t0dsc73f4ou50/deploys/dep-dbd7rkm7bikc73fdqc60)
+reports **Deploy succeeded | Live**, 1m08s. Local editor ready at 21:20:09 UTC,
+collaboration ready with seven restored rooms at 21:20:13, Live at 21:20:23.
+All seven checked frontend files match the verified build. Health/readiness
+return 200 with Supabase collaboration ready. No tariff or data changes.
+
+Fresh public Chrome checks pass **4/4** (RU/EN desktop and emulated phone):
+watch/edit, playback, add/undo/redo, exact document restoration on reload,
+recent reopening and a new offline tab in a previously cached context, with
+language/theme retained and no horizontal overflow or browser/HTTP errors.
+No new public rooms were created; this UI-only revision's collaboration coverage
+comes from CI. Existing IAB work retains its title, five steps and edited actions.
+Actual public before/after screens and a 21.48-second local motion recording are
+under `docs/design/polish-*`. The video precedes an ARIA-only correction; final
+stills and public checks use the exact deployed assets.
+
+The free Render service still shows a wakeup interstitial after inactivity;
+this was reproduced before deployment and resolved without intervention.
+Physical devices, manual screen reader/IME, coach field study, trademark review
+and a controlled Russia/VPN route remain unverified. The 18 October receipts
+below are historical. [Scope and checks](VISUAL_POLISH.md).
 
 ## Published: direct 3D authoring · 2026-10-18
 

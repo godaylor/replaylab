@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2",
+  "ciRun": 39855161163,
+  "ciVerdict": "PASS",
+  "releaseTestsPassed": 129,
+  "durabilityTestsPassed": 10,
+  "service": "srv-dah9cq1t0dsc73f4ou50",
+  "deploy": "dep-dbd7rkm7bikc73fdqc60",
+  "renderStatus": "Deploy succeeded | Live",
+  "renderDurationDisplayed": "1m08s",
+  "localEditorReadyUTC": "2026-10-22T21:20:09Z",
+  "collaborationReadyUTC": "2026-10-22T21:20:13Z",
+  "renderLiveUTC": "2026-10-22T21:20:23Z",
+  "restoredRooms": 7,
+  "existingIABDocument": "Title, five steps and edited actions retained after reload; five recent entries retained",
+  "dataOrTariffChanges": false,
+  "limitations": [
+    "Free Render cold-start interstitial reproduced before deploy, then cleared without intervention",
+    "Mobile is emulated, not a physical device",
+    "No verified Russian route or controlled VPN on/off pair",
+    "Manual screen-reader/IME, coach field study and independent mark review remain open",
+    "Public two-writer test not repeated for this UI-only update; collaboration tests pass in current CI"
+  ]
+}

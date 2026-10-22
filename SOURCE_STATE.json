@@ -1,6 +1,6 @@
 {
   "format": "replaylab-source-state-v1",
-  "snapshotSha256": "91099ea59e2f93d921ab112c386dec37ac4bac4a8006231b0fd796c0c5708815",
+  "snapshotSha256": "ba0252bcd5f4e66e237c5524284281da654a343537a2f4c504ca8894d9e4bbc1",
   "upstream": {
     "repository": "https://github.com/toeverything/AFFiNE",
     "commit": "329839e467d936f90230fb02a8983f8eb4b62fc0"
@@ -75,7 +75,7 @@
     },
     {
       "path": "PLAN.md",
-      "sha256": "10e8b4eff428a28c26648ce54b340bd6cab8eb85400800b770c02d3adf962157",
+      "sha256": "2e8c1a3c062e92478a25203c46d7732a2a8cbb7668cc1a7beaecb04707c04320",
       "origin": "working-tree-copy"
     },
     {
@@ -2296,7 +2296,7 @@
     },
     {
       "path": "docs/PRODUCTION_VERIFICATION.md",
-      "sha256": "4107405930dd4a65adc97b2c9374f1a3910486cddce6a1a98517a41798bf7402",
+      "sha256": "4ae00e29d7c12a2060b8529a78a2447d028069a007e321fd37f0606b5e1f9049",
       "origin": "original-replaylab"
     },
     {
@@ -2336,7 +2336,7 @@
     },
     {
       "path": "docs/VISUAL_POLISH.md",
-      "sha256": "9770fd7d653589d5df7b8079c0766505379127e73f209bc3071d8e9b2a743a43",
+      "sha256": "27014574a9a321bdcfb134448a2a30d459571c8ccc89a762a4590aca6301ab05",
       "origin": "original-replaylab"
     },
     {
@@ -2787,6 +2787,31 @@
     {
       "path": "docs/design/key-screens.png",
       "sha256": "f0c5a804ea194dbe3d78d1adf4e3e105329e10bace60682a3920734a5f1c01d0",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-after-public-editor.png",
+      "sha256": "738d1c949441bd4f7bc3daec46c8f2926053a2f86ff304a993fa5f9eb57c90cb",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-after-public-home.png",
+      "sha256": "525c06756e9382e3e813f38474db94453a64a0ef5cb3cba00d3c9a58b7982313",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-after-public-library.png",
+      "sha256": "a6993d109d26b8e873e046a4477b0b5961a93c12898ebc95c9895826fb34714f",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-before-public-home.png",
+      "sha256": "32ac81fe4933349e5054cd870a6ee3ec9689c1b035364ea7d23673e38d95504e",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "docs/design/polish-before-public-library.png",
+      "sha256": "6b72af96f69373daf169431506e26662eb328de41b7e1b2f7a531b9ce1bd8c8a",
       "origin": "original-replaylab"
     },
     {
@@ -3260,6 +3285,16 @@
       "origin": "working-tree-copy"
     },
     {
+      "path": "packages/replaylab/foundation/evidence/polish-ci.json",
+      "sha256": "9e2926cb330327129b265d0d2fbebb49241991cbab866875595ab192e8ab5f7e",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/polish-deployment.json",
+      "sha256": "58a7ec4e3add53632bb18ab8df58ef78ad97bf7ffbec715e7d308cd4927f89ac",
+      "origin": "original-replaylab"
+    },
+    {
       "path": "packages/replaylab/foundation/evidence/public-arena-smoke.json",
       "sha256": "c509c80454a5a697c2d6047c414f5df7cb9c24047ec1f8c41842cbc300a1d127",
       "origin": "original-replaylab"
@@ -3302,6 +3337,16 @@
     {
       "path": "packages/replaylab/foundation/evidence/public-direct3d-smoke.json",
       "sha256": "ec9de7f3e908650e14440430386fc30ee7efd3d700a471d495d102fdd972983a",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/public-polish-receipt.json",
+      "sha256": "bc18b5caa72cc0f0a90e1b2f0db29aabb435ee976a7b56551367f713208831e4",
+      "origin": "original-replaylab"
+    },
+    {
+      "path": "packages/replaylab/foundation/evidence/public-polish-smoke.json",
+      "sha256": "97a3a5fb7d128565eff8141ca18a7fc82f2eb71ca12590e32e4e04098b80a0dc",
       "origin": "original-replaylab"
     },
     {

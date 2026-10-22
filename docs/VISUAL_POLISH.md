@@ -43,8 +43,24 @@ Widths: 320, 390, 820, 1280
 and 1440 pixels. Reports: `visual-polish-tests.json` and `visual-polish-final.json`
 in foundation evidence. The maximum 3D fixture measured 59.98 FPS, p95 frame
 16.8 ms, input-to-paint 4.6 ms, local open 31.2 ms and zero long tasks on this
-Windows host. Final publication is pending; 18 October public results remain
-historical until this revision is explicitly verified and published.
+Windows host. The exact application revision `8decfd7bf299bfe7a1d2d8e4f2c4d8dfa287a0b2`
+passes [CI 39855161163](https://github.com/godaylor/replaylab/actions/runs/39855161163):
+129/129 release tests, 10/10 abrupt-close repetitions, source inventory,
+typecheck/builds, lint, technical provenance audit, release packaging and Node/
+non-root Docker smoke. Existing-service deployment
+`dep-dbd7rkm7bikc73fdqc60` is **Live**, 1m08s, with seven rooms restored.
+Public HTML, both JavaScript chunks, CSS, font, texture and service worker match
+the verified local build byte-for-byte; health/readiness return 200 and ready.
+
+Public smoke passes **4/4** fresh Chrome sessions: RU/EN desktop and emulated
+390×844 touch phone. Desktop watch → edit → rename → add/undo/redo and mobile
+playback/step selection pass. Exact document state, language and theme survive
+reload, recent reopening and a new offline tab in a prepared context. Zero
+browser/console/HTTP errors and no shared-room requests. Reports are
+`polish-ci.json`, `public-polish-receipt.json`, `public-polish-smoke.json` and
+`polish-deployment.json` under foundation evidence. Collaboration is checked
+in this revision's CI; a new public two-writer run was not repeated for this
+presentation-only update.
 
 Actual desktop/mobile screenshots cover RU/EN and dark/light themes in
 `docs/design/polish-*`. The 21.48-second `polish-walkthrough.webm` shows the
@@ -54,6 +70,26 @@ asset-identity receipt in `polish-stills-review.json`: 8/8 variants, 32/32
 no-overflow checks, zero browser/asset errors and zero network writes.
 The recording is an
 implementation capture, not an imagegen concept or a claim of human review.
+
+## Before and after
+
+The previous public home and library are preserved in
+`design/polish-before-public-home.png` and
+`design/polish-before-public-library.png`. The new library is shown in
+`design/polish-after-public-library.png`; public home/editor and the full
+desktop/phone matrix are adjacent. The existing IAB document retained its title,
+five steps and edited actions after this deployment; the public library retained
+all five existing recent entries.
+This pass improves hierarchy, readable controls, library surfaces and motion;
+the stylized 3D scene is retained. On phones, small player figures remain a
+constraint of the whole-court view.
+
+Before deployment, the public home reproduced Render's application-loading
+interstitial after inactivity, then opened without intervention. Render logs
+at 2026-10-23 00:11:56/00:12:00 Moscow show local editor readiness followed by
+collaboration readiness with seven rooms. The free-service dashboard warns of
+50-second-or-longer wakeups. This is a hosting cold-start limitation, distinct
+from a failed application bootstrap or a verified geographic network block.
 
 Local sandbox loopback restrictions prevented the first preview/test startup;
 the same commands are run with permitted local-server access. This is an
